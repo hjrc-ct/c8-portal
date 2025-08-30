@@ -1,7 +1,7 @@
 {
   "name": "c8-portal-app",
   "version": "1.0.0",
-  "description": "Deploy and Run Camunda 8.7+ on GKE cluster.",
+  "description": "Deploy and Run Camunda 8.7+ on GKE cluster. Init release.",
   "main": "src/index.html",
   "scripts": {
     "start": "live-server src",
