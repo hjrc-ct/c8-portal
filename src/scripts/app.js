@@ -10,6 +10,11 @@ footer.innerHTML = `
 document.body.appendChild(header);
 document.body.appendChild(footer);
 
+function getQueryParam(name) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+}
+
 const loadCoursePart = (part) => {
     fetch(`pages/Part${part}.html`)
         .then(response => response.text())
@@ -18,7 +23,7 @@ const loadCoursePart = (part) => {
             mainContent.innerHTML = data;
 
             // After loading, replace variables in code blocks
-            const UNAMESPACE_VALUE = "c8-labs-32";
+            const UNAMESPACE_VALUE = getQueryParam('ns') || "undefined-namespace";
             document.querySelectorAll('code').forEach(codeBlock => {
                 console.log(codeBlock.textContent);
                 codeBlock.textContent = codeBlock.textContent.replace(/\$UNAMESPACE/g, UNAMESPACE_VALUE);
