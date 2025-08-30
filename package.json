@@ -5,7 +5,7 @@
   "main": "src/index.html",
   "scripts": {
     "start": "live-server src",
-    "build": "echo 'Build process not defined'",
+    "build": "npm run build",
     "test": "echo 'No tests defined'"
   },
   "keywords": [
