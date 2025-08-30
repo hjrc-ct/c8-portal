@@ -35,12 +35,12 @@ To get started with the Educational Course Website, follow these steps:
 1. **Clone the repository**:
    ```
    git clone <repository-url>
-   cd educational-course-website
+   cd c8-portal
    ```
 
 2. **Install dependencies**:
    ```
-   npm install
+   npm run build
    ```
 
 3. **Run the website**:
