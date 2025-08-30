@@ -1,0 +1,21 @@
+{
+  "name": "c8-portal-app",
+  "version": "1.0.0",
+  "description": "Deploy and Run Camunda 8.7+ on GKE cluster.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build process not defined'",
+    "test": "echo 'No tests defined'"
+  },
+  "keywords": [
+    "camunda",
+    "c8",
+    "GKE"
+  ],
+  "author": "MakeLabs.info",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3 - Educational Course</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+
+<body>
+    <main>
+        <h2>Install Landing Page</h2>
+        <p>A simple html page to navigate Camunda apps and other aspects covered in this program.</p>
+
+        <section>
+            <div class="copy-block">
+                <p/>
+                Open a new terminal in VS Code.<br/>
+                Set the namespace variable. Use the namespace assigned to you.<p/>
+                <pre id="copy-text-3-1"><code>export UNAMESPACE=$UNAMESPACE</code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-3-1')">Copy</button>
+            </div>
+            <p/>
+            <div class="copy-block">
+                <p/>
+                Run below command to deploy the landing page app.<br/>
+                <pre id="copy-text-3-2"><code>
+envsubst '${UNAMESPACE}' < deploy-landing-page.yaml  | kubectl apply -f -
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-3-2')">Copy</button>
+            </div>
+            <p/>
+            <div class="copy-block">
+                <p/>
+                Open browser and access the landing page.<br/>
+                <pre id="copy-text-3-3"><code>https://$UNAMESPACE.makelabs.in</code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-3-3')">Copy</button>
+            </div>            
+        </section>
+    </main>
+    <footer>
+        <!-- Footer component will be rendered here -->
+    </footer>
+    <script src="../scripts/app.js"></script>
+    
+</body>
+</html>
