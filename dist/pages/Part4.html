@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 4 - Educational Course</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <main>
+        <h2>Elastic</h2>
+        <p>
+            Runs as a persistent data store for the Camunda platform.
+            <br/>
+            It is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases.
+        </p>
+
+        <section>
+            <div class="copy-block">
+                <p/>
+                Edit this block in text editor before running the same.<br/>
+                Replace the username, password (token) and email as mentioned.<p/>
+                <pre id="copy-text-4-1"><code>
+# replace user id, email, token appropriately
+kubectl create secret docker-registry registry-camunda-cloud  \
+--namespace=$UNAMESPACE \
+--docker-server=registry.camunda.cloud \
+--docker-username=your-docker-account-uid \
+--docker-password=your-docker-account-token \
+--docker-email=your-docker-account-email
+
+# replace user id, email, token appropriately
+kubectl create secret docker-registry registry-docker-hub  \
+    --namespace=$UNAMESPACE \
+    --docker-server=hub.docker.com \
+    --docker-username=your-docker-account-uid \
+    --docker-password=your-docker-account-token \
+    --docker-email=your-docker-account-email
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-4-1', 'Text copied! Open any Text editor to make necessary changes.')">Copy</button>
+            </div>
+            <p/>
+            <div class="copy-block">
+                <p/>
+                Install elastic components - elk certs<br/>
+                Important: Make sure Docker Desktop app is running on your local machine.<p/>
+                <pre id="copy-text-4-2"><code>
+UNAMESPACE=$UNAMESPACE envsubst < elk-makefile | sh
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-4-2', 'Important: Before running the command, make sure Docker Desktop app is running on your local machine.')">Copy</button>
+                <p/>
+After this, you should see secrets created in your namespace (via Project Lens UI app).
+<br/># Config => secret/elastic-certificates created
+<br/># Config => secret/elasticsearch-master-certs created
+<br/># Config => secret/elastic-jks created                
+            </div>
+            <p/>
+            <div class="copy-block">
+                <p/>
+                Install elastic<br/>
+                <pre id="copy-text-4-3"><code>
+helm install elasticsearch elastic/elasticsearch -n $UNAMESPACE -f elasticsearch.yaml
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-4-3')">Copy</button>
+                <p/>
+After this, you should see Elastic pod running.
+<br/># It may take about 3 to 5 minutes for the pod to be in running state.
+            </div>
+
+        </section>
+    </main>
+    <script src="../scripts/app.js"></script>
+</body>
+</html>
