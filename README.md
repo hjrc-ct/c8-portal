@@ -1,13 +1,13 @@
-# Educational Course Website
+# c8-portal: Educational Course Website
 
-Welcome to the Educational Course Website project! This project is designed to provide an interactive learning experience through a structured course divided into four parts.
+Welcome to the Camunda 8 Self Managged - Deployment on GKE project! This project is designed to provide an interactive learning experience through a structured course divided into four parts.
 
 ## Project Structure
 
 The project is organized as follows:
 
 ```
-educational-course-website
+c8-portal
 ├── src
 │   ├── index.html          # Main entry point for the website
 │   ├── styles              # Contains CSS files
