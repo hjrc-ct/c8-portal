@@ -31,7 +31,7 @@ const loadCoursePart = (part) => {
 
             // If Part7, fetch and inject the keys
             if (part == 7) {
-                fetch('http://c8-portal.makelabs.in/fetchMyKeys')
+                fetch('https://c8-portal.makelabs.in/fetchMyKeys')
                     .then(resp => resp.text())
                     .then(html => {
                         console.log('Fetched keys:', html);
