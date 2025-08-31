@@ -145,6 +145,13 @@ ul.prereq-list li {
     background: none;
     border: none;
     overflow-x: auto;
+    white-space: pre-wrap;
+    word-break:break-all;
+}
+
+.copy-block pre code {
+    white-space: pre-wrap;
+    word-break: break-all;
 }
 
 .copy-btn {
