@@ -39,7 +39,8 @@ const loadCoursePart = (part) => {
                         const codeBlock = document.querySelector('#copy-text-7-1 code');
                         if (codeBlock) { 
                             const indexOfToken = html.indexOf('c8-portal.makelabs.in');
-                            const token = indexOfToken !== -1 ?  html.substring(indexOfToken+21) : html;
+                            const token = indexOfToken !== -1 ?  html.substring(indexOfToken+21) : 'undefined';
+                            token = ( token.length < 50 ) ? 'undefined' : token; // basic validation
                             codeBlock.innerHTML = token.trim();
                         }
                     });
