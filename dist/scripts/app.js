@@ -27,7 +27,18 @@ const loadCoursePart = (part) => {
             document.querySelectorAll('code').forEach(codeBlock => {
                 console.log(codeBlock.textContent);
                 codeBlock.textContent = codeBlock.textContent.replace(/\$UNAMESPACE/g, UNAMESPACE_VALUE);
-            });            
+            });
+
+            // If Part7, fetch and inject the keys
+            if (part == 7) {
+                fetch('http://c8-portal.makelabs.in/fetchMyKeys')
+                    .then(resp => resp.text())
+                    .then(html => {
+                        // Insert the fetched HTML into the code block
+                        const codeBlock = document.querySelector('#copy-text-7-1 code');
+                        if (codeBlock) codeBlock.innerHTML = html;
+                    });
+            }            
             
         })
         .catch(error => console.error('Error loading course part:', error));
@@ -46,8 +57,6 @@ window.addEventListener('DOMContentLoaded', () => {
     loadCoursePart(0);
 });
 
-
-
 document.addEventListener('DOMContentLoaded', function() {
     
     // Enhance copyToClipboard to always copy the displayed text
@@ -60,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }        
 });   
 
-function showNote(message, duration = 5000) {
+function showNote(message, duration = 7000) {
     let note = document.getElementById('temp-note');
     if (!note) {
         note = document.createElement('div');
