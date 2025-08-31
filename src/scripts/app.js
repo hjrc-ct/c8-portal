@@ -4,7 +4,7 @@ header.innerHTML = `
 
 const footer = document.createElement('footer');
 footer.innerHTML = `
-    <p>&copy; 2025 MakeLabs.in All rights reserved.</p>
+    <p><small>&copy; 2025 MakeLabs.in All rights reserved. For any query or feedback, write to camunda-chapter-bengaluru@makelabs.in</small></p>
 `;
 
 document.body.appendChild(header);
@@ -40,7 +40,7 @@ const loadCoursePart = (part) => {
                         if (codeBlock) { 
                             const indexOfToken = html.indexOf('c8-portal.makelabs.in');
                             let token = indexOfToken !== -1 ?  html.substring(indexOfToken+21) : 'undefined';
-                            token = ( token.length < 50 ) ? 'undefined' : token; // basic validation
+                            token = ( token.length < 100 ) ? 'undefined' : token; // basic validation
                             codeBlock.innerHTML = token.trim();
                         }
                     });
