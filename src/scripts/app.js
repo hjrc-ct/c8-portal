@@ -37,7 +37,11 @@ const loadCoursePart = (part) => {
                         console.log('Fetched keys:', html);
                         // Insert the fetched HTML into the code block
                         const codeBlock = document.querySelector('#copy-text-7-1 code');
-                        if (codeBlock) codeBlock.innerHTML = html;
+                        if (codeBlock) { 
+                            const indexOfToken = html.indexOf('c8-portal.makelabs.in');
+                            const token = indexOfToken !== -1 ?  html.substring(indexOfToken+21) : html;
+                            codeBlock.innerHTML = token.trim();
+                        }
                     });
             }            
             
