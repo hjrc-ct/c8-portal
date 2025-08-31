@@ -34,6 +34,7 @@ const loadCoursePart = (part) => {
                 fetch('http://c8-portal.makelabs.in/fetchMyKeys')
                     .then(resp => resp.text())
                     .then(html => {
+                        console.log('Fetched keys:', html);
                         // Insert the fetched HTML into the code block
                         const codeBlock = document.querySelector('#copy-text-7-1 code');
                         if (codeBlock) codeBlock.innerHTML = html;
