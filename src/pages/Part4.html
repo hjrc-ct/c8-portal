@@ -54,7 +54,8 @@ UNAMESPACE=$UNAMESPACE envsubst < elk-makefile | sh
 After this, you should see secrets created in your namespace (via Project Lens UI app).
 <br/># Config => secret/elastic-certificates created
 <br/># Config => secret/elasticsearch-master-certs created
-<br/># Config => secret/elastic-jks created                
+<br/># Config => secret/elastic-jks created
+<br/>###CAUTION: You may have to run the script twice. Sometimes the certs are not created on first run. Please check and proceed.
             </div>
             <p/>
             <div class="copy-block">

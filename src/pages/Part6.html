@@ -12,24 +12,24 @@
         <p>
             Lead To Opportunity sample application consists of BPMN, DMN and Form units.
             <br/>
+            <ul>
+                <li>BPMN - process def</li>
+                <li>DMN - decision table</li>
+                <li>Form - UI component</li>
+                <li>Job Worker - custom app "toolkit"</li>
+            </ul>
         </p>
         <section>
             <div class="copy-block">
                 <p/>
-                Shift to toolkit folder and build the custom app JAR.<br/>
+                The "toolkit" folder has custom app. You may explore the code in VS Code IDE.
+                <br/>
                 <pre id="copy-text-6-1"><code>
-cd toolkit
-mvn clean package -DskipTests
-IMAGE_NAME=toolkit-$UNAMESPACE
-REGISTRY=asia-south2-docker.pkg.dev/c8-labs/c8-labs-repo
-docker build -t $REGISTRY/$IMAGE_NAME:v1 .
-docker push $REGISTRY/$IMAGE_NAME:v1
-cd ..
+We'll be using the pre-built Docker image for the custom app.
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-6-1', 'Make sure Docker Desktop app is running and Maven is accessible.')">Copy</button>
                 <p/>
-After this, you should see docker image uploaded to GCP artifact registry.
 <br/>Check the image in this path: GCP console > Artifact Registry > asia-south2-docker.pkg.dev/c8-labs/c8-labs-repo
             </div>
             <p/>
@@ -49,12 +49,49 @@ envsubst '${UNAMESPACE}' < deploy-worker-toolkit.yaml  | kubectl apply  -f -
                 <p/>
                 Add ingress to enable traffic flow to the deployed services.<br/>
                 <pre id="copy-text-5-4"><code>
-envsubst '${UNAMESPACE}' < c8-ingress-with-toolkit.yaml           | kubectl apply  -f -
+envsubst '${UNAMESPACE}' < c8-ingress-with-toolkit.yaml | kubectl apply  -f -
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-5-4')">Copy</button>
                 <p/>
 You may check the ingress definition in the assigned namespace.
+<br/>
+            </div>
+            <p/>
+
+           <div class="copy-block">
+                <p/>
+                Deploy process artifacts.<br/>
+                <pre id="copy-text-5-5"><code>
+cd 1-lead-to-opportunity-dmn-form-webhook/
+export ZEEBE_SECRET=$(kubectl get secret identity-secret-for-components -n $UNAMESPACE -o jsonpath="{.data.ZEEBE_SECRET}" | base64 --decode)
+zbctl deploy --authzUrl=https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token \
+      --clientId=zeebe \
+      --clientSecret=$ZEEBE_SECRET \
+      --audience=zeebe \
+      --address "${UNAMESPACE}-zeebe-gateway.makelabs.in:443" \
+      --insecure=false \
+       lead-to-opportunity-with-dmn.bpmn --certPath ../cert-origin_ca_rsa_root.pem 
+zbctl deploy --authzUrl=https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token \
+      --clientId=zeebe \
+      --clientSecret=$ZEEBE_SECRET \
+      --audience=zeebe \
+      --address "${UNAMESPACE}-zeebe-gateway.makelabs.in:443" \
+      --insecure=false \
+       new-lead-approval.dmn --certPath ../cert-origin_ca_rsa_root.pem 
+zbctl deploy --authzUrl=https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token \
+      --clientId=zeebe \
+      --clientSecret=$ZEEBE_SECRET \
+      --audience=zeebe \
+      --address "${UNAMESPACE}-zeebe-gateway.makelabs.in:443" \
+      --insecure=false \
+       lead-to-opportunity-with-webhook-Form.form --certPath ../cert-origin_ca_rsa_root.pem 
+cd ..
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-5-5')">Copy</button>
+                <p/>
+You may check the deployment status via <a target="_blank" href="https://$UNAMESPACE.makelabs.in/operator/">Operator</a> console.
 <br/>
             </div>
             <p/>

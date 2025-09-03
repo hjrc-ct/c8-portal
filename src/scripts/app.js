@@ -4,7 +4,7 @@ header.innerHTML = `
 
 const footer = document.createElement('footer');
 footer.innerHTML = `
-    <p><small>&copy; 2025 MakeLabs.in All rights reserved. For any query or feedback, write to camunda-chapter-bengaluru@makelabs.in</small></p>
+    <p><small>&copy; 2025 MakeLabs.in All rights reserved. For any query or feedback, write to <code>contact@makelabs.in</code></small></p>
 `;
 
 document.body.appendChild(header);
