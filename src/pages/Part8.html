@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <main>
+        <h2>Prometheus and Grafana</h2>
+        <p>
+            Let's install monitoring tools: Prometheus and Grafana.
+            <br/>
+        </p>
+        <section>
+            <div class="copy-block">
+                <p/>
+                Prometheus<br/>
+                <pre id="copy-text-8-1"><code>
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+UNAMESPACE=$UNAMESPACE envsubst < prometheus.yml   > prometheus.my-ns.yaml
+helm install prometheus prometheus-community/prometheus -f prometheus.my-ns.yaml --namespace $UNAMESPACE
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-8-1')">Copy</button>
+                <p/>
+Install prometheus in the same namespace.
+<br/>
+            </div>
+            <p/>
+        </section>
+
+        <section>
+            <div class="copy-block">
+                <p/>
+                Grafana<br/>
+                <pre id="copy-text-8-2"><code>
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm install grafana grafana/grafana --namespace  $UNAMESPACE
+kubectl get secret --namespace $UNAMESPACE grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+UNAMESPACE=$UNAMESPACE envsubst < c8-ingress-grafana.yaml | kubectl apply -f -
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-8-2','Make a note of admin account password')">Copy</button>
+                <p/>
+Install Grafana. It provides you <code>the password for admin account</code>. Please make a note of this.
+<br/>Also note that we are adding ingress for accessing Grafana app. You can sign-in to <a target="_blank" href="https://${UNAMESPACE}-grafana.makelabs.in/">Grafana</a>
+            </div>
+            <p/>
+        </section>        
+
+        <section>
+            <div class="copy-block">
+                <p/>
+                Configure Grafana - add prometheus datasource<br/>
+                <pre id="copy-text-8-3"><code>            
+####### Grafana UI - Setup data source and import dashboard
+# Step 1.  Go to Datasources. Add prometheus as data source. Save and test. (Get 'prometheus-server' IP address from Lens UI)
+# Step 2.a Go to Dashboard -> Import. 
+#      2.b Use link to copy-and-paste dashboard template ->> https://github.com/camunda/camunda/blob/stable/8.6/monitor/grafana/zeebe.json    
+#      2.c Select data source from step 1 and Save
+
+
+# To check prometheus data feed - run this from toolkit pod where curl is supported
+curl -s http://prometheus-server.$UNAMESPACE:9090/api/v1/targets            
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-8-3')">Copy</button>
+                <p/>
+This completes the Grafana configuration. You can now view the dashboard.
+<br/>
+            </div>
+            <p/>
+        </section>
+    </main>
+    <script src="../scripts/app.js"></script>
+</body>
+</html>

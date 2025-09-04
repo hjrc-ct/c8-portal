@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 4 - Educational Course</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <main>
+        <h2>Before you leave...</h2>
+        <p>
+            Let's delete the namespace at the conclusion of the proggram.
+            <br/>
+        </p>
+        <section>
+            <div class="copy-block">
+                <p/>
+                Delete namespace<br/>
+                <pre id="copy-text-9-1"><code>
+kubectl delete namespace $UNAMESPACE
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9-1')">Copy</button>
+                <p/>
+Deleting the namespace will release resources such as persistent volume/disk(s), pods, secrets etc.
+<br/>You may now close the apps such as Project Lens, VS Code and others.
+<br/>As a best practice, please make sure to delete the token created in your Docker account.
+            </div>
+            <p/>
+
+        </section>
+    </main>
+    <script src="../scripts/app.js"></script>
+</body>
+</html>

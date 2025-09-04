@@ -104,8 +104,6 @@ main {
     min-height: 100vh;
 }
 
-
-
 section {
     margin-bottom: 20px;
     text-decoration:none;
@@ -113,7 +111,7 @@ section {
     line-height: 26.7061px;
     letter-spacing: -0.25px;
     margin-right: 20px;
-    width: 75%;
+    width: 85%;
     max-width: 75%;
 }
 
@@ -172,3 +170,36 @@ ul.prereq-list li {
     background: #35424a;
 }
 
+.table-wrap {
+  width: 80%;
+  overflow-x: auto;
+  text-align: left;
+  -webkit-overflow-scrolling: touch;
+}
+
+.student-table-wrap {
+  width: 100%;
+  max-width: 900px;       
+  border-collapse: collapse;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-size: 16px;
+  line-height: 1.45;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+}
+
+.student-table-wrap tr:nth-child(odd) {
+    background-color: #f4f4f4; /* light gray */
+}
+
+.student-table-wrap tr:nth-child(even) {
+    background-color: #ffffff; /* white */
+}
+
+.student-table-wrap th {
+    background-color: #ffffff; /* white */
+}
+
+.student-table-wrap td {
+    padding: 14px 0px;
+}

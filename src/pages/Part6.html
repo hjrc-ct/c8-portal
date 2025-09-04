@@ -96,6 +96,29 @@ You may check the deployment status via <a target="_blank" href="https://$UNAMES
             </div>
             <p/>
 
+           <div class="copy-block">
+                <p/>
+                Now that solution is deployed, lets do a dry run with curl command.<br/>
+                <pre id="copy-text-5-6"><code>
+curl -v --location --request PUT 'https://$UNAMESPACE.makelabs.in/connectors/inbound/new-lead-record' \
+--header 'key: SRM-web-hook-8ui3nm' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "companyName": "New Saravana Bhavan Hotel Corp",
+    "companyPincode": "600001",
+    "companyContactPhone": "9836712345",
+    "companyContactEmail": "c@mail.com",
+    "x-api-key": "SRM-web-hook-8ui3nm"
+}'                    
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-5-6')">Copy</button>
+                <p/>
+You may check the runtime process instance via <a target="_blank" href="https://$UNAMESPACE.makelabs.in/operator/">Operator</a> console.
+<br/>
+            </div>
+            <p/>            
+
         </section>
     </main>
     <script src="../scripts/app.js"></script>

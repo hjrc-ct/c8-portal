@@ -29,6 +29,10 @@ const loadCoursePart = (part) => {
                 codeBlock.textContent = codeBlock.textContent.replace(/\$UNAMESPACE/g, UNAMESPACE_VALUE);
             });
 
+            if (part == 0) {
+                renderStudentTable();
+            }
+
             // If Part7, fetch and inject the keys
             if (part == 7) {
                 fetch('https://c8-portal.makelabs.in/fetchMyKeys')
@@ -98,4 +102,35 @@ function showNote(message, duration = 7000) {
     setTimeout(() => {
         note.style.display = 'none';
     }, duration);
+}
+
+const participants = [
+    {
+        name: "Anmol",
+        email: "anm****@gmail.com",
+        ns: "c8-labs-30"
+    },
+    {
+        name: "Prasad",
+        email: "pra****@gmail.com",
+        ns: "c8-labs-31"
+    },
+    {
+        name: "Raghavendra",
+        email: "rag****@gmail.com",
+        ns: "c8-labs-32"
+    },    
+    // Add more participants as needed
+];
+
+function renderStudentTable() {
+    const tbody = document.getElementById('studentTable');
+    if (!tbody) return;
+    tbody.innerHTML = participants.map(p => `
+        <tr>
+            <td>${p.name}</td>
+            <td>${p.email}</td>
+            <td><a href="/?ns=${p.ns}">Link</a></td>
+        </tr>
+    `).join('');
 }
