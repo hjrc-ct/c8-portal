@@ -106,20 +106,90 @@ function showNote(message, duration = 7000) {
 
 const participants = [
     {
-        name: "Anmol",
-        email: "anm****@gmail.com",
-        ns: "c8-labs-30"
+        "name": "Abdul Q",
+        "email": "a*************@gmail.com",
+        "ns": "c8-labs-41"
     },
     {
-        name: "Prasad",
-        email: "pra****@gmail.com",
+        "name": "Anto B",
+        "email": "a*****************@gmail.com",
+        "ns": "c8-labs-42"
+    },
+    {
+        "name": "Charan T",
+        "email": "c************************@gmail.com",
+        "ns": "c8-labs-43"
+    },
+    {
+        "name": "Gaurav M",
+        "email": "m**************@gmail.com",
+        "ns": "c8-labs-44"
+    },
+    {
+        "name": "Hasan G",
+        "email": "h**************@gmail.com",
+        "ns": "c8-labs-45"
+    },
+    {
+        "name": "Jayanth M R",
+        "email": "j**********@gmail.com",
+        "ns": "c8-labs-46"
+    },
+    {
+        "name": "Juan C B R",
+        "email": "j******@gmail.com",
+        "ns": "c8-labs-47"
+    },
+    {
+        "name": "Mamtha K",
+        "email": "m********@gmail.com",
+        "ns": "c8-labs-48"
+    },
+    {
+        "name": "Pavan K V",
+        "email": "p**************@gmail.com",
+        "ns": "c8-labs-49"
+    },
+    {
+        "name": "Pradip P",
+        "email": "p***************@gmail.com",
+        "ns": "c8-labs-50"
+    },
+    {
+        "name": "Praveen K B",
+        "email": "p**********@gmail.com",
+        "ns": "c8-labs-51"
+    },
+    {
+        "name": "Raji M",
+        "email": "r*********@gmail.com",
+        "ns": "c8-labs-52"
+    },
+    {
+        "name": "Ramesh B S",
+        "email": "s*******************@gmail.com",
+        "ns": "c8-labs-53"
+    },
+    {
+        "name": "shamanth R",
+        "email": "s**********@gmail.com",
+        "ns": "c8-labs-54"
+    },
+    {
+        "name": "Siva R",
+        "email": "s***************@gmail.com",
+        "ns": "c8-labs-55"
+    },
+    {
+        name: "Anmol",
+        email: "anm****@gmail.com",
         ns: "c8-labs-31"
     },
     {
         name: "Raghavendra",
         email: "rag****@gmail.com",
         ns: "c8-labs-32"
-    },    
+    }    
     // Add more participants as needed
 ];
 
@@ -130,7 +200,7 @@ function renderStudentTable() {
         <tr>
             <td>${p.name}</td>
             <td>${p.email}</td>
-            <td><a href="/?ns=${p.ns}">Link</a></td>
+            <td><a href="/?ns=${p.ns}">View Metadata</a></td>
         </tr>
     `).join('');
 }
