@@ -46,7 +46,16 @@
                 <li>Docker Desktop app<br/> 
                     <span aria-label="Opens in new tab" title="Opens in new tab">
                     <a target="_blank" href="https://www.docker.com/products/docker-desktop/" rel="noopener noreferrer">https://www.docker.com/products/docker-desktop/<sup>&nbsp;↗️</sup></a>
-                    </span>                    
+                    <p/>
+                    <br/>
+                    # Instructions for Windows OS
+                    <br/>
+                    # Open powershell window and run this command to check the Processor: AMD or ARM
+                    <br/>
+                    # Docker Desktop app install comes in two variations for WindowsOS: AMD or ARM
+                    <br/>
+                    <code>Prompt> echo $env:PROCESSOR_ARCHITECTURE    </code>
+                    </span>    
                 </li>
                 <li>Java, Keytool and Openssl<br/> 
                     <span aria-label="Opens in new tab" title="Opens in new tab">
@@ -56,6 +65,31 @@
                     <span aria-label="Opens in new tab" title="Opens in new tab">
                     <a target="_blank" href=https://www.youtube.com/watch?v=coaGBdUcKiw" rel="noopener noreferrer">Youtube: OpenSSL install on Windows<sup>&nbsp;↗️</sup></a>
                     </span>
+
+                    <span>
+<p/>
+Download URL for OpenSSL
+<br/>
+https://github.com/openssl/openssl/wiki/Binaries
+<p/>
+Below are the specific versions or higher recommended for the program.                        
+<br/>
+<code>$ java -version</code>
+<br/>
+openjdk version "21.0.2"
+<br/>
+<br/>
+<code>$ keytool -version</code>
+<br/>
+keytool 21.0.2
+<br/>
+<br/>
+<code>$ openssl -version</code>
+<br/>
+OpenSSL 3.5.2 5 Aug 2025 (Library: OpenSSL 3.5.2 5 Aug 2025)
+<br/>
+<br/>
+                    </span>
                 </li>
                 <li>Git for Windows<br/>
                     <span aria-label="Opens in new tab" title="Opens in new tab">
@@ -63,8 +97,13 @@
                     </span>  
                     <br/><small>Commands presented are tested on MacOS. If you are running <code>Windows OS</code>, Git Bash is recommended to ensure compatibility.</small>
                 </li>
-                <li>Install Zbctl<br/>
+                <li>Install NodeJS, npm and Zbctl<br/>
                     <span aria-label="Opens in new tab" title="Opens in new tab">
+                    <p>
+                        Download and install NodeJS (include npm) from the link below:
+                        <br/>
+                        <a target="_blank"  href="https://nodejs.org/en/download">https://nodejs.org/en/download<sup>&nbsp;↗️</sup></a>
+                    </p>
                     <code>sudo apt install npm</code>
                     <br/>
                     <code>sudo npm i -g zbctl</code>
