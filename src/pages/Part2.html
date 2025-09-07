@@ -62,10 +62,13 @@ git checkout c8-labs-swati
             <p>
                 Run below command to setup config to access the cluster via Project Lens UI app.
                 <br/>
-                Open the app and see if you are able to connect to the cluster.
+                Open the Project Lens UI app and see if you are able to connect to the cluster.
                 <div class="copy-block">
                     <p/>
-                    <pre id="copy-text-2-3"><code>gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs</code></pre>
+                    <pre id="copy-text-2-3"><code>
+gcloud components install gke-gcloud-auth-plugin
+gke-gcloud-auth-plugin --version
+gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs</code></pre>
                     <p/>
                     <button class="copy-btn" onclick="copyToClipboard('copy-text-2-3')">Copy</button>
                 </div>                

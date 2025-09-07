@@ -62,6 +62,8 @@ After this, you should see secrets created in your namespace (via Project Lens U
                 <p/>
                 Install elastic<br/>
                 <pre id="copy-text-4-3"><code>
+helm repo add elastic https://helm.elastic.co
+helm repo update
 helm install elasticsearch elastic/elasticsearch -n $UNAMESPACE -f elasticsearch.yaml
                 </code></pre>
                 <p/>

@@ -46,6 +46,8 @@ UNAMESPACE=$UNAMESPACE envsubst < zeebe-makefile | sh
                 <p/>
                 Helm install camunda-platform<br/>
                 <pre id="copy-text-5-3"><code>
+helm repo add camunda https://helm.camunda.io
+helm repo update
 UNAMESPACE=$UNAMESPACE envsubst < values-combined-ingress.yaml > values-combined-ingress.my-ns.yaml
 UNAMESPACE=$UNAMESPACE envsubst < values-connectors-env.yaml   > values-connectors-env.my-ns.yaml
 helm install $UNAMESPACE camunda/camunda-platform \
