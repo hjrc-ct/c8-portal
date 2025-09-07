@@ -63,7 +63,7 @@ You may check the ingress definition in the assigned namespace.
                 Deploy process artifacts.<br/>
                 <pre id="copy-text-5-5"><code>
 cd 1-lead-to-opportunity-dmn-form-webhook/
-export ZEEBE_SECRET=$(kubectl get secret identity-secret-for-components -n $UNAMESPACE -o jsonpath="{.data.ZEEBE_SECRET}" | base64 --decode)
+export ZEEBE_SECRET=$(kubectl get secret identity-secret-for-components -n $UNAMESPACE -o jsonpath="{.data.zeebe-secret}" | base64 --decode)
 zbctl deploy --authzUrl=https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token \
       --clientId=zeebe \
       --clientSecret=$ZEEBE_SECRET \
