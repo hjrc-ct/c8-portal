@@ -7,24 +7,71 @@
 </head>
 <body>
     <main>
-        <h2>Before you leave...</h2>
+        <h2>Lab Exercise</h2>
         <p>
-            Let's delete the namespace at the conclusion of the proggram.
+            Let's solve some things to better understand the Camunda 8 platform.
             <br/>
         </p>
         <section>
             <div class="copy-block">
                 <p/>
-                Delete namespace<br/>
+                #1. Lets create a new JWT access token.<br/>
                 <pre id="copy-text-9-1"><code>
-kubectl delete namespace $UNAMESPACE
+export ZEEBE_SECRET=$(kubectl get secret identity-secret-for-components -n $UNAMESPACE -o jsonpath="{.data.zeebe-secret}" | base64 --decode)
+curl -X POST "https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=client_credentials" \
+  -d "client_id=zeebe" \
+  -d "client_secret=${ZEEBE_SECRET}"
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-9-1')">Copy</button>
                 <p/>
-Deleting the namespace will release resources such as persistent volume/disk(s), pods, secrets etc.
-<br/>You may now close the apps such as Project Lens, VS Code and others.
-<br/>As a best practice, please make sure to delete the token created in your Docker account.
+View the token using jwt.io website.
+<br/>Can you identify the subject (sub) claim in the token?
+<br/>Specifically, where is this (sub) value coming from?
+            </div>
+            <p/>
+
+            <div class="copy-block">
+                <p/>
+                #2. In the helm install step for Camunda, the release number is sent as a parameter (12.4.0). <br/>
+                <pre id="copy-text-9-2"><code>
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9-2')">Copy</button>
+                <p/>
+In real-life scenario, if you are given an existing Kubernetes environment, how would you find out the Camunda release number?
+<br/>Hint: Use Project Lens UI app to look for the deployed helm charts.
+<br/>
+            </div>
+            <p/>
+
+            <div class="copy-block">
+                <p/>
+                #3. Assume that a component (say Connectors Pod) is deleted from the runtime deployment. <br/>
+                <pre id="copy-text-9-3"><code>
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9-3')">Copy</button>
+                <p/>
+How do you re-deploy the missing "Connectors" component?
+<br/>
+<br/>
+            </div>
+            <p/>
+
+            <div class="copy-block">
+                <p/>
+                #4. The elasticsearch pod running in your respective namespace, is it running on http plaintext port or tls? <br/>
+                <pre id="copy-text-9-4"><code>
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9-4')">Copy</button>
+                <p/>
+Hint: Use kubectl or Project Lens UI app.
+<br/>
+<br/>
             </div>
             <p/>
 
