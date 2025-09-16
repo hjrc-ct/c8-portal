@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const text = el.innerText || el.textContent;
         navigator.clipboard.writeText(text.trim());
         if (messageToShow) showNote(messageToShow);
+        else showNote('Copied to clipboard!');
     }        
 });   
 
