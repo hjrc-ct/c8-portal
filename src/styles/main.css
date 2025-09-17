@@ -203,3 +203,9 @@ ul.prereq-list li {
 .student-table-wrap td {
     padding: 14px 0px;
 }
+
+nav a.nav-active {
+    background-color: #e8491d !important;
+    color: #fff !important;
+    border-radius: 4px;
+}

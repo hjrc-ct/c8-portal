@@ -57,8 +57,21 @@ const loadCoursePart = (part) => {
 document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', (event) => {
         event.preventDefault();
-        const part = event.target.getAttribute('href').match(/Part(\d+)/)[1];
-        loadCoursePart(part);
+
+
+        // Remove active class from all links
+        document.querySelectorAll('nav a').forEach(l => l.classList.remove('nav-active'));
+
+        // Add active class to the clicked link
+        event.currentTarget.classList.add('nav-active');
+
+        // Your existing code to load the part
+        const partMatch = event.currentTarget.getAttribute('href').match(/Part(\d+)/);
+        if (partMatch) {
+            loadCoursePart(partMatch[1]);
+        } else if (event.currentTarget.getAttribute('href').includes('Part0.html')) {
+            loadCoursePart(0);
+        }
     });
 });
 
