@@ -339,9 +339,9 @@ function renderStudentTable() {
     if (!tbody) return;
     tbody.innerHTML = participants.map(p => `
         <tr>
-            <td>${p.name}</td>
+            <td>${p.name.charAt(0).toUpperCase() + p.name.slice(1)}</td>
             <td>${p.email}</td>
-            <td><a href="/?ns=${p.ns}">View Metadata</a></td>
+            <td><a href="/?ns=${p.ns}">${p.ns}</a></td>
         </tr>
     `).join('');
 }
