@@ -339,9 +339,13 @@ function renderStudentTable() {
     if (!tbody) return;
     tbody.innerHTML = participants.map(p => `
         <tr>
-            <td>${p.name.charAt(0).toUpperCase() + p.name.slice(1)}</td>
+            <td>${toTitleCase(p.name)}</td>
             <td>${p.email}</td>
             <td><a href="/?ns=${p.ns}">${p.ns}</a></td>
         </tr>
     `).join('');
+}
+
+function toTitleCase(str) {
+    return str.replace(/\b\w/g, char => char.toUpperCase());
 }
