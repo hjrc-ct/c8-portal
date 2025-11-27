@@ -121,45 +121,150 @@ function showNote(message, duration = 7000) {
 
 const participants = 
 [
-    {
-        "name": "R Chari",
-        "email": "r****************@gmail.com",
-        "ns": "c8-labs-32"
-    },
   {
-    "name": "m ashwini",
-    "email": "a********************@gmail.com",
+    "name": "R Chari",
+    "email": "r****************@gmail.com",
+    "ns": "c8-labs-hampi"
+  },
+  {
+    "name": "R Chari",
+    "email": "r****************@mdpalumni.iimcal.ac.in",
+    "ns": "c8-labs-jolt"
+  },
+  {
+    "name": "Raghu HJ",
+    "email": "r****************@gmail.com",
+    "ns": "c8-labs-kia"
+  },
+  {
+    "name": "Ashwini Mallela",
+    "email": "a****************@gmail.com",
     "ns": "c8-labs-41"
   },
   {
-    "name": "k Kalanithi",
-    "email": "k**********************@gmail.com",
+    "name": "Kalanithi K",
+    "email": "k****************@gmail.com",
     "ns": "c8-labs-42"
   },
   {
-    "name": "v kumar",
-    "email": "k*****************@gmail.com",
+    "name": "Vijay Kumar",
+    "email": "k****************@gmail.com",
     "ns": "c8-labs-43"
   },
   {
-    "name": "m navyasri",
-    "email": "n********************@gmail.com",
+    "name": "Navya Sri",
+    "email": "n****************@gmail.com",
     "ns": "c8-labs-44"
   },
   {
-    "name": "s rasheeda",
-    "email": "r************************@gmail.com",
+    "name": "Rasheeda Shaik",
+    "email": "r****************@gmail.com",
     "ns": "c8-labs-45"
   },
   {
-    "name": "n venkat",
-    "email": "w*****************@gmail.com",
+    "name": "Venkat Rao",
+    "email": "w****************@gmail.com",
     "ns": "c8-labs-46"
   },
   {
-    "name": "j sanjay",
-    "email": "s***************************@gmail.com",
+    "name": "Sanjay Jain",
+    "email": "s****************@gmail.com",
     "ns": "c8-labs-47"
+  },
+  {
+    "name": "slmahavadi",
+    "email": "s****************@gmail.com",
+    "ns": "c8-labs-48"
+  },
+  {
+    "name": "A Srihari Kiran",
+    "email": "a****************@gmail.com",
+    "ns": "c8-labs-49"
+  },
+  {
+    "name": "vyassidhi70",
+    "email": "v****************@gmail.com",
+    "ns": "c8-labs-50"
+  },
+  {
+    "name": "Shrridhar BMS",
+    "email": "b****************@gmail.com",
+    "ns": "c8-labs-51"
+  },
+  {
+    "name": "ppentakotabc",
+    "email": "p****************@gmail.com",
+    "ns": "c8-labs-52"
+  },
+  {
+    "name": "Vikas R",
+    "email": "v****************@gmail.com",
+    "ns": "c8-labs-53"
+  },
+  {
+    "name": "Kushal S",
+    "email": "s****************@gmail.com",
+    "ns": "c8-labs-54"
+  },
+  {
+    "name": "Praneeth K",
+    "email": "p****************@gmail.com",
+    "ns": "c8-labs-55"
+  },
+  {
+    "name": "Vishnu V",
+    "email": "v****************@gmail.com",
+    "ns": "c8-labs-56"
+  },
+  {
+    "name": "G Jeevan kumar",
+    "email": "g****************@gmail.com",
+    "ns": "c8-labs-57"
+  },
+  {
+    "name": "M Vinay",
+    "email": "m****************@gmail.com",
+    "ns": "c8-labs-58"
+  },
+  {
+    "name": "Rajender",
+    "email": "r****************@gmail.com",
+    "ns": "c8-labs-59"
+  },
+  {
+    "name": "Eshwar",
+    "email": "e****************@gmail.com",
+    "ns": "c8-labs-60"
+  },
+  {
+    "name": "rawtiya",
+    "email": "r****************@gmail.com",
+    "ns": "c8-labs-61"
+  },
+  {
+    "name": "Vijay MCA",
+    "email": "p****************@gmail.com",
+    "ns": "c8-labs-62"
+  },
+  {
+    "name": "Siva Puvvada",
+    "email": "s****************@gmail.com",
+    "ns": "c8-labs-63"
+  },
+  {
+    "name": "Ravi Shetty",
+    "email": "r****************@gmail.com",
+    "ns": "c8-labs-64"
+  },
+  {
+    "name": "G S Rao",
+    "email": "g****************@gmail.com",
+    "ns": "c8-labs-65"
+  },
+  {
+    "name": "Karthik V",
+    "email": "k****************@gmail.com",
+    "ns": "c8-labs-66"
   }
 ]
 ;
