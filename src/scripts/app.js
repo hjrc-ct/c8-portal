@@ -127,7 +127,7 @@ const participants =
     "ns": "c8-labs-hampi"
   },
   {
-    "name": "R Chari",
+    "name": "Raghu",
     "email": "r****************@mdpalumni.iimcal.ac.in",
     "ns": "c8-labs-jolt"
   },
