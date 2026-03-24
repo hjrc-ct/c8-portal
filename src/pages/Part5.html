@@ -9,7 +9,7 @@
     <main>
         <h2>Camunda Self-Managed</h2>
         <p>
-            Lets install Camunda 8.7.4 components in your assigned namespace.
+            Lets install Camunda components in your assigned namespace.
             <br/>
         </p>
         <section>
@@ -53,7 +53,7 @@ helm install $UNAMESPACE camunda/camunda-platform \
   -f values-combined-ingress.my-ns.yaml \
   -f values-connectors-env.my-ns.yaml \
   --set zeebe.prometheusServiceMonitor.enabled=true \
-  --version 12.4.0 --namespace $UNAMESPACE
+  --version 12.8.3 --namespace $UNAMESPACE
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-5-3', 'This may take a while...')">Copy</button>
