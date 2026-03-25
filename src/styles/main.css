@@ -7,9 +7,13 @@ body {
 
 header {
     background: rgb(6, 147, 227) ;
-    color: #FF5757;
-    padding: 10px 0;
-    text-align: center;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+    font-weight:lighter;
+    text-align: right;
+    padding-right: 100px;
+    width: 100%;           /* if needed to take full right space */        
 }
 
 nav {
@@ -208,4 +212,29 @@ nav a.nav-active {
     background-color: #e8491d !important;
     color: #fff !important;
     border-radius: 4px;
+}
+
+.app-page-header {
+    display: flex;
+    flex-direction: row;    /* default, but explicit */
+    gap: 0px;              /* spacing between items */  
+}
+
+.app-page-header-item-left {
+    border: 0px solid #ccc;     
+    align-items:normal;
+}
+.app-page-header-item-right {
+    padding-right: 0px;
+    padding-top: 0px;
+    border: 0px solid #ccc;     
+    display: flex;         /* or keep block if not needed */
+    justify-content: flex-end;
+    text-align: right;     /* for inline text content */
+    width: 50%;           /* if needed to take full right space */    
+}
+
+.app-logo {
+    height: 80px;
+    width:  80px;
 }
