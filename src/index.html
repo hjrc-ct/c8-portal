@@ -57,7 +57,7 @@
             if (urlParams.has('ns')) {
                 return "Namespace: " + urlParams.get('ns') + "&nbsp;&nbsp;&nbsp;&nbsp;";
             }
-            return "Namespace: undefined" +  "&nbsp;&nbsp;&nbsp;&nbsp;";
+            return "" +  "&nbsp;&nbsp;&nbsp;&nbsp;";
         }
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('header').innerHTML = getSelectedNS();
