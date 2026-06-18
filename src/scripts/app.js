@@ -291,7 +291,7 @@ function attachInitOnboardingButton() {
 }
 
 function sendOnboardingEmail() {
-    const currentToken = getMyAccessToken();
+    const currentToken = await getMyAccessToken();
     const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/sendEmail';
     const payload = {
         to: getEmailFromAccessJwt(currentToken),
@@ -331,13 +331,13 @@ function toTitleCase(str) {
   return str.replace(/\b\w/g, char => char.toUpperCase());
 }
 
-function getMyAccessToken(){
+async function getMyAccessToken(){
   fetch('https://c8-portal.makelabs.in/fetchMyKeys')
       .then(resp => resp.text())
       .then(html => {
           console.log('Fetched keys:', html);        
           const indexOfToken = html.indexOf('c8-portal.makelabs.in');
-          let token = indexOfToken !== -1 ?  html.substring(indexOfToken+21) : 'undefined';
+          let token = indexOfToken !== -1 ?  html.substring(indexOfToken + 21) : 'undefined';
           token = ( token.length < 100 ) ? 'undefined' : token; // basic validation
           console.log('Extracted token:', token.trim());
           return token.trim();
