@@ -330,11 +330,22 @@ async function sendOnboardingEmail() {
         })
         .then(result => {
             console.log('Onboarding API response:', result);
-            showNote('Onboarding API invoked successfully. ' + result.data.message );
+            showNote('Onboarding API invoked successfully. ' + result.message );
+
+            const codeBlock = document.querySelector('#copy-text-0-1 code');
+            codeBlock.innerHTML = 'service status: ' + result.status 
+                + '<br/>' + result.message
+                + '<br/> Namespace ' + result.data.namespace
+                + '<br/> Account provisioned for ' + result.data.email
+                + '<br/> Assigned URL ' + result.data.url;
         })
         .catch(error => {
             console.error('Failed to invoke onboarding API:', error);
             showNote('Failed to onboard user. See console for details.', 9000);
+
+            const codeBlock = document.querySelector('#copy-text-0-1 code');
+            codeBlock.innerHTML = 'service status: ' + result.status 
+                + '<br/>' + result.message;            
         });
 }
 
