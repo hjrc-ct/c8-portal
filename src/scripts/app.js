@@ -316,6 +316,7 @@ async function sendOnboardingEmail() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'x-api-key' : currentToken,
             'Authorization': 'Bearer ' + currentToken
         },
         body: JSON.stringify(payload)
