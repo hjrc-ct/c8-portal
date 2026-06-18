@@ -318,8 +318,7 @@ async function sendOnboardingEmail() {
             'Content-Type': 'application/json',
             'x-api-key' : currentToken,
             'Authorization': 'Bearer ' + currentToken
-        },
-        body: {}
+        }
     })
         .then(response => {
             if (!response.ok) {
@@ -330,12 +329,12 @@ async function sendOnboardingEmail() {
             return response.json().catch(() => ({ success: true }));
         })
         .then(result => {
-            console.log('Email API response:', result);
-            showNote('Email API invoked successfully.');
+            console.log('Onboarding API response:', result);
+            showNote('Onboarding API invoked successfully. ' + result.data.message );
         })
         .catch(error => {
-            console.error('Failed to invoke email API:', error);
-            showNote('Failed to send email. See console for details.', 9000);
+            console.error('Failed to invoke onboarding API:', error);
+            showNote('Failed to onboard user. See console for details.', 9000);
         });
 }
 
