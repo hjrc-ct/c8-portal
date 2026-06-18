@@ -344,9 +344,8 @@ function getMyAccessToken(){
 }
 
 function getEmailFromAccessJwt(jwt) {
-  const payload = JSON.parse(
-    Buffer.from(jwt.split('.')[1], 'base64url').toString()
-  );
-
-  return payload.email;
+  const payload = jwt.split('.')[1];
+  const decoded = atob(payload);
+  return JSON.parse(decoded).email || 'contact@makelabs.in';
+  
 }
