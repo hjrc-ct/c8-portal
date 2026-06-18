@@ -94,6 +94,32 @@ paths:
         - cf_makelabs_cep__id_token: []
         - g_makelabs_cep_now__id_token: []
 
+  "/labsOnboarding":
+    options:
+      summary: "OPTIONS allowed."
+      operationId: "labsOnboardingOptions"
+      x-google-backend:
+        address: https://ten20-379008-api-app-eyitjkirba-el.a.run.app/labsOnboarding
+      responses:
+        200:
+          description: "Success."
+    post:
+      summary: "C8 Labs onboarding for the user."
+      description: "Add user to resources necessary for c8 labs with user id extracted from supplied token."
+      operationId: "labsOnboarding"
+      x-google-backend:
+        address: https://ten20-379008-api-app-eyitjkirba-el.a.run.app/labsOnboarding
+      responses:
+        200:
+          description: "Success."
+        400:
+          description: "The op is not supported or bad data."
+        403:
+          description: "Access denied."
+      security:
+        - cf_makelabs_cep__id_token: []
+        - g_makelabs_cep_now__id_token: []
+
 definitions:
   sendEmailInput:
     properties:

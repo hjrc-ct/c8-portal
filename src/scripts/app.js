@@ -303,14 +303,14 @@ async function sendOnboardingEmail() {
         return;
     }
 
-    const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/sendEmail';
+    const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/labsOnboarding';
     const payload = {
         to: email,
-        content: 'Dear User, <br/> You are now onboarded to C8 Labs environment.<br/>' + new Date().toISOString(),
-        subject: 'Onboarding - C8 Leaning and Enablement'
+        content: 'You are now onboarded to C8 Labs environment.<br/>' + new Date().toISOString(),
+        subject: 'Onboarding - C8 Learning and Enablement'
     };
 
-    showNote('Sending onboarding email...');
+    showNote('Invoke onboarding ...');
 
     fetch(url, {
         method: 'POST',
@@ -319,7 +319,7 @@ async function sendOnboardingEmail() {
             'x-api-key' : currentToken,
             'Authorization': 'Bearer ' + currentToken
         },
-        body: JSON.stringify(payload)
+        body: {}
     })
         .then(response => {
             if (!response.ok) {
