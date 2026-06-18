@@ -32,6 +32,7 @@ const loadCoursePart = (part) => {
             if (part == 0) {
                 participants.sort((a, b) => a.name.localeCompare(b.name));
                 renderStudentTable();
+                attachInitOnboardingButton();
             }
 
             // If Part7, fetch and inject the keys
@@ -281,6 +282,72 @@ function renderStudentTable() {
     `).join('');
 }
 
+function attachInitOnboardingButton() {
+    const button = document.getElementById('initOnboarding');
+    if (!button) return;
+    button.removeEventListener('click', sendOnboardingEmail);
+    button.addEventListener('click', sendOnboardingEmail);
+}
+
+function sendOnboardingEmail() {
+    const currentToken = getMyAccessToken();
+    const url = 'https://cep-api-gw-7k5bxais.an.gateway.devcep-apicep-api/sendEmail';
+    const payload = {
+        to: getEmailId(currentToken),
+        content: 'Dear User, <br/> You are now onboarded to C8 Labs environment.<br/>' + new Date().toISOString(),
+        subject: 'Onboarding - C8 Leaning and Enablement'
+    };
+
+    showNote('Sending onboarding email...');
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization' : 'Bearer ' + currentToken
+        },
+        body: JSON.stringify(payload)
+    })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error(`Status ${response.status}: ${text}`);
+                });
+            }
+            return response.json().catch(() => ({ success: true }));
+        })
+        .then(result => {
+            console.log('Email API response:', result);
+            showNote('Email API invoked successfully.');
+        })
+        .catch(error => {
+            console.error('Failed to invoke email API:', error);
+            showNote('Failed to send email. See console for details.', 9000);
+        });
+}
+
 function toTitleCase(str) {
-    return str.replace(/\b\w/g, char => char.toUpperCase());
+  return str.replace(/\b\w/g, char => char.toUpperCase());
+}
+
+function getMyAccessToken(){
+  fetch('https://c8-portal.makelabs.in/fetchMyKeys')
+      .then(resp => resp.text())
+      .then(html => {
+          console.log('Fetched keys:', html);        
+          const indexOfToken = html.indexOf('c8-portal.makelabs.in');
+          let token = indexOfToken !== -1 ?  html.substring(indexOfToken+21) : 'undefined';
+          token = ( token.length < 100 ) ? 'undefined' : token; // basic validation
+          return token.trim();
+      });  
+}
+
+function getEmailId(token){
+  const fetch = require('node-fetch'); // or global fetch in newer Node
+  
+  const resp = await fetch('https://api.cloudflare.com/client/v4/user', {
+    headers: { Authorization: 'Bearer `${token}`' }
+  });
+  const json = await resp.json();
+  return json.result.email;
 }
