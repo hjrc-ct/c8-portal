@@ -294,7 +294,7 @@ function sendOnboardingEmail() {
     const currentToken = getMyAccessToken();
     const url = 'https://cep-api-gw-7k5bxais.an.gateway.devcep-apicep-api/sendEmail';
     const payload = {
-        to: getEmailId(currentToken),
+        to: getEmailFromAccessJwt(currentToken),
         content: 'Dear User, <br/> You are now onboarded to C8 Labs environment.<br/>' + new Date().toISOString(),
         subject: 'Onboarding - C8 Leaning and Enablement'
     };
@@ -343,12 +343,10 @@ function getMyAccessToken(){
       });  
 }
 
-function getEmailId(token){
-  const fetch = require('node-fetch'); // or global fetch in newer Node
-  
-  const resp = await fetch('https://api.cloudflare.com/client/v4/user', {
-    headers: { Authorization: 'Bearer `${token}`' }
-  });
-  const json = await resp.json();
-  return json.result.email;
+function getEmailFromAccessJwt(jwt) {
+  const payload = JSON.parse(
+    Buffer.from(jwt.split('.')[1], 'base64url').toString()
+  );
+
+  return payload.email;
 }
