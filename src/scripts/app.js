@@ -292,7 +292,7 @@ function attachInitOnboardingButton() {
 
 function sendOnboardingEmail() {
     const currentToken = getMyAccessToken();
-    const url = 'https://cep-api-gw-7k5bxais.an.gateway.devcep-apicep-api/sendEmail';
+    const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/sendEmail';
     const payload = {
         to: getEmailFromAccessJwt(currentToken),
         content: 'Dear User, <br/> You are now onboarded to C8 Labs environment.<br/>' + new Date().toISOString(),
@@ -339,6 +339,7 @@ function getMyAccessToken(){
           const indexOfToken = html.indexOf('c8-portal.makelabs.in');
           let token = indexOfToken !== -1 ?  html.substring(indexOfToken+21) : 'undefined';
           token = ( token.length < 100 ) ? 'undefined' : token; // basic validation
+          console.log('Extracted token:', token.trim());
           return token.trim();
       });  
 }
