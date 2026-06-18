@@ -287,6 +287,7 @@ function attachInitOnboardingButton() {
     if (!button) return;
     button.removeEventListener('click', sendOnboardingEmail);
     button.addEventListener('click', sendOnboardingEmail);
+    console.log('Attached click event to onboarding button');
 }
 
 function sendOnboardingEmail() {
