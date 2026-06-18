@@ -290,11 +290,22 @@ function attachInitOnboardingButton() {
     console.log('Attached click event to onboarding button');
 }
 
-function sendOnboardingEmail() {
+async function sendOnboardingEmail() {
     const currentToken = await getMyAccessToken();
+    if (!currentToken) {
+        showNote('Unable to retrieve access token.', 9000);
+        return;
+    }
+
+    const email = getEmailFromAccessJwt(currentToken);
+    if (!email) {
+        showNote('Unable to extract email from token.', 9000);
+        return;
+    }
+
     const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/sendEmail';
     const payload = {
-        to: getEmailFromAccessJwt(currentToken),
+        to: email,
         content: 'Dear User, <br/> You are now onboarded to C8 Labs environment.<br/>' + new Date().toISOString(),
         subject: 'Onboarding - C8 Leaning and Enablement'
     };
@@ -305,7 +316,7 @@ function sendOnboardingEmail() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization' : 'Bearer ' + currentToken
+            'Authorization': 'Bearer ' + currentToken
         },
         body: JSON.stringify(payload)
     })
@@ -331,17 +342,23 @@ function toTitleCase(str) {
   return str.replace(/\b\w/g, char => char.toUpperCase());
 }
 
-async function getMyAccessToken(){
-  fetch('https://c8-portal.makelabs.in/fetchMyKeys')
+async function getMyAccessToken() {
+  return fetch('https://c8-portal.makelabs.in/fetchMyKeys')
       .then(resp => resp.text())
       .then(html => {
-          console.log('Fetched keys:', html);        
+          console.log('Fetched keys:', html);
           const indexOfToken = html.indexOf('c8-portal.makelabs.in');
-          let token = indexOfToken !== -1 ?  html.substring(indexOfToken + 21) : 'undefined';
-          token = ( token.length < 100 ) ? 'undefined' : token; // basic validation
+          let token = indexOfToken !== -1 ? html.substring(indexOfToken + 21) : null;
+          if (!token || token.length < 100) {
+              return null;
+          }
           console.log('Extracted token:', token.trim());
           return token.trim();
-      });  
+      })
+      .catch(error => {
+          console.error('Failed to fetch access token:', error);
+          return null;
+      });
 }
 
 function getEmailFromAccessJwt(jwt) {
