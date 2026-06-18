@@ -335,9 +335,9 @@ async function sendOnboardingEmail() {
             const codeBlock = document.querySelector('#copy-text-0-1 code');
             codeBlock.innerHTML = 'service status: ' + result.status 
                 + '<br/>' + result.message
-                + '<br/> Namespace ' + result.data.namespace
-                + '<br/> Account provisioned for ' + result.data.email
-                + '<br/> Assigned URL ' + result.data.url;
+                + '<br/>Namespace ' + result.data.namespace
+                + '<br/>Account provisioned for ' + result.data.email
+                + '<br/>';
         })
         .catch(error => {
             console.error('Failed to invoke onboarding API:', error);
