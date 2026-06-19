@@ -291,6 +291,10 @@ function attachInitOnboardingButton() {
 }
 
 async function sendOnboardingEmail() {
+  // Reset the service log
+    const codeBlock = document.querySelector('#copy-text-0-1 code');
+    codeBlock.innerHTML = 'Running ...';
+        
     const currentToken = await getMyAccessToken();
     if (!currentToken) {
         showNote('Unable to retrieve access token.', 9000);
@@ -332,7 +336,6 @@ async function sendOnboardingEmail() {
             console.log('Onboarding API response:', result);
             showNote('Onboarding API invoked successfully. ' + result.message );
 
-            const codeBlock = document.querySelector('#copy-text-0-1 code');
             codeBlock.innerHTML = 'service status: ' + result.status 
                 + '<br/>' + result.message
                 + '<br/>Namespace ' + result.data.namespace
@@ -343,7 +346,6 @@ async function sendOnboardingEmail() {
             console.error('Failed to invoke onboarding API:', error);
             showNote('Failed to onboard user. See console for details.', 9000);
 
-            const codeBlock = document.querySelector('#copy-text-0-1 code');
             codeBlock.innerHTML = 'service status: error' 
                                   + '<br/>' + error;
         });
