@@ -344,8 +344,8 @@ async function sendOnboardingEmail() {
             showNote('Failed to onboard user. See console for details.', 9000);
 
             const codeBlock = document.querySelector('#copy-text-0-1 code');
-            codeBlock.innerHTML = 'service status: ' + result.status 
-                + '<br/>' + result.message;            
+            codeBlock.innerHTML = 'service status: error' 
+                                  + '<br/>' + error;
         });
 }
 
