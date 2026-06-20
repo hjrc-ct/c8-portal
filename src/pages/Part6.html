@@ -62,30 +62,34 @@ You may check the ingress definition in the assigned namespace.
                 <p/>
                 Deploy process artifacts.<br/>
                 <pre id="copy-text-5-5"><code>
-cd 1-lead-to-opportunity-dmn-form-webhook/
-export ZEEBE_SECRET=$(kubectl get secret identity-secret-for-components -n $UNAMESPACE -o jsonpath="{.data.zeebe-secret}" | base64 --decode)
-zbctl deploy --authzUrl=https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token \
-      --clientId=zeebe \
-      --clientSecret=$ZEEBE_SECRET \
-      --audience=zeebe \
-      --address "${UNAMESPACE}-zeebe-gateway.makelabs.in:443" \
-      --insecure=false \
-       lead-to-opportunity-with-dmn.bpmn --certPath ../cert-origin_ca_rsa_root.pem 
-zbctl deploy --authzUrl=https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token \
-      --clientId=zeebe \
-      --clientSecret=$ZEEBE_SECRET \
-      --audience=zeebe \
-      --address "${UNAMESPACE}-zeebe-gateway.makelabs.in:443" \
-      --insecure=false \
-       new-lead-approval.dmn --certPath ../cert-origin_ca_rsa_root.pem 
-zbctl deploy --authzUrl=https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token \
-      --clientId=zeebe \
-      --clientSecret=$ZEEBE_SECRET \
-      --audience=zeebe \
-      --address "${UNAMESPACE}-zeebe-gateway.makelabs.in:443" \
-      --insecure=false \
-       lead-to-opportunity-with-webhook-Form.form --certPath ../cert-origin_ca_rsa_root.pem 
-cd ..
+export ORCH_SECRET=$(kubectl get secret identity-secret-for-components -n raghavendrac-apffb01-mdpalumni-iimcal-ac -o jsonpath="{.data.zeebe-secret}" | base64 --decode)
+
+export TOKEN=$(curl https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token  \
+   -H 'Content-Type: application/x-www-form-urlencoded' \
+   -d 'grant_type=client_credentials' \
+   -d 'client_id=orchestration'   -d "client_secret=${ORCH_SECRET}" | jq -r '.access_token' )
+
+curl -v --request GET \
+  --url "https://${UNAMESPACE}.makelabs.in/orchestration/v2/topology" \
+  --header "Authorization: Bearer $TOKEN" -H 'Content-Type: application/x-www-form-urlencoded'
+
+
+curl -v --request POST "https://${UNAMESPACE}.makelabs.in/orchestration/v2/deployments" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H 'Accept: application/json' \
+  -F resources=@1-lead-to-opportunity-dmn-form-webhook/new-lead-approval.dmn
+
+curl -v --request POST \
+  --url "https://${UNAMESPACE}.makelabs.in/orchestration/v2/deployments" \
+  --header "Authorization: Bearer $TOKEN" \
+  --header 'Content-Type: multipart/form-data' \
+  --form 'resources=@1-lead-to-opportunity-dmn-form-webhook/lead-to-opportunity-with-dmn.bpmn'
+
+curl -v --request POST \
+  --url "https://${UNAMESPACE}.makelabs.in/orchestration/v2/deployments" \
+  --header "Authorization: Bearer $TOKEN" \
+  --header 'Content-Type: multipart/form-data' \
+  --form 'resources=@1-lead-to-opportunity-dmn-form-webhook/lead-to-opportunity-with-webhook-Form.form'
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-5-5')">Copy</button>
