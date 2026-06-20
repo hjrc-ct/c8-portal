@@ -116,7 +116,8 @@ function metadataCheck() {
                     initButton.classList.add('disabled');
                 }
                 if (parsed.namespace) {
-                    window.location.replace(`${window.location.origin}/?ns=${encodeURIComponent(parsed.namespace)}`);
+                  console.log('Redirect to ns ' + `${window.location.origin}/?ns=${encodeURIComponent(parsed.namespace)}` );
+                  window.location.replace(`${window.location.origin}/?ns=${encodeURIComponent(parsed.namespace)}`);
                 }
             } catch (parseError) {
                 codeBlock.textContent = onboardingJson;
