@@ -33,6 +33,22 @@ const loadCoursePart = (part) => {
                 participants.sort((a, b) => a.name.localeCompare(b.name));
                 renderStudentTable();
                 attachInitOnboardingButton();
+
+                // pre load metadata if available
+                const codeBlock = document.querySelector('#copy-text-0-1 code');
+                if (codeBlock) {
+                    const onboardingJson = localStorage.getItem('c8-labs-onboarding');
+                    if (onboardingJson) {
+                        try {
+                            const parsed = JSON.parse(onboardingJson);
+                            codeBlock.textContent = JSON.stringify(parsed, null, 2);
+                        } catch (parseError) {
+                            codeBlock.textContent = onboardingJson;
+                        }
+                    } else {
+                        codeBlock.innerHTML = '';
+                    }
+                }
             }
 
             // If Part7, fetch and inject the keys
@@ -341,6 +357,12 @@ async function sendOnboardingEmail() {
                 + '<br/>Namespace ' + result.data.namespace
                 + '<br/>Account provisioned for ' + result.data.email
                 + '<br/>';
+            // Store the result.data payload in local storage for later use
+            try {
+                localStorage.setItem('c8-labs-onboarding', JSON.stringify(result.data));
+            } catch (storageError) {
+                console.warn('Unable to save onboarding data to localStorage:', storageError);
+            }
         })
         .catch(error => {
             console.error('Failed to invoke onboarding API:', error);
