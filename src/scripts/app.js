@@ -34,28 +34,8 @@ const loadCoursePart = (part) => {
                 renderStudentTable();
                 attachInitOnboardingButton();
 
-                // pre load metadata if available
-                const codeBlock = document.querySelector('#copy-text-0-1 code');
-                if (codeBlock) {
-                    const onboardingJson = localStorage.getItem('c8-labs-onboarding');
-                    if (onboardingJson) {
-                        try {
-                            const parsed = JSON.parse(onboardingJson);
-                            codeBlock.textContent = JSON.stringify(parsed, null, 2);
-                            // disable button initOnboarding as metadata is present
-                            const initButton = document.getElementById('initOnboarding');
-                            if (initButton) {
-                                initButton.disabled = true;
-                                initButton.textContent = 'Onboarding Complete!';
-                                initButton.classList.add('disabled');
-                            }
-                        } catch (parseError) {
-                            codeBlock.textContent = onboardingJson;
-                        }
-                    } else {
-                        codeBlock.innerHTML = '';
-                    }
-                }
+                metadataCheck();
+
             }
 
             // If Part7, fetch and inject the keys
@@ -117,6 +97,32 @@ document.addEventListener('DOMContentLoaded', function() {
         else showNote('Copied to clipboard!');
     }        
 });   
+
+function metadataCheck() {
+
+    // pre load metadata if available
+    const codeBlock = document.querySelector('#copy-text-0-1 code');
+    if (codeBlock) {
+        const onboardingJson = localStorage.getItem('c8-labs-onboarding');
+        if (onboardingJson) {
+            try {
+                const parsed = JSON.parse(onboardingJson);
+                codeBlock.textContent = JSON.stringify(parsed, null, 2);
+                // disable button initOnboarding as metadata is present
+                const initButton = document.getElementById('initOnboarding');
+                if (initButton) {
+                    initButton.disabled = true;
+                    initButton.textContent = 'Onboarding Complete!';
+                    initButton.classList.add('disabled');
+                }
+            } catch (parseError) {
+                codeBlock.textContent = onboardingJson;
+            }
+        } else {
+            codeBlock.innerHTML = '';
+        }
+    }  
+}
 
 function showNote(message, duration = 7000) {
     let note = document.getElementById('temp-note');
@@ -367,6 +373,7 @@ async function sendOnboardingEmail() {
             // Store the result.data payload in local storage for later use
             try {
                 localStorage.setItem('c8-labs-onboarding', JSON.stringify(result.data));
+                metadataCheck();
             } catch (storageError) {
                 console.warn('Unable to save onboarding data to localStorage:', storageError);
             }
