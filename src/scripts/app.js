@@ -115,6 +115,7 @@ function metadataCheck() {
                     initButton.textContent = 'Onboarding Complete!';
                     initButton.classList.add('disabled');
                 }
+                const urlParams = new URLSearchParams(window.location.search);
                 if (parsed.namespace && 
                   (urlParams.get('ns') === null || urlParams.get('ns') === undefined )) {
                   console.log('Redirect to ns ' + `${window.location.origin}/?ns=${encodeURIComponent(parsed.namespace)}` );
