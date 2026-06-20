@@ -46,6 +46,7 @@ const loadCoursePart = (part) => {
                             const initButton = document.getElementById('initOnboarding');
                             if (initButton) {
                                 initButton.disabled = true;
+                                initButton.textContent = 'Onboarding Complete!';
                                 initButton.classList.add('disabled');
                             }
                         } catch (parseError) {
