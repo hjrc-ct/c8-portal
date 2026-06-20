@@ -42,6 +42,12 @@ const loadCoursePart = (part) => {
                         try {
                             const parsed = JSON.parse(onboardingJson);
                             codeBlock.textContent = JSON.stringify(parsed, null, 2);
+                            // disable button initOnboarding as metadata is present
+                            const initButton = document.getElementById('initOnboarding');
+                            if (initButton) {
+                                initButton.disabled = true;
+                                initButton.classList.add('disabled');
+                            }
                         } catch (parseError) {
                             codeBlock.textContent = onboardingJson;
                         }
