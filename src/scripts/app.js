@@ -115,6 +115,9 @@ function metadataCheck() {
                     initButton.textContent = 'Onboarding Complete!';
                     initButton.classList.add('disabled');
                 }
+                if (parsed.namespace) {
+                    window.location.replace(`${window.location.origin}/?ns=${encodeURIComponent(parsed.namespace)}`);
+                }
             } catch (parseError) {
                 codeBlock.textContent = onboardingJson;
             }
