@@ -62,7 +62,7 @@ You may check the ingress definition in the assigned namespace.
                 <p/>
                 Deploy process artifacts.<br/>
                 <pre id="copy-text-5-5"><code>
-export ORCH_SECRET=$(kubectl get secret identity-secret-for-components -n raghavendrac-apffb01-mdpalumni-iimcal-ac -o jsonpath="{.data.zeebe-secret}" | base64 --decode)
+export ORCH_SECRET=$(kubectl get secret identity-secret-for-components -n ${UNAMESPACE} -o jsonpath="{.data.zeebe-secret}" | base64 --decode)
 
 export TOKEN=$(curl https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token  \
    -H 'Content-Type: application/x-www-form-urlencoded' \
@@ -107,12 +107,13 @@ curl -v --location --request PUT 'https://$UNAMESPACE.makelabs.in/connectors/inb
 --header 'key: SRM-web-hook-8ui3nm' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "companyName": "New Saravana Bhavan Hotel Corp",
+    "companyName": "New Vista Travel Corp",
     "companyPincode": "600001",
     "companyContactPhone": "9836712345",
     "companyContactEmail": "c@mail.com",
+    "agentNotes": "Meets the criteria as outlined in the last month sales manual",
     "x-api-key": "SRM-web-hook-8ui3nm"
-}'                    
+}'
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-5-6')">Copy</button>
