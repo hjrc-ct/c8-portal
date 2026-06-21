@@ -413,7 +413,7 @@ async function sendOnboardingEmail() {
                               'x-api-key' : currentToken,
                               'Authorization': 'Bearer ' + currentToken
                           },
-                          body : payload
+                          body : JSON.stringify(payload)
                       });
                 showNote('Sending confirmation email...Done!');
                 metadataCheck();
