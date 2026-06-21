@@ -33,7 +33,6 @@ const loadCoursePart = (part) => {
                 participants.sort((a, b) => a.name.localeCompare(b.name));
                 renderStudentTable();
                 attachInitOnboardingButton();
-
                 metadataCheck();
 
             }
@@ -53,7 +52,11 @@ const loadCoursePart = (part) => {
                             codeBlock.innerHTML = token.trim();
                         }
                     });
-            }            
+            }
+
+            if (part == 10) {
+                attachClearCacheButton();
+            }
             
         })
         .catch(error => console.error('Error loading course part:', error));
@@ -97,6 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
         else showNote('Copied to clipboard!');
     }        
 });   
+
+function clearCache() {
+  showNote('Clearing cache...');
+  localStorage.removeItem('c8-labs-onboarding');
+  showNote('Clearing cache...Done!');
+}
 
 function metadataCheck() {
 
@@ -324,6 +333,15 @@ function attachInitOnboardingButton() {
     button.addEventListener('click', sendOnboardingEmail);
     console.log('Attached click event to onboarding button');
 }
+
+function attachClearCacheButton() {
+    const button = document.getElementById('clearCache');
+    if (!button) return;
+    button.removeEventListener('click', clearCache);
+    button.addEventListener('click', clearCache);
+    console.log('Attached click event to clearCache button');
+}
+
 
 async function sendOnboardingEmail() {
   // Reset the service log
