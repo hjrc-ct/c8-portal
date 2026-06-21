@@ -74,7 +74,7 @@ document.querySelectorAll('nav a').forEach(link => {
         event.currentTarget.classList.add('nav-active');
 
         // Your existing code to load the part
-        const partMatch = event.currentTarget.getAttribute('href').match(/Part(\d+)/);
+        const partMatch = event.currentTarget.getAttribute('href').match(/Part(\d+[a-zA-Z]*)/);
         if (partMatch) {
             loadCoursePart(partMatch[1]);
         } else if (event.currentTarget.getAttribute('href').includes('Part0.html')) {
@@ -110,7 +110,7 @@ function clearCache() {
 function metadataCheck() {
 
     // pre load metadata if available
-    const codeBlock = document.querySelector('#copy-text-0-1 code');
+    const codeBlock = document.querySelector('#copy-text-1a-1 code');
     if (codeBlock) {
         const onboardingJson = localStorage.getItem('c8-labs-onboarding');
         if (onboardingJson) {
@@ -342,10 +342,10 @@ function attachClearCacheButton() {
     console.log('Attached click event to clearCache button');
 }
 
-
+// init onboarding for the user
 async function sendOnboardingEmail() {
-  // Reset the service log
-    const codeBlock = document.querySelector('#copy-text-0-1 code');
+    // Reset the service log
+    const codeBlock = document.querySelector('#copy-text-1a-1 code');
     codeBlock.innerHTML = 'Running ...';
         
     const currentToken = await getMyAccessToken();
@@ -367,7 +367,7 @@ async function sendOnboardingEmail() {
         subject: 'Onboarding - C8 Learning and Enablement'
     };
 
-    showNote('Invoke onboarding ...');
+    showNote('Invoke onboarding ...', 12000);
 
     fetch(url, {
         method: 'POST',
