@@ -32,9 +32,11 @@ const loadCoursePart = (part) => {
             if (part == 0) {
                 participants.sort((a, b) => a.name.localeCompare(b.name));
                 renderStudentTable();
+            }
+
+            if (part == '1a') {
                 attachInitOnboardingButton();
                 metadataCheck();
-
             }
 
             // If Part7, fetch and inject the keys
