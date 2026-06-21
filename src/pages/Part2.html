@@ -14,24 +14,29 @@
             <p>
                 Kubernetes Engine cluster <code>c8-labs-sravana</code> is provisioned with required network configuration.
                 <br/>
-                Each participant will have access to a dedicated namespace (such as <code>c8-labs-nn</code>) to deploy Camunda self-managed app.
+                Each participant will have access to a dedicated namespace (such as <code>john-doe-gmail-com-c8-labs</code>) to deploy Camunda self-managed app.
                 <br/>
             </p>
         </section>
 
         <section>
-            <h3>VS Code: Sync GitHub project</h3>
+            <h3>GCP Cloud Shell: Sync GitHub project</h3>
             <p>
+                Let's begin our work by launching a new GCP Cloud Shell.
+                <br/>
+                From this point on, all commands are executed in the Cloud Shell.
+                For convenience, you can copy each command (via Copy button) and paste into the Cloud Shell.
+                <p/>
+                Follow the instructions carefully. There are few places where you may need to modify the command before executing the same.
+                <br/>
                 The scripts associated with this program are available in the GitHub repository.
                 <br/>
-                Let's open VS Code and clone the Git repository to your local system.
-                <p/>
-                Select the branch <code>c8-labs-swati</code>.
+                Let's clone the Git repository to your GCP Cloud Shell.
             </p>
                 <div class="copy-block">
                     <p/>
                     Git clone using below command.<br/>                    
-                    # Start from a home directory for c8-labs program
+                    # Start from your home directory in Cloud Shell
                     <br>
                     <pre id="copy-text-2-1"><code>
 git clone https://github.com/rchari-ml/c86-mini.git
@@ -43,28 +48,20 @@ git checkout c8-labs-swati
                 </div>            
         </section>
 
-        <section>
-            <h3>Sign-In to GCP cloud</h3>
-            <p>
-                Let's sign-in to Google Cloud Platform and check the cluster details.
-                <br/>
-                Your Gmail account is granted access to the project <code>c8-labs</code>.
-                <div class="copy-block">
-                    <p/>
-                    Sign-In using below command. It opens a new browser tab.<br/>
-                    <pre id="copy-text-2-2"><code>gcloud auth login</code></pre>
-                    <p/>
-                    <button class="copy-btn" onclick="copyToClipboard('copy-text-2-2')">Copy</button>
-                </div>
-            </p>
+        <hr/>
 
+        <section>
+            <h3>Project Lens UI app for Kubernetes Resources Visualisation</h3>
             <p>
-                Run below command to setup config to access the cluster via Project Lens UI app.
+                Run below command on **Your Desktop / Laptop** (not Cloud Shell).
                 <br/>
                 Open the Project Lens UI app and see if you are able to connect to the cluster.
+                <br/><br/>
+                Note: You may ignore this section if the app is not installed.
                 <div class="copy-block">
                     <p/>
                     <pre id="copy-text-2-3"><code>
+gcloud auth login
 gcloud components install gke-gcloud-auth-plugin
 gke-gcloud-auth-plugin --version
 gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs</code></pre>

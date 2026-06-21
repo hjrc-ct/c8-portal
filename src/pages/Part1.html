@@ -9,20 +9,98 @@
     <main>
         <h2>Pre-requisites</h2>
         <section>
-            <p>Below are list of apps we will be using throughout the program.</p>
-            <h3>User Account</h3>
+            <p>
+                In this section, we will list down things required to complete the labs.
+                <br/>
+                <ul style="list-style: none;">
+                    <li>a. Fast method using GCP Cloud Shell & Project Lens UI app (Recommended)</li>
+                    <li>b. Hands-on deep dive</li>
+                </ul>
+            </p>
+            <hr/>
+            <p>
+                <h3>
+                    a. Fast method using GCP Cloud Shell (Recommended)                
+                </h3>
+                This is recommended as GCP Cloud Shell comes with pre-installed utility apps.
+                If you are focused on getting to know about Camunda 8.9, not so much about underlying stuff then follow this method.
+                <br/>
+            </p>
+
             <ul class="prereq-list">
-                <li>
-                    Gmail account <code>(@gmail.com)</code>
-                    <br/><small>Access GCP resources with your Gmail account. Access granted for the duration of the program.</small>
-                </li>
-                <li>User account with Docker<br/>
+                <li>User Account with <code>Google Cloud Platform</code><br/>
                     <span aria-label="Opens in new tab" title="Opens in new tab">
-                    <a target="_blank" href="https://app.docker.com/login" rel="noopener noreferrer">https://app.docker.com/login<sup>&nbsp;↗️</sup></a>
-                    <br/><small>Note: This account may have email other than the Gmail account mentioned above.</small>
+                    <a target="_blank"  rel="noopener noreferrer" href="https://console.cloud.google.com/">Google Cloud Console</a><sup>&nbsp;↗️</sup>
+                    <br/><br/>      
+                    <small>
+                    As part of the on-boarding process (which is the next section), we shall onboard your user account to our GCP Project <code>c8-labs</code>.
+                    <br/><br/>
+                    At this point, ensure you can sign-in to GCP console. If you can't, then perhaps you will need to create an account with GCP. Go ahead and complete this step.
+                    <br/>
+                    TIP: It makes things easier if you are using an email account with <code>(@gmail.com)</code>. Any other email id works as long as you can sign in to GCP console.                    
+                    </small>              
+                    </span>
+                </li>
+                <li>User Account with Docker<br/>
+                    <span aria-label="Opens in new tab" title="Opens in new tab">
+                    <a target="_blank" href="https://app.docker.com/login" rel="noopener noreferrer">https://app.docker.com/login</a><sup>&nbsp;↗️</sup>
+                    <br/>
+                    <small>Note: This account may have email other than the Email account mentioned above. 
+                        <br/>
+                        Why Docker account?
+                        We'll be using your Docker user account access token to fetch Camunda app installation images. (docker registry)
+                        More on this later in section Elastic / Camunda.
+                    </small>
+                    </span>
+                </li>
+                <li>
+                    Project Lens UI app (Personal / Free version) for Kubernetes Resources Visualisation<br/>
+                    <span aria-label="Opens in new tab" title="Opens in new tab">
+                    <a target="_blank" href="https://k8slens.dev" rel="noopener noreferrer">https://k8slens.dev</a><sup>&nbsp;↗️</sup>
+                    <br/>
+                    <small>This is optional. You can see Kubernetes resources via GCP Console, but it wont be as good as compared with Project Lens UI app (or similar app).</small>
                     </span>
                 </li>
             </ul>
+            
+            <hr/>
+
+            <p>
+                <h3>
+                    b. Using your Desktop / Laptop instead of GCP Cloud Shell
+                </h3>
+                If you want full control of all the things involved in setting up Camunda 8.9, then follow this section.
+            </p>
+
+            <h3>User Account</h3>
+            <ul class="prereq-list">
+                <li>User Account with <code>Google Cloud Platform</code><br/>
+                    <span aria-label="Opens in new tab" title="Opens in new tab">
+                    <a target="_blank"  rel="noopener noreferrer" href="https://console.cloud.google.com/">Google Cloud Console</a><sup>&nbsp;↗️</sup>
+                    <br/><br/>      
+                    <small>
+                    As part of the on-boarding process (which is the next section), we shall onboard your user account to our GCP Project <code>c8-labs</code>.
+                    <br/><br/>
+                    At this point, ensure you can sign-in to GCP console. If you can't, then perhaps you will need to create an account with GCP. Go ahead and complete this step.
+                    <br/>
+                    TIP: It makes things easier if you are using an email account with <code>(@gmail.com)</code>. Any other email id works as long as you can sign in to GCP console.                    
+                    </small>              
+                    </span>
+                </li>
+                <li>User Account with Docker<br/>
+                    <span aria-label="Opens in new tab" title="Opens in new tab">
+                    <a target="_blank" href="https://app.docker.com/login" rel="noopener noreferrer">https://app.docker.com/login</a><sup>&nbsp;↗️</sup>
+                    <br/>
+                    <small>Note: This account may have email other than the Email account mentioned above. 
+                        <br/>
+                        Why Docker account?
+                        We'll be using your Docker user account access token to fetch Camunda app installation images. (docker registry)
+                        More on this later in section Elastic / Camunda.
+                    </small>
+                    </span>
+                </li>
+            </ul>            
+
             <h3>Dev tools</h3>
             <ul class="prereq-list">
                 <li>Helm<br/> 
@@ -122,19 +200,7 @@ OpenSSL 3.5.2 5 Aug 2025 (Library: OpenSSL 3.5.2 5 Aug 2025)
                     </span>  
                     <br/><small>Commands presented are tested on MacOS. If you are running <code>Windows OS</code>, Git Bash is recommended to ensure compatibility.</small>
                 </li>
-                <li>Install NodeJS, npm and Zbctl<br/>
-                    <span aria-label="Opens in new tab" title="Opens in new tab">
-                    <p>
-                        Download and install NodeJS (include npm) from the link below:
-                        <br/>
-                        <a target="_blank"  href="https://nodejs.org/en/download">https://nodejs.org/en/download<sup>&nbsp;↗️</sup></a>
-                    </p>
-                    <code>sudo apt install npm</code>
-                    <br/>
-                    <code>sudo npm i -g zbctl</code>
-                    </span>  
-                    <br/><small>Windows OS steps may vary. Install npm first, followed by zbctl.</small>
-                </li>                
+
             </ul>
             <small>General: Recommend to install latest version to avoid any difficulty in executing the steps.</small>
         </section>

@@ -353,19 +353,24 @@ async function sendOnboardingEmail() {
     const currentToken = await getMyAccessToken();
     if (!currentToken) {
         showNote('Unable to retrieve access token.', 9000);
+        codeBlock.innerHTML = 'Error: Unable to retrieve access token. Please contact administrator.' ;
         return;
     }
 
     const email = getEmailFromAccessJwt(currentToken);
     if (!email) {
         showNote('Unable to extract email from token.', 9000);
+        codeBlock.innerHTML = 'Error: Unable to extract email from token. Please contact administrator.' ;
         return;
     }
 
     const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/labsOnboarding';
+    const urlSendMail = 'https://cep-api-gw-7k5bxais.an.gateway.dev/sendEmail';
     const payload = {
         to: email,
-        content: 'You are now onboarded to C8 Labs environment.<br/>' + new Date().toISOString(),
+        content: 'You are now onboarded to C8 Labs environment.<br/>'
+                  + 'Start at ' + new Date().toISOString() + '<p/>'
+                  + 'Your access is for limited period only. For any questions, please contact administrator.' ,
         subject: 'Onboarding - C8 Learning and Enablement'
     };
 
@@ -398,10 +403,23 @@ async function sendOnboardingEmail() {
                 + '<br/>';
             // Store the result.data payload in local storage for later use
             try {
-                localStorage.setItem('c8-labs-onboarding', JSON.stringify(result.data));
+                showNote('Saving on-boarding metadata');
+                localStorage.setItem('c8-labs-onboarding', JSON.stringify(result.data));                
+                showNote('Sending confirmation email');
+                fetch(urlSendMail, {
+                          method: 'POST',
+                          headers: {
+                              'Content-Type': 'application/json',
+                              'x-api-key' : currentToken,
+                              'Authorization': 'Bearer ' + currentToken
+                          },
+                          body : payload
+                      });
+                showNote('Sending confirmation email...Done!');
                 metadataCheck();
             } catch (storageError) {
                 console.warn('Unable to save onboarding data to localStorage:', storageError);
+                throw storageError;
             }
         })
         .catch(error => {
