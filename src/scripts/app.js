@@ -366,13 +366,6 @@ async function sendOnboardingEmail() {
 
     const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/labsOnboarding';
     const urlSendMail = 'https://cep-api-gw-7k5bxais.an.gateway.dev/sendEmail';
-    const payload = {
-        to: email,
-        content: 'You are now onboarded to C8 Labs environment.<br/>'
-                  + 'Start at ' + new Date().toISOString() + '<p/>'
-                  + 'Your access is for limited period only. For any questions, please contact administrator.' ,
-        subject: 'Onboarding - C8 Learning and Enablement'
-    };
 
     showNote('Invoke onboarding ...', 12000);
 
@@ -404,8 +397,16 @@ async function sendOnboardingEmail() {
             // Store the result.data payload in local storage for later use
             try {
                 showNote('Saving on-boarding metadata');
-                localStorage.setItem('c8-labs-onboarding', JSON.stringify(result.data));                
+                localStorage.setItem('c8-labs-onboarding', JSON.stringify(result.data));
                 showNote('Sending confirmation email');
+                const payload = {
+                    to: email,
+                    content: 'You are now onboarded to C8 Labs environment - GKE Cluster.<br/>'
+                              + 'Started at ' + new Date().toISOString() + '<p/>'
+                              + 'Your access is for a limited period only. For any questions, please contact administrator.' 
+                              + '<p/>' + JSON.stringify(result.data, null, 2) + '<br/>',
+                    subject: 'Onboarding - C8 Learning and Enablement'
+                };                
                 fetch(urlSendMail, {
                           method: 'POST',
                           headers: {
