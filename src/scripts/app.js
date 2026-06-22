@@ -415,9 +415,13 @@ async function sendOnboardingEmail() {
                               'Authorization': 'Bearer ' + currentToken
                           },
                           body : JSON.stringify(payload)
+                      }).then( (opResponse) => 
+                      {
+                          if (opResponse.ok) showNote('Sending confirmation email...Done!');
+                          
+                          metadataCheck();
                       });
-                showNote('Sending confirmation email...Done!');
-                metadataCheck();
+                
             } catch (storageError) {
                 console.warn('Unable to save onboarding data to localStorage:', storageError);
                 throw storageError;
