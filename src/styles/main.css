@@ -174,7 +174,7 @@ ul.prereq-list li {
     background: #35424a;
 }
 
-.btn {
+.linkedin-btn {
    position:inherit;
     bottom: 10px;
     left: 10px;
@@ -189,7 +189,7 @@ ul.prereq-list li {
 
 }
 
-.copy-btn:hover {
+.linkedin-btn:hover {
     background: white;
     color: purple;
 }
