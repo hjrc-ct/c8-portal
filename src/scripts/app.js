@@ -119,15 +119,16 @@ function shareToLinkedIn(){
         "https://www.linkedin.com/sharing/share-offsite/?url=" +
         encodeURIComponent(courseUrl);
 
-    const postText = `
-    I have successfully completed the Camunda 8 Kubernetes Self-Managed on GCP program at C8 Labs by Makelabs.in.
+    const postText = `I have successfully completed the Hands-on Lab: Camunda 8.9 Self-Managed on Kubernetes/GCP at c8-portal.makelabs.in
 
-    ✅ Camunda 8 Architecture
-    ✅ Kubernetes Deployment
-    ✅ Zeebe Operations
-    ✅ Best Practices
+Key topics covered include:
 
-    #Camunda #Kubernetes #GCP #WorkflowAutomation
+✅ Camunda 8.9 Architecture
+✅ Kubernetes Deployment
+✅ Zeebe Operations
+✅ Best Practices
+
+#Camunda #Kubernetes #GCP #WorkflowAutomation
     `;
 
     navigator.clipboard.writeText(postText);
