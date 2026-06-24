@@ -27,10 +27,34 @@ Deleting the namespace will release resources such as persistent volume/disk(s),
 <br/>As a best practice, please make sure to delete the token created in your Docker account.
             </div>
             <p/>
-        <button id="clearCache" class="btn">Clear Cache</button>
+        <button id="clearCache" class="copy-btn">Clear Cache</button>
         </section>
         <p/>
-        <a href="/cdn-cgi/access/logout">Logout</a>
+        <section>
+            <div class="copy-block">
+                <p/>
+                Share on LinkedIn<br/>
+                <pre id="copy-text-10-2"><code>
+I have successfully completed the Camunda 8 Kubernetes Self-Managed on GCP program at C8 Labs by Makelabs.in.
+
+✅ Camunda 8.9 Architecture
+✅ Kubernetes Deployment
+✅ Zeebe Operations
+✅ Best Practices
+
+#Camunda #Self-Managed #Kubernetes #GCP #WorkflowAutomation #self-paced-learning
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-10-2')">Copy</button>
+                <p/>
+Help spread the word about this self-paced learning program. You can edit the post content before sharing on LinkedIn platform.
+
+                <button id="shareToLinkedIn" class="copy-btn">Share on LinkedIn</button>
+                &nbsp;&nbsp;
+                <button id="logout" class="copy-btn" onclick="window.location.href='/cdn-cgi/access/logout'">Logout</button>
+            </div>
+        </section>
+        <hr/>
     </main>
     <script src="../scripts/app.js"></script>
 </body>

@@ -58,6 +58,8 @@ const loadCoursePart = (part) => {
 
             if (part == 10) {
                 attachClearCacheButton();
+                attachshareToLinkedIn();
+
             }
             
         })
@@ -107,6 +109,32 @@ function clearCache() {
   showNote('Clearing cache...');
   localStorage.removeItem('c8-labs-onboarding');
   showNote('Clearing cache...Done!');
+}
+
+function shareToLinkedIn(){
+    // your portal URL
+    const courseUrl = "https://c8-portal.makelabs.in";
+
+    const linkedinUrl =
+        "https://www.linkedin.com/sharing/share-offsite/?url=" +
+        encodeURIComponent(courseUrl);
+
+    const postText = `
+    I have successfully completed the Camunda 8 Kubernetes Self-Managed on GCP program at C8 Labs by Makelabs.in.
+
+    ✅ Camunda 8 Architecture
+    ✅ Kubernetes Deployment
+    ✅ Zeebe Operations
+    ✅ Best Practices
+
+    #Camunda #Kubernetes #GCP #WorkflowAutomation
+    `;
+
+    navigator.clipboard.writeText(postText);
+    showNote('Post text copied to clipboard.\nPaste it into LinkedIn.');
+
+    window.open(linkedinUrl, "_blank");
+    
 }
 
 function metadataCheck() {
@@ -342,6 +370,15 @@ function attachClearCacheButton() {
     button.removeEventListener('click', clearCache);
     button.addEventListener('click', clearCache);
     console.log('Attached click event to clearCache button');
+}
+
+function attachshareToLinkedIn(){
+    
+    const button = document.getElementById('shareToLinkedIn');
+    if (!button) return;
+    button.removeEventListener('click', shareToLinkedIn);
+    button.addEventListener('click', shareToLinkedIn);
+    console.log('Attached click event to shareToLinkedIn button');
 }
 
 // init onboarding for the user
