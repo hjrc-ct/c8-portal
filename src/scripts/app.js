@@ -119,23 +119,8 @@ function shareToLinkedIn(){
         "https://www.linkedin.com/sharing/share-offsite/?url=" +
         encodeURIComponent(courseUrl);
 
-    const postText = `I have successfully completed the Hands-on Lab: Camunda 8.9 Self-Managed on Kubernetes/GCP at c8-portal.makelabs.in
-
-Key topics covered include:
-
-✅ Camunda 8.9 Architecture
-✅ Kubernetes Deployment
-✅ Zeebe Operations
-✅ Best Practices
-
-#Camunda #Kubernetes #GCP #WorkflowAutomation
-    `;
-
-    navigator.clipboard.writeText(postText);
-    showNote('Post text copied to clipboard.\nPaste it into LinkedIn.');
-
+    copyToClipboard('copy-text-10-2', 'Post text copied to clipboard. Paste it into LinkedIn.');
     window.open(linkedinUrl, "_blank");
-    
 }
 
 function metadataCheck() {
