@@ -14,12 +14,10 @@
         </p>
         <section>
             <div class="copy-block">
-                <p/>
                 Delete namespace<br/>
                 <pre id="copy-text-10-1"><code>
 kubectl delete namespace $UNAMESPACE
                 </code></pre>
-                <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-10-1')">Copy</button>
                 <p/>
 Deleting the namespace will release resources such as persistent volume/disk(s), pods, secrets etc.
@@ -27,13 +25,14 @@ Deleting the namespace will release resources such as persistent volume/disk(s),
 <br/>As a best practice, please make sure to delete the token created in your Docker account.
             </div>
             <p/>
+        <b>TIP:</b> It is a security best practice to clear cache at the conclusion of your labs exercise.
         <button id="clearCache" class="copy-btn">Clear Cache</button>
         </section>
         <p/>
         <section>
             <div class="copy-block">
                 <p/>
-                Share on LinkedIn<br/>
+                Share a Post on LinkedIn<br/>
                 <pre id="copy-text-10-2"><code>
 I have successfully completed the Camunda 8 Kubernetes Self-Managed on GCP program at C8 Labs by Makelabs.in.
 
@@ -45,11 +44,9 @@ I have successfully completed the Camunda 8 Kubernetes Self-Managed on GCP progr
 #Camunda #Self-Managed #Kubernetes #GCP #WorkflowAutomation #self-paced-learning
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-10-2')">Copy</button>
-                <p/>
 Help spread the word about this self-paced learning program. You can edit the post content before sharing on LinkedIn platform.
-
-                <button id="shareToLinkedIn" class="copy-btn">Share on LinkedIn</button>
+<br/><br/>
+                <button id="shareToLinkedIn" style="background-color:blueviolet; color: whitesmoke;" class="btn">Share on LinkedIn</button>
                 &nbsp;&nbsp;
                 <button id="logout" class="copy-btn" onclick="window.location.href='/cdn-cgi/access/logout'">Logout</button>
             </div>
