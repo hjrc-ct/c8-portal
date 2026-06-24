@@ -109,12 +109,12 @@ main {
 }
 
 section {
-    margin-bottom: 20px;
+    margin-bottom: 28px;
     text-decoration:none;
     font-size: 16.933px;
     line-height: 26.7061px;
     letter-spacing: -0.25px;
-    margin-right: 20px;
+    margin-right: 16px;
     width: 85%;
     max-width: 75%;
 }
@@ -125,7 +125,7 @@ footer {
     width: 100%;
 }
 ul li {
-    margin-bottom: 1.25em;
+    margin-bottom: 1.05em;
 }
 
 ul.prereq-list li {

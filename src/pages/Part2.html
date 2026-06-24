@@ -14,8 +14,28 @@
             <p>
                 Kubernetes Engine cluster <code>c8-labs-sravana</code> is provisioned with required network configuration.
                 <br/>
-                Each participant will have access to a dedicated namespace (such as <code>john-doe-gmail-com-c8-labs</code>) to deploy Camunda self-managed app.
+                Each participant will have access to a dedicated namespace (such as <code>john-doe-gmail-com-c8-labs</code>) to deploy Camunda self-managed app components.
                 <br/>
+            </p>
+        </section>
+
+        <section>
+            <h3>Physical Setup</h3>
+            <p>
+                Here is a summary of how the physical environment.
+                <ul>
+                    <li>Camunda app stack shall be deployed to a specific namespace (participant specific) and consists of multiple containers</li>
+                    <li>The containers are running on any of the VM nodes.</li>
+                    <li>VM nodes are running within any of the zones pertaining to a region.</li>
+                    <li>End user is accessing camunda app via Cloudflare managed domain. Example: <code>https://jon-doe-c8-labs.makelabs.in</code></li>
+                </ul>
+                <small><sup>*</sup>Note: Cloudflare domain setup is outside the scope of the labs. It is however pre-configured for each participant.</small>
+            </p>
+            <p>
+                <img width="900px" height="640px" src="pages/c8-k8s-view.jpeg" 
+                        alt="Physical setup" 
+                        style="cursor:pointer;" 
+                        onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
             </p>
         </section>
 
