@@ -138,7 +138,20 @@ ul.prereq-list li {
     background: #f7f7f7;
     border: 1px solid #e0e0e0;
     border-radius: 6px;
-    padding: 0em 1em 1em 1.5em;
+    padding: 1.5em 1em 1em 1.5em;
+}
+
+.copy-block::before {
+    content: "bash";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: darkgray;
+    color: whitesmoke;
+    padding: 0px 6px;
+    font-size: 0.70em;
+    font-weight: bold;
+    border-radius: 0 0 2px 0;
 }
 
 .copy-block pre {
