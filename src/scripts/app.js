@@ -382,9 +382,11 @@ function supportMetadata(){
             copyToClipboard('copy-text-11-1', "Metadata copied");
         }catch(error){ 
             console.log(error); 
-            copyToClipboard('copy-text-11-1', "Unable to copy Metadata");
+            showNote("Unable to copy Metadata");
         }
-    } else { copyToClipboard('copy-text-11-1', "Metadata not available. Please send your query without metadata."); }
+    } else { 
+        showNote("Metadata not available. Please send your query without metadata."); 
+    }
 }
 
 function attachshareToLinkedIn(){
