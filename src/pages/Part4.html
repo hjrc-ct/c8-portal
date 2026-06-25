@@ -24,14 +24,15 @@
 DOCKER_USER_ID=put-your-value-here-docker-id-example-hjrc
 DOCKER_USER_EMAIL=put-your-value-here-example-user-at-gmail.com
 DOCKER_USER_TOKEN=put-your-value-here-keep-it-secret
-
+<br/>
+<br/>
 kubectl create secret docker-registry registry-camunda-cloud  \
 --namespace=undefined-namespace \
 --docker-server=registry.camunda.cloud \
 --docker-username=${DOCKER_USER_ID} \
 --docker-password=${DOCKER_USER_TOKEN} \
 --docker-email=${DOCKER_USER_EMAIL}
-
+<br/>
 kubectl create secret docker-registry registry-docker-hub  \
     --namespace=undefined-namespace \
     --docker-server=hub.docker.com \
@@ -65,8 +66,11 @@ After this, you should see secrets created in your namespace (via Project Lens U
                 Install elastic<br/>
                 <pre id="copy-text-4-3"><code>
 helm repo add elastic https://helm.elastic.co
+<br/>
 helm repo update
+<br/>
 helm install elasticsearch elastic/elasticsearch -n $UNAMESPACE -f elasticsearch.yaml
+<br/>
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-4-3')">Copy</button>

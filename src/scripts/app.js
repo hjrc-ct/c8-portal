@@ -61,6 +61,10 @@ const loadCoursePart = (part) => {
                 attachshareToLinkedIn();
 
             }
+
+            if (part == 11){
+                attachSupportMetadataButton(); // copy-text-11-1
+            }
             
         })
         .catch(error => console.error('Error loading course part:', error));
@@ -358,6 +362,30 @@ function attachClearCacheButton() {
     console.log('Attached click event to clearCache button');
 }
 
+function attachSupportMetadataButton() { // copy-text-11-1
+    const button = document.getElementById('copy-text-11-1');
+    if (!button) return;
+    button.removeEventListener('click', supportMetadata() );
+    button.addEventListener('click', supportMetadata());
+    console.log('Attached click event to copy-text-11-1 support metadata button');
+}
+
+function supportMetadata(){
+    const onboardingJson = localStorage.getItem('c8-labs-onboarding');
+    if (onboardingJson) {
+        try {
+            const parsed = JSON.parse(onboardingJson);
+            const supportMetadataTextbox = document.getElementById('copy-text-11-1');
+            if (!supportMetadataTextbox) return;
+            supportMetadataTextbox.textContent = JSON.stringify(parsed, null, 2);
+            copyToClipboard('copy-text-11-1', "Metadata copied");
+        }catch(error){ 
+            console.log(error); 
+            copyToClipboard('copy-text-11-1', "Unable to copy Metadata");
+        }
+    } else { copyToClipboard('copy-text-11-1', "Metadata not available. Please send your query without metadata."); }
+}
+
 function attachshareToLinkedIn(){
     
     const button = document.getElementById('shareToLinkedIn');
@@ -419,7 +447,7 @@ async function sendOnboardingEmail() {
                 + '<br/>';
             // Store the result.data payload in local storage for later use
             try {
-                showNote('Saving on-boarding metadata');
+                showNote('Saving onboarding metadata');
                 localStorage.setItem('c8-labs-onboarding', JSON.stringify(result.data));
                 showNote('Sending confirmation email');
                 const payload = {

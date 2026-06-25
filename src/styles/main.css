@@ -190,8 +190,7 @@ ul.prereq-list li {
 }
 
 .linkedin-btn:hover {
-    background: white;
-    color: purple;
+    background: #35424a;
 }
 
 .table-wrap {
@@ -257,4 +256,18 @@ nav a.nav-active {
 .app-logo {
     height: 80px;
     width:  80px;
+}
+
+.command-word1 {
+    color: rgb(149, 56, 0);
+}
+
+.highlight-summary{
+    border: 1px solid #e0a800;
+    background-color: #fff3cd;
+    color: #4a3b18;
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 4px;
+    font-size: 0.95rem;    
 }

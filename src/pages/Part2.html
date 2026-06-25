@@ -10,24 +10,58 @@
         <h2>Know Your Environment</h2>
 
         <section>
-            <h3>GKE Cluster</h3>
-            <p>
-                Kubernetes Engine cluster <code>c8-labs-sravana</code> is provisioned with required network configuration.
-                <br/>
-                Each participant will have access to a dedicated namespace (such as <code>john-doe-gmail-com-c8-labs</code>) to deploy Camunda self-managed app components.
-                <br/>
-            </p>
+        <p>
+            Now that onboarding is complete, let's review how the <b>Lab Environment</b> is setup.
+            <br/>
+            There are two broad aspects to the lab environment.
+            <ul>
+                <li>
+                    a. Preconfigured setup
+                    <br/>
+                    To ensure a smooth execution of labs, there are a few preconfigured items for each participant (such as external access, network plumbing, etc).
+
+                    We will not go into the details of these, as they are outside the scope of this exercise.
+                    <br/>
+                    Note: Cloudflare manages the lab domain setup and external network traffic.
+                </li>
+                <li>
+                    b. GCP Resources: GKE Cluster and Cloud Shell
+                    <br/>
+                    The core of the labs exercise centers around the Kubernetes cluster.
+                    <br/>
+                    Kubernetes Engine cluster <code>c8-labs-sravana</code> is provisioned with required network configuration, storage and compute capacity.
+                    <br/>
+                    GCP project <code>c8-labs-sravana</code> hosts this GKE cluster and all other associated preconfigurations.
+                    <br/>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <div class="highlight-summary">
+            <strong>Lab Summary</strong>
+            <ul style="margin-top: 8px; margin-bottom: 0; padding-left: 20px;list-style: none;">
+                <li>
+                Each participant will have access to a dedicated namespace
+                (such as <code>jon-doe-gmail-com-c8-labs</code>) to deploy
+                Camunda self-managed app components.
+                </li>
+                <li style="margin-top: 4px;">
+                The lab instructions are primarily executed via GCP Cloud Shell. Please run all lab commands from within a single Cloud Shell terminal session.
+                </li>
+            </ul>
+            </div>
         </section>
 
         <section>
             <h3>Physical Setup</h3>
             <p>
-                Here is a summary of how the physical environment.
+                Here is a summary of the physical environment. (diagram below)
                 <ul>
-                    <li>Camunda app stack shall be deployed to a specific namespace (participant specific) and consists of multiple containers</li>
-                    <li>The containers are running on any of the VM nodes.</li>
+                    <li>The Camunda app stack will be deployed to a specific namespace (participant specific) and consists of multiple containers</li>
+                    <li>The containers run on one of the VM nodes.</li>
                     <li>VM nodes are running within any of the zones pertaining to a region.</li>
-                    <li>End user is accessing camunda app via Cloudflare managed domain. Example: <code>https://jon-doe-c8-labs.makelabs.in</code></li>
+                    <li>End users access the Camunda app via Cloudflare managed domain. Example: <code>https://jon-doe-gmail-com-c8-labs.makelabs.in</code></li>
                 </ul>
                 <small><sup>*</sup>Note: Cloudflare domain setup is outside the scope of the labs. It is however pre-configured for each participant.</small>
             </p>
@@ -45,9 +79,9 @@
                 Let's begin our work by launching a new GCP Cloud Shell.
                 <br/>
                 From this point on, all commands are executed in the Cloud Shell.
-                For convenience, you can copy each command (via Copy button) and paste into the Cloud Shell.
+                For convenience, you can use the Copy button to paste a logically grouped set of commands into Cloud Shell, or, if you prefer a slower pace with attention to detail, copy and run each command line by line.
                 <p/>
-                Follow the instructions carefully. There are few places where you may need to modify the command before executing the same.
+                Follow the instructions carefully. There are a few places where you may need to modify the command(s) before executing the same.
                 <br/>
                 The scripts associated with this program are available in the GitHub repository.
                 <br/>
@@ -60,7 +94,9 @@
                     <br>
                     <pre id="copy-text-2-1"><code>
 git clone https://github.com/rchari-ml/c86-mini.git
+<br/>
 cd c86-mini
+<br/>
 git checkout c8-labs-swati 
                     </code></pre>
                     <p/>
@@ -82,8 +118,11 @@ git checkout c8-labs-swati
                     <p/>
                     <pre id="copy-text-2-3"><code>
 gcloud auth login
+<br/>
 gcloud components install gke-gcloud-auth-plugin
+<br/>
 gke-gcloud-auth-plugin --version
+<br/>
 gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs</code></pre>
                     <p/>
                     <button class="copy-btn" onclick="copyToClipboard('copy-text-2-3')">Copy</button>

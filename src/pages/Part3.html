@@ -18,6 +18,7 @@
                 Set the namespace variable. Use the namespace assigned to you.<p/>
                 <pre id="copy-text-3-1"><code>
 export UNAMESPACE=$UNAMESPACE
+<br/>
 export WEBPAGEAPPURL=asia-south2-docker.pkg.dev/c8-labs/c8-labs-repo/toolkit-c8-labs-nginx-static:v1
                     </code>
                 </pre>
@@ -30,7 +31,9 @@ export WEBPAGEAPPURL=asia-south2-docker.pkg.dev/c8-labs/c8-labs-repo/toolkit-c8-
                 Run below command to deploy the landing page app.<br/>
                 <pre id="copy-text-3-2"><code>
 envsubst '${UNAMESPACE} ${WEBPAGEAPPURL}' < deploy-landing-page.yaml  | kubectl apply -f -
+<br/>
 envsubst '${UNAMESPACE}' < c8-ingress-landing-page.yaml               | kubectl apply  -f -
+<br/>
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-3-2')">Copy</button>

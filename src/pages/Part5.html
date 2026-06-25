@@ -46,14 +46,19 @@ UNAMESPACE=$UNAMESPACE envsubst < zeebe-makefile | sh
                 Helm install camunda-platform<br/>
                 <pre id="copy-text-5-3"><code>
 helm repo add camunda https://helm.camunda.io
+<br/>
 helm repo update
+<br/>
 UNAMESPACE=$UNAMESPACE envsubst < values-combined-ingress.yaml > values-combined-ingress.my-ns.yaml
+<br/>
 UNAMESPACE=$UNAMESPACE envsubst < values-connectors-env.yaml   > values-connectors-env.my-ns.yaml
+<br/>
 helm install $UNAMESPACE camunda/camunda-platform \
   -f values-combined-ingress.my-ns.yaml \
   -f values-connectors-env.my-ns.yaml \
   --set zeebe.prometheusServiceMonitor.enabled=true \
   --version 14.4.1 --namespace $UNAMESPACE
+<br/>
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-5-3', 'This may take a while...')">Copy</button>
@@ -68,9 +73,11 @@ This step may take a while as it installs about a handful of pods.
                 Add ingress to enable traffic flow to the deployed services.<br/>
                 <pre id="copy-text-5-4"><code>
 envsubst '${UNAMESPACE}' < c8-ingress-keycloak.yaml  | kubectl apply  -f -
+<br/>
 envsubst '${UNAMESPACE}' < c8-ingress.yaml           | kubectl apply  -f -
+<br/>
 envsubst '${UNAMESPACE}' < c8-zeebe-ingress.yaml     | kubectl apply  -f -
-
+<br/>
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-5-4')">Copy</button>
