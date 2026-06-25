@@ -368,6 +368,7 @@ function attachSupportMetadataButton() { // copy-text-11-1
     button.removeEventListener('click', supportMetadata() );
     button.addEventListener('click', supportMetadata());
     console.log('Attached click event to copy-text-11-1 support metadata button');
+    copyToClipboard('copy-text-11-1', "Support Metadata for your account copied");
 }
 
 function supportMetadata(){
