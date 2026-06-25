@@ -378,7 +378,7 @@ function supportMetadata(){
             const parsed = JSON.parse(onboardingJson);
             const supportMetadataTextbox = document.getElementById('copy-text-11-1');
             if (!supportMetadataTextbox) return;
-            supportMetadataTextbox.textContent = JSON.stringify(parsed, null, 2);
+            supportMetadataTextbox.innerText = JSON.stringify(parsed, null, 2);
             copyToClipboard('copy-text-11-1', "Metadata copied");
         }catch(error){ 
             console.log(error); 
