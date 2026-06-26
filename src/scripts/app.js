@@ -1,3 +1,8 @@
+const initDomainName = `${window.location.origin}`;
+const prefix = 'https://';
+const domainName = initDomainName && initDomainName.indexOf(prefix) != -1  ? initDomainName.substring(prefix.length) : 'c8-portal.makelabs.in';
+// default portal is 'c8-portal.makelabs.in';
+
 const header = document.createElement('header');
 header.innerHTML = `
 `;
@@ -10,12 +15,14 @@ footer.innerHTML = `
 document.body.appendChild(header);
 document.body.appendChild(footer);
 
+
 function getQueryParam(name) {
     const params = new URLSearchParams(window.location.search);
     return params.get(name);
 }
 
 const loadCoursePart = (part) => {
+    console.log('Domain name is ' + domainName);
     fetch(`pages/Part${part}.html`)
         .then(response => response.text())
         .then(data => {
@@ -41,14 +48,15 @@ const loadCoursePart = (part) => {
 
             // If Part7, fetch and inject the keys
             if (part == 7) {
-                fetch('https://c8-portal.makelabs.in/fetchMyKeys')
+
+                fetch(`https://${domainName}/fetchMyKeys`)
                     .then(resp => resp.text())
                     .then(html => {
                         console.log('Fetched keys:', html);
                         // Insert the fetched HTML into the code block
                         const codeBlock = document.querySelector('#copy-text-7-1 code');
                         if (codeBlock) { 
-                            const indexOfToken = html.indexOf('c8-portal.makelabs.in');
+                            const indexOfToken = html.indexOf(domainName);
                             let token = indexOfToken !== -1 ?  html.substring(indexOfToken+21) : 'undefined';
                             token = ( token.length < 100 ) ? 'undefined' : token; // basic validation
                             codeBlock.innerHTML = token.trim();
@@ -117,7 +125,7 @@ function clearCache() {
 
 function shareToLinkedIn(){
     // your portal URL
-    const courseUrl = "https://c8-portal.makelabs.in";
+    const courseUrl = `https://${domainName}`;
 
     const linkedinUrl =
         "https://www.linkedin.com/sharing/share-offsite/?url=" +
@@ -495,11 +503,11 @@ function toTitleCase(str) {
 }
 
 async function getMyAccessToken() {
-  return fetch('https://c8-portal.makelabs.in/fetchMyKeys')
+  return fetch(`https://${domainName}/fetchMyKeys`)
       .then(resp => resp.text())
       .then(html => {
           console.log('Fetched keys:', html);
-          const indexOfToken = html.indexOf('c8-portal.makelabs.in');
+          const indexOfToken = html.indexOf(domainName);
           let token = indexOfToken !== -1 ? html.substring(indexOfToken + 21) : null;
           if (!token || token.length < 100) {
               return null;
