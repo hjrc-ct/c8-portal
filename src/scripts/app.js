@@ -34,6 +34,7 @@ const loadCoursePart = (part) => {
             document.querySelectorAll('code').forEach(codeBlock => {
                 console.log(codeBlock.textContent);
                 codeBlock.textContent = codeBlock.textContent.replace(/\$UNAMESPACE/g, UNAMESPACE_VALUE);
+                codeBlock.textContent = codeBlock.textContent.replace(/\$domainName/g, domainName);
             });
 
             if (part == 0) {
@@ -57,7 +58,7 @@ const loadCoursePart = (part) => {
                         const codeBlock = document.querySelector('#copy-text-7-1 code');
                         if (codeBlock) { 
                             const indexOfToken = html.indexOf(domainName);
-                            let token = indexOfToken !== -1 ?  html.substring(indexOfToken+21) : 'undefined';
+                            let token = indexOfToken !== -1 ?  html.substring(indexOfToken + domainName.length) : 'undefined';
                             token = ( token.length < 100 ) ? 'undefined' : token; // basic validation
                             codeBlock.innerHTML = token.trim();
                         }
