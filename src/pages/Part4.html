@@ -29,14 +29,14 @@ DOCKER_USER_TOKEN=put-your-value-here-keep-it-secret
 <br/>
 <br/>
 kubectl create secret docker-registry registry-camunda-cloud  \
---namespace=undefined-namespace \
+--namespace=$UNAMESPACE \
 --docker-server=registry.camunda.cloud \
 --docker-username=${DOCKER_USER_ID} \
 --docker-password=${DOCKER_USER_TOKEN} \
 --docker-email=${DOCKER_USER_EMAIL}
 <br/>
 kubectl create secret docker-registry registry-docker-hub  \
-    --namespace=undefined-namespace \
+    --namespace=$UNAMESPACE \
     --docker-server=hub.docker.com \
     --docker-username=${DOCKER_USER_ID} \
     --docker-password=${DOCKER_USER_TOKEN} \
