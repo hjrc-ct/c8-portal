@@ -47,9 +47,9 @@ helm repo add grafana https://grafana.github.io/helm-charts
 <br/>
 helm repo update
 <br/>
-helm install grafana grafana/grafana --namespace  $UNAMESPACE
+UNAMESPACE=$UNAMESPACE envsubst < grafana.yaml   > grafana.my-ns.yaml
 <br/>
-kubectl get secret --namespace $UNAMESPACE grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+kubectl apply -f grafana.my-ns.yaml -n ${UNAMESPACE}
 <br/>
 UNAMESPACE=$UNAMESPACE envsubst < c8-ingress-grafana.yaml | kubectl apply -f -
 <br/>
@@ -57,8 +57,8 @@ UNAMESPACE=$UNAMESPACE envsubst < c8-ingress-grafana.yaml | kubectl apply -f -
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-8-2','Make a note of admin account password')">Copy</button>
                 <p/>
-Install Grafana. It provides you <code>the password for admin account</code>. Please make a note of this.
-<br/>Also note that we are adding ingress for accessing Grafana app. You can sign-in to <a target="_blank" href="https://${UNAMESPACE}-grafana.makelabs.in/">Grafana</a>
+Install Grafana and link Prometheus as datasource.
+<br/>Also note that we are adding ingress for accessing Grafana app. You can sign-in to <a target="_blank" href="https://$UNAMESPACE.makelabs.in/grafana">Grafana</a>
             </div>
             <p/>
         </section>        
@@ -71,12 +71,12 @@ Install Grafana. It provides you <code>the password for admin account</code>. Pl
 ####### Grafana UI - Setup data source and import dashboard
 # Step 1.  Go to Datasources. Add prometheus as data source. Save and test. (Get 'prometheus-server' IP address from Lens UI)
 # Step 2.a Go to Dashboard -> Import. 
-#      2.b Use link to copy-and-paste dashboard template ->> https://github.com/camunda/camunda/blob/stable/8.6/monitor/grafana/zeebe.json    
+#      2.b Use link to copy-and-paste dashboard template ->> https://github.com/camunda/camunda/blob/stable/8.9/monitor/grafana/zeebe.json    
 #      2.c Select data source from step 1 and Save
 
 
 # To check prometheus data feed - run this from toolkit pod where curl is supported
-curl -s http://prometheus-server.$UNAMESPACE:9090/api/v1/targets            
+curl -s http://prometheus.$UNAMESPACE:9090/api/v1/targets 
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-8-3')">Copy</button>
