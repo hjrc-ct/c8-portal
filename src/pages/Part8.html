@@ -26,7 +26,7 @@ helm repo update
 <br/>
 UNAMESPACE=$UNAMESPACE envsubst < prometheus.yml   > prometheus.my-ns.yaml
 <br/>
-helm install prometheus prometheus-community/prometheus -f prometheus.my-ns.yaml --namespace $UNAMESPACE
+kubectl apply -f prometheus.my-ns.yaml -n ${UNAMESPACE}
 <br/>
                 </code></pre>
                 <p/>
