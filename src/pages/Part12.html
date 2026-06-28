@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <main>
+        <h2>FAQ</h2>
+        <p>
+            A collection of common issues and how to debug / resolve the same.
+        </p>
+
+        <section>
+            <div class="faq-block">
+                <p/>
+                <h3>Certificate related</h3>
+                <ul>
+                    <li>
+                        <b>
+                            How to compare if a given pem certificate is associated with a URL endpoint?
+                        </b>
+                        <p/>
+                        Run the two commands below and see if the hash generated match.
+                        <p/>
+                        <code>
+                            openssl x509 -in cert.pem -pubkey -noout | openssl md5
+                        </code>
+                        <p/>
+                        <code>
+                            openssl s_client -connect $UNAMESPACE.makelabs.in:443 -showcerts </dev/null 2>/dev/null | openssl x509 -pubkey -noout | openssl md5
+                        </code>
+                    </li>
+
+                    <li>
+                        <b>
+                            I have a secret that contains JKS. How to get it to local file system?
+                        </b>
+                        <p/>
+                        <code>
+kubectl get secret elastic-jks -n $UNAMESPACE  -o jsonpath='{.data.externaldb\.jks}' | base64 --decode > my-local-keystore.jks
+                        </code>
+                        <p/>
+
+                    </li>
+
+                    <li>
+                        <b>
+                            How to list certificates in a given JKS?
+                        </b>
+                        <p/>
+                        <code>
+keytool -list -v -keystore my-local-keystore.jks -storepass keystore-password-here
+                        </code>                        
+                        <p/>
+
+                    </li>
+
+                    <li>
+                        <b>How to get certificates for a given endpoint?</b>
+                        <p/>
+                        <code>
+                        openssl s_client -connect cep_api_config_gw_an_gateway_dev:443 -showcerts
+                        </code>
+                    </li>
+                </ul>
+                </ul>
+
+                <p/>
+            </div>
+        </section>
+        <p/><hr/>
+        <section>
+            <div class="faq-block">
+                <p/>
+                <h3>Kubernetes Entity related</h3>
+                <ul>
+                    <li>
+                        <b>
+                            How to check the status of Ingress object?
+                        </b>
+                        <p/>
+                        <code>
+kubectl describe ingress ${UNAMESPACE}-ingress-keycloak -n ${UNAMESPACE}
+                        </code>
+                        <p/>
+This shows:<br/>
+&nbsp;&nbsp;Hostnames<br/>
+&nbsp;&nbsp;Paths<br/>
+&nbsp;&nbsp;Backend services<br/>
+&nbsp;&nbsp;Events (errors, provisioning issues)<br/>
+&nbsp;&nbsp;Assigned IP/Load Balancer<br/>
+                        <p/>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <p/>
+        <hr/>
+    </main>
+    <script src="../scripts/app.js"></script>
+</body>
+</html>
