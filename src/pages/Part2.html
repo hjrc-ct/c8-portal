@@ -107,6 +107,12 @@ git checkout c8-labs-swati
 git fetch origin
 <br/>
 git pull origin c8-labs-swati
+<br/>
+gcloud components install gke-gcloud-auth-plugin
+<br/>
+gke-gcloud-auth-plugin --version
+<br/>
+gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs
                     </code></pre>
                     <p/>
                     <button class="copy-btn" onclick="copyToClipboard('copy-text-2-1')">Copy</button>
@@ -118,11 +124,13 @@ git pull origin c8-labs-swati
         <section>
             <h3>Project Lens UI app for Kubernetes Resources Visualisation</h3>
             <p>
-                Run below command on **Your Desktop / Laptop** (not Cloud Shell).
+                Run below command-set on <b>**Your Desktop / Laptop** (not Cloud Shell)</b>.
                 <br/>
                 Open the Project Lens UI app and see if you are able to connect to the cluster.
-                <br/><br/>
-                Note: You may ignore this section if the app is not installed.
+                <br/>
+                <br/>
+                <span class="alert-icon" role="img" aria-label="Important" style="margin-right:8px;">⚠️</span>
+                Note: You may ignore this section if the Project Lens app is not installed on your Desktop / Laptop.
                 <div class="copy-block">
                     <p/>
                     <pre id="copy-text-2-3"><code>
@@ -137,6 +145,13 @@ gke-gcloud-auth-plugin --version
 gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs</code></pre>
                     <p/>
                     <button class="copy-btn" onclick="copyToClipboard('copy-text-2-3')">Copy</button>
+                <p>
+                    <small>Click to view screen shot - Project Lens with kubeconfig.</small><br/>
+                    <img width="90px" height="64px" src="pages/img-2-3-project-lens-app-view.jpg" 
+                            alt="Project Lens UI app" 
+                            style="cursor:pointer;" 
+                            onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+                </p>
                 </div>                
                 
             </p>

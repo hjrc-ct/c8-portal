@@ -41,7 +41,7 @@ const loadCoursePart = (part) => {
             // Count number of copy-block occurrences within the loaded content
             const copyBlockCount = mainContent.querySelectorAll('.copy-block').length;
             if (copyBlockCount > 0) {
-              showNote(`This page has ${copyBlockCount} copy-block instruction(s).`);
+              showNote(`This page has ${copyBlockCount} command-set instruction(s).`);
             }
 
             if (part == 0) {

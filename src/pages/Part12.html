@@ -80,19 +80,20 @@ keytool -list -v -keystore my-local-keystore.jks -storepass keystore-password-he
                         <b>
                             How to view the logs associated with Pod(s)?
                         </b>
-                        <p/>
-                        <code>
-kubectl logs -n ${UNAMESPACE} ${UNAMESPACE}-keycloak-0
-<br/>
+                        <p>
+                            View the last 100 lines or continue to tail logs.
+                        </p>
 
-                        </code>
-                        <p/>
-This shows:<br/>
-&nbsp;&nbsp;Hostnames<br/>
-&nbsp;&nbsp;Paths<br/>
-&nbsp;&nbsp;Backend services<br/>
-&nbsp;&nbsp;Events (errors, provisioning issues)<br/>
-&nbsp;&nbsp;Assigned IP/Load Balancer<br/>
+<code>kubectl get pods -n ${UNAMESPACE}</code>
+<br/>
+<code>
+kubectl logs -n ${UNAMESPACE} ${UNAMESPACE}-keycloak-0
+</code>
+<br/>
+<code>
+kubectl logs -n ${UNAMESPACE} ${UNAMESPACE}-keycloak-0 -f
+</code>
+<br/>
                         <p/>
                     </li>
                     <li>
@@ -100,14 +101,18 @@ This shows:<br/>
                             How to check the status of Ingress object?
                         </b>
                         <p/>
-                        <code>
+<code>
 kubectl describe ingress ${UNAMESPACE}-ingress-keycloak -n ${UNAMESPACE}
+</code>
 <br/>
+<code>
 kubectl describe ingress ${UNAMESPACE}-ingress -n ${UNAMESPACE}
+</code>
 <br/>
+<code>
 kubectl describe ingress ${UNAMESPACE}-zeebe-gateway-http  -n ${UNAMESPACE}
+</code>
 <br/>
-                        </code>
                         <p/>
 This shows:<br/>
 &nbsp;&nbsp;Hostnames<br/>
