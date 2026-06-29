@@ -29,13 +29,20 @@ const loadCoursePart = (part) => {
             const mainContent = document.getElementById('main-content');
             mainContent.innerHTML = data;
 
-            // After loading, replace variables in code blocks
+            // After loading, replace variables in code blocks (scoped to loaded content)
             const UNAMESPACE_VALUE = getQueryParam('ns') || "undefined-namespace";
-            document.querySelectorAll('code').forEach(codeBlock => {
-                console.log(codeBlock.textContent);
-                codeBlock.textContent = codeBlock.textContent.replace(/\$UNAMESPACE/g, UNAMESPACE_VALUE);
-                codeBlock.textContent = codeBlock.textContent.replace(/\$domainName/g, domainName);
+            const codeElements = mainContent.querySelectorAll('code');
+            codeElements.forEach(codeBlock => {
+              console.log(codeBlock.textContent);
+              codeBlock.textContent = codeBlock.textContent.replace(/\$UNAMESPACE/g, UNAMESPACE_VALUE);
+              codeBlock.textContent = codeBlock.textContent.replace(/\$domainName/g, domainName);
             });
+
+            // Count number of copy-block occurrences within the loaded content
+            const copyBlockCount = mainContent.querySelectorAll('.copy-block').length;
+            if (copyBlockCount > 0) {
+              showNote(`This page has ${copyBlockCount} copy-block instruction(s).`);
+            }
 
             if (part == 0) {
                 participants.sort((a, b) => a.name.localeCompare(b.name));
