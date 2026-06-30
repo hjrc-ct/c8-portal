@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <header id="header"></header>
+    <header id="header">
+        <div id="header-content"></div>
+    </header>
     <main>
         <div class="app-page-header">
             <div class="app-page-header-item-left">
-            <h1>Camunda 8.9.7 Self Managed with Kubernetes - Learning Edition</h1>
+            <h1>Camunda 8.9.7 Self Managed with Kubernetes / GCP</h1>
             </div>
-            <div class="app-page-header-item-right">
-                <img height="80px" width="80px" src="pages/makelabs.png" alt="Logo" class="app-logo">
-            </div>
+            <div class="app-page-header-item-right"><img height="40px" width="40px" src="pages/makelabs.png" alt="Logo" class="app-logo"></div>
         </div>
         <h3>
             Helm Version # 14.4.1 Released on 11 Jun, 2026
@@ -23,12 +23,12 @@
         <h5>
             Official Camunda Helm documentation <a target="_blank" href="https://artifacthub.io/packages/helm/camunda/camunda-platform/14.4.1">link</a>
         </h5>
-
         <div id="app-layout">
         <nav>
             <ul>
                 <li><a href="pages/Part0.html">Home</a></li>
                 <li><a href="pages/Part1.html">Prerequisites</a></li>
+                <li><hr class="nav-separator"></li>
                 <li><a href="pages/Part1a.html">Onboarding</a></li>
                 <li><a href="pages/Part2.html">Lab Environment</a></li>
                 <li><a href="pages/Part3.html">Landing Page</a></li>
@@ -42,7 +42,8 @@
 </svg></sup></a></li>
                 <li><a href="pages/Part8.html">Prometheus and Grafana</a></li>
                 <li><a href="pages/Part9.html">Lab Exercise</a></li>
-                <li><a href="pages/Part10.html">Logout</a></li>
+                <li><a href="pages/Part10.html">Before you leave...</a></li>
+                <li><hr class="nav-separator"></li>
                 <li><a href="pages/Part11.html">Support & Help</a></li>
                 <li><a href="pages/Part12.html">FAQ</a></li>
             </ul>
@@ -62,8 +63,19 @@
             }
             return "" +  "&nbsp;&nbsp;&nbsp;&nbsp;";
         }
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('header').innerHTML = getSelectedNS();
+        document.addEventListener('DOMContentLoaded', async function () {
+            const headerContent = document.getElementById('header-content');
+            if (!headerContent) return;
+
+            const hasAccess = !!(await getMyAccessToken());
+            headerContent.innerHTML = getSelectedNS() + (hasAccess ? '' : '<button id="request-access-btn" class="request-access-btn" type="button">Sign In</button>');
+
+            const requestAccessButton = document.getElementById('request-access-btn');
+            if (requestAccessButton) {
+                requestAccessButton.addEventListener('click', () => {
+                    window.location.href = '/signin';
+                });
+            }
         });
     </script>
 </body>

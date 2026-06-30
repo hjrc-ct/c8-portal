@@ -123,6 +123,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (messageToShow) showNote(messageToShow);
         else showNote('Copied to clipboard!');
     }        
+
+    const requestAccessButton = document.getElementById('request-access-btn');
+    if (requestAccessButton) {
+        requestAccessButton.addEventListener('click', () => {
+            const signInUrl = '/signin';
+            window.location.href = signInUrl;
+        });
+    }
 });   
 
 function clearCache() {
