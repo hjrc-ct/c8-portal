@@ -1,7 +1,7 @@
 const initDomainName = `${window.location.origin}`;
 const prefix = 'https://';
-const domainName = initDomainName && initDomainName.indexOf(prefix) != -1  ? initDomainName.substring(prefix.length) : 'c8-portal.makelabs.in';
-// default portal is 'c8-portal.makelabs.in';
+const domainName = initDomainName && initDomainName.indexOf(prefix) != -1  ? initDomainName.substring(prefix.length) : 'c8-labs.makelabs.in';
+// default portal is 'c8-labs.makelabs.in';
 
 const header = document.createElement('header');
 header.innerHTML = `
