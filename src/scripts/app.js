@@ -527,7 +527,7 @@ async function getMyAccessToken() {
       .then(html => {
           console.log('Fetched keys:', html);
           const indexOfToken = html.indexOf(domainName);
-          let token = indexOfToken !== -1 ? html.substring(indexOfToken + 21) : null;
+          let token = indexOfToken !== -1 ? html.substring(indexOfToken + domainName.length) : null;
           if (!token || token.length < 100) {
               return null;
           }
