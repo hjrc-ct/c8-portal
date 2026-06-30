@@ -66,13 +66,18 @@ Install Grafana and link Prometheus as datasource.
         <section>
             <div class="copy-block">
                 <p/>
-                Configure Grafana - add prometheus datasource<br/>
+                Configure Grafana<br/>
+                <ul>
+                    <li>Verify if Prometheus endpoint is added as Data Source</li>
+                    <li>Dashboard for Camunda components</li>
+                </ul>
                 <pre id="copy-text-8-3"><code>            
 ####### Grafana UI - Setup data source and import dashboard
-# Step 1.  Go to Datasources. Add prometheus as data source. Save and test. (Get 'prometheus-server' IP address from Lens UI)
-# Step 2.a Go to Dashboard -> Import. 
-#      2.b Use link to copy-and-paste dashboard template ->> https://github.com/camunda/camunda/blob/stable/8.9/monitor/grafana/zeebe.json    
-#      2.c Select data source from step 1 and Save
+# Step 1.  Go to Datasources. Check if prometheus as data source. (this is part of grafana.yaml)
+# Step 2.a Go to Dashboard -> Import. (Right side corner -> click on New drop-down -> select Import)
+#      2.b Visit this page on your browser ->> https://github.com/camunda/camunda/blob/stable/8.9/monitor/grafana/zeebe.json    
+#      2.c Click on "copy raw file". We'll use the JSON as seed data to create the new dashboard.
+#      2.d Back to Grafana -> Paste into the text-area "Import via dashboard JSON model". Click on Load.
 
 
 # To check prometheus data feed - run this from toolkit pod where curl is supported

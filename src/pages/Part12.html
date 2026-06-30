@@ -188,6 +188,30 @@ This shows:<br/>
                         </p>
                         <p/>
                     </li>
+             <li>
+                        <b>
+                            I wish to restart the C8 installation only - retaining other configurations so far. How to go about this?
+                        </b>
+                        <p>
+                            To restart the Camunda installation alone, you need to uninstall Camunda.
+                            <ul style="list-style: none;">
+                            <li>Sign-in to c8-labs portal</li>
+                            <li>Visit the left-side navigation link: <code>Camunda</code>. The steps are also outlined here on this page.</li>
+                            <li>
+                                Open Google Cloud Shell terminal and run below command(s):<br/>
+                                <code>gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs</code>
+                                <br/>
+                                <code>helm uninstall $UNAMESPACE --namespace $UNAMESPACE</code>
+                                <br/>
+                                <span class="alert-icon" role="img" aria-label="Important" style="margin-right:8px;">⚠️</span>
+                                Caution: Wait until all the Pods are dissolved, storage released, etc as it may take a minute or so.
+                                <br/><br/>
+                                You can now go to Camunda section and run the step <code>Helm install camunda-platform</code> again.
+                            </li>
+                            </ul>
+                        </p>
+                        <p/>
+                    </li>
 
                 </ul>
             </div>
