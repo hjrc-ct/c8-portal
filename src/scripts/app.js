@@ -549,8 +549,10 @@ async function getMyAccessToken() {
 }
 
 function getEmailFromAccessJwt(jwt) {
-  const payload = jwt.split('.')[1];
-  const decoded = atob(payload);
-  return JSON.parse(decoded).email || 'contact@makelabs.in';
+  try{
+    const payload = jwt.split('.')[1];
+    const decoded = atob(payload);
+    return JSON.parse(decoded).email || 'contact@makelabs.in';
+  }catch(e) {return null;}
   
 }
