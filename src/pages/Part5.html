@@ -85,10 +85,30 @@ envsubst '${UNAMESPACE}' < c8-zeebe-ingress.yaml     | kubectl apply  -f -
                 <p/>
 You may check the ingress definition in the assigned namespace.
 <br/>
+        <p>
+            <span class="alert-icon" role="img" aria-label="Important" style="margin-right:8px;">⚠️</span>
+            <em>This section completes the installation of Camunda app to your designated namespace.</em>
+            <br/><br/>
+            Check the Pods status before validating access to the C8 environment.
+            <br/><br/>
+            Visit: <a href="https://$UNAMESPACE.makelabs.in/" target="_blank">Landing Page</a>
+            <ul style="list-style: none;">
+                <li>Keycloak Admin Console</li>
+                <li>C8 Orchestration Admin</li>
+                <li>C8 Operator</li>
+                <li>C8 Tasklist</li>
+                <li>C8 Console</li>
+                <li>C8 Identity</li>
+                <li>C8 Optimize</li>
+            </ul>
+            <small>Note: SSO is enabled with C8 app components. You only need to sign-in to C8 once with user account <code>demo</code>.</small>
+        </p>
+
             </div>
             <p/>
 
         </section>
+
     </main>
     <script src="../scripts/app.js"></script>
 </body>

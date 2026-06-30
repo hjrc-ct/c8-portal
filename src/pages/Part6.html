@@ -47,11 +47,11 @@ envsubst '${UNAMESPACE}' < deploy-worker-toolkit.yaml  | kubectl apply  -f -
            <div class="copy-block">
                 <p/>
                 Add ingress to enable traffic flow to the deployed services.<br/>
-                <pre id="copy-text-5-4"><code>
+                <pre id="copy-text-6-3"><code>
 envsubst '${UNAMESPACE}' < c8-ingress-with-toolkit.yaml | kubectl apply  -f -
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-5-4')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-6-3')">Copy</button>
                 <p/>
 You may check the ingress definition in the assigned namespace.
 <br/>
@@ -61,7 +61,7 @@ You may check the ingress definition in the assigned namespace.
            <div class="copy-block">
                 <p/>
                 Deploy process artifacts.<br/>
-                <pre id="copy-text-5-5"><code>
+                <pre id="copy-text-6-4"><code>
 export ORCH_SECRET=$(kubectl get secret identity-secret-for-components -n ${UNAMESPACE} -o jsonpath="{.data.zeebe-secret}" | base64 --decode)
 <br/>
 export TOKEN=$(curl https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token  \
@@ -92,7 +92,7 @@ curl -v --request POST \
 <br/>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-5-5')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-6-4')">Copy</button>
                 <p/>
 You may check the deployment status via <a target="_blank" href="https://$UNAMESPACE.makelabs.in/operator/">Operator</a> console.
 <br/>
@@ -102,7 +102,7 @@ You may check the deployment status via <a target="_blank" href="https://$UNAMES
            <div class="copy-block">
                 <p/>
                 Now that solution is deployed, lets do a dry run with curl command.<br/>
-                <pre id="copy-text-5-6"><code>
+                <pre id="copy-text-6-5"><code>
 curl -v --location --request PUT 'https://$UNAMESPACE.makelabs.in/connectors/inbound/new-lead-record' \
 --header 'key: SRM-web-hook-8ui3nm' \
 --header 'Content-Type: application/json' \
@@ -116,10 +116,17 @@ curl -v --location --request PUT 'https://$UNAMESPACE.makelabs.in/connectors/inb
 }'
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-5-6')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-6-5')">Copy</button>
                 <p/>
 You may check the runtime process instance via <a target="_blank" href="https://$UNAMESPACE.makelabs.in/operator/">Operator</a> console.
 <br/>
+                <p>
+                    <small>Post Command-Set Execution: Check curl response http status - 200</small><br/>
+                    <img width="90px" height="64px" src="pages/img-6-5-curl-return-status.jpg" 
+                            alt="Project Lens UI app" 
+                            style="cursor:pointer;" 
+                            onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+                </p>
             </div>
             <p/>            
 

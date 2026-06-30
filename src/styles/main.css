@@ -142,7 +142,6 @@ ul.prereq-list li {
 }
 
 .copy-block::before {
-    content: "bash";
     position: absolute;
     top: 0;
     left: 0;
@@ -157,6 +156,14 @@ ul.prereq-list li {
     justify-content: center;
     min-width: 40px;
     height: 24px;
+}
+
+.copy-block:not([data-label])::before {
+    content: "bash";
+}
+
+.copy-block[data-label]::before {
+    content: attr(data-label);
 }
 
 .copy-block pre {
