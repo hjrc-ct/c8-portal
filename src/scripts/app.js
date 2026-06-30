@@ -474,7 +474,9 @@ async function sendOnboardingEmail() {
                     content: 'You are now onboarded to C8 Labs environment - GKE Cluster.<br/>'
                               + 'Started at ' + new Date().toISOString() + '<p/>'
                               + 'Your access is for a limited period only. For any questions, please contact administrator.' 
-                              + '<p/>' + JSON.stringify(result.data, null, 2) + '<br/>',
+                              + '<p><pre style="font-family: monospace; white-space: pre-wrap; background:#f5f5f5; padding:10px; border-radius:4px;">'
+                              + escapeHtml(JSON.stringify(result.data, null, 2))
+                              + '</pre></p>',
                     subject: 'Onboarding - C8 Learning and Enablement'
                 };                
                 fetch(urlSendMail, {
@@ -504,6 +506,15 @@ async function sendOnboardingEmail() {
             codeBlock.innerHTML = 'service status: error' 
                                   + '<br/>' + error;
         });
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 function toTitleCase(str) {
