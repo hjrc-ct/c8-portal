@@ -67,8 +67,10 @@
             const headerContent = document.getElementById('header-content');
             if (!headerContent) return;
 
-            const hasAccess = !!(await getMyAccessToken());
-            headerContent.innerHTML = getSelectedNS() + (hasAccess ? '' : '<button id="request-access-btn" class="request-access-btn" type="button">Sign In</button>');
+            const tValue = await getMyAccessToken();
+            const hasAccess = !!(tValue);
+            const hasAccessV2 = hasAccess ? !!(getEmailFromAccessJwt(tValue)) : hasAccess;
+            headerContent.innerHTML = getSelectedNS() + (hasAccessV2 ? '' : '<button id="request-access-btn" class="request-access-btn" type="button">Sign In</button>');
 
             const requestAccessButton = document.getElementById('request-access-btn');
             if (requestAccessButton) {
