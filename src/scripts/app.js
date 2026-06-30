@@ -438,7 +438,7 @@ async function sendOnboardingEmail() {
     const email = getEmailFromAccessJwt(currentToken);
     if (!email) {
         showNote('Unable to extract email from token.', 9000);
-        codeBlock.innerHTML = 'Error: Unable to extract email from token. Please contact administrator.' ;
+        codeBlock.innerHTML = 'Error: Unable to extract email from token. Please complete sign-in. If issue persists, contact administrator.' ;
         return;
     }
 
