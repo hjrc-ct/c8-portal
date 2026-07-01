@@ -392,7 +392,7 @@ function initializeOnboardingTurnstile() {
     if (!container || !button || !status) return;
 
     if (window.turnstile && !container.dataset.rendered) {
-        const siteKey = '0x4AAAAAACovG-Mssw8ROjtY';
+        const siteKey = '0x4AAAAAADuFDLHjWaYBPzei';
         window.turnstile.render(container, {
             sitekey: siteKey,
             theme: 'light',
