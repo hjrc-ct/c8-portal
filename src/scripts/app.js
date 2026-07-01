@@ -111,10 +111,20 @@ document.querySelectorAll('nav a').forEach(link => {
 window.addEventListener('DOMContentLoaded', () => {
     // if ns is present, go to part 1a, else go to part 0
     const nsParam = getQueryParam('ns');
-    if (nsParam)
-        loadCoursePart('1a');
-    else
-        loadCoursePart(0);
+    if (nsParam ) {
+        // if valid token is present, go to part 1a, else go to part 0
+        const tValue = await getMyAccessToken();
+        const hasAccess = !!(tValue);
+        const hasAccessV2 = hasAccess ? !!(getEmailFromAccessJwt(tValue)) : hasAccess;
+
+        if (hasAccessV2)
+            loadCoursePart('1a');
+        else
+            loadCoursePart(0);
+    }
+
+    // by default, load Part0.html if no ns param is present
+    loadCoursePart(0);
 });
 
 document.addEventListener('DOMContentLoaded', function() {
