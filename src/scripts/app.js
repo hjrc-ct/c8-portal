@@ -145,6 +145,11 @@ document.addEventListener('DOMContentLoaded', function() {
 function clearCache() {
   showNote('Clearing cache...');
   localStorage.removeItem('c8-labs-onboarding');
+
+  const url = new URL(window.location.href);
+  url.searchParams.delete('ns');
+  window.history.replaceState({}, '', url.toString());
+
   showNote('Clearing cache...Done!');
 }
 
@@ -440,14 +445,14 @@ async function sendOnboardingEmail() {
     const currentToken = await getMyAccessToken();
     if (!currentToken) {
         showNote('Unable to retrieve access token.', 9000);
-        codeBlock.innerHTML = 'Error: Unable to retrieve access token. Please contact administrator.' ;
+        codeBlock.innerHTML = 'Error: Invalid access token. Please try sign-in again. If issue persists, contact administrator.' ;
         return;
     }
 
     const email = getEmailFromAccessJwt(currentToken);
     if (!email) {
         showNote('Unable to extract email from token.', 9000);
-        codeBlock.innerHTML = 'Error: Unable to extract email from token. Please complete sign-in. If issue persists, contact administrator.' ;
+        codeBlock.innerHTML = 'Error: Unable to extract email from token. Please try sign-in again. If issue persists, contact administrator.' ;
         return;
     }
 
