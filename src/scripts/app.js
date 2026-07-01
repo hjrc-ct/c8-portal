@@ -109,7 +109,12 @@ document.querySelectorAll('nav a').forEach(link => {
 
 // Load Part0.html by default on page load
 window.addEventListener('DOMContentLoaded', () => {
-    loadCoursePart(0);
+    // if ns is present, go to part 1a, else go to part 0
+    const nsParam = getQueryParam('ns');
+    if (nsParam)
+        loadCoursePart('1a');
+    else
+        loadCoursePart(0);
 });
 
 document.addEventListener('DOMContentLoaded', function() {
