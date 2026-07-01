@@ -19,7 +19,7 @@ header {
     justify-content: flex-end;
     align-items: center;
     gap: 16px;
-    padding: 10px 100px 10px 20px;
+    padding: 10px 90px 10px 20px;
     min-height: 52px;
 }
 
@@ -141,16 +141,46 @@ section {
     line-height: 26.7061px;
     letter-spacing: -0.25px;
     margin-right: 16px;
-    width: 85%;
-    max-width: 75%;
+    width: 90%;
+    max-width: 90%;
 }
 
 .quick-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    justify-content: left;
+    align-items: left;
+    gap: 8px;
     margin: 8px 0 24px;
-    padding: 8px 0;
+    padding: 26px 0;
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 20px 0 8px;
+}
+
+.kpi-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f4fbff 100%);
+    border: 1px solid #dbeeff;
+    border-radius: 12px;
+    padding: 16px 14px;
+    box-shadow: 0 4px 12px rgba(6, 147, 227, 0.10);
+    text-align: center;
+}
+
+.kpi-icon {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.kpi-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0d5f8a;
+    line-height: 1.4;
 }
 
 .quick-link-pill {
@@ -172,6 +202,28 @@ section {
     box-shadow: 0 8px 16px rgba(6, 147, 227, 0.24);
     background: linear-gradient(135deg, #ff7a3d, #e8491d);
 }
+
+.quick-link-pill-small {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 444px;
+    background: linear-gradient(135deg, #0693e3, #0d5f8a);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 100;
+    font-size: 0.8rem;
+    box-shadow: 0 4px 12px rgba(6, 147, 227, 0.18);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.quick-link-pill-small:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(6, 147, 227, 0.24);
+    background: linear-gradient(135deg, #ff7a3d, #e8491d);
+}
+
 
 .course-summary-table {
     width: 100%;
@@ -202,6 +254,31 @@ section {
 
 .course-summary-table tbody tr:hover td {
     background: #eef7ff;
+}
+
+.course-summary-table th,
+.course-summary-table td {
+    width: 33.33%;
+    vertical-align: top;
+    text-align: left;
+    padding-bottom: 28px;
+}
+
+.info-callout {
+    background: linear-gradient(135deg, #fff8c4 0%, #eaf6ff 100%);
+    border: 1px solid #d6c36a;
+    border-left: 5px solid #e8491d;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    color: #6b4f00;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.info-callout-title {
+    font-weight: 700;
+    color: #b33a00;
+    margin-bottom: 6px;
 }
 
 footer {
@@ -381,13 +458,13 @@ nav a.nav-active {
     align-items:normal;
 }
 .app-page-header-item-right {
-    padding-right: 0px;
+    padding-right: 54px;
     padding-top: 0px;
     border: 0px solid #ccc;     
     display: flex;         /* or keep block if not needed */
     justify-content: flex-end;
     text-align: right;     /* for inline text content */
-    width: 42%;           /* if needed to take full right space */    
+    width: 48%;           /* if needed to take full right space */    
 }
 
 .app-logo {

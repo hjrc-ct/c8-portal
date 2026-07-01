@@ -13,12 +13,14 @@
             <br/>
         </p>
         <section>
-            <div class="copy-block">
+            <div class="copy-block" data-label="bash 5-1">
                 <p/>
                 Add secret that holds password for various accounts.<br/>
                 Default Camunda user account: <code>demo</code><br/>
                 Default Keycloak user account: <code>admin</code><p/>
                 <pre id="copy-text-5-1"><code>
+export UNAMESPACE=$UNAMESPACE
+<br/>
 kubectl apply -f identity-secret.yaml --namespace $UNAMESPACE
                 </code></pre>
                 <p/>
@@ -29,7 +31,7 @@ After this, you should see secret created in your namespace (via Project Lens UI
             </div>
             <p/>
 
-            <div class="copy-block">
+            <div class="copy-block" data-label="bash 5-2">
                 <p/>
                 Used for TLS and associated configuration.<br/>
                 <pre id="copy-text-5-2"><code>
@@ -41,7 +43,7 @@ UNAMESPACE=$UNAMESPACE envsubst < zeebe-makefile | sh
             </div>
             <p/>
 
-            <div class="copy-block">
+            <div class="copy-block" data-label="bash 5-3">
                 <p/>
                 Helm install camunda-platform<br/>
                 <pre id="copy-text-5-3"><code>
@@ -69,7 +71,7 @@ This step may take a while as it installs about a handful of pods.
             </div>
             <p/>
 
-           <div class="copy-block">
+           <div class="copy-block" data-label="bash 5-4">
                 <p/>
                 Add ingress to enable traffic flow to the deployed services.<br/>
                 <pre id="copy-text-5-4"><code>
@@ -91,7 +93,8 @@ You may check the ingress definition in the assigned namespace.
             <br/><br/>
             Check the Pods status before validating access to the C8 environment.
             <br/><br/>
-            Visit: <a href="https://$UNAMESPACE.makelabs.in/" target="_blank">Landing Page</a>
+            Visit Landing Page:
+            <br/><code>https://$UNAMESPACE.makelabs.in/</code>
             <ul style="list-style: none;">
                 <li>Keycloak Admin Console</li>
                 <li>C8 Orchestration Admin</li>

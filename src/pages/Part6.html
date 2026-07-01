@@ -8,18 +8,19 @@
 <body>
     <main>
         <h2>Deploy sample app</h2>
-        <p>
-            Lead To Opportunity sample application consists of BPMN, DMN and Form units.
-            <br/>
+        <section>
+            The scripts in this section will deploy <b>Lead To Opportunity sample application</b> to the Camunda Platform 8 environment.
+            It's a simple ready-made solution that we'll use for the purpose of this exercise.
+            <p/>
             <ul>
                 <li>BPMN - process def</li>
                 <li>DMN - decision table</li>
                 <li>Form - UI component</li>
                 <li>Job Worker - custom app "toolkit"</li>
             </ul>
-        </p>
+        </section>
         <section>
-            <div class="copy-block">
+            <div class="copy-block" data-label="bash 6-1">
                 <p/>
                 The "toolkit" folder has custom app. You may explore the code in VS Code IDE.
                 <br/>
@@ -33,10 +34,12 @@ We'll be using the pre-built Docker image for the custom app.
             </div>
             <p/>
 
-            <div class="copy-block">
+            <div class="copy-block" data-label="bash 6-2">
                 <p/>
                 Deploy the worker tookit JAR.<br/>
                 <pre id="copy-text-6-2"><code>
+export UNAMESPACE=$UNAMESPACE
+<br/>
 envsubst '${UNAMESPACE}' < deploy-worker-toolkit.yaml  | kubectl apply  -f -
                 </code></pre>
                 <p/>
@@ -44,7 +47,7 @@ envsubst '${UNAMESPACE}' < deploy-worker-toolkit.yaml  | kubectl apply  -f -
                 <p/>
             </div>
             <p/>
-           <div class="copy-block">
+           <div class="copy-block" data-label="bash 6-3">
                 <p/>
                 Add ingress to enable traffic flow to the deployed services.<br/>
                 <pre id="copy-text-6-3"><code>
@@ -58,7 +61,7 @@ You may check the ingress definition in the assigned namespace.
             </div>
             <p/>
 
-           <div class="copy-block">
+           <div class="copy-block" data-label="bash 6-4">
                 <p/>
                 Deploy process artifacts.<br/>
                 <pre id="copy-text-6-4"><code>
@@ -94,12 +97,13 @@ curl -v --request POST \
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-6-4')">Copy</button>
                 <p/>
-You may check the deployment status via <a target="_blank" href="https://$UNAMESPACE.makelabs.in/operator/">Operator</a> console.
+You may check the deployment status via <code><a target="_blank" href="https://$UNAMESPACE.makelabs.in/operator/">Operator</a></code> console.
+<br/><code>https://$UNAMESPACE.makelabs.in/operator/</code>
 <br/>
             </div>
             <p/>
 
-           <div class="copy-block">
+           <div class="copy-block" data-label="bash 6-5">
                 <p/>
                 Now that solution is deployed, lets do a dry run with curl command.<br/>
                 <pre id="copy-text-6-5"><code>
@@ -118,8 +122,8 @@ curl -v --location --request PUT 'https://$UNAMESPACE.makelabs.in/connectors/inb
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-6-5')">Copy</button>
                 <p/>
-You may check the runtime process instance via <a target="_blank" href="https://$UNAMESPACE.makelabs.in/operator/">Operator</a> console.
-<br/>
+You may check the runtime process instance via <code>Operator</code> console.
+<br/><code>https://$UNAMESPACE.makelabs.in/operator/</code>
                 <p>
                     <small>Post Command-Set Execution: Check curl response http status - 200</small><br/>
                     <img width="90px" height="64px" src="pages/img-6-5-curl-return-status.jpg" 

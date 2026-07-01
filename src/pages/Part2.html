@@ -87,7 +87,7 @@
                 <br/>
                 Let's clone the Git repository to your GCP Cloud Shell.
             </p>
-                <div class="copy-block">
+                <div class="copy-block" data-label="bash 2-1">
                     <p/>
                     Git clone using below command.<br/>                    
                     <p>
@@ -139,9 +139,9 @@ gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 -
                 <br/>
                 <span class="alert-icon" role="img" aria-label="Important" style="margin-right:8px;">⚠️</span>
                 Note: You may ignore this section if the Project Lens app is not installed on your Desktop / Laptop.
-                <div class="copy-block">
+                <div class="copy-block" data-label="bash 2-2">
                     <p/>
-                    <pre id="copy-text-2-3"><code>
+                    <pre id="copy-text-2-2"><code>
 gcloud auth login
 <br/>
 gcloud config set project c8-labs
@@ -152,10 +152,10 @@ gke-gcloud-auth-plugin --version
 <br/>
 gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs</code></pre>
                     <p/>
-                    <button class="copy-btn" onclick="copyToClipboard('copy-text-2-3')">Copy</button>
+                    <button class="copy-btn" onclick="copyToClipboard('copy-text-2-2')">Copy</button>
                 <p>
                     <small>Post Command-Set Execution: Click to view screen shot - Project Lens with kubeconfig</small><br/>
-                    <img width="90px" height="64px" src="pages/img-2-3-project-lens-app-view.jpg" 
+                    <img width="90px" height="64px" src="pages/img-2-2-project-lens-app-view.jpg" 
                             alt="Project Lens UI app" 
                             style="cursor:pointer;" 
                             onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />

@@ -16,10 +16,12 @@
             <br/>
         </p>
         <section>
-            <div class="copy-block">
+            <div class="copy-block" data-label="bash 8-1">
                 <p/>
                 Prometheus<br/>
                 <pre id="copy-text-8-1"><code>
+export UNAMESPACE=$UNAMESPACE
+<br/>
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 <br/>
 helm repo update
@@ -39,7 +41,7 @@ Install prometheus in the same namespace.
         </section>
 
         <section>
-            <div class="copy-block">
+            <div class="copy-block" data-label="bash 8-2">
                 <p/>
                 Grafana<br/>
                 <pre id="copy-text-8-2"><code>
@@ -58,13 +60,15 @@ UNAMESPACE=$UNAMESPACE envsubst < c8-ingress-grafana.yaml | kubectl apply -f -
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-8-2','Make a note of admin account password')">Copy</button>
                 <p/>
 Install Grafana and link Prometheus as datasource.
-<br/>Also note that we are adding ingress for accessing Grafana app. You can sign-in to <a target="_blank" href="https://$UNAMESPACE.makelabs.in/grafana">Grafana</a>
+<br/>Also note that we are adding ingress for accessing Grafana app. You can sign-in to <code>Grafana</code>:
+<br/><code>https://$UNAMESPACE.makelabs.in/grafana</code>
+<br/>Default admin account: <code>admin</code>
             </div>
             <p/>
         </section>        
 
         <section>
-            <div class="copy-block">
+            <div class="copy-block" data-label="bash 8-3">
                 <p/>
                 Configure Grafana<br/>
                 <ul>
@@ -73,7 +77,7 @@ Install Grafana and link Prometheus as datasource.
                 </ul>
                 <pre id="copy-text-8-3"><code>            
 ####### Grafana UI - Setup data source and import dashboard
-# Step 1.  Go to Datasources. Check if prometheus as data source. (this is part of grafana.yaml)
+# Step 1.  Go to Datasources. Check if <b>prometheus</b> exists as data source. (this is part of grafana.yaml)
 # Step 2.a Go to Dashboard -> Import. (Right side corner -> click on New drop-down -> select Import)
 #      2.b Visit this page on your browser ->> https://github.com/camunda/camunda/blob/stable/8.9/monitor/grafana/zeebe.json    
 #      2.c Click on "copy raw file". We'll use the JSON as seed data to create the new dashboard.
@@ -87,6 +91,8 @@ curl -s http://prometheus.$UNAMESPACE:9090/api/v1/targets
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-8-3')">Copy</button>
                 <p/>
 This completes the Grafana configuration. You can now view the dashboard.
+<p/><span class="alert-icon" role="img" aria-label="Important" style="margin-right:8px;">⚠️</span>
+Try this: Can you see the message size statistics on this dashboard? Run the <i>Lead To Opportunity process instances</i> (Step 6.5 curl command) a handful of times and check the dashboard again.
 <br/>
             </div>
             <p/>

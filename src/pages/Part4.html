@@ -17,11 +17,13 @@
         </section>
 
         <section>
-            <div class="copy-block">
+            <div class="copy-block" data-label="bash 4-1">
                 <p/>
                 Edit this block in text editor before running the same.<br/>
                 Replace the username, password (token) and email as mentioned.<p/>
                 <pre id="copy-text-4-1"><code>
+export UNAMESPACE=$UNAMESPACE
+<br/>
 # replace user id, email, token appropriately
 DOCKER_USER_ID=put-your-value-here-docker-id-example-hjrc
 DOCKER_USER_EMAIL=put-your-value-here-example-user-at-gmail.com
@@ -46,7 +48,7 @@ kubectl create secret docker-registry registry-docker-hub  \
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-4-1', 'Text copied! Open any Text editor to make necessary changes.')">Copy</button>
             </div>
             <p/>
-            <div class="copy-block">
+            <div class="copy-block" data-label="bash 4-2">
                 <p/>
                 Install elastic components - elk certs<br/>
                 Important: Make sure Docker Desktop app is running on your local machine.<p/>
@@ -63,7 +65,7 @@ After this, you should see secrets created in your namespace (via Project Lens U
 <br/>###CAUTION: You may have to run the script twice. Sometimes the certs are not created on first run. Please check and proceed.
             </div>
             <p/>
-            <div class="copy-block">
+            <div class="copy-block" data-label="bash 4-3">
                 <p/>
                 Install elastic<br/>
                 <pre id="copy-text-4-3"><code>
