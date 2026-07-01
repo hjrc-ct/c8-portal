@@ -107,23 +107,17 @@ document.querySelectorAll('nav a').forEach(link => {
     });
 });
 
-// Load Part0.html by default on page load
-window.addEventListener('DOMContentLoaded', () => {
-    // if ns is present, go to part 1a, else go to part 0
+// Load the appropriate course part on page load
+window.addEventListener('DOMContentLoaded', async () => {
     const nsParam = getQueryParam('ns');
-    if (nsParam ) {
-        // if valid token is present, go to part 1a, else go to part 0
-        const tValue = await getMyAccessToken();
-        const hasAccess = !!(tValue);
-        const hasAccessV2 = hasAccess ? !!(getEmailFromAccessJwt(tValue)) : hasAccess;
 
-        if (hasAccessV2)
-            loadCoursePart('1a');
-        else
-            loadCoursePart(0);
+    if (nsParam) {
+        const accessToken = await getMyAccessToken();
+        const hasAccess = !!accessToken && !!getEmailFromAccessJwt(accessToken);
+        loadCoursePart(hasAccess ? '1a' : 0);
+        return;
     }
 
-    // by default, load Part0.html if no ns param is present
     loadCoursePart(0);
 });
 
