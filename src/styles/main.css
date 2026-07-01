@@ -361,6 +361,28 @@ ul.prereq-list li {
     background: #35424a;
 }
 
+.turnstile-box {
+    margin: 12px 0 8px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.turnstile-status {
+    margin: 0 0 12px;
+    color: #0d5f8a;
+    font-size: 0.95rem;
+}
+
+.turnstile-status.success {
+    color: #1f7a1f;
+}
+
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
 .app-link {
     display: inline-flex;
     align-items: center;

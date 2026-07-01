@@ -384,11 +384,70 @@ function renderStudentTable() {
     `).join('');
 }
 
+function initializeOnboardingTurnstile() {
+    const container = document.getElementById('turnstile-container');
+    const button = document.getElementById('initOnboarding');
+    const status = document.getElementById('turnstile-status');
+
+    if (!container || !button || !status) return;
+
+    if (window.turnstile && !container.dataset.rendered) {
+        const siteKey = '0x4AAAAAACovG-Mssw8ROjtY';
+        window.turnstile.render(container, {
+            sitekey: siteKey,
+            theme: 'light',
+            callback: function() {
+                button.disabled = false;
+                button.classList.remove('disabled');
+                status.textContent = 'Verification complete. You can now start onboarding.';
+                status.classList.add('success');
+            },
+            'error-callback': function() {
+                button.disabled = true;
+                button.classList.add('disabled');
+                status.textContent = 'Verification failed. Please refresh and try again.';
+                status.classList.remove('success');
+            },
+            'expired-callback': function() {
+                button.disabled = true;
+                button.classList.add('disabled');
+                status.textContent = 'Verification expired. Please complete it again.';
+                status.classList.remove('success');
+            }
+        });
+        container.dataset.rendered = 'true';
+    } else if (!window.turnstile) {
+        const script = document.createElement('script');
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+        script.async = true;
+        script.defer = true;
+        script.onload = function() {
+            initializeOnboardingTurnstile();
+        };
+        document.body.appendChild(script);
+    }
+}
+
 function attachInitOnboardingButton() {
     const button = document.getElementById('initOnboarding');
     if (!button) return;
-    button.removeEventListener('click', sendOnboardingEmail);
-    button.addEventListener('click', sendOnboardingEmail);
+
+    button.disabled = true;
+    button.classList.add('disabled');
+    initializeOnboardingTurnstile();
+
+    button.onclick = function() {
+        if (button.disabled) {
+            showNote('Please complete the verification first.', 5000);
+            return;
+        }
+        if (window.turnstile && !window.turnstile.getResponse()) {
+            showNote('Please complete the verification first.', 5000);
+            return;
+        }
+        sendOnboardingEmail();
+    };
+
     console.log('Attached click event to onboarding button');
 }
 
