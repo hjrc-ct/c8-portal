@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <main>
+        <h2>Lab Exercise #b</h2>
+        <p>
+            Let's solve some more things to better understand the Camunda 8 platform.
+            <br/>
+        </p>
+        <section>
+            <div class="copy-block" data-label="lab 9b-1">
+                <p/>
+                Q. In the camunda installation steps, lets visit <code>step 5-3</code>.<br/>
+                After successfully running the command-set at <code>step 5-3</code>, and before running the next command step 5-4, would you think camunda app will be accessible via Landing Page? (say Operate or Console)
+                <br/> If not, can you answer why?
+                <pre id="copy-text-9b-1"><code>
+# Let's uninstall the camunda app and check it out
+helm uninstall $UNAMESPACE  --namespace $UNAMESPACE
+<br/>
+# Go to step Camunda 5-3 and run the command-set again.
+# Wait for all Pods to be in running state. 
+# Do you notice anything?
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-1')">Copy</button>
+                <p/>
+Hint: Look at step Camunda 5-4 closely. What happens when ingress does not exist?
+<br/>If you so wish, run the helm uninstall camunda app command (as shown above) and see for yourself.
+<br/>
+            </div>
+            <p/>
+
+            <div class="copy-block" data-label="lab 9b-2">
+                <p/>
+                Q. Let's visit Grafana dashboard at <code>Grafana step 8-3</code>.<br/>
+                The dashboard includes a static pertaining to message size. Can you locate the same?
+                <pre id="copy-text-9b-2"><code>
+# lets run sample process Lead To Opportunity. Refer to step 6-5
+curl -v --location --request PUT 'https://$UNAMESPACE.makelabs.in/connectors/inbound/new-lead-record' \
+--header 'key: SRM-web-hook-8ui3nm' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "companyName": "New Vista Travel Corp",
+    "companyPincode": "600001",
+    "companyContactPhone": "9836712345",
+    "companyContactEmail": "c@mail.com",
+    "agentNotes": "Meets the criteria as outlined in the last month sales manual",
+    "x-api-key": "SRM-web-hook-8ui3nm",
+    "auditTrail": {
+        "privateNotes-a": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-b": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-c": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-d": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-e": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-f": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-g": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-h": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-i": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-j": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-k": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-l": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-m": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-n": "lets add some text here that is roughtly more than 1000 characters. this is to simulate a large payload entering the system.",
+        "privateNotes-o": "lets add some text here that is  roughtly more than 1000 characters. this is to simulate a large payload entering the system."
+    }
+}'
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-2')">Copy</button>
+                <p/>
+Run the Lead To Opportunity process instances (above curl command) a handful of times and check the dashboard again.
+<br/>You may need to wait for a few seconds for the Grafana dashboard to reflect the new data.
+
+            </div>
+            <p/>
+
+        </section>
+    </main>
+    <script src="../scripts/app.js"></script>
+</body>
+</html>
