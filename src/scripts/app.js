@@ -111,7 +111,7 @@ document.querySelectorAll('nav a').forEach(link => {
 window.addEventListener('DOMContentLoaded', async () => {
     const nsParam = getQueryParam('ns');
 
-    if (nsParam) {
+    if (true) {
         const accessToken = await getMyAccessToken();
         const hasAccess = !!accessToken && !!getEmailFromAccessJwt(accessToken);
 
@@ -121,12 +121,15 @@ window.addEventListener('DOMContentLoaded', async () => {
             const parsed = JSON.parse(onboardingJson);
             console.log('switching to ', parsed.namespace);
             const url = new URL(window.location.href);
-            url.searchParams.delete('ns');
+            
+            if (nsParam) url.searchParams.delete('ns');
+
             url.searchParams.set('ns', parsed.namespace);
             window.history.replaceState({}, '', url.toString());
+            console.log('On refersh - with storage json - load 1a or H0me based on hasAccess: ' + hasAccess);
             loadCoursePart(hasAccess ? '1a' : 0);
         } else {
-            console.log('On refersh - load 1a or H0me based on hasAccess: ' + hasAccess);
+            console.log('On refersh - no storage json - load 1a or H0me based on hasAccess: ' + hasAccess);
             loadCoursePart(hasAccess ? '1a' : 0);
         }
         return;
