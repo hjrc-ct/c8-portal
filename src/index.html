@@ -71,10 +71,10 @@
             const tValue = await getMyAccessToken();
             const hasAccess = !!(tValue);
             const hasAccessV2 = hasAccess ? !!(getEmailFromAccessJwt(tValue)) : hasAccess;
-            headerContent.innerHTML = 
+            headerContent.innerHTML = '<b>' + getSelectedNS() + '</b>' +
                         (hasAccessV2 
                             ? '<button id="logout" class="request-access-btn" type="button" onclick="window.location.href=\'/cdn-cgi/access/logout\'">Sign Out</button>' 
-                            : '<b>' + getSelectedNS() + '</b>' +  '<button id="request-access-btn" class="request-access-btn" type="button">Sign In</button>'
+                            : '<button id="request-access-btn" class="request-access-btn" type="button">Sign In</button>'
                         );
 
             const requestAccessButton = document.getElementById('request-access-btn');
