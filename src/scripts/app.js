@@ -210,6 +210,13 @@ function metadataCheck() {
             }
         } else {
             codeBlock.innerHTML = '';
+            // lets remove ns from URL if present, as metadata is not available
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('ns') !== null) {
+                urlParams.delete('ns');
+                const newUrl = `${window.location.origin}${window.location.pathname}?${urlParams.toString()}`;
+                window.history.replaceState({}, '', newUrl);
+            }
         }
     }  
 }
