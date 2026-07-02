@@ -147,12 +147,24 @@ This shows:<br/>
                             <ul style="list-style: none;">
                             <li>Sign-in to c8-labs portal</li>
                             <li>Visit the left-side navigation link: <code>Onboarding</code></li>
-                            <li>If you see the text block populated with metadata, it means your current browser session is tied to a listed namespace on kubernetes cluster</li>
+                            <li>
+                                If you see the text block populated with metadata, it means your current browser session is tied to a listed namespace on kubernetes cluster.
+                                If you see empty text block, you can begin onboarding again by clicking on the <code>Start Onboarding</code> button. 
+                                This will attach namespace to your browser session.
+                            </li>
                             <li>
                                 Open Google Cloud Shell terminal and run this command:
+                                <br/>
+                                Make sure you are in the <code>c8-labs</code> project in GCP console.
+                                <br/>
+                                <code>gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs</code>
+                                <br/><br/>
                                 <code>kubectl describe namespace $UNAMESPACE</code>
                                 <br/>
                                 Expected result: <b>Status:       Active</b>
+                            </li>
+                            <li>
+                                <i>Note that your access is valid only for your assigned lab access time window.</i>
                             </li>
                             </ul>
                         </p>
@@ -164,10 +176,16 @@ This shows:<br/>
                             I wish to restart the C8 installation - by recreating the namespace. How to go about this?
                         </b>
                         <p>
+                            We do not allow recreating namespace during the lab access window.
+                            However, if you are stuck due to an issue, please connect with us on Microsoft Teams or WhatsApp.
+                            If possible, send a request with evidence screenshot and issue summary.
+                            Our backend team will review and assist you.
+                            <br/>Having said that, here are the steps to recreate the namespace and restart the installation.
+                            <br/>
                             To restart the installation steps, you need to perform reset at two places.
                             <ul>
-                                <li>Delete namespace in kubernetes cluster</li>
-                                <li>Clear cache in your C8-portal browser</li>
+                                <li>Delete namespace in kubernetes cluster (Executed by backend team)</li>
+                                <li>Clear cache in your C8-portal browser (Executed by user)</li>
                             </ul>
                             <ul style="list-style: none;">
                             <li>Sign-in to c8-labs portal</li>
@@ -175,7 +193,7 @@ This shows:<br/>
                             <li>
                                 Open Google Cloud Shell terminal and run below command(s):<br/>
                                 <code>gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs</code>
-                                <br/>
+                                <br/><br/>
                                 <code>kubectl delete namespace $UNAMESPACE</code>
                                 <br/>
                                 <span class="alert-icon" role="img" aria-label="Important" style="margin-right:8px;">⚠️</span>
