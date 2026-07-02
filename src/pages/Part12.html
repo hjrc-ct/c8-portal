@@ -206,7 +206,7 @@ This shows:<br/>
                         </p>
                         <p/>
                     </li>
-             <li>
+                    <li>
                         <b>
                             I wish to restart the C8 installation only - retaining other configurations so far. How to go about this?
                         </b>
@@ -225,6 +225,37 @@ This shows:<br/>
                                 Caution: Wait until all the Pods are dissolved, storage released, etc as it may take a minute or so.
                                 <br/><br/>
                                 You can now go to Camunda section and run the step <code>Helm install camunda-platform</code> again.
+                            </li>
+                            </ul>
+                        </p>
+                    </li>
+
+                    <!-- another faq item -->
+                    <li>
+                        <b>
+                            What sort of <i>automated emails</i> will user be receiving during the lab access window?
+                        </b>
+                        <p>
+                            The system sends two types of automated emails during the lab access window.
+                            <ul style="list-style: none;">
+                            <li>
+                                Onboarding email with subject <i>CEP - Onboarding - C8 Learning and Enablement</i>.
+                                <br/>
+                                -&nbsp;This email is sent once the user clicks on <code>Start Onboarding</code> button and the onboarding process is successful.
+                            </li>
+                            <li>
+                                Lab Usage Report with subject <i>CEP - GKE Lab Usage Report for $NAMESPACE</i>.
+                                <br/>
+                                -&nbsp;This email is sent after you completed the Onboarding (email format shown above).
+                                <br/>
+                                -&nbsp;For <b>Free Tier access</b>, you will see an email every two hours. So expect 3 emails (max: 4) during your lab access window.
+                                <br/>
+                                -&nbsp;For <b>Premium Tier access</b>, you will see an email every six hours, i.e., a maximum of 4 emails each day. Given the lab access window is 48 hours, you will see 8 emails (max: 9) overall.
+                                <br/>
+                                -&nbsp;Our intention is to provide you with a snapshot of your lab usage and resource consumption.
+                                <br/>
+                                -&nbsp;We value your privacy. We do not send any unsolicited emails. The only emails you will receive are the two types mentioned above.
+
                             </li>
                             </ul>
                         </p>
