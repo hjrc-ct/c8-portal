@@ -57,6 +57,30 @@
     <footer id="footer"></footer>
     <script src="scripts/app.js"></script>
     <script>
+        function clearClientCache() {
+            try {
+                if ('caches' in window) {
+                    caches.keys().then((cacheNames) => {
+                        Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)));
+                    });
+                }
+            } catch (error) {
+                console.warn('Unable to clear browser caches:', error);
+            }
+
+            try {
+                sessionStorage.clear();
+                localStorage.clear();
+            } catch (error) {
+                console.warn('Unable to clear browser storage:', error);
+            }
+        }
+
+        function signOutAndRedirect() {
+            clearClientCache();
+            window.location.replace('/cdn-cgi/access/logout');
+        }
+
         function getSelectedNS() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('ns')) {
@@ -73,7 +97,7 @@
             const hasAccessV2 = hasAccess ? !!(getEmailFromAccessJwt(tValue)) : hasAccess;
             headerContent.innerHTML = '<b>' + getSelectedNS() + '</b>' +
                         (hasAccessV2 
-                            ? '<button id="logout" class="request-access-btn" type="button" onclick="window.location.href=\'/cdn-cgi/access/logout\'">Sign Out</button>' 
+                            ? '<button id="logout" class="request-access-btn" type="button" onclick="signOutAndRedirect()">Sign Out</button>' 
                             : '<button id="request-access-btn" class="request-access-btn" type="button">Sign In</button>'
                         );
 
