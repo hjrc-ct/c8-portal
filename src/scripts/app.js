@@ -114,7 +114,21 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (nsParam) {
         const accessToken = await getMyAccessToken();
         const hasAccess = !!accessToken && !!getEmailFromAccessJwt(accessToken);
-        loadCoursePart(hasAccess ? '1a' : 0);
+
+        const onboardingJson = localStorage.getItem('c8-labs-onboarding');
+        if (onboardingJson) {
+            // at this step, if ns=value is present in the URL, lets replace it with actual namespace.
+            const parsed = JSON.parse(onboardingJson);
+            console.log('switching to ', parsed.namespace);
+            const url = new URL(window.location.href);
+            url.searchParams.delete('ns');
+            url.searchParams.set('ns', parsed.namespace);
+            window.history.replaceState({}, '', url.toString());
+            loadCoursePart(hasAccess ? '1a' : 0);
+        } else {
+            console.log('On refersh - load 1a or H0me based on hasAccess: ' + hasAccess);
+            loadCoursePart(hasAccess ? '1a' : 0);
+        }
         return;
     }
 
