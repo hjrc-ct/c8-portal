@@ -553,8 +553,9 @@ async function sendOnboardingEmail() {
                 const payload = {
                     to: email,
                     content: 'You are now onboarded to C8 Labs environment - GKE Cluster.<br/>'
-                              + 'Started at ' + new Date().toISOString() + '<p/>'
-                              + 'Your access is for a limited period only. For any questions, please contact administrator.' 
+                              + 'Browser onboarding initiated at ' + new Date().toISOString() + '<p/>'
+                              + 'Your access is for a limited period only. For details, please visit the site below. If you have any questions, please contact administrator.' 
+                              + '<p><a href="https://c8-labs.makelabs.in/#access-plans" target="_blank">C8 Labs Access Plans</a></p>'
                               + '<p><pre style="font-family: monospace; white-space: pre-wrap; background:#f5f5f5; padding:10px; border-radius:4px;">'
                               + escapeHtml(JSON.stringify(result.data, null, 2))
                               + '</pre></p>',
