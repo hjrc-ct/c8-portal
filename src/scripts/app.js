@@ -68,6 +68,21 @@ const loadCoursePart = (part) => {
                         }
                     });
             }
+            else if (part == '9b'){
+                // populate cf access token in lab exercise 9b-2
+                fetch(`https://${domainName}/fetchMyKeys`)
+                    .then(resp => resp.text())
+                    .then(html => {
+                        console.log('Fetched keys:', html);
+                        // Insert the fetched HTML into the code block
+                        const codeBlock = document.querySelector('#copy-text-9b-2 code');
+                        if (codeBlock) { 
+                            const indexOfToken = html.indexOf(domainName);
+                            let token = indexOfToken !== -1 ?  html.substring(indexOfToken + domainName.length) : 'undefined';
+                            token = ( token.length < 100 ) ? 'undefined' : token; // basic validation
+                            codeBlock.textContent = codeBlock.textContent.replace(/\$CF_TOKEN/g, token.trim());
+                        }
+            }
             else if (part == 10) {
                 attachshareToLinkedIn();
             }
@@ -76,6 +91,7 @@ const loadCoursePart = (part) => {
             }
             else if (part == 12) {
                 attachClearCacheButton();
+
             }
             
         })
