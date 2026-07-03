@@ -25,7 +25,7 @@ const loadCoursePart = (part) => {
     console.log('Domain name is ' + domainName);
     fetch(`pages/Part${part}.html`)
         .then(response => response.text())
-        .then(data => {
+        .then(async (data) => {
             const mainContent = document.getElementById('main-content');
             mainContent.innerHTML = data;
 
@@ -69,12 +69,13 @@ const loadCoursePart = (part) => {
                     });
             }
             else if (part == '9b'){
-
                 const codeBlock = document.querySelector('#copy-text-9b-2 code');
                 if (codeBlock) { 
-                    const token = await getMyAccessToken();
-                    console.log(token);
-                    codeBlock.textContent = codeBlock.textContent.replace(/\$CF_TOKEN/g, token );
+                    const accessToken = await getMyAccessToken();
+                    if (accessToken){
+                    console.log(accessToken);
+                    codeBlock.textContent = codeBlock.textContent.replace(/\$CF_TOKEN/g, accessToken );
+                    }
                 }
             }
             else if (part == 10) {
