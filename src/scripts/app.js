@@ -74,7 +74,11 @@ const loadCoursePart = (part) => {
                     const accessToken = await getMyAccessToken();
                     if (accessToken){
                     console.log(accessToken);
-                    codeBlock.textContent = codeBlock.textContent.replace(/\$CF_TOKEN/g, accessToken );
+                    codeBlock.textContent = codeBlock.textContent.replace(/\${CF_TOKEN}/g, accessToken );
+                    }
+                    else {
+                    console.log(accessToken);
+                    codeBlock.textContent = codeBlock.textContent.replace(/\${CF_TOKEN}/g, "undefined" );
                     }
                 }
             }

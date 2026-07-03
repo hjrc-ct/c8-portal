@@ -41,6 +41,8 @@ Hint: Look at step Camunda 5-4 closely. What happens when ingress does not exist
                 The dashboard includes a static pertaining to message size. Can you locate the same?
                 <pre id="copy-text-9b-2"><code>
 # lets run sample process Lead To Opportunity. Refer to step 6-5
+export CF_TOKEN=${CF_TOKEN}
+<br/>
 curl -v --location --request PUT 'https://$UNAMESPACE.makelabs.in/connectors/inbound/new-lead-record' \
 --header 'key: SRM-web-hook-8ui3nm' \
 --header 'Content-Type: application/json' \
