@@ -143,30 +143,5 @@ Run the Lead To Opportunity process instances (above curl command) a handful of 
 
         </section>
     </main>
-    <script src="../scripts/app.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get the namespace from session
-            const onboardingJson = localStorage.getItem('c8-labs-onboarding');
-            const parsed = onboardingJson ? JSON.parse(onboardingJson) : '';
-            const namespace = parsed?.namespace || '';
-            
-            // Check if namespace ends with "pro-c8-labs"
-            if (!namespace.endsWith('pro-c8-labs')) {
-                // Replace section content with premium access message
-                const section = document.querySelector('section');
-                if (section) {
-                    section.innerHTML = `
-                        <div style="padding: 40px 20px; text-align: center; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #e8491d;">
-                            <h3 style="color: #e8491d; margin-top: 0;">🔒 Premium Access Required</h3>
-                            <p style="color: #666; font-size: 16px;">This section is available for Premium Access</p>
-                            <p style="color: #666; font-size: 16px;">Please complete <code>Onboarding</code> before viewing lab exercise section.</p>
-                            <p style="color: #999; font-size: 14px;">Please upgrade to Premium Tier to access Lab Exercise #b content.</p>
-                        </div>
-                    `;
-                }
-            }
-        });
-    </script>
 </body>
 </html>
