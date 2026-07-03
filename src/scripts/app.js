@@ -69,18 +69,16 @@ const loadCoursePart = (part) => {
                     });
             }
             else if (part == '9b'){
-                const codeBlock = document.querySelector('#copy-text-9b-2 code');
-                if (codeBlock) { 
-                    const accessToken = await getMyAccessToken();
+                const codeElements = mainContent.querySelectorAll('code');
+                const accessToken = await getMyAccessToken();
+                codeElements.forEach(codeBlock => {    
                     if (accessToken){
-                    console.log(accessToken);
-                    codeBlock.textContent = codeBlock.textContent.replace(/\${CF_TOKEN}/g, accessToken );
+                        codeBlock.textContent = codeBlock.textContent.replace(/\${CF_TOKEN}/g, accessToken );
                     }
                     else {
-                    console.log(accessToken);
-                    codeBlock.textContent = codeBlock.textContent.replace(/\${CF_TOKEN}/g, "undefined" );
+                        codeBlock.textContent = codeBlock.textContent.replace(/\${CF_TOKEN}/g, "undefined-cf-token" );
                     }
-                }
+                });
             }
             else if (part == 10) {
                 attachshareToLinkedIn();
