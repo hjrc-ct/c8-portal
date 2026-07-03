@@ -41,11 +41,11 @@
   <circle cx="12" cy="15" r="2" stroke="#222" stroke-width="2" fill="none"/>
 </svg></sup></a></li>
                 <li><a href="pages/Part8.html">Prometheus and Grafana</a></li>
-                <li><a href="pages/Part9.html">Lab Exercise (a)</a></li>
+                <li><a href="pages/Part9a.html">Lab Exercise (a)</a></li>
                 <li><a href="pages/Part9b.html">Lab Exercise (b)</a></li>
                 <li><a href="pages/Part10.html">Before you leave...</a></li>
                 <li><hr class="nav-separator"></li>
-                <li><a href="pages/Part11.html">Support & Help</a></li>
+                <li><a href="pages/Part11.html">Support Contact</a></li>
                 <li><a href="pages/Part12.html">FAQ</a></li>
             </ul>
         </nav>
@@ -96,6 +96,9 @@
             const hasAccess = !!(tValue);
             const hasAccessV2 = hasAccess ? !!(getEmailFromAccessJwt(tValue)) : hasAccess;
             headerContent.innerHTML = '<b>' + getSelectedNS() + '</b>' +
+                        '<a id="header_home" onclick="window.location.href = window.location.pathname;">Home</a>' +
+                        '<a id="header_support_contact" onclick="loadCoursePart(11);">Support Contact</a>' +
+                        '<a id="header_faq" onclick="loadCoursePart(12);">FAQ</a>&nbsp;&nbsp;' +
                         (hasAccessV2 
                             ? '<button id="logout" class="request-access-btn" type="button" onclick="signOutAndRedirect()">Sign Out</button>' 
                             : '<button id="request-access-btn" class="request-access-btn" type="button">Sign In</button>'

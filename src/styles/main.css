@@ -3,34 +3,44 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    padding-top: 72px; /* Account for fixed header */
 }
 
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     background: rgb(6, 147, 227);
     color: white;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: small;
-    font-weight:lighter;
-    width: 100%;           /* if needed to take full right space */        
+    font-size: medium;
+    font-weight: lighter;
+    width: 100%;
+    z-index: 1000; /* Ensure header stays on top */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds subtle shadow */
 }
 
 #header-content {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
     padding: 10px 90px 10px 20px;
     min-height: 52px;
 }
 
-.request-access-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    line-height: 1;
-    margin: 0;
-    padding: 0 14px;
+#header-content a {
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.7rem 1.1rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+#header-content a:hover {
+    font-size: 101%;
 }
 
 nav {
@@ -143,6 +153,7 @@ section {
     margin-right: 16px;
     width: 90%;
     max-width: 90%;
+    scroll-margin-top: 90px;
 }
 
 .quick-links {
@@ -169,16 +180,25 @@ section {
     padding: 16px 14px;
     box-shadow: 0 4px 12px rgba(6, 147, 227, 0.10);
     text-align: center;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.kpi-card:hover {
+    background: linear-gradient(135deg, #f0f8ff 0%, #e6f4ff 100%);
+    border: 1px solid #9ecfe0;
+    box-shadow: 0 6px 20px rgba(6, 147, 227, 0.20);
+    transform: translateY(-2px);
 }
 
 .kpi-icon {
     font-size: 1.5rem;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
 }
 
 .kpi-value {
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: 500;
     color: #0d5f8a;
     line-height: 1.4;
 }
@@ -192,7 +212,7 @@ section {
     background: linear-gradient(135deg, #0693e3, #0d5f8a);
     color: #ffffff;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     box-shadow: 0 4px 12px rgba(6, 147, 227, 0.18);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
