@@ -7,7 +7,7 @@
 </head>
 <body>    
     <main>
-        <h2>Know Your Environment</h2>
+        <h2>Know Your Lab Environment</h2>
 
         <section>
         <p>
@@ -154,11 +154,24 @@ gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 -
                     <p/>
                     <button class="copy-btn" onclick="copyToClipboard('copy-text-2-2')">Copy</button>
                 <p>
-                    <small>Post Command-Set Execution: Click to view screen shot - Project Lens with kubeconfig</small><br/>
+                    <small>Post Command-Set Execution (a): Click to view screen shot - Project Lens with kubeconfig</small><br/>
+
                     <img width="90px" height="64px" src="pages/img-2-2-project-lens-app-view.jpg" 
                             alt="Project Lens UI app" 
                             style="cursor:pointer;" 
                             onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+
+                    <br/><br/>
+
+                    <small>
+                        Post Command-Set Execution (b): Click to view screen shot - Project Lens kubeconfig - Add your namespace.
+                        <br/>Right click on GKE cluster name in Navigator. Select Show Cluster Settings. Go to Namespaces. Add your namespace here.
+                    </small><br/>
+                    <img width="90px" height="64px" src="pages/img-2-2-project-lens-app-with-ns.jpg" 
+                            alt="Project Lens UI - Add your Namespace" 
+                            style="cursor:pointer;" 
+                            onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+
                 </p>
                 </div>                
                 
