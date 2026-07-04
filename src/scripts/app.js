@@ -87,7 +87,7 @@ const loadCoursePart = (part) => {
             else if (part == '9b' || part == '9c'){
                 // Check if namespace ends with 'pro-c8-labs' for premium access
                 const nsParam = getQueryParam('ns') || '';
-                if (!nsParam.endsWith('pro-c8-labs')) {
+                if (false && !nsParam.endsWith('pro-c8-labs')) {
                     // Replace section with premium access message
                     const section = mainContent.querySelector('section');
                     if (section) {
