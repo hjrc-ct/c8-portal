@@ -38,15 +38,15 @@ Hint: Look at step Camunda 5-4 closely. What happens when ingress does not exist
             <div class="copy-block" data-label="lab 9b-2">
                 <p/>
                 Q. Let's fix the issue with the Lead To Opportunity process instance failing to send email notification (Notify via Email).<br/>
-                There are two issues here:
+                There are two points here:
                 <ul style="list-style: none;">
                     <li>
-                        The first issue is with SSL certificates. The certificates associated with external protected API need to be included into the JKS of connectors pod.
-                        <br/>Let's run this as two separate steps so we can see the SSL related error before resolving it.
+                        The first is with external SSL certificates and connectors JKS. The certificates associated with external API need to be included into the JKS of connectors pod.
                     </li>
-                    <li>Next, the process model is invoking an external protected API.
+                    <li>Next, the process model is invoking a protected API (expects security token for authentication).
                         <br/>The fix is to send access token from My Keys (in nav panel).
-                        <br/>The process model is expecting the token in a secret. So we'll update the secret and restart the connectors pod.
+                        <br/>The BPMN process is expecting the token in a k8s secret object. So we'll update the secret and restart the connectors pod.
+                        <br/>Let's make these changes and see if it resolves the runtime issue.
                     </li>
                 </ul>
                 
