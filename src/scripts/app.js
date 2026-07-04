@@ -84,7 +84,7 @@ const loadCoursePart = (part) => {
                         }
                     });
             }
-            else if (part == '9b' || part == '9cd'){
+            else if (part == '9b' || part == '9c'){
                 // Check if namespace ends with 'pro-c8-labs' for premium access
                 const nsParam = getQueryParam('ns') || '';
                 if (true && !nsParam.endsWith('pro-c8-labs')) {
