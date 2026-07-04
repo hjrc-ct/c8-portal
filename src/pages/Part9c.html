@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <main>
+        <h2>Lab Exercise #c - Orchestration Cluster Operations and Resilience</h2>
+        <p>
+            Let's solve some more things to better understand the Camunda 8 orchestration cluster operations.
+            <br/>
+        </p>
+        <section>
+            <div class="copy-block" data-label="lab 9c-1">
+                <p/>
+                Q. The current orchestration cluster topology has 3 broker nodes with 3 partitions. <br/>
+                Cluster topology is one of the key decisions made by an Architect taking into account the non-functional requirements.<br/>
+                Visit Landing Page -> Topology to see the current topology and partition distribution.<br/><br/>
+                Let's plan to increase the partition count to 5.<br/>
+                <ul style="list-style: none;">
+                    <li>
+                        <small>Note: Partition count can be increased upwards. However, it cannot be reduced to a lower number.</small>
+                    </li>
+                </ul>                
+                <pre id="copy-text-9c-1"><code>
+# Start in GCP Cloud Shell
+export UNAMESPACE=$UNAMESPACE
+<br/>
+gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs
+<br/>
+# run this in background
+kubectl port-forward "svc/$UNAMESPACE-zeebe-gateway" 9600:9600 -n $UNAMESPACE &
+# You may dry run first to preview the partition distribution by appending ?dryRun=true to the request
+curl -X 'PATCH' \
+   'http://localhost:9600/orchestration/actuator/cluster' \
+   -H 'accept: application/json' \
+   -H 'Content-Type: application/json' \
+   -d '{
+        "partitions": {
+          "count": 5,
+          "replicationFactor": 3
+        }
+      }'
+
+# Wait for a minute or so. Check the status using below. 
+# When complete, the lastChange status will show "COMPLETED" (this appears in the last two lines of the output json)
+curl --request GET 'http://localhost:9600/orchestration/actuator/cluster'
+<br/>
+# Lastly, lets stop the port forward
+pkill -f "kubectl port-forward"
+
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9c-1')">Copy</button>
+                <p/>
+Visit again Landing Page -> Topology to see the new topology and partition distribution.
+<br/>
+            </div>
+            <p/>
+
+            <div class="copy-block" data-label="lab 9c-2">
+                <p/>
+                Q. Resilient platform operations is one of the key ingredients of the Camunda 8 platform architecture.<br/>
+
+                    <div class="highlight-summary">
+                    <strong>General IT operations view</strong>
+                    <ul style="margin-top: 8px; margin-bottom: 0; padding-left: 20px;list-style: none;">
+                        <li>
+                        In the tech operations world, a single node failing is a normal Tuesday, but two nodes failing at the very same time is incredibly rare.
+                        </li>
+                        <li style="margin-top: 4px;">
+                        Statistically speaking, this is because independent failures follow a rule of multiplication. <br/>
+                        If the chance of one node crashing today is 1 in 1,000, the chance of two specific nodes crashing on the exact same day is 1 in 1,000,000 (one in a million).
+                        </li>
+                    </ul>
+                    </div>
+                Let's do some work to disrupt the broker nodes and see the resiliency in action.<br/>
+                <ul style="list-style: none;">
+                    <li>
+                        Option #1. Evict <code>zeebe-0 pod</code> (or any other zeebe pod) and check the outcome.
+                    </li>
+                    <li>
+                        Option #2. Simulate hardware failure. Evict a cluster node (VM node) from the Kubernetes cluster. This can be done during live sessions only. (not applicable for self-paced subscription)
+                    </li>
+                </ul>
+                
+                <pre id="copy-text-9c-2"><code>
+# Start in GCP Cloud Shell
+gcloud config set project c8-labs
+export UNAMESPACE=$UNAMESPACE
+<br/>
+gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs
+<br/>
+# Evict the pod from Project Lens or via kubectl command
+export POD_NAME=$(kubectl get pods -n $UNAMESPACE | grep zeebe-0 | cut -f 1 -d " ")
+<br/>
+# Let it be re-added by the system. It may take a while.
+kubectl delete pod -n $UNAMESPACE $POD_NAME
+<br/>
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9c-2')">Copy</button>
+                <p/>
+Pick an earlier failed process instance via Operator and retry for another attempt.
+<br/>Are you able to continue with transaction(s) while the rejig is happening in the background?
+<br/>
+
+                <pre id="copy-text-9c-2-b"><code>
+## Option 2 - Run by the Administrator
+# Start in GCP Cloud Shell
+gcloud config set project c8-labs
+export UNAMESPACE=$UNAMESPACE
+<br/>
+gcloud compute instances delete vm-node-name  --zone=zone-id
+<br/>
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9c-2-b')">Copy</button>
+                <p/>
+Pick an earlier failed process instance via Operator and retry for another attempt.
+<br/>Are you able to continue with transaction(s) while the rejig is happening in the background?
+<br/>
+            </div>
+            <p/>
+
+        </section>
+    </main>
+</body>
+</html>

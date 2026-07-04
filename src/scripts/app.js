@@ -53,6 +53,22 @@ const loadCoursePart = (part) => {
             }
             // If Part7, fetch and inject the keys
             else if (part == 7) {
+                // Check if namespace ends with 'pro-c8-labs' for premium access
+                const nsParam = getQueryParam('ns') || '';
+                if (!nsParam.endsWith('pro-c8-labs')) {
+                    // Replace section with premium access message
+                    const section = mainContent.querySelector('section');
+                    if (section) {
+                        section.innerHTML = `
+                            <div style="padding: 40px 20px; text-align: center; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #e8491d;">
+                                <h3 style="color: #e8491d; margin-top: 0;">🔒 Premium Access Required</h3>
+                                <p style="color: #666; font-size: 16px;">This section is available for Premium Access</p>
+                                <p style="color: #999; font-size: 14px;">Please upgrade to Premium Tier to access Lab Exercise #b content.</p>
+                            </div>
+                        `;
+                    }
+                    return;
+                }
 
                 fetch(`https://${domainName}/fetchMyKeys`)
                     .then(resp => resp.text())
@@ -68,7 +84,7 @@ const loadCoursePart = (part) => {
                         }
                     });
             }
-            else if (part == '9b'){
+            else if (part == '9b' || part == '9c'){
                 // Check if namespace ends with 'pro-c8-labs' for premium access
                 const nsParam = getQueryParam('ns') || '';
                 if (!nsParam.endsWith('pro-c8-labs')) {
