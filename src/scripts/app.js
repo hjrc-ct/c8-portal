@@ -670,7 +670,9 @@ function toTitleCase(str) {
 }
 
 async function getMyAccessToken(postIt) {
-  return fetch(`https://${domainName}/fetchMyKeys?postIt=$postIt`)
+  const url = `https://${domainName}/fetchMyKeys`;
+  url.searchParams.append("postIt", postIt);
+  return fetch(url)
       .then(resp => resp.text())
       .then(html => {
           console.log('Fetched keys:', html);
