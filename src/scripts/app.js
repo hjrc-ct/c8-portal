@@ -581,6 +581,13 @@ async function sendOnboardingEmail() {
         return;
     }
 
+    // lets post v1 msg
+    fetch(`https://${domainName}/postItV1`)
+    .then( r => { console.error("Post It v1 complete!"); } )
+    .catch( e => {
+        console.error("Post It error - ", e);
+    });
+
     const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/labsOnboarding';
     const urlSendMail = 'https://cep-api-gw-7k5bxais.an.gateway.dev/sendEmail';
 
@@ -671,7 +678,7 @@ function toTitleCase(str) {
 
 async function getMyAccessToken(postIt) {
   const url = `https://${domainName}/fetchMyKeys`;
-  url.searchParams.append("postIt", postIt);
+
   return fetch(url)
       .then(resp => resp.text())
       .then(html => {
