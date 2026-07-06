@@ -28,6 +28,10 @@ curl -X POST "https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/pro
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-9-1')">Copy</button>
                 <p/>
+                <p>
+                    !!! Note: If you see an error instead of access token, then perhaps you can debug to see what could be the mistake.
+                    <br/><br/><b>Hint: Sign In to Keycloak Admin Console</b> and check the list of Clients configured. Can you see the mismatch?
+                </p>
 View the token using jwt.io website.
 <br/>Can you identify the subject (sub) claim in the token?
 <br/>Specifically, where is this (sub) value coming from?
@@ -36,7 +40,7 @@ View the token using jwt.io website.
 
             <div class="copy-block" data-label="lab 9a-2">
                 <p/>
-                Q. In the helm install step for Camunda, the release number is sent as a parameter (12.4.0). <br/>
+                Q. In the helm install step for Camunda, the release number is sent as a parameter (Example: 12.4.0 or 14.4.1). <br/>
                 <pre id="copy-text-9-2"><code>
                 </code></pre>
                 <p/>
