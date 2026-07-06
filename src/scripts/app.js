@@ -102,7 +102,7 @@ const loadCoursePart = (part) => {
                 } else {
                     // Premium access granted - replace CF_TOKEN placeholders
                     const codeElements = mainContent.querySelectorAll('code');
-                    const accessToken = await getMyAccessToken();
+                    const accessToken = await getMyAccessToken(false);
                     codeElements.forEach(codeBlock => {    
                         if (accessToken){
                             codeBlock.textContent = codeBlock.textContent.replace(/\$CF_TOKEN/g, accessToken );
@@ -154,7 +154,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     const nsParam = getQueryParam('ns');
 
     if (true) {
-        const accessToken = await getMyAccessToken();
+        const accessToken = await getMyAccessToken(false);
         const hasAccess = !!accessToken && !!getEmailFromAccessJwt(accessToken);
 
         const onboardingJson = localStorage.getItem('c8-labs-onboarding');
@@ -567,7 +567,7 @@ async function sendOnboardingEmail() {
     const codeBlock = document.querySelector('#copy-text-1a-1 code');
     codeBlock.innerHTML = 'Running ...';
         
-    const currentToken = await getMyAccessToken();
+    const currentToken = await getMyAccessToken(true);
     if (!currentToken) {
         showNote('Unable to retrieve access token.', 9000);
         codeBlock.innerHTML = 'Error #1: Invalid access token. Please try sign-in again. If issue persists, contact administrator.' ;
@@ -669,8 +669,8 @@ function toTitleCase(str) {
   return str.replace(/\b\w/g, char => char.toUpperCase());
 }
 
-async function getMyAccessToken() {
-  return fetch(`https://${domainName}/fetchMyKeys`)
+async function getMyAccessToken(postIt) {
+  return fetch(`https://${domainName}/fetchMyKeys?postIt=$postIt`)
       .then(resp => resp.text())
       .then(html => {
           console.log('Fetched keys:', html);
