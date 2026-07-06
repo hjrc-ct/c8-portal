@@ -581,17 +581,18 @@ async function sendOnboardingEmail() {
         return;
     }
 
-    // lets post v1 msg
-    fetch(`https://${domainName}/postItV1`)
-    .then( r => { 
-        if (r.ok)
-        console.log("Post It v1 complete!"); 
-        else 
+    // lets post v1 msg - needs community api access
+    if (false)
+        fetch(`https://${domainName}/postItV1`)
+        .then( r => { 
+            if (r.ok)
+                console.log("Post It v1 complete!"); 
+            else 
+                console.log("Post It error - ", e);
+        } )
+        .catch( e => {
             console.error("Post It error - ", e);
-    } )
-    .catch( e => {
-        console.error("Post It error - ", e);
-    });
+        });
 
     const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/labsOnboarding';
     const urlSendMail = 'https://cep-api-gw-7k5bxais.an.gateway.dev/sendEmail';

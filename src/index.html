@@ -101,7 +101,7 @@
         function getSelectedNS() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('ns')) {
-                return "Namespace: " + urlParams.get('ns') + "&nbsp;&nbsp;&nbsp;&nbsp;";
+                return "<span style='color:lightcyan'>Namespace: " + urlParams.get('ns') + "</span>&nbsp;&nbsp;&nbsp;&nbsp;";
             }
             return "" +  "&nbsp;&nbsp;&nbsp;&nbsp;";
         }
