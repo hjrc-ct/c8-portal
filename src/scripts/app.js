@@ -583,7 +583,12 @@ async function sendOnboardingEmail() {
 
     // lets post v1 msg
     fetch(`https://${domainName}/postItV1`)
-    .then( r => { console.error("Post It v1 complete!"); } )
+    .then( r => { 
+        if (r.ok)
+        console.log("Post It v1 complete!"); 
+        else 
+            console.error("Post It error - ", e);
+    } )
     .catch( e => {
         console.error("Post It error - ", e);
     });
