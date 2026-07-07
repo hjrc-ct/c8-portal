@@ -97,9 +97,12 @@ curl -v --request POST \
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-6-4')">Copy</button>
                 <p/>
-You may check the deployment status via <code><a target="_blank" href="https://$UNAMESPACE.makelabs.in/operator/">Operator</a></code> console.
-<br/><code>https://$UNAMESPACE.makelabs.in/operator/</code>
+You may check the deployment status via <code><a target="_blank" href="https://$UNAMESPACE.makelabs.in/orchestration/operate">Operate</a></code> console.
+<br/><code>https://$UNAMESPACE.makelabs.in/orchestration/operate</code>
 <br/>
+<br/>
+Check to make sure Lead To Opportunity solution artifacts are deployed - <code>BPMN process, DMN rule and Form</code>
+
             </div>
             <p/>
 
@@ -122,8 +125,12 @@ curl -v --location --request PUT 'https://$UNAMESPACE.makelabs.in/connectors/inb
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-6-5')">Copy</button>
                 <p/>
-You may check the runtime process instance via <code>Operator</code> console.
-<br/><code>https://$UNAMESPACE.makelabs.in/operator/</code>
+                <p>
+                    <span class="alert-icon" role="img" aria-label="Important" style="margin-right:8px;">⚠️</span>
+                    It may take a minute or so for Ingress to be in action. If you see http status 404 error, please try after sometime.
+                </p>
+You may check the runtime process instance via <code>Operate</code> console.
+<br/><code>https://$UNAMESPACE.makelabs.in/orchestration/operate</code>
                 <p>
                     <small>Post Command-Set Execution: Check the <b>Curl response http status - 200</b></small><br/>
                     <img width="90px" height="64px" src="pages/img-6-5-curl-return-status.jpg" 

@@ -7,7 +7,7 @@
 </head>
 <body>
     <main>
-        <h2>Elastic</h2>
+        <h2>Elasticsearch</h2>
         <section>
         <p>
             Runs as a persistent data store for the Camunda platform.
@@ -67,7 +67,7 @@ After this, you should see secrets created in your namespace (via Project Lens U
             <p/>
             <div class="copy-block" data-label="bash 4-3">
                 <p/>
-                Install elastic<br/>
+                Install Elasticsearch<br/>
                 <pre id="copy-text-4-3"><code>
 helm repo add elastic https://helm.elastic.co
 <br/>
@@ -81,6 +81,14 @@ helm install elasticsearch elastic/elasticsearch -n $UNAMESPACE -f elasticsearch
                 <p/>
 After this, you should see Elastic pod running.
 <br/># It may take about 3 to 5 minutes for the pod to be in running state.
+                <p>
+                    <small>Post Command-Set Execution: Click to view screen shot - Elasticsearch pod up and running.</small>
+                    <p/>
+                    <img width="90px" height="64px" src="pages/img-4-3-elastic-pod.jpg"
+                            alt="Elasticsearch pod status" 
+                            style="cursor:pointer;" 
+                            onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+                </p>
             </div>
 
         </section>
