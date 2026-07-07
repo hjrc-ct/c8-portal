@@ -167,7 +167,13 @@ kubectl create token headlamp-svc-acct -n ${UNAMESPACE}
                             Return to login page (click on <code>Go to Cluster</code>)
                         </li>
                         <li>
-                            Copy-paste the token from the previous step and subbmit.
+                            Copy-paste the token from the previous step and submit.
+                        </li>
+                        <li>
+                            You are now on home page of Headlamp.
+                            <br/>Click on Clusters main => Namespaces list => click on your namespace
+                            <br/>
+                            <br/>Expected Result: Your namespace shows status <code>Active</code>
                         </li>
                     </ul>
                 </p>
@@ -189,6 +195,16 @@ kubectl create token headlamp-svc-acct -n ${UNAMESPACE}
                             alt="Headlamp UI - Add your Namespace" 
                             style="cursor:pointer;" 
                             onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+                    <br/><br/>
+                    <small>
+                        Post Command-Set Execution (c): Click to view screen shot - Headlamp kubeconfig - Namespace is active !!
+                        <br/>
+                    </small><br/>
+                            <img src="pages/img-2-2-headlamp-ns-is-active.jpg"
+                                 width="90px" height="64px" src="pages/img-2-2-project-lens-app-view.jpg" 
+                                 alt="Headlamp UI app - Namespace is active" 
+                                 style="cursor:pointer;" 
+                                 onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
 
                 </p>
                 </div>                
