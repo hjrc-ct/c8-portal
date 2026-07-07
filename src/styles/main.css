@@ -83,7 +83,7 @@ header {
     display: flex;
     flex-direction: column;
     min-width: 220px;
-    background: #e8491d;
+    background: rgb(6, 147, 227);
     color: black;
     border-radius: 8px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
