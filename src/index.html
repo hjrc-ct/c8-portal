@@ -102,9 +102,9 @@
         function getSelectedNS() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('ns')) {
-                return "<span style='color:lightcyan'>Namespace: " + urlParams.get('ns') + "</span>&nbsp;&nbsp;&nbsp;&nbsp;";
+                return urlParams.get('ns') ;
             }
-            return "" +  "&nbsp;&nbsp;&nbsp;&nbsp;";
+            return "";
         }
         document.addEventListener('DOMContentLoaded', async function () {
             const headerContent = document.getElementById('header-content');
@@ -113,7 +113,25 @@
             const tValue = await getMyAccessToken();
             const hasAccess = !!(tValue);
             const hasAccessV2 = hasAccess ? !!(getEmailFromAccessJwt(tValue)) : hasAccess;
-            headerContent.innerHTML = '<b>' + getSelectedNS() + '</b>' +
+            const nsValue = getSelectedNS();
+
+            let namespaceMenuMarkup = "";
+            if (nsValue) {
+                namespaceMenuMarkup = `
+                    <div class="namespace-menu">
+                        <button id="namespace-menu-toggle" class="namespace-menu-toggle" type="button" aria-expanded="false" aria-controls="namespace-menu-panel">
+                            <span><b>Namespace:</b> ${nsValue}</span>
+                            <span class="namespace-caret">▾</span>
+                        </button>
+                        <div id="namespace-menu-panel" class="namespace-menu-panel" hidden>
+                            <a href="https://dashboard.makelabs.in" target="_blank" rel="noopener noreferrer">Kubernetes Dashboard</a>
+                            <a href="https://${nsValue}.makelabs.in" target="_blank" rel="noopener noreferrer">Your C8 Landing Page</a>
+                        </div>
+                    </div>
+                `;
+            }
+
+            headerContent.innerHTML = namespaceMenuMarkup +
                         '<a id="header_home" onclick="window.location.href = window.location.pathname;">Home</a>' +
                         '<a id="header_support_contact" onclick="loadCoursePart(11);">Support Contact</a>' +
                         '<a id="header_faq" onclick="loadCoursePart(12);">FAQ</a>&nbsp;&nbsp;' +
@@ -121,6 +139,26 @@
                             ? '<button id="logout" class="request-access-btn" type="button" onclick="signOutAndRedirect()">Sign Out</button>' 
                             : '<button id="request-access-btn" class="request-access-btn" type="button">Sign In</button>'
                         );
+
+            const namespaceToggle = document.getElementById('namespace-menu-toggle');
+            const namespacePanel = document.getElementById('namespace-menu-panel');
+            if (namespaceToggle && namespacePanel) {
+                namespaceToggle.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const isExpanded = namespaceToggle.getAttribute('aria-expanded') === 'true';
+                    namespaceToggle.setAttribute('aria-expanded', String(!isExpanded));
+                    namespacePanel.hidden = isExpanded;
+                });
+
+                namespacePanel.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                });
+
+                document.addEventListener('click', () => {
+                    namespaceToggle.setAttribute('aria-expanded', 'false');
+                    namespacePanel.hidden = true;
+                });
+            }
 
             const requestAccessButton = document.getElementById('request-access-btn');
             if (requestAccessButton) {
