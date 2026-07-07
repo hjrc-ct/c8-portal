@@ -24,7 +24,7 @@
             <p/>
             <div class="copy-block" data-label="note 1a-1">
                 <p/>
-                Onboarding service runtime logs.<br/>
+                Onboarding service runtime logs. This section shows metadata configured for your account or error details.<br/>
                 <pre id="copy-text-1a-1"><code>
                 </code></pre>
                 <p/>
@@ -33,7 +33,8 @@
 
             <p/>
             <b>
-                If onboarding succeeds, make sure to verify your access to these two items. This is critical to ensure smooth progress of remainder of the labs.
+                If onboarding succeeds, make sure to verify your access to GCP project <code>c8-labs</code>.
+                <br/>This is critical to ensure smooth progress of remainder of the labs.
             </b>
             <br/>
             <ul style="list-style: none;">
@@ -43,28 +44,26 @@
                     </span>  
                     <br/>
                     <small>
-                        Ensure you are able to access <code>c8-labs</code> project.
-                        <br/>
                         Note: The list of projects is a drop down at the top left side of the GCP cloud console. You may need to refresh more than once or wait for few minutes, as access propagation may take few minutes.
                     </small>
-                </li>
-                <li>Namespace created in GKE Cluster<br/>
-                    <span aria-label="Opens in new tab" title="Opens in new tab">
-                    <a target="_blank" href="https://console.cloud.google.com/?project=c8-labs" rel="noopener noreferrer">Google Cloud Console: c8-labs</a><sup>&nbsp;↗️</sup>
-                    </span>  
-                    <br/>
-                    <small>
-                        Ensure you can view the cluster as per below.<br/>
-                        Navigate to GCP Console -> Kubernetes Engine -> Clusters -> <code>c8-labs-sravana</code>
-                    </small>
+                    <p/>
+                    <img width="90px" height="64px" src="pages/img-1a-1-gcp-access.jpg"
+                            alt="GCP Console: Access to c8-labs" 
+                            style="cursor:pointer;" 
+                            onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+
+
                     <div class="highlight-summary">
-                    <strong>!!! About viewing GKE Cluster</strong>
-                    <ul style="margin-top: 8px; margin-bottom: 0; padding-left: 20px;list-style: none;">
-                        <li>
-                            This step is ONLY enabled for <code>In-person / Live sessions</code> for security reasons.
-                            <br/><b>Free Tier members</b> can skip this step and continue with the labs. Not seeing the GKE cluster will not hamper the rest of the labs.
-                        </li>
-                    </ul>
+<strong>Limited Google Cloud Console Access</strong>
+<br/><br/>
+As a <code>c8-labs</code> participant, you are granted only the permissions required for your hands-on lab activities. Some pages in the Google Cloud Console may therefore display permission-related messages.
+<br/><br/>
+For example, if you navigate to <strong>Kubernetes Engine → Clusters</strong>, you may see:
+<br/><code>You need additional access to the project: c8-labs</code>
+<br/><br/>
+This is <strong>expected behavior</strong> and is part of the security model for the lab environment. Your access is intentionally restricted to your assigned namespace and the resources needed to complete the exercises.
+<br/><br/>
+If you encounter this message while following the lab guide or are unable to complete a required exercise, please contact the lab administrator.
                     </div>
                 </li>
             </ul>            

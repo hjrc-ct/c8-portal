@@ -137,31 +137,42 @@ gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 -
         <hr/>
 
         <section>
-            <h3>Project Lens UI app for Kubernetes Resources Visualisation</h3>
+            <h3>Kubernetes Dashboard for Resources Visualisation</h3>
             <p>
-                Run below command-set on <b>**Your Desktop / Laptop** (not Cloud Shell)</b>.
+                Headlamp provides a web-based interface for visualizing and managing Kubernetes resources. During the labs, you'll use it to explore namespaces, workloads, services, pods, and other Kubernetes objects.
+                </b>
                 <br/>
-                Open the Project Lens UI app and see if you are able to connect to the cluster.
+                The webapp reqeuires a token for user authentication. Use the command below to generate thee token.
                 <br/>
                 <br/>
-                <span class="alert-icon" role="img" aria-label="Important" style="margin-right:8px;">⚠️</span>
-                Note: You may ignore this section if the Project Lens app is not installed on your Desktop / Laptop.
+
                 <div class="copy-block" data-label="bash 2-2">
                     <p/>
                     <pre id="copy-text-2-2"><code>
-gcloud auth login
+export UNAMESPACE=$UNAMESPACE
 <br/>
-gcloud config set project c8-labs
-<br/>
-gcloud components install gke-gcloud-auth-plugin
-<br/>
-gke-gcloud-auth-plugin --version
-<br/>
-gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs</code></pre>
-                    <p/>
-                    <button class="copy-btn" onclick="copyToClipboard('copy-text-2-2')">Copy</button>
+kubectl create token headlamp-svc-acct -n ${UNAMESPACE}
+</code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-2-2')">Copy</button>
                 <p>
-                    <small>Post Command-Set Execution (a): Click to view screen shot - Project Lens with kubeconfig</small><br/>
+                    <ul>
+                        <li>
+                            Open in a new tab: <a href="https://dashboard.makelabs.in" target="_blank">Kubernetes Dashboard</a>
+                        </li>
+                        <li>
+                            Click on <code>Cluster Settings</code> => Add your namespace under <code>Allowed namespaces</code>
+                        </li>
+                        <li>
+                            Return to login page (click on <code>Go to Cluster</code>)
+                        </li>
+                        <li>
+                            Copy-paste the token from the previous step and subbmit.
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    <small>Post Command-Set Execution (a): Click to view screen shot - Headlamp Config</small><br/>
 
                     <img width="90px" height="64px" src="pages/img-2-2-project-lens-app-view.jpg" 
                             alt="Project Lens UI app" 
