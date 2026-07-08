@@ -32,11 +32,37 @@ curl -X POST "https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/pro
                     !!! Note: If you see an error instead of access token, then perhaps you can debug to see what could be the mistake.
                     <br/><br/><b>Hint: Sign In to Keycloak Admin Console</b> and check the list of Clients configured. Can you see the mismatch?
                 </p>
-View the token using jwt.io website.
-<br/>Can you identify the subject (sub) claim in the token?
-<br/>Specifically, where is this (sub) value coming from?
+                View the token using jwt.io website.
+                <br/>Can you identify the subject (sub) claim in the token?
+                <br/>Specifically, where is this (sub) value coming from?
+                <p/>
+                <span class="answer-toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" onchange="toggleAnswer(this)">
+                        <span class="switch-slider"></span>
+                        <span class="switch-label">Show Answer</span>
+                    </label>
+                </span>
+                <div class="answer-text" hidden>
+                    <strong>Answer:</strong>
+                    The subject (`sub`) claim comes from the service account or client credential used to request the token. In this case, the token is generated for the `zeebe` client, so the subject reflects the authenticated client identity.
+                    <br/>
+                    In short, the "sub" value comes from the corresponding database record "id" attribute.
+                    <br/>
+<pre>
+
+# Open new terminal session with postGRE sql pod and run below commands.
+#
+# Connect to the Database
+psql -U bn_keycloak -d bitnami_keycloak
+# Use the password from the K8S Secrets
+# Run the sql query
+SELECT id, username, service_account_client_link FROM user_entity WHERE username LIKE ‘%zeebe%’;                    
+</pre>
+                </div>
             </div>
-            <p/>
+            
+            <p><hr/></p>
 
             <div class="copy-block" data-label="lab 9a-2">
                 <p/>

@@ -202,6 +202,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });   
 
+window.toggleAnswer = function(toggle) {
+    const input = toggle.closest('label') ? toggle : toggle.closest('label')?.querySelector('input[type="checkbox"]');
+    const checkbox = input instanceof HTMLInputElement ? input : null;
+    const switchLabel = toggle.closest('label')?.querySelector('.switch-label');
+    const answer = toggle.closest('.copy-block')?.querySelector('.answer-text');
+    if (!checkbox || !answer) return;
+
+    if (checkbox.checked) {
+        answer.hidden = false;
+        if (switchLabel) switchLabel.textContent = 'Hide Answer';
+    } else {
+        answer.hidden = true;
+        if (switchLabel) switchLabel.textContent = 'Show Answer';
+    }
+};
+
 function clearCache() {
   showNote('Clearing cache...');
   localStorage.removeItem('c8-labs-onboarding');
