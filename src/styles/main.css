@@ -905,6 +905,14 @@ nav a.nav-active {
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    background-color: rgb(232, 240, 254);
+    padding: 12px 12px;
+}
+
+.header-right-top svg {
+    color: rgb(12, 103, 223);
+    fill: rgb(12, 103, 223);
+    vertical-align: bottom;
 }
 
 .top-cta-tooltip {
