@@ -278,10 +278,51 @@ section {
 
 .quick-link-pill-top:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(6, 147, 227, 0.24);
     
 }
 
+.quick-link-pill-top-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background-color: #e8491d;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 10px 16px;
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.16);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.quick-link-pill-top-cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(111, 66, 193, 0.24);
+    background: #35424a;
+}
+
+.quick-link-pill-top-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background-color: #ffffff; 
+    color: #e8491d;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 10px 16px;
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.16);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.quick-link-pill-top-cta-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(111, 66, 193, 0.24);
+    background: #35424a;
+    color: white;
+}
 
 .quick-link-pill {
     display: inline-flex;
