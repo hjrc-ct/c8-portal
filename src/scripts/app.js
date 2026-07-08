@@ -47,6 +47,7 @@ const loadCoursePart = (part) => {
             if (part == 0) {
                 participants.sort((a, b) => a.name.localeCompare(b.name));
                 renderStudentTable();
+                attachGalleryModal();
             } else if (part == '1a') {
                 attachInitOnboardingButton();
                 metadataCheck();
@@ -523,6 +524,83 @@ function attachClearCacheButton() {
     button.removeEventListener('click', clearCache);
     button.addEventListener('click', clearCache);
     console.log('Attached click event to clearCache button');
+}
+
+function attachGalleryModal() {
+    const gallery = document.querySelector('.lab-gallery');
+    const modalOverlay = document.getElementById('gallery-modal');
+    const modalImage = document.getElementById('gallery-modal-image');
+    const modalCaption = document.getElementById('gallery-modal-description');
+    const modalCounter = document.getElementById('gallery-modal-counter');
+    const closeBtn = document.getElementById('gallery-modal-close');
+    const prevBtn = document.getElementById('gallery-modal-prev');
+    const nextBtn = document.getElementById('gallery-modal-next');
+
+    if (!gallery || !modalOverlay || !modalImage || !modalCaption || !modalCounter || !closeBtn || !prevBtn || !nextBtn) {
+        return;
+    }
+
+    const items = Array.from(gallery.querySelectorAll('.lab-gallery-item img'));
+    if (!items.length) return;
+
+    const galleryData = items.map(img => ({
+        src: img.src,
+        alt: img.alt || 'Gallery image',
+        index: Number(img.dataset.galleryIndex || 0)
+    }));
+
+    let currentIndex = 0;
+
+    function updateModal(index) {
+        currentIndex = (index + galleryData.length) % galleryData.length;
+        const item = galleryData[currentIndex];
+        modalImage.src = item.src;
+        modalImage.alt = item.alt;
+        modalCaption.textContent = item.alt;
+        modalCounter.textContent = `${currentIndex + 1} of ${galleryData.length}`;
+    }
+
+    function openModal(index) {
+        updateModal(index);
+        modalOverlay.hidden = false;
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modalOverlay.hidden = true;
+        modalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    items.forEach((img, idx) => {
+        img.addEventListener('click', () => openModal(idx));
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    prevBtn.addEventListener('click', () => updateModal(currentIndex - 1));
+    nextBtn.addEventListener('click', () => updateModal(currentIndex + 1));
+
+    modalOverlay.addEventListener('click', (event) => {
+        if (event.target === modalOverlay) {
+            closeModal();
+        }
+    });
+
+    window.addEventListener('keydown', (event) => {
+        if (modalOverlay.hidden) return;
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+        if (event.key === 'ArrowLeft') {
+            updateModal(currentIndex - 1);
+        }
+        if (event.key === 'ArrowRight') {
+            updateModal(currentIndex + 1);
+        }
+    });
+
+    console.log('Attached gallery modal events');
 }
 
 function attachSupportMetadataButton() { // copy-text-11-1
