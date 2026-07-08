@@ -11,3 +11,6 @@ node_modules
 out
 coverage
 dist/
+scripts/spellcheck_whitelist.txt
+scripts/spellcheck_html.py
+spellcheck-report.txt
