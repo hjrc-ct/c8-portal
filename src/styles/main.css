@@ -428,17 +428,23 @@ section {
     flex-direction: column;
 }
 
+.gallery-modal-title span {
+    color: black;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #dee7f3;
+}
+
 .gallery-modal-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
-    gap: 16px;
-    padding: 18px 24px;
+    gap: 6px;
+    padding: 8px 24px;
     background: #f6f9ff;
     border-bottom: 1px solid #dee7f3;
 }
 
-.gallery-modal-header button {
+.gallery-modal-header button span {
     background: transparent;
     border: none;
     font-size: 0.95rem;
@@ -477,13 +483,15 @@ section {
 }
 
 .gallery-modal-body img {
-    width: 90%;
-    width: 90%;
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
     border-radius: 12px;
     background: #f8fbff;
+    width: 90%;
+    height: calc(95vh - 80px);
+    max-width: 90%;
+    max-height: calc(95vh - 80px);
+    object-fit:contain;
+    display: block;
+    transition: transform 0.3s ease;
 }
 
 .gallery-modal-caption {
@@ -836,7 +844,7 @@ nav a.nav-active {
     align-items: center;
     padding: 4px 10px;
     border-radius: 999px;
-    background: #eaf6ff;
+    background: rgb(232, 240, 254);
     color: #0d5f8a;
     border: 1px solid #cfe8fb;
     font-size: 0.78rem;
