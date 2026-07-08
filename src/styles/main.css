@@ -324,6 +324,22 @@ section {
     color: white;
 }
 
+.top-cta-tooltip {
+    display: inline-grid;
+    gap: 6px;
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+.top-cta-tooltip-text {
+    display: block;
+    max-width: 320px;
+    font-size: 0.85rem;
+    color: darkgray;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
 .quick-link-pill {
     display: inline-flex;
     align-items: center;
