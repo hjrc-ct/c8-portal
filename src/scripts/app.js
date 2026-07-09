@@ -21,8 +21,10 @@ function getQueryParam(name) {
     return params.get(name);
 }
 
-const loadCoursePart = (part) => {
+const loadCoursePart = (part, specificView) => {
     console.log('Domain name is ' + domainName);
+    console.log('page # is ' + part);
+    console.log('specificView is ' + specificView);
     fetch(`pages/Part${part}.html`)
         .then(response => response.text())
         .then(async (data) => {
@@ -48,6 +50,16 @@ const loadCoursePart = (part) => {
                 participants.sort((a, b) => a.name.localeCompare(b.name));
                 renderStudentTable();
                 attachGalleryModal();
+
+                if (specificView){
+                    // scroll to element if present
+                    const element = document.getElementById('need-help');
+                            if (element) {
+                                element.scrollIntoView({
+                                    behavior: 'smooth'
+                                });
+                            }
+                }
             } else if (part == '1a') {
                 attachInitOnboardingButton();
                 metadataCheck();
@@ -573,11 +585,9 @@ function attachGalleryModal() {
         const item = galleryData[currentIndex];
         modalImage.src = item.src;
         modalImage.alt = item.alt;
-        modalCaption.textContent = item.alt;
-        modalCounter.textContent = `${currentIndex + 1} of ${galleryData.length}`;
-        modalTitle.textContent = "Lab Gallery" 
-                        + "   ||   " + `${currentIndex + 1} of ${galleryData.length}`
-                        + "   ||   " + item.alt;
+        modalCaption.textContent = item.alt + " || " + `${currentIndex + 1} of ${galleryData.length}`;
+        modalCounter.textContent = "";
+        modalTitle.textContent = "Lab Gallery" ;
     }
 
     function openModal(index) {

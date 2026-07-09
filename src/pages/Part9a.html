@@ -76,24 +76,26 @@ SELECT id, username, service_account_client_link FROM user_entity WHERE username
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-9-2')">Copy</button>
                 <p/>
 In real-life scenario, if you are given an existing Kubernetes environment, how would you find out the Camunda release number?
-<br/>Hint: Use Project Lens UI app to look for the deployed helm charts.
+<br/>Hint: Use Headlamp Dashboard or Project Lens UI app to look for the deployed helm charts (ConfigMap).
 <br/>
             </div>
-            <p/>
+            
+            <p><hr/></p>
 
             <div class="copy-block" data-label="lab 9-3">
                 <p/>
-                Q. Assume that a component (say Connectors Pod) is deleted from the runtime deployment. <br/>
+                Q. Assume that a Deployment component (say Connectors) is deleted from the runtime. <br/>
                 <pre id="copy-text-9-3"><code>
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-9-3')">Copy</button>
                 <p/>
 How do you re-deploy the missing "Connectors" component?
-<br/>
+<br/><br/>Hint: Run this step <code>Camunda 5-3</code> again, but with "help upgrade" (instead of helm insall).
 <br/>
             </div>
-            <p/>
+            
+            <p><hr/></p>
 
             <div class="copy-block" data-label="lab 9a-4">
                 <p/>
@@ -103,11 +105,28 @@ How do you re-deploy the missing "Connectors" component?
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-9-4')">Copy</button>
                 <p/>
-Hint: Use kubectl or Project Lens UI app.
+Hint: Use kubectl or Headlamp Dashboard or Project Lens UI app.
 <br/>
 <br/>
             </div>
-            <p/>
+            
+            <p><hr/></p>
+
+            <div class="copy-block" data-label="lab 9a-5">
+                <p/>
+                Q. In lab 9a-1, while looking at Keycloak Admin Console, you may have noticed two realm configurations. One of them is for <code>camunda-platform</code>. <br/>
+                   <br/>Who created (i.e., which step / component) the realm <code>camunda-platform</code>? (taking into account all the steps you executed so far)
+                <pre id="copy-text-9-5"><code>
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9-5')">Copy</button>
+                <p/>
+Hint: Have you noticed any pattern when the pods are starting? Read a bit on Camunda Docs to understand the component dependency.
+<br/>
+<br/>
+            </div>
+            
+            <p><hr/></p>
 
         </section>
     </main>

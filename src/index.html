@@ -41,8 +41,7 @@
                         Screenshots speak louder than descriptions !
                     </span>
                     <br/>
-                    <a  href="#lab-gallery">
-                        
+                    <a class="header-right-arrow"  href="#lab-gallery">
                         <svg data-icon-name="arrowForwardIcon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
                             <path fill-rule="evenodd" d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
                         </svg>
@@ -91,7 +90,7 @@
                 </li>
                 <li><a href="pages/Part10.html">Before you leave...</a></li>
                 <li><hr class="nav-separator"></li>
-                <li><a href="pages/Part11.html">Support Contact</a></li>
+                <li><a href="pages/Part11.html">Support</a></li>
                 <li><a href="pages/Part12.html">FAQ</a></li>
             </ul>
         </nav>
@@ -160,8 +159,10 @@
 
             headerContent.innerHTML = namespaceMenuMarkup +
                         '<a id="header_home" onclick="window.location.href = window.location.pathname;">Home</a>' +
-                        '<a id="header_support_contact" onclick="loadCoursePart(11);">Support Contact</a>' +
-                        '<a id="header_faq" onclick="loadCoursePart(12);">FAQ</a>&nbsp;&nbsp;' +
+                        '<a id="header_support" onclick="loadCoursePart(11);">Support</a>' +
+                        '<a id="header_faq" onclick="loadCoursePart(12);">FAQ</a>' +
+                        '<a id="header_contact" onclick="loadCoursePart(0, true);">Contact</a>' +
+                        "&nbsp;" +
                         (hasAccessV2 
                             ? '<button id="logout" class="request-access-btn" type="button" onclick="signOutAndRedirect()">Sign Out</button>' 
                             : '<button id="request-access-btn" class="request-access-btn" type="button">Sign In</button>'

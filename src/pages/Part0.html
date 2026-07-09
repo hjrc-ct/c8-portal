@@ -9,8 +9,9 @@
     <main>
 
         <section id="welcome">
+            <small>An initiative of Community Chapter Bengaluru</small>
             <h2>
-                Welcome to C8-Labs : Managed by Community Chapter Bengaluru !
+                Welcome to C8-Labs !
             </h2>
             <p>
 C8-Labs is a hands-on learning platform for Camunda 8 Self-Managed on Kubernetes. 
@@ -18,6 +19,18 @@ Instead of just watching videos, you'll build and operate a complete Camunda 8 e
 Each exercise includes detailed instructions, validation steps, and real-world scenarios to help you gain practical experience.
 Whether you're new to Camunda 8 or preparing for real-world deployments, C8-Labs provides a structured environment to learn by doing.
             </p>
+            <div class="quick-links">
+                <a href="#what-you-learn" class="quick-link-pill">What You'll Learn</a>
+                &nbsp;&nbsp;
+                <a href="#lab-gallery" class="quick-link-pill">Lab Gallery</a>                
+                &nbsp;&nbsp;
+                <a href="#course-is-for" class="quick-link-pill">Who Should Attend?</a>
+                &nbsp;&nbsp;
+                <a href="#access-plans" class="quick-link-pill">Access Plans</a>
+                &nbsp;&nbsp;
+                <a href="#get-started" class="quick-link-pill">Get Started</a>
+            </div>
+         
             <div class="kpi-grid">
                 <div class="kpi-card">
                     <div class="kpi-icon">☸️</div>
@@ -47,17 +60,7 @@ Whether you're new to Camunda 8 or preparing for real-world deployments, C8-Labs
                 </div>
             </div>
         </section>
-        <div class="quick-links">
-            <a href="#what-you-learn" class="quick-link-pill">What You'll Learn</a>
-            &nbsp;&nbsp;
-            <a href="#course-is-for" class="quick-link-pill">Who Should Attend?</a>
-            &nbsp;&nbsp;
-            <a href="#access-plans" class="quick-link-pill">Access Plans</a>
-            &nbsp;&nbsp;
-            <a href="#get-started" class="quick-link-pill">Get Started</a>
-            &nbsp;&nbsp;
-            <a href="#need-help" class="quick-link-pill">Contact Us</a>
-        </div>
+
         <hr/>
         <section id="lab-gallery">
             <div class="section-header-row">
@@ -93,14 +96,14 @@ Whether you're new to Camunda 8 or preparing for real-world deployments, C8-Labs
                         <span id="gallery-modal-title" class="gallery-modal-title">Lab Gallery</span>
                         <button id="gallery-modal-close" type="button" aria-label="Close gallery">✕</button>
                     </div>
+                    <div class="gallery-modal-caption">
+                        <span id="gallery-modal-counter"></span>
+                        <span id="gallery-modal-description"></span>
+                    </div>
                     <div class="gallery-modal-body">
                         <button id="gallery-modal-prev" type="button" class="gallery-modal-nav">←</button>
                         <img id="gallery-modal-image" src="" alt="Gallery image">
                         <button id="gallery-modal-next" type="button" class="gallery-modal-nav">→</button>
-                    </div>
-                    <div class="gallery-modal-caption">
-                        <span id="gallery-modal-counter"></span>
-                        <span id="gallery-modal-description"></span>
                     </div>
                 </div>
             </div>
@@ -167,8 +170,8 @@ Whether you're new to Camunda 8 or preparing for real-world deployments, C8-Labs
                 <ul>
                     <li>Deploy Camunda 8 on Kubernetes/GCP</li>
                     <li>Understand the Camunda 8 architecture</li>
-                    <li>Deploy Zeebe Orchestration, Operate, Tasklist, Identity, Optimize, and Connectors</li>
-                    <li>Configure Ingress and HTTPS</li>
+                    <li>Deploy and operate Zeebe Orchestration, Operate, Tasklist, Identity, Optimize, and Connectors</li>
+                    <li>Inside view of Kubernetes objects and Topology</li>
                     <li>Manage Secrets and ConfigMaps</li>
                     <li>Configure storage and persistent volumes</li>
                     <li>Monitor workloads using Prometheus and Grafana</li>
@@ -192,7 +195,7 @@ Whether you're new to Camunda 8 or preparing for real-world deployments, C8-Labs
                     <li>Solution Architects</li>
                     <li>DevOps Engineers</li>
                     <li>Migrating from Camunda 7 to Camunda 8</li>
-                    <li>Students learning Camunda 8</li>
+                    <li>Camunda 8 Upskill</li>
                 </ul>
             </p>
             <br/>
@@ -444,8 +447,53 @@ Whether you're new to Camunda 8 or preparing for real-world deployments, C8-Labs
             <p>
                 If you have any questions or need assistance, please reach out to us through the following channels:
                 <ul>
-                    <li>Email: <a href="mailto:contact@makelabs.in">contact at makelabs.in</a></li>
-                    <li>WhatsApp: +91 93538 00430 / +91 90004 68657</li>
+                    <li>
+                        <a class="app-link" href="mailto:contact@makelabs.in" target="_blank">
+                            <span class="link-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="2" y="2" width="20" height="20" rx="4" fill="#6264A7"/>
+                                    <path d="M8 7h8v2H8V7zm0 4h8v2H8v-2zm0 4h5v2H8v-2z" fill="#fff"/>
+                                    <path d="M16 7h2v10h-2V7z" fill="#fff" opacity="0.5"/>
+                                </svg>
+                            </span>
+                            Email: contact-at-makelabs.in
+                        </a>
+                    </li>
+                    <li>
+                        <a class="app-link" href="https://wa.me/919353800430" target="_blank">
+                            <span class="link-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="2" y="2" width="20" height="20" rx="6" fill="#25D366"/>
+                                    <path d="M8.7 7.6c.3 0 .6.1.8.2.2.1.4.4.4.7.1.4.1.9 0 1.4-.1.4-.6 1.1-.7 1.2-.2.1-.4.1-.6.1-.2 0-.3 0-.5-.1-.1-.1-.6-.3-1-.6-.5-.4-.8-.9-1-1.4-.2-.5-.2-.9-.1-1.4.1-.6.3-1 .6-1.4.2-.3.5-.4.9-.5.2 0 .4-.1.5-.1z" fill="#fff" opacity="0.9"/>
+                                    <path d="M10.7 9.7c-.7-.4-1.2-.3-1.5-.2-.2.1-.4.3-.5.4-.2.2-.3.4-.3.6 0 .2 0 .4.1.6.1.2.1.4.3.5.1.1.3.2.4.2.1 0 .2 0 .3-.1.1 0 .1-.1.2-.1.1-.1.2-.2.3-.3.2-.2.4-.3.6-.4.2-.1.4-.2.7-.1.2 0 .4 0 .6.1.2.1.4.3.6.4.2.2.4.4.5.6.1.3.2.5.2.7 0 .2 0 .4-.1.6-.1.1-.1.3-.3.4-.2.1-.4.2-.6.2h-.1c-.2 0-.4 0-.6-.1-.2 0-.4-.1-.5-.2-.2-.1-.3-.3-.4-.4-.1-.2-.2-.3-.2-.5 0-.2.1-.4.1-.6 0-.2.1-.4.2-.5.1-.2.4-.3.6-.4.1 0 .2 0 .4-.1.1 0 .2 0 .3 0 .1 0 .2 0 .2.1.1.1.1.1.1.2 0 .1 0 .2-.1.3 0 .1-.1.1-.2.2z" fill="#fff"/>
+                                </svg>
+                            </span>
+                            WhatsApp +91 93538 00430
+                        </a>
+                    </li>
+                    <li>
+                        <a class="app-link" href="https://teams.microsoft.com/l/chat/0/0?users=raghu@makelabs.in&message=Hello%20Raghu%20Need%20assistance%20with%20an%20issue%20in%20c8-labs" target="_blank">
+                            <span class="link-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="2" y="2" width="20" height="20" rx="4" fill="#6264A7"/>
+                                    <path d="M8 7h8v2H8V7zm0 4h8v2H8v-2zm0 4h5v2H8v-2z" fill="#fff"/>
+                                    <path d="M16 7h2v10h-2V7z" fill="#fff" opacity="0.5"/>
+                                </svg>
+                            </span>
+                            Open Teams Chat
+                        </a>
+                    </li>
+                    <li>
+                        <a class="app-link" href="https://chat.google.com/" target="_blank">
+                            <span class="link-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 4h16v12H8l-4 4V4z" fill="#00a884"/>
+                                    <path d="M6 6h12v2H6V6zm0 4h12v2H6v-2z" fill="#fff"/>
+                                </svg>
+                            </span>
+                            Open Google Chat
+                        </a>&nbsp;raghavendra.chari at gmail.com
+                    </li>
                 </ul>
             </p>
             <br/>
