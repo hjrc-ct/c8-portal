@@ -571,12 +571,12 @@ function attachGalleryModal() {
     const modalImage = document.getElementById('gallery-modal-image');
     const modalCaption = document.getElementById('gallery-modal-description');
     const modalCounter = document.getElementById('gallery-modal-counter');
-    const modalTitle = document.getElementById('gallery-modal-title');
+
     const closeBtn = document.getElementById('gallery-modal-close');
     const prevBtn = document.getElementById('gallery-modal-prev');
     const nextBtn = document.getElementById('gallery-modal-next');
 
-    if (!modalTitle || !gallery || !modalOverlay || !modalImage || !modalCaption || !modalCounter || !closeBtn || !prevBtn || !nextBtn) {
+    if ( !gallery || !modalOverlay || !modalImage || !modalCaption || !modalCounter || !closeBtn || !prevBtn || !nextBtn) {
         return;
     }
 
@@ -596,9 +596,8 @@ function attachGalleryModal() {
         const item = galleryData[currentIndex];
         modalImage.src = item.src;
         modalImage.alt = item.alt;
-        modalCaption.textContent = item.alt + " || " + `${currentIndex + 1} of ${galleryData.length}`;
-        modalCounter.textContent = "";
-        modalTitle.textContent = "Lab Gallery" ;
+        modalCaption.textContent = item.alt; 
+        modalCounter.textContent = `${currentIndex + 1} of ${galleryData.length}`;
     }
 
     function openModal(index) {
