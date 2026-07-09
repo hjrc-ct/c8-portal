@@ -4,7 +4,7 @@ const domainName = initDomainName && initDomainName.indexOf(prefix) != -1  ? ini
 // default portal is 'c8-labs.makelabs.in';
 
 const k8sConfig = {
-    CLUSTER_NAME: "c8-labs-sravana",
+    CLUSTER_NAME: "c8-labs-sravana-ap-21",
     REGION: "asia-south2",
     PROJECT_ID: "c8-labs"
 };
@@ -78,8 +78,9 @@ const loadCoursePart = (part, specificView) => {
             // If Part7, fetch and inject the keys
             else if (part == 7) {
                 // Check if namespace ends with 'pro-c8-labs' for premium access
+                // Check if namespace ends with 'mls-c8-labs' for premium access
                 const nsParam = getQueryParam('ns') || '';
-                if (!nsParam.endsWith('pro-c8-labs')) {
+                if (!nsParam.endsWith('pro-c8-labs') && !nsParam.endsWith('mls-c8-labs') ) {
                     // Replace section with premium access message
                     const section = mainContent.querySelector('section');
                     if (section) {
