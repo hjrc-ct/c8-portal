@@ -33,9 +33,11 @@ After this, you should see secret created in your namespace (via Project Lens UI
 
             <div class="copy-block" data-label="bash 5-2">
                 <p/>
-                Used for TLS and associated configuration.<br/>
+                Used for TLS and associated configuration. Plus, a simple network policy allowing inter pod communication in the namespace.<br/>
                 <pre id="copy-text-5-2"><code>
 UNAMESPACE={{UNAMESPACE}} envsubst < zeebe-makefile | sh
+<br/>
+envsubst '${UNAMESPACE}' < c8-labs-pod-network-policy.yaml  | kubectl apply  -f -
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-5-2', 'Make sure keytool and openssl are installed on your local machine.')">Copy</button>
