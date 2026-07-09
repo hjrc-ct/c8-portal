@@ -17,9 +17,9 @@
                 Open a new terminal in VS Code.<br/>
                 Set the namespace variable. Use the namespace assigned to you.<p/>
                 <pre id="copy-text-3-1"><code>
-export UNAMESPACE=$UNAMESPACE
+export UNAMESPACE={{UNAMESPACE}}
 <br/>
-export WEBPAGEAPPURL=asia-south2-docker.pkg.dev/c8-labs/c8-labs-repo/toolkit-c8-labs-nginx-static:v1
+export WEBPAGEAPPURL={{REGION}}-docker.pkg.dev/c8-labs/c8-labs-repo/toolkit-c8-labs-nginx-static:v1
                     </code>
                 </pre>
                 <p/>
@@ -40,7 +40,7 @@ envsubst '${UNAMESPACE} ${WEBPAGEAPPURL}' < deploy-landing-page.yaml  | kubectl 
             <div class="copy-block" data-label="note 3-3">
                 <p/>
                 Open browser and access the landing page.<br/>
-                <pre id="copy-text-3-3"><code>https://$UNAMESPACE.makelabs.in</code></pre>
+                <pre id="copy-text-3-3"><code>https://{{UNAMESPACE}}.makelabs.in</code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-3-3')">Copy</button>
                 <p/>

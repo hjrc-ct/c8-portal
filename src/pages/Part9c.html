@@ -26,12 +26,12 @@
                 </ul>                
                 <pre id="copy-text-9c-1"><code>
 # Start in GCP Cloud Shell
-export UNAMESPACE=$UNAMESPACE
+export UNAMESPACE={{UNAMESPACE}}
 <br/>
-gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs
+gcloud container clusters get-credentials {{CLUSTER_NAME}} --region {{REGION}}  --project c8-labs
 <br/>
 # run this in background
-kubectl port-forward "svc/$UNAMESPACE-zeebe-gateway" 9600:9600 -n $UNAMESPACE &
+kubectl port-forward "svc/{{UNAMESPACE}}-zeebe-gateway" 9600:9600 -n {{UNAMESPACE}} &
 # You may dry run first to preview the partition distribution by appending ?dryRun=true to the request
 curl -X 'PATCH' \
    'http://localhost:9600/orchestration/actuator/cluster' \
@@ -97,15 +97,15 @@ Visit again Landing Page -> Topology to see the new topology and partition distr
                 <pre id="copy-text-9c-2"><code>
 # Start in GCP Cloud Shell
 gcloud config set project c8-labs
-export UNAMESPACE=$UNAMESPACE
+export UNAMESPACE={{UNAMESPACE}}
 <br/>
-gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs
+gcloud container clusters get-credentials {{CLUSTER_NAME}} --region {{REGION}} --project c8-labs
 <br/>
 # Evict the pod from Project Lens or via kubectl command
-export POD_NAME=$(kubectl get pods -n $UNAMESPACE | grep zeebe-0 | cut -f 1 -d " ")
+export POD_NAME=$(kubectl get pods -n {{UNAMESPACE}} | grep zeebe-0 | cut -f 1 -d " ")
 <br/>
 # Let it be re-added by the system. It may take a while.
-kubectl delete pod -n $UNAMESPACE $POD_NAME
+kubectl delete pod -n {{UNAMESPACE}} $POD_NAME
 <br/>
                 </code></pre>
                 <p/>
@@ -119,7 +119,7 @@ Pick an earlier failed process instance via Operator and retry for another attem
 ## Option 2 - Run by the Administrator
 # Start in GCP Cloud Shell
 gcloud config set project c8-labs
-export UNAMESPACE=$UNAMESPACE
+export UNAMESPACE={{UNAMESPACE}}
 <br/>
 gcloud compute instances delete vm-node-name  --zone=zone-id
 <br/>

@@ -29,9 +29,9 @@
                     <br/>
                     The core of the labs exercise centers around the Kubernetes cluster.
                     <br/>
-                    Kubernetes Engine cluster <code>c8-labs-sravana</code> is provisioned with required network configuration, storage and compute capacity.
+                    Kubernetes Engine cluster <code>{{CLUSTER_NAME}}</code> is provisioned with required network configuration, storage and compute capacity.
                     <br/>
-                    GCP project <code>c8-labs</code> hosts this GKE cluster and all other associated preconfigurations.
+                    GCP project <code>{{PROJECT_ID}}</code> hosts this GKE cluster and all other associated preconfigurations.
                     <br/>
                 </li>
             </ul>
@@ -112,7 +112,7 @@ gcloud components install gke-gcloud-auth-plugin
 <br/>
 gke-gcloud-auth-plugin --version
 <br/>
-gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs
+gcloud container clusters get-credentials {{CLUSTER_NAME}} --region {{REGION}} --project c8-labs
                     </code></pre>
                     <p/>
                     <button class="copy-btn" onclick="copyToClipboard('copy-text-2-1')">Copy</button>
@@ -149,7 +149,7 @@ gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 -
                 <div class="copy-block" data-label="bash 2-2">
                     <p/>
                     <pre id="copy-text-2-2"><code>
-export UNAMESPACE=$UNAMESPACE
+export UNAMESPACE={{UNAMESPACE}}
 <br/>
 kubectl create token headlamp-svc-acct -n ${UNAMESPACE}
 </code></pre>

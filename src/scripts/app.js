@@ -3,6 +3,12 @@ const prefix = 'https://';
 const domainName = initDomainName && initDomainName.indexOf(prefix) != -1  ? initDomainName.substring(prefix.length) : 'c8-labs.makelabs.in';
 // default portal is 'c8-labs.makelabs.in';
 
+const k8sConfig = {
+    CLUSTER_NAME: "c8-labs-sravana",
+    REGION: "asia-south2",
+    PROJECT_ID: "c8-labs"
+};
+
 const header = document.createElement('header');
 header.innerHTML = `
 `;
@@ -32,12 +38,17 @@ const loadCoursePart = (part, specificView) => {
             mainContent.innerHTML = data;
 
             // After loading, replace variables in code blocks (scoped to loaded content)
-            const UNAMESPACE_VALUE = getQueryParam('ns') || "undefined-namespace";
+            const uNamespaceValue = getQueryParam('ns') || "undefined-namespace";
             const codeElements = mainContent.querySelectorAll('code');
             codeElements.forEach(codeBlock => {
               console.log(codeBlock.textContent);
-              codeBlock.textContent = codeBlock.textContent.replace(/\$UNAMESPACE/g, UNAMESPACE_VALUE);
-              codeBlock.textContent = codeBlock.textContent.replace(/\$domainName/g, domainName);
+              codeBlock.textContent = codeBlock.textContent.replace(/{{UNAMESPACE}}/g, uNamespaceValue);
+              codeBlock.textContent = codeBlock.textContent.replace(/{{DOMAIN_NAME}}/g, domainName);
+
+              // replace these 3 items as well
+              codeBlock.textContent = codeBlock.textContent.replace(/{{CLUSTER_NAME}}/g, k8sConfig.CLUSTER_NAME);
+              codeBlock.textContent = codeBlock.textContent.replace(/{{PROJECT_ID}}/g, k8sConfig.PROJECT_ID);
+              codeBlock.textContent = codeBlock.textContent.replace(/{{REGION}}/g, k8sConfig.REGION);
             });
 
             // Count number of copy-block occurrences within the loaded content

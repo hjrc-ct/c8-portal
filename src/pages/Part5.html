@@ -19,9 +19,9 @@
                 Default Camunda user account: <code>demo</code><br/>
                 Default Keycloak user account: <code>admin</code><p/>
                 <pre id="copy-text-5-1"><code>
-export UNAMESPACE=$UNAMESPACE
+export UNAMESPACE={{UNAMESPACE}}
 <br/>
-kubectl apply -f identity-secret.yaml --namespace $UNAMESPACE
+kubectl apply -f identity-secret.yaml --namespace {{UNAMESPACE}}
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-5-1')">Copy</button>
@@ -35,7 +35,7 @@ After this, you should see secret created in your namespace (via Project Lens UI
                 <p/>
                 Used for TLS and associated configuration.<br/>
                 <pre id="copy-text-5-2"><code>
-UNAMESPACE=$UNAMESPACE envsubst < zeebe-makefile | sh
+UNAMESPACE={{UNAMESPACE}} envsubst < zeebe-makefile | sh
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-5-2', 'Make sure keytool and openssl are installed on your local machine.')">Copy</button>
@@ -51,15 +51,15 @@ helm repo add camunda https://helm.camunda.io
 <br/>
 helm repo update
 <br/>
-UNAMESPACE=$UNAMESPACE envsubst < values-combined-ingress.yaml > values-combined-ingress.my-ns.yaml
+UNAMESPACE={{UNAMESPACE}} envsubst < values-combined-ingress.yaml > values-combined-ingress.my-ns.yaml
 <br/>
-UNAMESPACE=$UNAMESPACE envsubst < values-connectors-env.yaml   > values-connectors-env.my-ns.yaml
+UNAMESPACE={{UNAMESPACE}} envsubst < values-connectors-env.yaml   > values-connectors-env.my-ns.yaml
 <br/>
-helm install $UNAMESPACE camunda/camunda-platform \
+helm install {{UNAMESPACE}} camunda/camunda-platform \
   -f values-combined-ingress.my-ns.yaml \
   -f values-connectors-env.my-ns.yaml \
   --set zeebe.prometheusServiceMonitor.enabled=true \
-  --version 14.4.1 --namespace $UNAMESPACE
+  --version 14.4.1 --namespace {{UNAMESPACE}}
 <br/>
                 </code></pre>
                 <p/>
@@ -108,7 +108,7 @@ You may check the ingress definition in the assigned namespace.
             Check the Pods status before validating access to the C8 environment.
             <br/><br/>
             Visit Landing Page:
-            <br/><code>https://$UNAMESPACE.makelabs.in/</code>
+            <br/><code>https://{{UNAMESPACE}}.makelabs.in/</code>
             <ul style="list-style: none;">
                 <li>Keycloak Admin Console</li>
                 <li>C8 Orchestration Admin</li>

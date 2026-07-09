@@ -20,13 +20,13 @@
                 <p/>
                 Prometheus<br/>
                 <pre id="copy-text-8-1"><code>
-export UNAMESPACE=$UNAMESPACE
+export UNAMESPACE={{UNAMESPACE}}
 <br/>
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 <br/>
 helm repo update
 <br/>
-UNAMESPACE=$UNAMESPACE envsubst < prometheus.yml   > prometheus.my-ns.yaml
+UNAMESPACE={{UNAMESPACE}} envsubst < prometheus.yml   > prometheus.my-ns.yaml
 <br/>
 kubectl apply -f prometheus.my-ns.yaml -n ${UNAMESPACE}
 <br/>
@@ -49,11 +49,11 @@ helm repo add grafana https://grafana.github.io/helm-charts
 <br/>
 helm repo update
 <br/>
-UNAMESPACE=$UNAMESPACE envsubst < grafana.yaml   > grafana.my-ns.yaml
+UNAMESPACE={{UNAMESPACE}} envsubst < grafana.yaml   > grafana.my-ns.yaml
 <br/>
 kubectl apply -f grafana.my-ns.yaml -n ${UNAMESPACE}
 <br/>
-UNAMESPACE=$UNAMESPACE envsubst < c8-ingress-grafana.yaml | kubectl apply -f -
+UNAMESPACE={{UNAMESPACE}} envsubst < c8-ingress-grafana.yaml | kubectl apply -f -
 <br/>
                 </code></pre>
                 <p/>
@@ -61,7 +61,7 @@ UNAMESPACE=$UNAMESPACE envsubst < c8-ingress-grafana.yaml | kubectl apply -f -
                 <p/>
 Install Grafana and link Prometheus as datasource.
 <br/>Also note that we are adding ingress for accessing Grafana app. You can sign-in to <code>Grafana</code>:
-<br/><code>https://$UNAMESPACE.makelabs.in/grafana</code>
+<br/><code>https://{{UNAMESPACE}}.makelabs.in/grafana</code>
 <br/>Default admin account: <code>admin</code>
             </div>
             <p/>
@@ -85,7 +85,7 @@ Install Grafana and link Prometheus as datasource.
 
 
 # To check prometheus data feed - run this from toolkit pod where curl is supported
-curl -s http://prometheus.$UNAMESPACE:9090/api/v1/targets 
+curl -s http://prometheus.{{UNAMESPACE}}:9090/api/v1/targets 
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-8-3')">Copy</button>

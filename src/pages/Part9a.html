@@ -17,7 +17,9 @@
                 <p/>
                 Q. Lets create a new JWT access token.<br/>
                 <pre id="copy-text-9-1"><code>
-export ZEEBE_SECRET=$(kubectl get secret identity-secret-for-components -n $UNAMESPACE -o jsonpath="{.data.zeebe-secret}" | base64 --decode)
+export UNAMESPACE={{UNAMESPACE}}
+<br/>
+export ZEEBE_SECRET=$(kubectl get secret identity-secret-for-components -n {{UNAMESPACE}} -o jsonpath="{.data.zeebe-secret}" | base64 --decode)
 <br/>
 curl -X POST "https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token" \
   -H "Content-Type: application/x-www-form-urlencoded" \
@@ -91,7 +93,7 @@ In real-life scenario, if you are given an existing Kubernetes environment, how 
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-9-3')">Copy</button>
                 <p/>
 How do you re-deploy the missing "Connectors" component?
-<br/><br/>Hint: Run this step <code>Camunda 5-3</code> again, but with "help upgrade" (instead of helm insall).
+<br/><br/>Hint: Run this step <code>Camunda 5-3</code> again, but with "helm upgrade" (instead of "helm insall").
 <br/>
             </div>
             

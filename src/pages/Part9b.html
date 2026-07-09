@@ -20,7 +20,7 @@
                 <br/> If not, can you answer why?
                 <pre id="copy-text-9b-1"><code>
 # Let's uninstall the camunda app and check it out
-helm uninstall $UNAMESPACE  --namespace $UNAMESPACE
+helm uninstall {{UNAMESPACE}}  --namespace {{UNAMESPACE}}
 <br/>
 # Go to step Camunda 5-3 and run the command-set again.
 # Wait for all Pods to be in running state. 
@@ -53,21 +53,21 @@ Hint: Look at step Camunda 5-4 closely. What happens when ingress does not exist
                 <pre id="copy-text-9b-2"><code>
 ## Fix for Issue #1: update JKS with the SSL certs from external API endpoint.
 <br/>
-export UNAMESPACE=$UNAMESPACE
+export UNAMESPACE={{UNAMESPACE}}
 export EXTERNAL_API_URL=cep-api-gw-7k5bxais.an.gateway.dev
 <br/>
 # we are creating this public cert file: google-api-gw-cert.pem
 openssl s_client -connect $EXTERNAL_API_URL:443 -showcerts </dev/null 2>/dev/null | sed -n '/-----BEGIN CERTIFICATE-----/,/-----END CERTIFICATE-----/p' > google-api-gw-cert.pem
 <br/>
-kubectl get secret $UNAMESPACE-zeebe-toolkit-jks -n $UNAMESPACE \
-  -o jsonpath="{.data.$UNAMESPACE-zeebe-toolkit\.jks}" \
-  | base64 --decode > $UNAMESPACE-zeebe-toolkit.jks
+kubectl get secret {{UNAMESPACE}}-zeebe-toolkit-jks -n {{UNAMESPACE}} \
+  -o jsonpath="{.data.{{UNAMESPACE}}-zeebe-toolkit\.jks}" \
+  | base64 --decode > {{UNAMESPACE}}-zeebe-toolkit.jks
 <br/>
 keytool -importcert -alias ml-google-api-gw -file google-api-gw-cert.pem  -keystore ${UNAMESPACE}-zeebe-toolkit.jks -storepass changeit -noprompt
 <br/>
 # Upload the new JKS via patch secret
-kubectl patch secret $UNAMESPACE-zeebe-toolkit-jks -n $UNAMESPACE \
-  -p "{\"data\":{\"$UNAMESPACE-zeebe-toolkit.jks\":\"$(base64 -w 0 $UNAMESPACE-zeebe-toolkit.jks)\"}}"
+kubectl patch secret {{UNAMESPACE}}-zeebe-toolkit-jks -n {{UNAMESPACE}} \
+  -p "{\"data\":{\"{{UNAMESPACE}}-zeebe-toolkit.jks\":\"$(base64 -w 0 {{UNAMESPACE}}-zeebe-toolkit.jks)\"}}"
 <br/>
 
 
@@ -75,13 +75,13 @@ kubectl patch secret $UNAMESPACE-zeebe-toolkit-jks -n $UNAMESPACE \
 # lets run sample process Lead To Opportunity. Refer to step 6-5
 export CF_TOKEN=${CF_TOKEN}
 <br/>
-kubectl patch secret identity-secret-for-components -n $UNAMESPACE -p "{\"data\":{\"cep-email-access-token\":\"$(echo -n "$CF_TOKEN" | base64 -w 0)\"}}"
+kubectl patch secret identity-secret-for-components -n {{UNAMESPACE}} -p "{\"data\":{\"cep-email-access-token\":\"$(echo -n "$CF_TOKEN" | base64 -w 0)\"}}"
 <br/>
 # Evict the connectors pod from Project Lens or via kubectl command
-export POD_NAME=$(kubectl get pods -n $UNAMESPACE | grep connectors | cut -f 1 -d " ")
+export POD_NAME=$(kubectl get pods -n {{UNAMESPACE}} | grep connectors | cut -f 1 -d " ")
 <br/>
 # Let it be re-added by the system, this time with new config (JKS and application secret)
-kubectl delete pod -n $UNAMESPACE $POD_NAME
+kubectl delete pod -n {{UNAMESPACE}} $POD_NAME
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-2')">Copy</button>
@@ -103,7 +103,7 @@ Pick an earlier failed process instance via Operator and retry for another attem
 # lets run sample process Lead To Opportunity. Refer to step 6-5
 export CF_TOKEN=${CF_TOKEN}
 <br/>
-curl -v --location --request PUT 'https://$UNAMESPACE.makelabs.in/connectors/inbound/new-lead-record' \
+curl -v --location --request PUT 'https://{{UNAMESPACE}}.makelabs.in/connectors/inbound/new-lead-record' \
 --header 'key: SRM-web-hook-8ui3nm' \
 --header 'Content-Type: application/json' \
 --data-raw '{

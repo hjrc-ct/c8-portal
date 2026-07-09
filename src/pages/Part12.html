@@ -43,9 +43,9 @@
                                 <br/>
                                 Make sure you are in the <code>c8-labs</code> project in GCP console.
                                 <br/>
-                                <code>gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs</code>
+                                <code>gcloud container clusters get-credentials {{CLUSTER_NAME}} --region {{REGION}} --project c8-labs</code>
                                 <br/><br/>
-                                <code>kubectl describe namespace $UNAMESPACE</code>
+                                <code>kubectl describe namespace {{UNAMESPACE}}</code>
                                 <br/>
                                 Expected result: <b>Status:       Active</b>
                             </li>
@@ -78,9 +78,9 @@
                             <li>Visit the left-side navigation link: <code>Logout (or Before you leave)</code>. The steps are also outlined here on this page.</li>
                             <li>
                                 Open Google Cloud Shell terminal and run below command(s):<br/>
-                                <code>gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs</code>
+                                <code>gcloud container clusters get-credentials {{CLUSTER_NAME}} --region {{REGION}} --project c8-labs</code>
                                 <br/><br/>
-                                <code>kubectl delete namespace $UNAMESPACE</code>
+                                <code>kubectl delete namespace {{UNAMESPACE}}</code>
                                 <br/>
                                 <span class="alert-icon" role="img" aria-label="Important" style="margin-right:8px;">⚠️</span>
                                 Caution: Delete permission may not be delegated to your account. Please contact administrator about deleting the namespace (through the backend).
@@ -103,9 +103,9 @@
                             <li>Visit the left-side navigation link: <code>Camunda</code>. The steps are also outlined here on this page.</li>
                             <li>
                                 Open Google Cloud Shell terminal and run below command(s):<br/>
-                                <code>gcloud container clusters get-credentials c8-labs-sravana --region asia-south2 --project c8-labs</code>
+                                <code>gcloud container clusters get-credentials {{CLUSTER_NAME}} --region {{REGION}} --project c8-labs</code>
                                 <br/>
-                                <code>helm uninstall $UNAMESPACE --namespace $UNAMESPACE</code>
+                                <code>helm uninstall {{UNAMESPACE}} --namespace {{UNAMESPACE}}</code>
                                 <br/>
                                 <span class="alert-icon" role="img" aria-label="Important" style="margin-right:8px;">⚠️</span>
                                 Caution: Wait until all the Pods are dissolved, storage released, etc as it may take a minute or so.
@@ -191,7 +191,7 @@
                         </code>
                         <p/>
                         <code>
-                            openssl s_client -connect $UNAMESPACE.makelabs.in:443 -showcerts </dev/null 2>/dev/null | openssl x509 -pubkey -noout | openssl md5
+                            openssl s_client -connect {{UNAMESPACE}}.makelabs.in:443 -showcerts </dev/null 2>/dev/null | openssl x509 -pubkey -noout | openssl md5
                         </code>
                     </li>
 
@@ -201,7 +201,7 @@
                         </b>
                         <p/>
                         <code>
-kubectl get secret elastic-jks -n $UNAMESPACE  -o jsonpath='{.data.externaldb\.jks}' | base64 --decode > my-local-keystore.jks
+kubectl get secret elastic-jks -n {{UNAMESPACE}}  -o jsonpath='{.data.externaldb\.jks}' | base64 --decode > my-local-keystore.jks
                         </code>
                         <p/>
 
