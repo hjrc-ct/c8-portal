@@ -134,10 +134,35 @@ nav a:hover {
 
 h1 {
     color: rgb(6, 147, 227) ;
+    width: 85%;
+    line-height: 1.4em;
+    letter-spacing: -0.5px;
+    font-size: 2.5rem;
+    padding-left:  10px;
+    padding-top:  12px;
+    padding-bottom:  0%;
+    word-spacing: 0.1em;
 }
 
 h2, h3, code {
     color: #e8491d;
+}
+
+.welcome-cta-block {
+    display:flexbox;
+    width: 60%;
+    padding-bottom: 12px;
+    padding-left:  10px;
+    
+}
+
+.welcome-cta-msg {
+    color: darkslategrey;
+    font-size: 1.2em;
+    line-height: 1.4em;
+    padding-bottom: 5px;
+    width: 20%;
+    font-style: italic;
 }
 
 button {
@@ -338,14 +363,6 @@ section small {
     margin-bottom: 4px;
 }
 
-.top-cta-tooltip-text {
-    display: block;
-    max-width: 320px;
-    font-size: 0.85rem;
-    color: darkgray;
-    font-size: 0.8rem;
-    line-height: 1.2;
-}
 
 .quick-link-pill {
     display: inline-flex;
@@ -948,6 +965,7 @@ nav a.nav-active {
     font-size: clamp(1.35rem, 2vw, 2rem);
     line-height: 1.75;
     color: rgb(6, 147, 227) ;
+    
 }
 
 .hero-badges {
@@ -1028,10 +1046,16 @@ nav a.nav-active {
 
 .top-cta-tooltip-text {
     display: block;
+    max-width: 320px;
     font-size: 0.85rem;
     line-height: 1.55;
-    color: #334155;
+    color: darkslategray;
     font-weight: 500;
+}
+
+.top-cta-tooltip-text-highlight {
+    color:#e8491d;
+
 }
 
 .header-right-logo {
