@@ -19,13 +19,11 @@
                 <pre id="copy-text-9-1"><code>
 export UNAMESPACE={{UNAMESPACE}}
 <br/>
-export ZEEBE_SECRET=$(kubectl get secret identity-secret-for-components -n {{UNAMESPACE}} -o jsonpath="{.data.zeebe-secret}" | base64 --decode)
-<br/>
 curl -X POST "https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=client_credentials" \
   -d "client_id=zeebe" \
-  -d "client_secret=${ZEEBE_SECRET}"
+  -d "client_secret=pwd-here"
                 </code></pre>
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-9-1')">Copy</button>
@@ -62,7 +60,7 @@ curl -X POST "https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/pro
 psql -U bn_keycloak -d bitnami_keycloak
 # Use the password from the K8S Secrets
 # Run the sql query
-SELECT id, username, service_account_client_link FROM user_entity WHERE username LIKE ‘%zeebe%’;                    
+SELECT * FROM public.user_entity WHERE id = 'value-of-sub-from-token';
 </pre>
                 </div>
             </div>
@@ -79,7 +77,24 @@ SELECT id, username, service_account_client_link FROM user_entity WHERE username
                 <p/>
 In real-life scenario, if you are given an existing Kubernetes environment, how would you find out the Camunda release number?
 <br/>Hint: Use Headlamp Dashboard or Project Lens UI app to look for the deployed helm charts (ConfigMap).
-<br/>
+<br/><br/>
+                <span class="answer-toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" onchange="toggleAnswer(this)">
+                        <span class="switch-slider"></span>
+                        <span class="switch-label">Show Answer</span>
+                    </label>
+                </span>
+                <div class="answer-text" hidden>
+                    <strong>Answer:</strong>
+                    The app installation metadata is stored in a config map entry.<br/>
+                    See below screen shot.<br/>
+                    
+                    <img width="90px" height="64px" src="pages/img-9a-2-camunda-info.jpg"
+                            alt="Camunda Workload status" 
+                            style="cursor:pointer;" 
+                            onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+                </div>
             </div>
             
             <p><hr/></p>

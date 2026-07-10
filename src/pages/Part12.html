@@ -284,6 +284,26 @@ This shows:<br/>
 &nbsp;&nbsp;Assigned IP/Load Balancer<br/>
                         <p/>
                     </li>
+
+                    <!-- open terminal session -->
+                    <li>
+                        <b>
+                            How to open a terminal session with a running pod?
+                        </b>
+                        <p>
+<code>
+kubectl get pods -n ${UNAMESPACE}
+</code>
+<br/>
+<code>
+kubectl exec -it -n ${UNAMESPACE} pod-name-here -- /bin/bash
+</code>
+<br/>
+Get list of pods in your namespace. <br/>
+Copy the pod name and use the second command to create a session.
+<br/>
+                        <p/>
+                    </li>
                 </ul>
             </div>
         </section>
