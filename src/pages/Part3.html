@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <main>
+    <main id="page-start">
         <h2>Install Landing Page</h2>
         <p>A simple html page to navigate Camunda apps and other aspects covered in this program.</p>
 
@@ -47,6 +47,9 @@ envsubst '${UNAMESPACE} ${WEBPAGEAPPURL}' < deploy-landing-page.yaml  | kubectl 
                 Note: If the page is not accessible (i.e., shows Invalid Certificate error or similar), you may continue with the next steps. You can test this after completing the Camunda app install. (before <i>Deploy sample app</i>)
             </div>            
         </section>
+        <hr/>
+        <p><a class="next-page-marker" onclick="loadCoursePart(4, 'page-start');">Next: Elasticsearch</a></p>
+        <hr/>
     </main>
     <footer>
         <!-- Footer component will be rendered here -->

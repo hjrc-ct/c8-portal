@@ -148,6 +148,16 @@ const loadCoursePart = (part, specificView) => {
                 attachClearCacheButton();
 
             }
+
+            if (specificView){
+                // scroll to element if present
+                const element = document.getElementById(specificView);
+                        if (element) {
+                            element.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+            }
             
         })
         .catch(error => console.error('Error loading course part:', error));
