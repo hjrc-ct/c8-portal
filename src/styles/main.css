@@ -134,13 +134,13 @@ nav a:hover {
 
 h1 {
     color: rgb(6, 147, 227) ;
-    width: 85%;
+    width: 90%;
     line-height: 1.4em;
     letter-spacing: -0.5px;
     font-size: 2.5rem;
     padding-left:  10px;
-    padding-top:  12px;
-    padding-bottom:  0%;
+    padding-top:  0px;
+    padding-bottom:  6px;
     word-spacing: 0.1em;
 }
 
@@ -950,7 +950,7 @@ nav a.nav-active {
 .header-eyebrow-badge {
     display: inline-flex;
     align-items: center;
-    padding: 4px 10px;
+    padding: 0px 10px;
     border-radius: 999px;
     background: rgb(232, 240, 254);
     color: #0d5f8a;
@@ -1039,7 +1039,7 @@ nav a.nav-active {
 
 .top-cta-tooltip {
     display: inline-grid;
-    gap: 8px;
+    gap: 12px;
     text-align: right;
     max-width: 260px;
 }
@@ -1047,7 +1047,7 @@ nav a.nav-active {
 .top-cta-tooltip-text {
     display: block;
     max-width: 320px;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     line-height: 1.55;
     color: darkslategray;
     font-weight: 500;
