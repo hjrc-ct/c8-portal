@@ -132,6 +132,11 @@ nav a:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+em {
+    font-size:small;
+    color: rgb(6, 147, 227) ;
+}
+
 h1 {
     color: rgb(6, 147, 227) ;
     width: 90%;
