@@ -1048,6 +1048,7 @@ nav a.nav-active {
 .header-right-arrow{
     align-self: end;
     vertical-align: bottom;
+    cursor: grabbing;
 }
 
 .header-right-top {
