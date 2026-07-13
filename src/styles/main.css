@@ -345,6 +345,7 @@ section small {
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(111, 66, 193, 0.24);
     background: #35424a;
+    cursor:grabbing;
 }
 
 .quick-link-pill-top-cta-secondary {
@@ -367,6 +368,7 @@ section small {
     box-shadow: 0 8px 16px rgba(111, 66, 193, 0.24);
     background: #35424a;
     color: white;
+    cursor:grabbing;
 }
 
 .top-cta-tooltip {
