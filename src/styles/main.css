@@ -47,8 +47,17 @@ header {
     position: relative;
     display: inline-flex;
     align-items: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+    min-width: max-content;
 }
 
+.header-scroll{
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    white-space: nowrap;
+}
 
 .namespace-menu {
     position: relative;

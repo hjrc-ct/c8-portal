@@ -176,6 +176,7 @@
             }
 
             headerContent.innerHTML = 
+                        '<div class="header-scroll">' +
                         '<div class="header-button-list">' +
                             namespaceMenuMarkup +
                             '<a id="header_home" onclick="window.location.href = window.location.pathname;">Home</a>' +
@@ -188,6 +189,7 @@
                                 ? '<button id="logout" class="request-access-btn" type="button" onclick="signOutAndRedirect()">Sign Out</button>' 
                                 : '<button id="request-access-btn" class="request-access-btn" type="button">Sign In</button>'
                             )
+                        + '</div>'
                         + '</div>';
 
             const namespaceToggle = document.getElementById('namespace-menu-toggle');
