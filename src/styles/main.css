@@ -47,16 +47,23 @@ header {
     position: relative;
     display: inline-flex;
     align-items: center;
-    flex-wrap: nowrap;
+    flex-wrap:wrap;
     gap: 8px;
     min-width: max-content;
 }
 
 .header-scroll{
+    min-width:auto;
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     white-space: nowrap;
+    scrollbar-width: none;
+     -ms-overflow-style: none;
+}
+
+.header-scroll::-webkit-scrollbar {
+    display: none;    /* Chrome, Safari, Edge */
 }
 
 .namespace-menu {
