@@ -51,12 +51,12 @@ kubectl create secret docker-registry registry-docker-hub  \
             <div class="copy-block" data-label="bash 4-2">
                 <p/>
                 Install elastic components - elk certs<br/>
-                Important: Make sure Docker Desktop app is running on your local machine.<p/>
+                Important: Make sure Docker CLI command is supported on the terminal window.<p/>
                 <pre id="copy-text-4-2"><code>
 UNAMESPACE={{UNAMESPACE}} envsubst < elk-makefile | sh
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-4-2', 'Important: Before running the command, make sure Docker Desktop app is running on your local machine.')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-4-2', 'Important: Make sure Docker CLI command is supported on the terminal window.')">Copy</button>
                 <p/>
 After this, you should see secrets created in your namespace (via Project Lens UI app).
 <br/># Config => secret/elastic-certificates created

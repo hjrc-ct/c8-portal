@@ -350,29 +350,32 @@ function metadataCheck() {
     }  
 }
 
-function showNote(message, duration = 7000) {
-    let note = document.getElementById('temp-note');
-    if (!note) {
-        note = document.createElement('div');
-        note.id = 'temp-note';
-        note.style.position = 'fixed';
-        note.style.bottom = '30px';
-        note.style.left = '50%';
-        note.style.transform = 'translateX(-50%)';
-        note.style.background = '#e8491d';
-        note.style.color = '#fff';
-        note.style.padding = '12px 24px';
-        note.style.borderRadius = '6px';
-        note.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
-        note.style.fontSize = '1.4em';
-        note.style.zIndex = '9999';
-        document.body.appendChild(note);
-    }
-    note.textContent = message;
-    note.style.display = 'block';
-    setTimeout(() => {
-        note.style.display = 'none';
-    }, duration);
+// message: show it as toast to the end user
+// duration: 7 seconds default
+// type: all are info messages or CLI supporting notation
+function showNote(message, duration = 7000, type = "info") {
+    let toast = document.getElementById("app-toast");
+    
+        if (!toast) {
+            toast = document.createElement("div");
+            toast.id = "app-toast";
+            toast.className = "toast";
+            document.body.appendChild(toast);
+        }
+
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+
+        // Restart animation
+        toast.classList.remove("show");
+        void toast.offsetWidth;
+        toast.classList.add("show");
+
+        clearTimeout(toast.hideTimer);
+
+        toast.hideTimer = setTimeout(() => {
+            toast.classList.remove("show");
+        }, duration);
 }
 
 const participants = 
