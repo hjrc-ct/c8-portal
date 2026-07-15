@@ -75,6 +75,17 @@ const loadCoursePart = (part, specificView) => {
                 attachInitOnboardingButton();
                 metadataCheck();
             }
+            else if (part == 2){
+                if (specificView){
+                    // scroll to element if present
+                    const element = document.getElementById((true == specificView) ? 'page-start' : specificView );
+                            if (element) {
+                                element.scrollIntoView({
+                                    behavior: 'smooth'
+                                });
+                            }
+                }
+            }
             // If Part7, fetch and inject the keys
             else if (part == 7) {
                 // Check if namespace ends with 'pro-c8-labs' for premium access
@@ -143,9 +154,30 @@ const loadCoursePart = (part, specificView) => {
             }
             else if (part == 11){
                 attachSupportMetadataButton(); // copy-text-11-1
+
+                if (specificView){
+                    // scroll to element if present
+                    const element = document.getElementById((true == specificView) ? 'page-start' : specificView );
+                            if (element) {
+                                element.scrollIntoView({
+                                    behavior: 'smooth'
+                                });
+                            }
+                }
+            
             }
             else if (part == 12) {
                 attachClearCacheButton();
+
+                if (specificView){
+                    // scroll to element if present
+                    const element = document.getElementById((true == specificView) ? 'page-start' : specificView );
+                            if (element) {
+                                element.scrollIntoView({
+                                    behavior: 'smooth'
+                                });
+                            }
+                }
 
             }
 
