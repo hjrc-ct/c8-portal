@@ -849,3 +849,14 @@ function getEmailFromAccessJwt(jwt) {
   }catch(e) {return null;}
   
 }
+
+function copyNamespace() {
+    const ns = document.getElementById("user-namespace").value;
+
+    if (ns)
+        navigator.clipboard.writeText(ns)
+            .then(() => showNote(`Namespace ${ns} copied!`))
+            .catch(() => showNote("Unable to copy namespace."));
+    else
+        showNote("Namespace not found!");
+}

@@ -10,6 +10,11 @@
     <meta name="author" content="MakeLabs.in & Camunda Community Chapter Bengaluru" />
     <title>C8 Kubernetes Labs | Camunda 8 Self-Managed on Kubernetes / GCP</title>
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
 </head>
 <body>
     <header id="header">
@@ -163,13 +168,24 @@
             if (nsValue) {
                 namespaceMenuMarkup = `
                     <div class="namespace-menu">
+                        <input type="hidden" id="user-namespace" name="user-namespace" value="${nsValue}" />
                         <button id="namespace-menu-toggle" class="namespace-menu-toggle" type="button" aria-expanded="false" aria-controls="namespace-menu-panel">
-                            <span><b>Namespace:</b> ${nsValue}</span>
+                            <span><b>My Namespace:</b> ${nsValue}</span>
                             <span class="namespace-caret">▾</span>
                         </button>
                         <div id="namespace-menu-panel" class="namespace-menu-panel" hidden>
-                            <a href="https://dashboard-c8-labs.makelabs.in" target="_blank" rel="noopener noreferrer">Kubernetes Dashboard</a>
-                            <a href="https://${nsValue}.makelabs.in" target="_blank" rel="noopener noreferrer">Your C8 Landing Page</a>
+                            <a href="#" onclick="copyNamespace(); return false;">
+                                <i class="fa-regular fa-copy"></i>
+                                Copy My Namespace
+                            </a>
+                            <a href="https://dashboard-c8-labs.makelabs.in" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-solid fa-cubes"></i>
+                                Visit Kubernetes Dashboard
+                            </a>
+                            <a href="https://${nsValue}.makelabs.in" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-solid fa-globe"></i>
+                                Your C8 Landing Page
+                            </a>
                         </div>
                     </div>
                 `;
