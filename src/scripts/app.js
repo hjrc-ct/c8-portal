@@ -201,7 +201,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             
             if (nsParam) url.searchParams.delete('ns');
 
-            window.location.href = '/'; // reset the path and ns value using cache
             url.searchParams.set('ns', parsed.namespace);
             window.history.replaceState({}, '', url.toString());
             
@@ -209,7 +208,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             hasAccess ? loadCoursePart('1a', 'page-start') : loadCoursePart(0, 'welcome');
         } else {
             console.log('On refersh - no storage json - load 1a or H0me based on hasAccess: ' + hasAccess);
-            window.location.href = '/'; // reset the path
+            
             hasAccess ? loadCoursePart('1a', 'page-start') : loadCoursePart(0);
         }
         return;
