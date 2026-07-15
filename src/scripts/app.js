@@ -204,10 +204,10 @@ window.addEventListener('DOMContentLoaded', async () => {
             url.searchParams.set('ns', parsed.namespace);
             window.history.replaceState({}, '', url.toString());
             console.log('On refersh - with storage json - load 1a or H0me based on hasAccess: ' + hasAccess);
-            loadCoursePart(hasAccess ? '1a' : 0);
+            hasAccess ? loadCoursePart('1a', 'page-start') : loadCoursePart(0, 'welcome');
         } else {
             console.log('On refersh - no storage json - load 1a or H0me based on hasAccess: ' + hasAccess);
-            loadCoursePart(hasAccess ? '1a' : 0);
+            hasAccess ? loadCoursePart('1a', 'page-start') : loadCoursePart(0);
         }
         return;
     }
