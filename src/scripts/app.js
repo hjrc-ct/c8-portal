@@ -62,9 +62,24 @@ const loadCoursePart = (part, specificView) => {
                 renderStudentTable();
                 attachGalleryModal();
 
+                // there are links to visit specific section of this page
+                // lets look for it in the href
+                const currentPageLink = window.location.href;
+                if (!specificView){
+                    if ( currentPageLink.indexOf("get-started") >= 0 )
+                        specificView = 'get-started';
+                    else if ( currentPageLink.indexOf("need-help") >= 0 )
+                        specificView = 'need-help';
+                    else if ( currentPageLink.indexOf("access-plans") >= 0 )
+                        specificView = 'access-plans';
+                    else if ( currentPageLink.indexOf("lab-gallery") >= 0 )
+                        specificView = 'lab-gallery';
+
+                }
+
                 if (specificView){
                     // scroll to element if present
-                    const element = document.getElementById('need-help');
+                    const element = document.getElementById(true == specificView ? 'need-help' : specificView);
                             if (element) {
                                 element.scrollIntoView({
                                     behavior: 'smooth'
@@ -209,9 +224,9 @@ document.querySelectorAll('nav a').forEach(link => {
         // Your existing code to load the part
         const partMatch = event.currentTarget.getAttribute('href').match(/Part(\d+[a-zA-Z]*)/);
         if (partMatch) {
-            loadCoursePart(partMatch[1]);
+            loadCoursePart(partMatch[1], 'page-start');
         } else if (event.currentTarget.getAttribute('href').includes('Part0.html')) {
-            loadCoursePart(0);
+            loadCoursePart(0, 'welcome');
         }
     });
 });
@@ -245,8 +260,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
         return;
     }
-
-    loadCoursePart(0);
 });
 
 document.addEventListener('DOMContentLoaded', function() {
