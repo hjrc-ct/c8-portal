@@ -1255,3 +1255,19 @@ nav a.nav-active {
 .toast.info {
     background: rgba(232,73,29, 0.91);
 }
+
+.welcome-block {
+  display: flex;
+  align-items: flex-start;      /* top-align text and image */
+  gap: 1.5rem;                  /* space between text and image */
+}
+
+.welcome-text {
+  flex: 1;                      /* text takes remaining width */
+}
+
+.word-cloud img {
+  max-width: 280px;             /* adjust to taste */
+  height: auto;
+  display: block;
+}
