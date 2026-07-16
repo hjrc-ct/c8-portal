@@ -51,12 +51,6 @@ const loadCoursePart = (part, specificView) => {
               codeBlock.textContent = codeBlock.textContent.replace(/{{REGION}}/g, k8sConfig.REGION);
             });
 
-            // Count number of copy-block occurrences within the loaded content
-            const copyBlockCount = mainContent.querySelectorAll('.copy-block').length;
-            if (copyBlockCount > 0) {
-              showNote(`This page has ${copyBlockCount} command-set instruction(s).`);
-            }
-
             if (part == 0) {
                 participants.sort((a, b) => a.name.localeCompare(b.name));
                 renderStudentTable();
@@ -103,21 +97,9 @@ const loadCoursePart = (part, specificView) => {
             }
             // If Part7, fetch and inject the keys
             else if (part == 7) {
-                // Check if namespace ends with 'pro-c8-labs' for premium access
-                // Check if namespace ends with 'mls-c8-labs' for premium access
-                const nsParam = getQueryParam('ns') || '';
-                if (!nsParam.endsWith('pro-c8-labs') && !nsParam.endsWith('mls-c8-labs') ) {
-                    // Replace section with premium access message
-                    const section = mainContent.querySelector('section');
-                    if (section) {
-                        section.innerHTML = `
-                            <div style="padding: 40px 20px; text-align: center; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #e8491d;">
-                                <h3 style="color: #e8491d; margin-top: 0;">🔒 Premium Access Required</h3>
-                                <p style="color: #666; font-size: 16px;">This section is available for Premium Access</p>
-                                <p style="color: #999; font-size: 14px;">Please upgrade to Premium Tier to access Lab Exercise #b content.</p>
-                            </div>
-                        `;
-                    }
+                const hasAccess = await checkForAccess(mainContent);
+                if ( ! hasAccess ){
+                    console.error('Access restricted!');
                     return;
                 }
 
@@ -135,34 +117,27 @@ const loadCoursePart = (part, specificView) => {
                         }
                     });
             }
-            else if (part == '9b' || part == '9c'){
-                // Check if namespace ends with 'pro-c8-labs' for premium access
-                const nsParam = getQueryParam('ns') || '';
-                if (true && !nsParam.endsWith('pro-c8-labs')) {
-                    // Replace section with premium access message
-                    const section = mainContent.querySelector('section');
-                    if (section) {
-                        section.innerHTML = `
-                            <div style="padding: 40px 20px; text-align: center; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #e8491d;">
-                                <h3 style="color: #e8491d; margin-top: 0;">🔒 Premium Access Required</h3>
-                                <p style="color: #666; font-size: 16px;">This section is available for Premium Access</p>
-                                <p style="color: #999; font-size: 14px;">Please upgrade to Premium Tier to access Lab Exercise #b content.</p>
-                            </div>
-                        `;
-                    }
-                } else {
-                    // Premium access granted - replace CF_TOKEN placeholders
-                    const codeElements = mainContent.querySelectorAll('code');
-                    const accessToken = await getMyAccessToken(false);
-                    codeElements.forEach(codeBlock => {    
-                        if (accessToken){
-                            codeBlock.textContent = codeBlock.textContent.replace(/\$CF_TOKEN/g, accessToken );
-                        }
-                        else {
-                            codeBlock.textContent = codeBlock.textContent.replace(/\$CF_TOKEN/g, "undefined-cf-token" );
-                        }
-                    });
+            else if (part == '9a' || part == '9b' || part == '9c'){
+                const hasAccess = await checkForAccess(mainContent);
+                if ( ! hasAccess ){
+                    console.error('Access restricted!');
+                    return;
                 }
+
+                // Check if namespace ends with 'c8-labs' for premium access
+                const nsParam = getQueryParam('ns') || ''; 
+
+                // Premium access granted - replace CF_TOKEN placeholders
+                const codeElements = mainContent.querySelectorAll('code');
+                const accessToken = await getMyAccessToken(false);
+                codeElements.forEach(codeBlock => {    
+                    if (accessToken){
+                        codeBlock.textContent = codeBlock.textContent.replace(/\$CF_TOKEN/g, accessToken );
+                    }
+                    else {
+                        codeBlock.textContent = codeBlock.textContent.replace(/\$CF_TOKEN/g, "undefined-cf-token" );
+                    }
+                });
             }
             else if (part == 10) {
                 attachshareToLinkedIn();
@@ -193,8 +168,13 @@ const loadCoursePart = (part, specificView) => {
                                 });
                             }
                 }
-
             }
+
+            // Count number of copy-block occurrences within the loaded content
+            const copyBlockCount = mainContent.querySelectorAll('.copy-block').length;
+            if (copyBlockCount > 0) {
+              showNote(`This page has ${copyBlockCount} command-set instruction(s).`);
+            }            
 
             if (specificView){
                 // scroll to element if present
@@ -907,4 +887,39 @@ function copyNamespace() {
             .catch(() => showNote("Unable to copy namespace."));
     else
         showNote("Namespace not found!");
+}
+
+// Check if access is available. 
+// Applicable for few sections: 7 (My keys), 9a, 9b, 9c (Lab Exercises)
+async function checkForAccess(mainContent){
+    // Check if namespace ends with 'c8-labs'
+    const nsParam = getQueryParam('ns') || '';
+    const accessToken = await getMyAccessToken(false);
+    const hasAccess = !!accessToken && !!getEmailFromAccessJwt(accessToken);
+
+    if (!hasAccess) {
+        const section = mainContent.querySelector('main');
+        if (section) {
+            section.innerHTML = `
+                <p/>
+                <div style="padding: 40px 20px; text-align: center; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #e8491d;">
+                    <h3 style="color: #e8491d; margin-top: 0;">🔒 Complete Sign to Continue</h3>
+                    <hr/>
+                    <p style="color: #666; font-size: 16px;">This section contains information about course resources, guided labs and instructions that are availble only to authenticated participants.</p>
+                    <br/>
+                    <p style="color: #999; font-size: 16px;">Sign In to verify your access and continue your hands-on learning.</p>
+                </div>
+            `;
+        }
+        // scroll to element if present
+        const element = document.getElementById('page-start');
+        if (element) {
+            element.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        return false;
+    }    
+
+    return true;
 }

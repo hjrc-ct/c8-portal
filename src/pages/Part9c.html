@@ -18,13 +18,22 @@
                 Q. The current orchestration cluster topology has 3 broker nodes with 3 partitions. <br/>
                 Cluster topology is one of the key decisions made by an Architect taking into account the non-functional requirements.<br/>
                 Visit Landing Page -> Topology to see the current topology and partition distribution.<br/><br/>
-                Let's plan to increase the partition count to 5.<br/>
+                Let's plan to <b>increase the partition count to 5</b>.<br/>
                 <ul style="list-style: none;">
                     <li>
                         <small>Note: Partition count can be increased upwards. However, it cannot be reduced to a lower number.</small>
                     </li>
-                </ul>                
-                <pre id="copy-text-9c-1"><code>
+                </ul>
+                <span class="answer-toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" onchange="toggleAnswer(this)">
+                        <span class="switch-slider"></span>
+                        <span class="switch-label">Show Answer</span>
+                    </label>
+                </span>
+                <div class="answer-text" hidden>
+                    <strong>Answer:</strong>
+<pre id="copy-text-9c-1"><code>
 # Start in GCP Cloud Shell
 export UNAMESPACE={{UNAMESPACE}}
 <br/>
@@ -52,7 +61,6 @@ curl --request GET 'http://localhost:9600/orchestration/actuator/cluster'
 pkill -f "kubectl port-forward"
 
                 </code></pre>
-                <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-9c-1')">Copy</button>
                 <p>
                     <small>Post Command-Set Execution: Click to view screen shot - How to check status COMPLETED?</small>
@@ -64,10 +72,13 @@ pkill -f "kubectl port-forward"
                             onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
                 </p>
 
-Visit again Landing Page -> Topology to see the new topology and partition distribution.
+Visit again <code>Landing Page -> Topology</code> to see the new topology and partition distribution.
+<br/>Tip: Use Chrome browser for better visualisation of JSON object.
 <br/>
+                </div>
             </div>
-            <p/>
+            
+            <p><hr/></p>
 
             <div class="copy-block" data-label="lab 9c-2">
                 <p/>
@@ -85,7 +96,17 @@ Visit again Landing Page -> Topology to see the new topology and partition distr
                         </li>
                     </ul>
                     </div>
-                Let's do some work to disrupt the broker nodes and see the resiliency in action.<br/>
+                Let's do some work to disrupt the broker nodes and see the resiliency in action.
+                <br/><br/>
+                <span class="answer-toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" onchange="toggleAnswer(this)">
+                        <span class="switch-slider"></span>
+                        <span class="switch-label">Show Answer</span>
+                    </label>
+                </span>
+                <div class="answer-text" hidden>
+                    <strong>Answer:</strong>
                 <ul style="list-style: none;">
                     <li>
                         Option #1. Evict <code>zeebe-0 pod</code> (or any other zeebe pod) and check the outcome.
@@ -95,7 +116,7 @@ Visit again Landing Page -> Topology to see the new topology and partition distr
                     </li>
                 </ul>
                 
-                <pre id="copy-text-9c-2"><code>
+<pre id="copy-text-9c-2"><code>
 # Start in GCP Cloud Shell
 gcloud config set project c8-labs
 export UNAMESPACE={{UNAMESPACE}}
@@ -115,9 +136,10 @@ kubectl delete pod -n {{UNAMESPACE}} $POD_NAME
 Pick an earlier failed process instance via Operator and retry for another attempt.
 <br/>Are you able to continue with transaction(s) while the rejig is happening in the background?
 <br/>
+<hr/>
 
                 <pre id="copy-text-9c-2-b"><code>
-## Option 2 - Run by the Administrator
+## Option 2 - Run by the Session Administrator
 # Start in GCP Cloud Shell
 gcloud config set project c8-labs
 export UNAMESPACE={{UNAMESPACE}}
@@ -131,7 +153,9 @@ gcloud compute instances delete vm-node-name  --zone=zone-id
 Pick an earlier failed process instance via Operator and retry for another attempt.
 <br/>Are you able to continue with transaction(s) while the rejig is happening in the background?
 <br/>
+                </div>
             </div>
+            
             <p/>
 
         </section>
@@ -160,7 +184,7 @@ Pick an earlier failed process instance via Operator and retry for another attem
                             <p style="color: #666; font-size: 16px;">This page must be accessed through the main portal.</p>
                             <p style="color: #999; font-size: 14px;">Please go back to the index page and navigate using the course menu.</p>
                             <button onclick="window.location.href='../index.html'" style="margin-top: 20px; padding: 10px 20px; background: #e8491d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">
-                                Go to Index
+                                Return to Home
                             </button>
                         </div>
                     </div>

@@ -1068,12 +1068,37 @@ nav a.nav-active {
     cursor: grabbing;
 }
 
-.header-right-top {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    background-color: rgb(232, 240, 254);
-    padding: 12px 12px;
+.header-right-top{
+    position: relative;
+    background:#fff;
+    border-radius:18px;
+    padding:18px 22px;
+    border:1px solid rgba(0,0,0,.05);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.04),
+        0 12px 30px rgba(0,0,0,.08);
+
+    transition:.25s ease;
+}
+
+.header-right-top:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,.08),
+        0 20px 40px rgba(0,0,0,.12);
+}
+
+.header-right-top::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:3px;
+    border-radius:18px 18px 0 0;
+    background:linear-gradient(90deg,#ff6b2d,#ffb26b);
 }
 
 .header-right-top svg {

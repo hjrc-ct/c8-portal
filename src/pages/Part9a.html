@@ -150,6 +150,52 @@ Hint: Have you noticed any pattern when the pods are starting? Read a bit on Cam
         <p><a class="next-page-marker" onclick="loadCoursePart('9b', 'page-start');">Next: Lab Exercise #b Connector & Grafana</a></p>
         <hr/>
     </main>
+    <script>
+        // Helper function to get query parameters
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        // Load the appropriate course part on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            // Check if the page is being accessed directly (without ns parameter)
+            const nsParam = getQueryParam('ns') || '';
+            
+            if (!nsParam) {
+                // Direct access without ns parameter - show blocking message
+                document.body.innerHTML = `
+                    <div style="padding: 60px 20px; text-align: center; background: #f8f9fa; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+                        <div style="max-width: 500px;">
+                            <h2 style="color: #e8491d; margin-top: 0;">⚠️ Direct Access Not Allowed</h2>
+                            <p style="color: #666; font-size: 16px;">This page must be accessed through the main portal.</p>
+                            <p style="color: #999; font-size: 14px;">Please go back to the index page and navigate using the course menu.</p>
+                            <button onclick="window.location.href='../index.html'" style="margin-top: 20px; padding: 10px 20px; background: #e8491d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">
+                                Return to Home
+                            </button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            // Check if namespace ends with 'pro-c8-labs' for premium access
+            if (false && !nsParam.endsWith('pro-c8-labs')) {
+                // Replace section with premium access message
+                const section = document.querySelector('section');
+                if (section) {
+                    section.innerHTML = `
+                        <div style="padding: 40px 20px; text-align: center; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #e8491d;">
+                            <h3 style="color: #e8491d; margin-top: 0;">🔒 Premium Access Required</h3>
+                            <p style="color: #666; font-size: 16px;">This section is available for Premium Access</p>
+                            <p style="color: #999; font-size: 14px;">Please upgrade to Premium Tier to access Lab Exercise #b content.</p>
+                        </div>
+                    `;
+                }
+                return;
+            }
+        });
+    </script>
     <script src="../scripts/app.js"></script>
 </body>
 </html>

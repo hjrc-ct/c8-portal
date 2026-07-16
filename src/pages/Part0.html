@@ -203,6 +203,9 @@ Whether you're new to Camunda 8 or preparing for real-world deployments, C8-Labs
                 Access Plans
             </h2>
             <p>
+                This table compares what participants receive under the Free and Premium tiers. It highlights the key differences in access, duration, support, and learning experience so the plan choices are easy to scan.
+            </p>
+            <p>
             <table class="course-summary-table">
                 <thead>
                     <tr>
@@ -321,6 +324,77 @@ Whether you're new to Camunda 8 or preparing for real-world deployments, C8-Labs
                     </tr>
                     <tr>
                         <td class="access-plan-label">
+                            <b>Participant Access to GCP Project</b>
+                            <br/>
+                            <small>
+                                For security reasons, the participant can see the project via GCP web ui console and open Cloud Shell terminal session.
+                                <br/>Beyond that, there won't be much access given. (Note: Not having deeper project access will not limit the execution of labs)
+                            </small>
+                        </td>
+                        <td>
+                            Limited
+                            <br/>
+                            <br/>
+                            <small>
+                                If you try to visit project resources such as Kubernetes Engine, IAM etc, you may see a message: You do not have access.
+                                Please ignore this, as limiting access is by design.
+                            </small>
+                        </td>
+                        <td>
+                            Limited
+                            <br/>
+                            <br/>
+                            <small>
+                                If you try to visit project resources such as Kubernetes Engine, IAM etc, you may see a message: You do not have access.
+                                Please ignore this, as limiting access is by design.
+                            </small>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="access-plan-label">
+                            <b>Participant Access to Kubernetes Dashboard</b>
+                            <br/>
+                            <small>
+                                Access to see resources within participant namespace.
+                                <br/>
+                            </small>
+                        </td>
+                        <td>
+                            Below methods are available.
+                            <br/><br/>
+                            Kubectl CLI commands via GCP Cloud Shell terminal window
+                            <br/><b>Yes</b>
+                            <br/><br/>
+                            Headlamp Kubernetes Dashboard UI
+                            <br/><b>Limited "view-only" access</b>
+                            <br/><br/>
+                            <small>
+                                Headlamp Web UI is installed and preconfigured so participant can <code>view</code> objects in the participant specific namespace.
+                                <br/>You may not be able to open terminal session with Pods or view Pod logs due to limited access given to the participant.
+                                <br/>As an alternate, you may use the Kubectl CLI commands.
+                            </small>
+                        </td>
+                        <td>
+                            Below methods are available.
+                            <br/><br/>
+                            Kubectl CLI commands via GCP Cloud Shell terminal window
+                            <br/><b>Yes</b>
+                            <br/><br/>
+                            Headlamp Kubernetes Dashboard UI
+                            <br/><b>Limited "view-only" access</b>                            
+                            <br/><br/>
+                            <b>[Recommended]</b> Install Project Lens UI
+                            <br/><b>Full access to your namespace</b>
+                            <br/><br/>
+                            <small>
+                                Participant to install Project Lens UI app on their local machine (Refer to Prerequisites section in Navigation panel). 
+                                Using Project Lens, you can see and make changes to the kubernetes objects in your assigned namespace.
+                                Recommended for learning insights and gaining a deeper understandng of the physical structure.
+                            </small>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="access-plan-label">
                             <b>Complete All Labs</b>
                             <br/>
                             <small>We make best possible attempt to complete all labs in the course.</small>
@@ -368,7 +442,7 @@ Whether you're new to Camunda 8 or preparing for real-world deployments, C8-Labs
                     <tr>
                         <td class="access-plan-label">
                             <b>Labs Support</b>
-                            <br/><small> Refer to <code>Support Contact</code> navigation link for contact details.</small>
+                            <br/><small> Refer to <code>Support</code> navigation link for details.</small>
                         </td>
                         <td>Limited<br/><small>Join WhatsApp group for community support.</small></td>
                         <td>
@@ -406,7 +480,7 @@ Whether you're new to Camunda 8 or preparing for real-world deployments, C8-Labs
                         <b>Premium Tier – Scheduled onboarding (MS Teams / Book My Schedule)</b>
                         <br/>
                         Book a schedule based on a time that works for you to have an introductory session. You may choose a time schedule to start the labs subsequently.
-                        <br/>
+                        <br/><br/>
                         <a class="quick-link-pill-top-cta-primary" href='https://outlook.office.com/book/BengaluruChapterAccesstoCamundaKubernetesPlayground@makelabs.in/?ismsaljsauthenabled'>
                             Reserve Your Premium Lab
                         </a>

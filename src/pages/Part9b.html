@@ -18,40 +18,64 @@
                 Q. In the camunda installation steps, lets visit <code>step 5-3</code>.<br/>
                 After successfully running the command-set at <code>step 5-3</code>, and before running the next command step 5-4, would you think camunda app will be accessible via Landing Page? (say Operate or Console)
                 <br/> If not, can you answer why?
+                <p/>
+                <span class="answer-toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" onchange="toggleAnswer(this)">
+                        <span class="switch-slider"></span>
+                        <span class="switch-label">Show Answer</span>
+                    </label>
+                </span>
+                <div class="answer-text" hidden>
+                    <strong>Answer:</strong>
+Hint: Look at step Camunda 5-4 closely. What happens when ingress does not exist?
+<br/>If you so wish, let's run the helm uninstall camunda app command (as shown below) and see for yourself.
+<br/>
                 <pre id="copy-text-9b-1"><code>
 # Let's uninstall the camunda app and check it out
 helm uninstall {{UNAMESPACE}}  --namespace {{UNAMESPACE}}
+# Wait until all the camunda app related pods terminate.
 <br/>
-# Go to step Camunda 5-3 and run the command-set again.
+# Next, go to step Camunda 5-3 and run the command-set again.
 # Wait for all Pods to be in running state. 
 # Do you notice anything?
                 </code></pre>
-                <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-1')">Copy</button>
                 <p/>
-Hint: Look at step Camunda 5-4 closely. What happens when ingress does not exist?
-<br/>If you so wish, run the helm uninstall camunda app command (as shown above) and see for yourself.
-<br/>
+                </div>
             </div>
-            <p/>
+
+            <p><hr/></p>
 
             <div class="copy-block" data-label="lab 9b-2">
                 <p/>
                 Q. Let's fix the issue with the Lead To Opportunity process instance failing to send email notification (Notify via Email).<br/>
                 There are two points here:
                 <ul style="list-style: none;">
+                    <li>There are <b>two points</b> of importance here.</li>
                     <li>
                         The first is with external SSL certificates and connectors JKS. The certificates associated with external API need to be included into the JKS of connectors pod.
                     </li>
-                    <li>Next, the process model is invoking a protected API (expects security token for authentication).
+                    <li>Next, the process model is invoking a protected API (expects <code>Bearer token for authentication</code>).
                         <br/>The fix is to send access token from My Keys (in nav panel).
                         <br/>The BPMN process is expecting the token in a k8s secret object. So we'll update the secret and restart the connectors pod.
-                        <br/>Let's make these changes and see if it resolves the runtime issue.
+                        <br/><br/>Let's make these changes and see if it resolves the runtime issue.
                     </li>
                 </ul>
-                
-                <pre id="copy-text-9b-2"><code>
-## Fix for Issue #1: update JKS with the SSL certs from external API endpoint.
+
+                <span class="answer-toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" onchange="toggleAnswer(this)">
+                        <span class="switch-slider"></span>
+                        <span class="switch-label">Show Answer</span>
+                    </label>
+                </span>
+                <div class="answer-text" hidden>
+Use copy button below to run the command-set <code>9b-2a</code>. Watch the output of each command below.
+<br/>If you see any error, please contact session administrator for assistance.
+<br/>
+<pre id="copy-text-9b-2a"><code>
+## Fix for Issue #9b-2a: update JKS with the SSL certs from external API endpoint.
 <br/>
 export UNAMESPACE={{UNAMESPACE}}
 export EXTERNAL_API_URL=cep-api-gw-7k5bxais.an.gateway.dev
@@ -60,18 +84,25 @@ export EXTERNAL_API_URL=cep-api-gw-7k5bxais.an.gateway.dev
 openssl s_client -connect $EXTERNAL_API_URL:443 -showcerts </dev/null 2>/dev/null | sed -n '/-----BEGIN CERTIFICATE-----/,/-----END CERTIFICATE-----/p' > google-api-gw-cert.pem
 <br/>
 kubectl get secret {{UNAMESPACE}}-zeebe-toolkit-jks -n {{UNAMESPACE}} \
-  -o jsonpath="{.data.{{UNAMESPACE}}-zeebe-toolkit\.jks}" \
-  | base64 --decode > {{UNAMESPACE}}-zeebe-toolkit.jks
+-o jsonpath="{.data.{{UNAMESPACE}}-zeebe-toolkit\.jks}" \
+| base64 --decode > {{UNAMESPACE}}-zeebe-toolkit.jks
 <br/>
 keytool -importcert -alias ml-google-api-gw -file google-api-gw-cert.pem  -keystore ${UNAMESPACE}-zeebe-toolkit.jks -storepass changeit -noprompt
 <br/>
 # Upload the new JKS via patch secret
 kubectl patch secret {{UNAMESPACE}}-zeebe-toolkit-jks -n {{UNAMESPACE}} \
-  -p "{\"data\":{\"{{UNAMESPACE}}-zeebe-toolkit.jks\":\"$(base64 -w 0 {{UNAMESPACE}}-zeebe-toolkit.jks)\"}}"
+-p "{\"data\":{\"{{UNAMESPACE}}-zeebe-toolkit.jks\":\"$(base64 -w 0 {{UNAMESPACE}}-zeebe-toolkit.jks)\"}}"
 <br/>
-
-
-## Fix for Issue #2: update secret with access token
+</code></pre>
+                                    <p/>
+                                    <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-2a')">Copy</button>
+<p/>
+<hr/>
+Use copy button below to run the command-set <code>9b-2b</code>. Watch the output of each command below.
+<br/>If you see any error, please contact session administrator for assistance.
+<br/>
+<pre id="copy-text-9b-2b"><code>
+## Fix for Issue #9b-2b: update secret with access token (from My Keys in Navigation panel)
 # lets run sample process Lead To Opportunity. Refer to step 6-5
 export CF_TOKEN=${CF_TOKEN}
 <br/>
@@ -82,24 +113,38 @@ export POD_NAME=$(kubectl get pods -n {{UNAMESPACE}} | grep connectors | cut -f 
 <br/>
 # Let it be re-added by the system, this time with new config (JKS and application secret)
 kubectl delete pod -n {{UNAMESPACE}} $POD_NAME
-                </code></pre>
-                <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-2')">Copy</button>
-                <p/>
-Pick an earlier failed process instance via Operator and retry for another attempt.
-<br/>You may need to wait for a few seconds for the email service to complete successfully.
-<br/>
+</code></pre>
+                                    <p/>
+                                    <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-2b')">Copy</button>
+                                    <br/>
+<hr/>
+                    <b>Let's see the solution in action.</b>
+                    <br/>Pick an earlier failed process instance via Operator and retry for another attempt.
+                    <br/>Or, you may start a new process instance as well via <code>Deploy sample app # 6-5</code>.
+                    <br/>You may need to wait for a few seconds for the email service to complete successfully.
+                    <p/>Did you receive an email about <code>New Lead To Opportunity - Data Error</code>?
+                </div>
             </div>
-            <p/>
+            
+            <p><hr/></p>
             
             <div class="copy-block" data-label="lab 9b-3">
                 <p/>
                 Q. Let's visit Grafana dashboard at <code>Grafana step 8-3</code>.<br/>
                 The dashboard includes a statistics panel pertaining to <em>Throughput</em>.<br/>
                 Let's push a dozen messages (run below curl command multiple times). 
-                The below command also includes some extra content to make the payload a bit bulky.<br/>
-                Can you see the stats reflected in Grafana?
-                <pre id="copy-text-9b-2"><code>
+                <br/>The below command also includes some extra content to make the payload a bit bulky.<br/>
+                <p/>
+                <span class="answer-toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" onchange="toggleAnswer(this)">
+                        <span class="switch-slider"></span>
+                        <span class="switch-label">Show Answer</span>
+                    </label>
+                </span>
+                <div class="answer-text" hidden>
+                    <strong>Answer:</strong>
+<pre id="copy-text-9b-3"><code>
 # lets run sample process Lead To Opportunity. Refer to step 6-5
 export CF_TOKEN=${CF_TOKEN}
 <br/>
@@ -135,12 +180,12 @@ curl -v --location --request PUT 'https://{{UNAMESPACE}}.makelabs.in/connectors/
                 <p/>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-3')">Copy</button>
                 <p/>
-Run the Lead To Opportunity process instances (above curl command) a handful of times and check the dashboard again.
+Run the Lead To Opportunity process instances (above curl command) a handful of times.
+<br/>Open Grafana dashboard and keep the <em>Throughput</em> panel visible. The dashboard, by default, has a 5-second auto refresh rate.
 <br/>You may need to wait for a few seconds for the Grafana dashboard to reflect the new data.
-
+<br/><br/>Can you see the panel data change slightly?
+                </div>
             </div>
-            <p/>
-
         </section>
         <hr/>
         <p><a class="next-page-marker" onclick="loadCoursePart('9c', 'page-start');">Next: Lab Exercise #c Operations & Resilience</a></p>
@@ -167,7 +212,7 @@ Run the Lead To Opportunity process instances (above curl command) a handful of 
                             <p style="color: #666; font-size: 16px;">This page must be accessed through the main portal.</p>
                             <p style="color: #999; font-size: 14px;">Please go back to the index page and navigate using the course menu.</p>
                             <button onclick="window.location.href='../index.html'" style="margin-top: 20px; padding: 10px 20px; background: #e8491d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">
-                                Go to Index
+                                Return to Home
                             </button>
                         </div>
                     </div>
@@ -176,7 +221,7 @@ Run the Lead To Opportunity process instances (above curl command) a handful of 
             }
 
             // Check if namespace ends with 'pro-c8-labs' for premium access
-            if (!nsParam.endsWith('pro-c8-labs')) {
+            if (false && !nsParam.endsWith('pro-c8-labs')) {
                 // Replace section with premium access message
                 const section = document.querySelector('section');
                 if (section) {
