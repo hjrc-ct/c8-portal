@@ -81,7 +81,7 @@ export UNAMESPACE={{UNAMESPACE}}
 export EXTERNAL_API_URL=cep-api-gw-7k5bxais.an.gateway.dev
 <br/>
 # we are creating this public cert file: google-api-gw-cert.pem
-openssl s_client -connect $EXTERNAL_API_URL:443 -showcerts </dev/null 2>/dev/null | sed -n '/-----BEGIN CERTIFICATE-----/,/-----END CERTIFICATE-----/p' > google-api-gw-cert.pem
+openssl s_client -connect $EXTERNAL_API_URL:443 -showcerts <  /dev/null 2> /dev/null | sed -n '/-----BEGIN CERTIFICATE-----/,/-----END CERTIFICATE-----/p' > google-api-gw-cert.pem
 <br/>
 kubectl get secret {{UNAMESPACE}}-zeebe-toolkit-jks -n {{UNAMESPACE}} \
 -o jsonpath="{.data.{{UNAMESPACE}}-zeebe-toolkit\.jks}" \
