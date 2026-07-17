@@ -1,23 +1,42 @@
 const installLogs = [
-"helm install raghu-makelabs-in-mls-c8-labs camunda/camunda-platform \\",
-">   -f values-combined-ingress.my-ns.yaml \\",
-">   -f values-connectors-env.my-ns.yaml \\",
-">   --set zeebe.prometheusServiceMonitor.enabled=true \\",
-">   --version 14.4.1 --namespace raghu-makelabs-in-mls-c8-labs",
 `
-W0717 09:10:41.711828   39352 warnings.go:70] autopilot-workload-defaulter:Autopilot added tolerations matching: cloud.google.com/gke-spot
-W0717 09:10:41.711877   39352 warnings.go:70] autopilot-default-resources-mutator:The max supported TerminationGracePeriodSeconds is 25 seconds when using toleration of cloud.google.com/gke-spot=true:NoSchedule. Defaulting down from configured 30 seconds to 25 seconds.
-W0717 09:10:41.711838   39352 warnings.go:70] autopilot-workload-defaulter:Autopilot added tolerations matching: cloud.google.com/gke-spot
-W0717 09:10:41.711904   39352 warnings.go:70] autopilot-default-resources-mutator:The max supported TerminationGracePeriodSeconds is 25 seconds when using toleration of cloud.google.com/gke-spot=true:NoSchedule. Defaulting down from configured 30 seconds to 25 seconds.
-W0717 09:10:41.721956   39352 warnings.go:70] autopilot-workload-defaulter:Autopilot added tolerations matching: cloud.google.com/gke-spot
-W0717 09:10:41.722000   39352 warnings.go:70] autopilot-default-resources-mutator:The max supported TerminationGracePeriodSeconds is 25 seconds when using toleration of cloud.google.com/gke-spot=true:NoSchedule. Defaulting down from configured 30 seconds to 25 seconds.
-W0717 09:10:41.726725   39352 warnings.go:70] autopilot-workload-defaulter:Autopilot added tolerations matching: cloud.google.com/gke-spot
-W0717 09:10:41.726748   39352 warnings.go:70] autopilot-default-resources-mutator:The max supported TerminationGracePeriodSeconds is 25 seconds when using toleration of cloud.google.com/gke-spot=true:NoSchedule. Defaulting down from configured 30 seconds to 25 seconds.
+helm repo add camunda https://helm.camunda.io
+
+helm repo update
+
+UNAMESPACE=raghu-makelabs-in-mls-c8-labs envsubst < values-combined-ingress.yaml > values-combined-ingress.my-ns.yaml
+
+UNAMESPACE=raghu-makelabs-in-mls-c8-labs envsubst < values-connectors-env.yaml   > values-connectors-env.my-ns.yaml
+
+helm install raghu-makelabs-in-mls-c8-labs camunda/camunda-platform \
+  -f values-combined-ingress.my-ns.yaml \
+  -f values-connectors-env.my-ns.yaml \
+  --set zeebe.prometheusServiceMonitor.enabled=true \
+  --version 14.4.1 --namespace raghu-makelabs-in-mls-c8-labs
+"camunda" already exists with the same configuration, skipping
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "camunda" chart repository
+...Successfully got an update from the "prometheus-community" chart repository
+...Successfully got an update from the "ingress-nginx" chart repository
+...Successfully got an update from the "elastic" chart repository
+...Successfully got an update from the "grafana" chart repository
+Update Complete. ⎈Happy Helming!⎈
+I0717 10:07:24.173258    3303 warnings.go:107] "Warning: autopilot-workload-defaulter:Autopilot added tolerations matching: cloud.google.com/gke-spot"
+I0717 10:07:24.173326    3303 warnings.go:107] "Warning: autopilot-default-resources-mutator:The max supported TerminationGracePeriodSeconds is 25 seconds when using toleration of cloud.google.com/gke-spot=true:NoSchedule. Defaulting down from configured 30 seconds to 25 seconds."
+I0717 10:07:24.246487    3303 warnings.go:107] "Warning: autopilot-workload-defaulter:Autopilot added tolerations matching: cloud.google.com/gke-spot"
+I0717 10:07:24.246552    3303 warnings.go:107] "Warning: autopilot-default-resources-mutator:The max supported TerminationGracePeriodSeconds is 25 seconds when using toleration of cloud.google.com/gke-spot=true:NoSchedule. Defaulting down from configured 30 seconds to 25 seconds."
+I0717 10:07:24.246511    3303 warnings.go:107] "Warning: autopilot-workload-defaulter:Autopilot added tolerations matching: cloud.google.com/gke-spot"
+I0717 10:07:24.246626    3303 warnings.go:107] "Warning: autopilot-default-resources-mutator:The max supported TerminationGracePeriodSeconds is 25 seconds when using toleration of cloud.google.com/gke-spot=true:NoSchedule. Defaulting down from configured 30 seconds to 25 seconds."
+I0717 10:07:24.304322    3303 warnings.go:107] "Warning: autopilot-workload-defaulter:Autopilot added tolerations matching: cloud.google.com/gke-spot"
+I0717 10:07:24.304368    3303 warnings.go:107] "Warning: autopilot-default-resources-mutator:The max supported TerminationGracePeriodSeconds is 25 seconds when using toleration of cloud.google.com/gke-spot=true:NoSchedule. Defaulting down from configured 30 seconds to 25 seconds."
+I0717 10:07:24.586990    3303 warnings.go:107] "Warning: autopilot-workload-defaulter:Autopilot added tolerations matching: cloud.google.com/gke-spot"
+I0717 10:07:24.587057    3303 warnings.go:107] "Warning: autopilot-default-resources-mutator:The max supported TerminationGracePeriodSeconds is 25 seconds when using toleration of cloud.google.com/gke-spot=true:NoSchedule. Defaulting down from configured 30 seconds to 25 seconds."
 NAME: raghu-makelabs-in-mls-c8-labs
-LAST DEPLOYED: Fri Jul 17 09:10:35 2026
+LAST DEPLOYED: Fri Jul 17 10:07:11 2026
 NAMESPACE: raghu-makelabs-in-mls-c8-labs
 STATUS: deployed
 REVISION: 1
+DESCRIPTION: Install complete
 TEST SUITE: None
 NOTES:
 # (Chart version: camunda-platform 14.4.1 - Camunda compatibility version: 8.9.x)

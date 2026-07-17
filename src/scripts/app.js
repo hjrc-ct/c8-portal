@@ -132,7 +132,7 @@ const loadCoursePart = (part, specificView) => {
                 const accessToken = await getMyAccessToken(false);
                 codeElements.forEach(codeBlock => {    
                     if (accessToken){
-                        codeBlock.textContent = codeBlock.textContent.replace(/\$CF_TOKEN/g, accessToken );
+                        codeBlock.textContent = codeBlock.textContent.replace(/\${CF_TOKEN}/g, accessToken );
                     }
                     else {
                         codeBlock.textContent = codeBlock.textContent.replace(/\$CF_TOKEN/g, "undefined-cf-token" );
