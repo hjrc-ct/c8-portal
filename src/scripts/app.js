@@ -726,7 +726,7 @@ function attachshareToLinkedIn(){
 async function sendOnboardingEmail() {
     // Reset the service log
     const codeBlock = document.querySelector('#copy-text-1a-1 code');
-    codeBlock.innerHTML = 'Running ...';
+    codeBlock.innerHTML = 'Onboarding initiated ...';
         
     const currentToken = await getMyAccessToken(true);
     if (!currentToken) {
@@ -758,7 +758,7 @@ async function sendOnboardingEmail() {
     const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/labsOnboarding';
     const urlSendMail = 'https://cep-api-gw-7k5bxais.an.gateway.dev/sendEmail';
 
-    showNote('Invoke onboarding ...', 12000);
+    showNote('Invoke onboarding ... check the logs in 1a-1', 18000);
 
     fetch(url, {
         method: 'POST',
