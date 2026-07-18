@@ -1059,7 +1059,58 @@ nav a.nav-active {
     z-index: 1;
     align-self: flex-start;
     gap: 16px;
-    min-width: 210px;
+    min-width: 42%;
+    padding: 24px;
+
+    background: 
+        linear-gradient(
+            rgba(255,255,255,0.5),
+            rgba(255,255,255,0.5)
+        ),
+        url("../pages/c8-k8s-header.jpeg");
+    background-size: cover;       /* Fill the div */
+    background-position: center;  /* Center the image */
+    /* animation: panBackground 9s ease-in-out infinite;  */
+    animation: kenBurns 9s ease-in-out infinite alternate;
+    background-repeat: no-repeat;
+}
+
+@keyframes kenBurns {
+
+    0% {
+        transform: scale(1) translate(0,0);
+    }
+
+    50% {
+        transform: scale(1.08) translate(-2%,1%);
+    }
+
+    100% {
+        transform: scale(1.15) translate(2%,-1%);
+    }
+
+}
+
+@keyframes panBackground {
+    0% {
+        background-position: left center;
+    }
+
+    25% {
+        background-position: center center;
+    }
+
+    50% {
+        background-position: right center;
+    }
+
+    75% {
+        background-position: center center;
+    }
+
+    100% {
+        background-position: left center;
+    }
 }
 
 .header-right-arrow{
