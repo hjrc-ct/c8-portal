@@ -1072,7 +1072,7 @@ nav a.nav-active {
     padding: 0px;
 
     background: 
-        linear-gradient(rgba(255,255,255,0.1)),
+        linear-gradient(rgba(255,255,255,0.11), rgba(255,255,255,.91)),
         url("../pages/c8-k8s-header.jpeg");
     background-size: cover;       /* Fill the div */
     background-position: right;  /* Center the image */
