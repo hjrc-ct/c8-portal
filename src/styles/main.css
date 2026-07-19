@@ -1056,11 +1056,29 @@ nav a.nav-active {
     justify-content: flex-start;
     align-items: flex-end;
     position: relative;
+    overflow: visible;
     z-index: 1;
     align-self: flex-start;
     gap: 16px;
     min-width: 50%;
     padding: 12px 0px;
+}
+
+#magnifier{
+    position:absolute;
+    width:170px;
+    height:170px;
+    border-radius:50%;
+
+    display:none;
+    pointer-events:none;
+
+    border:2px solid rgba(255,255,255,.8);
+    box-shadow:0 8px 25px rgba(0,0,0,.35);
+
+    background-repeat:no-repeat;
+
+    z-index:100;
 }
 
 .app-page-header-item-right-animate {
@@ -1072,10 +1090,10 @@ nav a.nav-active {
     padding: 0px;
 
     background: 
-        linear-gradient(rgba(255,255,255,0.11), rgba(255,255,255,.91)),
+        linear-gradient(rgba(255,255,255,0.11), rgba(255,255,255,1.0)),
         url("../pages/c8-k8s-header.jpeg");
     background-size: cover;       /* Fill the div */
-    background-position: right;  /* Center the image */
+    background-position: top;  /* Center the image */
     /* animation: panBackground 9s ease-in-out infinite; */
     animation: kenBurns 12s  ease-in-out infinite alternate;
     background-repeat: no-repeat;

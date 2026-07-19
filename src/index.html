@@ -52,6 +52,7 @@
             </div>
             <div class="app-page-header-item-right">
                 <div class="app-page-header-item-right-animate"></div>
+                <div id="magnifier"></div>
                 <div class="header-right-logo">
                     <img height="40" width="40" src="pages/makelabs.png" alt="c8-labs.makelabs.in" class="app-logo" />
                 </div>
@@ -239,9 +240,52 @@
                 });
             }
 
+            // attach magnifier to one key element
+            const hero = document.querySelector(".app-page-header-item-right");
+            const bg = document.querySelector(".app-page-header-item-right-animate");
+            const lens = document.getElementById("magnifier");
+
+            hero.addEventListener("mouseenter", () => {
+                lens.style.display = "block";
+            });                        
+
+            hero.addEventListener("mouseleave", () => {
+                lens.style.display = "none";
+            });
+
+            hero.addEventListener("mousemove", (e)=>{
+
+                if (true) {
+                    const rect = hero.getBoundingClientRect();
+
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    lens.style.left = (x-80)+"px";
+                    lens.style.top  = (y-80)+"px";
+
+                    // copy the animated background
+                    lens.style.backgroundImage =
+                        getComputedStyle(bg).backgroundImage;
+
+                    const zoom = 1.75;
+
+                    const bgWidth = rect.width * zoom;
+                    const bgHeight = rect.height * zoom;
+
+                    lens.style.backgroundSize = `${bgWidth}px ${bgHeight}px`;
+
+                    lens.style.backgroundPosition =
+                        `${-(x * zoom - lens.offsetWidth / 2)}px
+                        ${-(y * zoom - lens.offsetHeight / 2)}px`;
+                }
+
+            });
+
             // logic to show images on hero page - right side of the header
             const images = [
                 "pages/c8-k8s-header.jpeg",
+                "pages/c8-labs-sign-in.jpeg",
                 "pages/img-1a-1-gcp-access.jpg",
                 "pages/c8-labs-word-cloud.jpg",
                 "pages/c8-k8s-view.jpeg",
@@ -262,7 +306,7 @@
 
             let current = 0;
 
-            slide.style.backgroundImage = `linear-gradient(rgba(255,255,255,0.11), rgba(255,255,255,0.91)),url(${images[0]})`;
+            slide.style.backgroundImage = `linear-gradient(rgba(255,255,255,0.11), rgba(255,255,255,1.0)),url(${images[0]})`;
             slide.classList.add("active");
 
             setInterval(() => {
