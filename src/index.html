@@ -45,14 +45,13 @@
                 <h4>
                     <a class="quick-link-pill-top-cta-secondary"    target="_blank" href="https://artifacthub.io/packages/helm/camunda/camunda-platform/14.4.1">Helm Charts</a>
                     &nbsp;&nbsp;
-                    <a class="quick-link-pill-top-cta-secondary" onclick="loadCoursePart(0,'lab-gallery')">Lab Gallery</a>
-                    &nbsp;&nbsp;
                     <a class="quick-link-pill-top-cta-secondary" onclick="loadCoursePart(0,'access-plans')">6-Hours Free Access</a>
                     &nbsp;&nbsp;
                     <a class="quick-link-pill-top-cta-primary"   onclick="loadCoursePart(0,'get-started')">Join Next Cohort</a>
                 </h4>
             </div>
             <div class="app-page-header-item-right">
+                <div class="app-page-header-item-right-animate"></div>
                 <div class="header-right-logo">
                     <img height="40" width="40" src="pages/makelabs.png" alt="c8-labs.makelabs.in" class="app-logo" />
                 </div>
@@ -259,11 +258,11 @@
                 "pages/img-9c-1-partition-count-inc.jpg",
             ];
 
-            const slide = document.querySelector(".app-page-header-item-right");
+            const slide = document.querySelector(".app-page-header-item-right-animate");
 
             let current = 0;
 
-            slide.style.backgroundImage = `url(${images[0]})`;
+            slide.style.backgroundImage = `linear-gradient(rgba(255,255,255,0.1)),url(${images[0]})`;
             slide.classList.add("active");
 
             setInterval(() => {
@@ -275,7 +274,7 @@
                     slide.classList.add("active");
                 }, 1000);
 
-            }, 9000);
+            }, 12*1000);
         });
     </script>
 </body>

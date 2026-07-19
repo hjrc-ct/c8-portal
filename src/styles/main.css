@@ -1059,55 +1059,54 @@ nav a.nav-active {
     z-index: 1;
     align-self: flex-start;
     gap: 16px;
-    min-width: 42%;
-    padding: 24px;
+    min-width: 50%;
+    padding: 12px 0px;
+}
+
+.app-page-header-item-right-animate {
+    position: absolute;
+    inset: 0;
+
+    z-index: 0;
+    border-radius: 16px;
+    padding: 0px;
 
     background: 
-        linear-gradient(
-            rgba(255,255,255,0.5),
-            rgba(255,255,255,0.5)
-        ),
+        linear-gradient(rgba(255,255,255,0.1)),
         url("../pages/c8-k8s-header.jpeg");
     background-size: cover;       /* Fill the div */
-    background-position: center;  /* Center the image */
-    /* animation: panBackground 9s ease-in-out infinite;  */
-    animation: kenBurns 9s ease-in-out infinite alternate;
+    background-position: right;  /* Center the image */
+    /* animation: panBackground 9s ease-in-out infinite; */
+    animation: kenBurns 12s  ease-in-out infinite alternate;
     background-repeat: no-repeat;
+    max-width: 105%;
 }
 
 @keyframes kenBurns {
-
     0% {
         transform: scale(1) translate(0,0);
     }
-
     50% {
-        transform: scale(1.08) translate(-2%,1%);
+        transform: scale(1.08) translate(-8%,1%);
     }
-
     100% {
-        transform: scale(1.15) translate(2%,-1%);
+        transform: scale(1.15) translate(6%,-1%);
     }
-
 }
 
 @keyframes panBackground {
     0% {
         background-position: left center;
     }
-
     25% {
         background-position: center center;
     }
-
     50% {
         background-position: right center;
     }
-
     75% {
         background-position: center center;
     }
-
     100% {
         background-position: left center;
     }
@@ -1121,7 +1120,9 @@ nav a.nav-active {
 
 .header-right-top{
     position: relative;
-    background:#fff;
+    z-index: 1;
+
+    background:rgba(255, 255, 255, 0.91);
     border-radius:18px;
     padding:18px 22px;
     border:1px solid rgba(0,0,0,.05);
@@ -1130,7 +1131,8 @@ nav a.nav-active {
         0 2px 8px rgba(0,0,0,.04),
         0 12px 30px rgba(0,0,0,.08);
 
-    transition:.25s ease;
+    transition:0.25s ease;
+
 }
 
 .header-right-top:hover{
@@ -1141,13 +1143,15 @@ nav a.nav-active {
         0 20px 40px rgba(0,0,0,.12);
 }
 
-.header-right-top::before{
+.header-right-top::before,
+.app-page-header-item-right-animate::before
+{
     content:"";
     position:absolute;
     left:0;
     top:0;
-    width:100%;
-    height:3px;
+    width:98%;
+    height:1.5px;
     border-radius:18px 18px 0 0;
     background:linear-gradient(90deg,#ff6b2d,#ffb26b);
 }
@@ -1183,6 +1187,9 @@ nav a.nav-active {
     display: flex;
     justify-content: flex-end;
     width: 100%;
+
+    position: relative;
+    z-index: 1;
 }
 
 .app-logo {
