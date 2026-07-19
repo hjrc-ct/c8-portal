@@ -14,3 +14,4 @@ dist/
 scripts/spellcheck_whitelist.txt
 scripts/spellcheck_html.py
 spellcheck-report.txt
+idea.txt
