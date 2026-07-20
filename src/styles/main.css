@@ -189,7 +189,7 @@ h2, h3, code {
     font-size: 1.2em;
     line-height: 1.4em;
     padding-bottom: 5px;
-    width: 20%;
+    max-width: 75%;
     font-style: italic;
 }
 
@@ -936,9 +936,10 @@ nav a.nav-active {
 .app-page-header {
     background: linear-gradient(135deg, #ffffff 0%, #f7fbff 45%, #eef7ff 100%);
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
+    min-height: calc(100dvh - 72px); /* subtract navbar height */
     justify-content: space-between;
-    gap: 20px;
+    gap: 24px;
     padding: 16px 32px 24px 12px;
     margin: 16px 0 24px;
     border-radius: 20px;
@@ -979,7 +980,10 @@ nav a.nav-active {
 }
 
 .app-page-header-item-left {
-    flex: 1;
+    flex: 0 0 45%;
+    display: flex;
+    flex-direction: column;
+    
     min-width: 0;
     position: relative;
     z-index: 1;
@@ -1000,7 +1004,7 @@ nav a.nav-active {
     background: rgb(232, 240, 254);
     color: #0d5f8a;
     border: 1px solid #cfe8fb;
-    font-size: 0.78rem;
+    font-size:x-small;
     font-weight: 700;
     letter-spacing: 0.01em;
 }
@@ -1051,18 +1055,11 @@ nav a.nav-active {
 }
 
 .app-page-header-item-right {
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
+    flex: 1;
     position: relative;
-    overflow: visible;
-    z-index: 1;
-    align-self: flex-start;
-    gap: 16px;
-    min-width: 51%;
-    padding: 12px 0px;
+    overflow: hidden;
+
+    display: flex;
 }
 
 #magnifier{
@@ -1083,22 +1080,27 @@ nav a.nav-active {
 }
 
 .app-page-header-item-right-animate {
+    flex: 1;
     position: absolute;
     inset: 0;
 
     z-index: 0;
     border-radius: 16px;
     padding: 0px;
+    width: 100%;
+    
+    height: calc(100% - 72px); /* subtract navbar height */
 
     background: 
         linear-gradient(rgba(255,255,255,0.11), rgba(255,255,255,1.0)),
         url("../pages/c8-k8s-header.jpeg");
     background-size: cover;       /* Fill the div */
-    background-position: top;  /* Center the image */
-    /* animation: panBackground 8s ease-in-out infinite; */
-    animation: kenBurns 10s  ease-in-out infinite alternate;
+    background-position: center;  /* Center the image */
+    animation: panBackground 8s ease-in-out infinite; 
+    /* animation: kenBurns 10s  ease-in-out infinite alternate; */
     background-repeat: no-repeat;
-    max-width: 115%;
+    border-radius: 16px;
+    max-width: 100%;
 }
 
 @keyframes kenBurns {
@@ -1148,16 +1150,18 @@ nav a.nav-active {
     z-index: 1;
 
     background:rgba(255, 255, 255, 0.91);
-    border-radius:18px;
-    padding:18px 22px;
+    border-radius:6px;
+    padding:16px 16px;
+    align-items: center;
     border:1px solid rgba(0,0,0,.05);
+
+    max-width: 90%;
 
     box-shadow:
         0 2px 8px rgba(0,0,0,.04),
         0 12px 30px rgba(0,0,0,.08);
 
     transition:0.25s ease;
-
 }
 
 .header-right-top:hover{
@@ -1175,7 +1179,7 @@ nav a.nav-active {
     position:absolute;
     left:0;
     top:0;
-    width:98%;
+    width:100%;
     height:1.5px;
     border-radius:18px 18px 0 0;
     background:linear-gradient(90deg,#ff6b2d,#ffb26b);
@@ -1196,7 +1200,7 @@ nav a.nav-active {
 
 .top-cta-tooltip-text {
     display: block;
-    max-width: 320px;
+    max-width: 100%;
     font-size: 1.1rem;
     line-height: 1.55;
     color: darkslategray;
