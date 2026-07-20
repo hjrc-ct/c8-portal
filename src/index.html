@@ -205,10 +205,10 @@
                             '<a id="header_support" onclick="loadCoursePart(11, true);">Support</a>' +
                             '<a id="header_faq" onclick="loadCoursePart(12, true);">FAQ</a>' +
                             '<a id="header_contact" onclick="loadCoursePart(0, true);">Contact</a>' +                            
-                            "&nbsp;" +
                             (hasAccessV2 
-                                ? '<button id="logout" class="request-access-btn" type="button" onclick="signOutAndRedirect()">Sign Out</button>' 
-                                : '<button id="request-access-btn" class="request-access-btn" type="button">Sign In</button>'
+                                ? '<button id="logout" class="request-access-btn" type="button" onclick="signOutAndRedirect()"><i class="fa-solid fa-right-from-bracket">&nbsp;</i>Sign Out</button>' 
+                                : '<button id="request-access-btn" class="request-access-btn" type="button"><i class="fa-solid fa-right-to-bracket">&nbsp;</i>Sign In</button>'
+                                
                             )
                         + '</div>'
                         + '</div>';
