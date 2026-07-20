@@ -163,12 +163,12 @@ em {
 h1 {
     color: rgb(6, 147, 227) ;
     width: 94%;
-    line-height: 1.4em;
+    line-height: 1.2em;
     letter-spacing: -0.5px;
     font-size: 2.5rem;
     padding-left:  10px;
     padding-top:  0px;
-    padding-bottom:  6px;
+    padding-bottom:  0px;
     word-spacing: 0.1em;
 }
 
@@ -178,8 +178,8 @@ h2, h3, code {
 
 .welcome-cta-block {
     display:flexbox;
-    width: 60%;
-    padding-bottom: 12px;
+    width: 90%;
+    padding-bottom: 0px;
     padding-left:  10px;
     
 }
