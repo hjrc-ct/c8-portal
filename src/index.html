@@ -49,6 +49,7 @@
                     &nbsp;&nbsp;
                     <a class="quick-link-pill-top-cta-primary"   onclick="loadCoursePart(0,'get-started')">Get Started</a>
                 </h4>
+                <!-- put panel here -->
             </div>
             <div class="app-page-header-item-right">
                 <div class="app-page-header-item-right-animate"></div>
@@ -61,7 +62,7 @@
                     <span class="top-cta-tooltip-text">
                         Camunda 8.9.7&nbsp;Helm Version 14.4.1<br/>Released on 11 Jun, 2026&nbsp;
                         <br/><br/>
-                        Explore <span class="top-cta-tooltip-text-highlight"><b>14+ snapshots</b></span> from the hands-on labs and see what you'll build, learn, and accomplish. 
+                        Explore <span class="top-cta-tooltip-text-highlight"><b>20+ snapshots</b></span> from the hands-on labs and see what you'll build, learn, and accomplish. 
                         Screenshots speak louder than descriptions !
                     </span>
                     <br/>
@@ -296,9 +297,14 @@
                 "pages/img-4-3-elastic-pod.jpg",
                 "pages/img-5-3-camnuda-pod-status.jpg",
                 "pages/img-5-3-camnuda-pod-status-v2.jpg",
+                "pages/c8-labs-openid-config.jpeg",
                 "pages/img-6-5-curl-return-status.jpg",
                 "pages/img-8-3-grafana-view.jpg",
+                "pages/img-8-3-grafana-view-2.jpg",
                 "pages/img-8a-1-post-install-view.jpg",
+                "pages/img-9b-3-c8-processing.jpg",
+                "pages/img-9a-3-instance-created.jpg",
+                "pages/img-9a-4-raft-append-rate.jpg",
                 "pages/img-9c-1-partition-count-inc.jpg",
             ];
 
@@ -313,12 +319,21 @@
                 slide.classList.remove("active");
 
                 setTimeout(() => {
+                    
                     current = (current + 1) % images.length;
-                    slide.style.backgroundImage = `url(${images[current]})`;
-                    slide.classList.add("active");
-                }, 1000);
 
-            }, 12*1000);
+                    if ( current === 0) // gradient only for 1st image
+                        slide.style.backgroundImage =
+                                        `linear-gradient(rgba(255,255,255,0.11),
+                                                        rgba(255,255,255,1)),
+                                        url(${images[current]})`;
+                    else
+                        slide.style.backgroundImage = `url(${images[current]})`;
+
+                    slide.classList.add("active");
+                }, 2*1000);
+
+            }, 8*1000);
         });
     </script>
 </body>

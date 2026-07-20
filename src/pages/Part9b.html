@@ -40,7 +40,7 @@ helm uninstall {{UNAMESPACE}}  --namespace {{UNAMESPACE}}
 # Wait for all Pods to be in running state. 
 # Do you notice anything?
                 </code></pre>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-1')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-1', '9b-1 Copied to Clipboard!')">Copy</button>
                 <p/>
                 </div>
             </div>
@@ -95,7 +95,7 @@ kubectl patch secret {{UNAMESPACE}}-zeebe-toolkit-jks -n {{UNAMESPACE}} \
 <br/>
 </code></pre>
                                     <p/>
-                                    <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-2a')">Copy</button>
+                                    <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-2a', '9b-2a Copied to Clipboard!')">Copy</button>
 <p/>
 <hr/>
 Use copy button below to run the command-set <code>9b-2b</code>. Watch the output of each command below.
@@ -115,7 +115,7 @@ export POD_NAME=$(kubectl get pods -n {{UNAMESPACE}} | grep connectors | cut -f 
 kubectl delete pod -n {{UNAMESPACE}} $POD_NAME
 </code></pre>
                                     <p/>
-                                    <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-2b')">Copy</button>
+                                    <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-2b', '9b-2b Copied to Clipboard!')">Copy</button>
                                     <br/>
 <hr/>
                     <b>Let's see the solution in action.</b>
@@ -178,7 +178,7 @@ curl -v --location --request PUT 'https://{{UNAMESPACE}}.makelabs.in/connectors/
 }'
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-3')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-3', '9b-3 Copied to Clipboard!')">Copy</button>
                 <p/>
 Run the Lead To Opportunity process instances (above curl command) a handful of times.
 <br/>Open Grafana dashboard and keep the <em>Throughput</em> panel visible. The dashboard, by default, has a 5-second auto refresh rate.

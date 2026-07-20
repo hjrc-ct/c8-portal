@@ -24,7 +24,7 @@ export UNAMESPACE={{UNAMESPACE}}
 kubectl apply -f identity-secret.yaml --namespace {{UNAMESPACE}}
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-5-1')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-5-1','5-1 Copied to Clipboard!')">Copy</button>
                 <p/>
 After this, you should see secret created in your namespace (via Project Lens UI app).
 <br/># Config => secret/identity-secret created
@@ -40,7 +40,7 @@ UNAMESPACE={{UNAMESPACE}} envsubst < zeebe-makefile | sh
 envsubst '${UNAMESPACE}' < c8-labs-pod-network-policy.yaml  | kubectl apply  -f -
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-5-2', 'Make sure keytool and openssl are installed on your local machine.')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-5-2', '5-2 Copied. Make sure keytool and openssl are installed or supported on the terminal session.')">Copy</button>
                 <p/>
             </div>
             <p/>
@@ -65,7 +65,7 @@ helm install {{UNAMESPACE}} camunda/camunda-platform \
 <br/>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-5-3', 'This may take a while...')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-5-3', '5-3 Copied. This may take a while...')">Copy</button>
                 <p/>
 This step may take a while as it installs about a handful of pods.
 <br/>You may watch the logs associated with pods to see the progress - using Project Lens or via <code>kubectl</code> commands.
@@ -115,11 +115,13 @@ envsubst '${UNAMESPACE}' < c8-ingress-keycloak.yaml  | kubectl apply  -f -
 <br/>
 envsubst '${UNAMESPACE}' < c8-ingress.yaml           | kubectl apply  -f -
 <br/>
-envsubst '${UNAMESPACE}' < c8-zeebe-ingress.yaml     | kubectl apply  -f -
+# Camunda helm install creates ingress for gRPC. 
+# Run below command only if required. Check Network -> Ingress configuration for details.
+# envsubst '${UNAMESPACE}' < c8-zeebe-ingress.yaml     | kubectl apply  -f -
 <br/>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-5-4')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-5-4', '5-4 Copied to Clipboard!')">Copy</button>
                 <p/>
 You may check the ingress definition in the assigned namespace.
 <br/>

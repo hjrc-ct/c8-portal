@@ -61,7 +61,7 @@ curl --request GET 'http://localhost:9600/orchestration/actuator/cluster'
 pkill -f "kubectl port-forward"
 
                 </code></pre>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-9c-1')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9c-1', '9c-1 Copied to Clipboard!')">Copy</button>
                 <p>
                     <small>Post Command-Set Execution: Click to view screen shot - How to check status COMPLETED?</small>
                     <p/>
@@ -116,7 +116,7 @@ Visit again <code>Landing Page -> Topology</code> to see the new topology and pa
                     </li>
                 </ul>
                 
-<pre id="copy-text-9c-2"><code>
+<pre id="copy-text-9c-2a"><code>
 # Start in GCP Cloud Shell
 gcloud config set project c8-labs
 export UNAMESPACE={{UNAMESPACE}}
@@ -131,14 +131,14 @@ kubectl delete pod -n {{UNAMESPACE}} $POD_NAME
 <br/>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-9c-2')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9c-2a', '9c-2a Copied to Clipboard!')">Copy</button>
                 <p/>
 Pick an earlier failed process instance via Operator and retry for another attempt.
 <br/>Are you able to continue with transaction(s) while the rejig is happening in the background?
 <br/>
 <hr/>
 
-                <pre id="copy-text-9c-2-b"><code>
+                <pre id="copy-text-9c-2b"><code>
 ## Option 2 - Run by the Session Administrator
 # Start in GCP Cloud Shell
 gcloud config set project c8-labs
@@ -148,7 +148,7 @@ gcloud compute instances delete vm-node-name  --zone=zone-id
 <br/>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-9c-2-b')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9c-2b', '9c-2b Copied to Clipboard!')">Copy</button>
                 <p/>
 Pick an earlier failed process instance via Operator and retry for another attempt.
 <br/>Are you able to continue with transaction(s) while the rejig is happening in the background?

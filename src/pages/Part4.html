@@ -29,6 +29,8 @@ DOCKER_USER_ID=put-your-value-here-docker-id-example-hjrc
 DOCKER_USER_EMAIL=put-your-value-here-example-user-at-gmail.com
 DOCKER_USER_TOKEN=put-your-value-here-keep-it-secret
 <br/>
+# let's also test if it is valid. you should see confirmation 'Login Succeeded'
+echo $DOCKER_USER_TOKEN | docker login  --username "$DOCKER_USER_ID"  --password-stdin
 <br/>
 kubectl create secret docker-registry registry-camunda-cloud  \
 --namespace={{UNAMESPACE}} \
@@ -43,9 +45,10 @@ kubectl create secret docker-registry registry-docker-hub  \
     --docker-username=${DOCKER_USER_ID} \
     --docker-password=${DOCKER_USER_TOKEN} \
     --docker-email=${DOCKER_USER_EMAIL}
+<br/>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-4-1', 'Text copied! Open any Text editor to make necessary changes.')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-4-1', '4-1 Text copied! Open any Text editor to make necessary changes.')">Copy</button>
             </div>
             <p/>
             <div class="copy-block" data-label="bash 4-2">
@@ -56,7 +59,7 @@ kubectl create secret docker-registry registry-docker-hub  \
 UNAMESPACE={{UNAMESPACE}} envsubst < elk-makefile | sh
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-4-2', 'Important: Make sure Docker CLI command is supported on the terminal window.')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-4-2', '4-2 Copied. Important: Make sure Docker CLI command is supported on the terminal window.')">Copy</button>
                 <p/>
 After this, you should see secrets created in your namespace (via Project Lens UI app).
 <br/># Config => secret/elastic-certificates created
@@ -77,7 +80,7 @@ helm install elasticsearch elastic/elasticsearch -n {{UNAMESPACE}} -f elasticsea
 <br/>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-4-3')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-4-3', '4-3 Copied to Clipboard!')">Copy</button>
                 <p/>
 After this, you should see Elastic pod running.
 <br/># It may take about 3 to 5 minutes for the pod to be in running state.

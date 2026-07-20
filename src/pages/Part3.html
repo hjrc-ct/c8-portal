@@ -23,7 +23,7 @@ export WEBPAGEAPPURL={{REGION}}-docker.pkg.dev/c8-labs/c8-labs-repo/toolkit-c8-l
                     </code>
                 </pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-3-1')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-3-1', '3-1 Copied to Clipboard!')">Copy</button>
             </div>
             <p/>
             <div class="copy-block" data-label="bash 3-2">
@@ -34,7 +34,7 @@ envsubst '${UNAMESPACE} ${WEBPAGEAPPURL}' < deploy-landing-page.yaml  | kubectl 
 <br/>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-3-2')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-3-2', '3-2 Copied to Clipboard!')">Copy</button>
             </div>
             <p/>
             <div class="copy-block" data-label="note 3-3">
@@ -42,7 +42,7 @@ envsubst '${UNAMESPACE} ${WEBPAGEAPPURL}' < deploy-landing-page.yaml  | kubectl 
                 Open browser and access the landing page.<br/>
                 <pre id="copy-text-3-3"><code>https://{{UNAMESPACE}}.makelabs.in</code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-3-3')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-3-3','3-3 Copied to Clipboard!')">Copy</button>
                 <p/>
                 Note: If the page is not accessible (i.e., shows Invalid Certificate error or similar), you may continue with the next steps. You can test this after completing the Camunda app install. (before <i>Deploy sample app</i>)
             </div>            

@@ -173,7 +173,7 @@ const loadCoursePart = (part, specificView) => {
             // Count number of copy-block occurrences within the loaded content
             const copyBlockCount = mainContent.querySelectorAll('.copy-block').length;
             if (copyBlockCount > 0) {
-              showNote(`This page has ${copyBlockCount} command-set instruction(s).`);
+              showNote(`This page has ${copyBlockCount} command-set instruction(s).`, 5000);
             }            
 
             if (specificView){
@@ -344,27 +344,42 @@ function metadataCheck() {
 }
 
 // message: show it as toast to the end user
-// duration: 7 seconds default
+// duration: 60 seconds default
 // type: all are info messages or CLI supporting notation
-function showNote(message, duration = 7000, type = "info") {
+function showNote(message, duration = 60000, type = "info") {
     let toast = document.getElementById("app-toast");
+    let toastMsgSpan;
     
         if (!toast) {
             toast = document.createElement("div");
             toast.id = "app-toast";
             toast.className = "toast";
+            toast.innerHTML = `
+                <span id="app-toast-message" class="toast-message"></span>
+                <button class="toast-close" aria-label="Close">&times;</button>
+            `;
+            toast.querySelector(".toast-close").addEventListener("click", () => {
+                        toast.classList.remove("show");
+                    });
             document.body.appendChild(toast);
         }
 
+        toastMsgSpan = document.getElementById("app-toast-message");
         toast.className = `toast ${type}`;
-        toast.textContent = message;
 
         // Restart animation
         toast.classList.remove("show");
         void toast.offsetWidth;
         toast.classList.add("show");
+        toast.classList.add("app-toast-message");
 
         clearTimeout(toast.hideTimer);
+
+        // show as current step
+        if (duration > 5000)
+            if (toastMsgSpan) toastMsgSpan.textContent = "Current Step: " + message; else toast.textContent = "Current Step: " + message;
+        else    
+            if (toastMsgSpan) toastMsgSpan.textContent = message; else toast.textContent = message;
 
         toast.hideTimer = setTimeout(() => {
             toast.classList.remove("show");

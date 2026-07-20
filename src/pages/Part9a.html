@@ -16,7 +16,7 @@
             <div class="copy-block" data-label="lab 9a-1">
                 <p/>
                 Q. Lets create a new JWT access token.<br/>
-                <pre id="copy-text-9-1"><code>
+                <pre id="copy-text-9a-1"><code>
 export UNAMESPACE={{UNAMESPACE}}
 <br/>
 curl -X POST "https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/protocol/openid-connect/token" \
@@ -26,7 +26,7 @@ curl -X POST "https://${UNAMESPACE}.makelabs.in/auth/realms/camunda-platform/pro
   -d "client_secret=pwd-here"
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-9-1')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9a-1', '9a-1 Copied to Clipboard!')">Copy</button>
                 <p/>
                 <p>
                     !!! Note: If you see an error instead of access token, then perhaps you can debug to see what could be the mistake.
@@ -70,10 +70,10 @@ SELECT * FROM public.user_entity WHERE id = 'value-of-sub-from-token';
             <div class="copy-block" data-label="lab 9a-2">
                 <p/>
                 Q. In the helm install step for Camunda, the release number is sent as a parameter (Example: 12.4.0 or 14.4.1). <br/>
-                <pre id="copy-text-9-2"><code>
+                <pre id="copy-text-9a-2"><code>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-9-2')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9a-2', '9a-2 Copied to Clipboard!')">Copy</button>
                 <p/>
 In real-life scenario, if you are given an existing Kubernetes environment, how would you find out the Camunda release number?
 <br/>Hint: Use Headlamp Dashboard or Project Lens UI app to look for the deployed helm charts (ConfigMap).
@@ -99,13 +99,13 @@ In real-life scenario, if you are given an existing Kubernetes environment, how 
             
             <p><hr/></p>
 
-            <div class="copy-block" data-label="lab 9-3">
+            <div class="copy-block" data-label="lab 9a-3">
                 <p/>
                 Q. Assume that a Deployment component (say Connectors) is deleted from the runtime. <br/>
-                <pre id="copy-text-9-3"><code>
+                <pre id="copy-text-9a-3"><code>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-9-3')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9a-3', '9a-3 Copied to Clipboard!')">Copy</button>
                 <p/>
 How do you re-deploy the missing "Connectors" component?
 <br/><br/>Hint: Run this step <code>Camunda 5-3</code> again, but with "helm upgrade" (instead of "helm insall").
@@ -117,10 +117,10 @@ How do you re-deploy the missing "Connectors" component?
             <div class="copy-block" data-label="lab 9a-4">
                 <p/>
                 Q. The elasticsearch pod running in your respective namespace, is it running on http plaintext port or tls? <br/>
-                <pre id="copy-text-9-4"><code>
+                <pre id="copy-text-9a-4"><code>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-9-4')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9a-4', '9a-4 Copied to Clipboard!')">Copy</button>
                 <p/>
 Hint: Use kubectl or Headlamp Dashboard or Project Lens UI app.
 <br/>
@@ -133,10 +133,10 @@ Hint: Use kubectl or Headlamp Dashboard or Project Lens UI app.
                 <p/>
                 Q. In lab 9a-1, while looking at Keycloak Admin Console, you may have noticed two realm configurations. One of them is for <code>camunda-platform</code>. <br/>
                    <br/>Who created (i.e., which step / component) the realm <code>camunda-platform</code>? (taking into account all the steps you executed so far)
-                <pre id="copy-text-9-5"><code>
+                <pre id="copy-text-9a-5"><code>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-9-5')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9a-5', '9a-5 Copied to Clipboard!')">Copy</button>
                 <p/>
 Hint: Have you noticed any pattern when the pods are starting? Read a bit on Camunda Docs to understand the component dependency.
 <br/>

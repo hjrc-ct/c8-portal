@@ -691,7 +691,7 @@ ul.prereq-list li {
     top: 0;
     left: 0;
     background: darkgray;
-    color: whitesmoke;
+    color: #FFD166;
     padding: 4px 8px;
     font-size: 0.70em;
     font-weight: bold;
@@ -703,12 +703,12 @@ ul.prereq-list li {
     height: 24px;
 }
 
-.copy-block:not([data-label])::before {
-    content: "bash";
-}
-
+.copy-block:not([data-label])::before,
 .copy-block[data-label]::before {
     content: attr(data-label);
+    font-size: small;
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .copy-block pre {
@@ -1061,7 +1061,7 @@ nav a.nav-active {
     z-index: 1;
     align-self: flex-start;
     gap: 16px;
-    min-width: 50%;
+    min-width: 51%;
     padding: 12px 0px;
 }
 
@@ -1095,18 +1095,24 @@ nav a.nav-active {
         url("../pages/c8-k8s-header.jpeg");
     background-size: cover;       /* Fill the div */
     background-position: top;  /* Center the image */
-    /* animation: panBackground 9s ease-in-out infinite; */
-    animation: kenBurns 12s  ease-in-out infinite alternate;
+    /* animation: panBackground 8s ease-in-out infinite; */
+    animation: kenBurns 10s  ease-in-out infinite alternate;
     background-repeat: no-repeat;
-    max-width: 105%;
+    max-width: 115%;
 }
 
 @keyframes kenBurns {
     0% {
         transform: scale(1) translate(0,0);
     }
+    25% {
+        transform: scale(1.04) translate(-2%,1%);
+    }
     50% {
-        transform: scale(1.08) translate(-8%,1%);
+        transform: scale(1.08) translate(-6%,1%);
+    }
+    75% {
+        transform: scale(1.11) translate(3%,-1%);
     }
     100% {
         transform: scale(1.15) translate(6%,-1%);
@@ -1331,6 +1337,22 @@ nav a.nav-active {
 
 .toast.info {
     background: rgba(232,73,29, 0.91);
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    padding: 0;
+}
+
+.toast-close:hover {
+    color: white;
+    background: none;
+    transform: translateY(-2px);
 }
 
 .welcome-block {

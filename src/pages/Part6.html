@@ -33,7 +33,7 @@ docker manifest inspect {{REGION}}-docker.pkg.dev/c8-labs/c8-labs-repo/toolkit-a
 <br/>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-6-1', 'Make sure Docker Desktop app is running and Maven is accessible.')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-6-1', '6-1 Copied. Make sure Docker commands are supported in the terminal session.')">Copy</button>
                 <p/>
 <br/>Run this command in Cloud Shell to check access to the Docker image.
 
@@ -49,7 +49,7 @@ export UNAMESPACE={{UNAMESPACE}}
 envsubst '${UNAMESPACE}' < deploy-worker-toolkit.yaml  | kubectl apply  -f -
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-6-2')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-6-2', '6-2 Copied to Clipboard!')">Copy</button>
                 <p/>
             </div>
             <p/>
@@ -60,7 +60,7 @@ envsubst '${UNAMESPACE}' < deploy-worker-toolkit.yaml  | kubectl apply  -f -
 envsubst '${UNAMESPACE}' < c8-ingress-with-toolkit.yaml | kubectl apply  -f -
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-6-3')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-6-3', '6-3 Copied to Clipboard!')">Copy</button>
                 <p/>
 You may check the ingress definition in the assigned namespace.
 <br/>
@@ -101,7 +101,7 @@ curl -v --request POST \
 <br/>
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-6-4')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-6-4', '6-4 Copied to Clipboard!')">Copy</button>
                 <p/>
 You may check the deployment status via <code><a target="_blank" href="https://{{UNAMESPACE}}.makelabs.in/orchestration/operate">Operate</a></code> console.
 <br/><code>https://{{UNAMESPACE}}.makelabs.in/orchestration/operate</code>
@@ -129,7 +129,7 @@ curl -v --location --request PUT 'https://{{UNAMESPACE}}.makelabs.in/connectors/
 }'
                 </code></pre>
                 <p/>
-                <button class="copy-btn" onclick="copyToClipboard('copy-text-6-5')">Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-6-5', '6-5 Copied to Clipboard!')">Copy</button>
                 <p/>
                 <p>
                     <span class="alert-icon" role="img" aria-label="Important" style="margin-right:8px;">⚠️</span>
