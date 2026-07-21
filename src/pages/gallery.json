@@ -1,0 +1,222 @@
+[
+    {
+    "id": 0,
+    "src": "pages/c8-k8s-header.jpeg",
+    "title": "Start your c8-labs now!",
+    "subtitle": "Get access to kubernetes engine and deploy camunda self-managed app",
+    "alt": "Access To GCP Project c8-labs",
+    "duration": 6000,
+    "link": "/labs/gcp-access",
+    "category": "Getting Started"
+  },
+  {
+    "id": 0,
+    "src": "pages/img-1a-1-gcp-access.jpg",
+    "title": "Google Cloud Project",
+    "subtitle": "Access your dedicated c8-labs GCP environment.",
+    "alt": "Access To GCP Project c8-labs",
+    "duration": 6000,
+    "link": "/labs/gcp-access",
+    "category": "Getting Started"
+  },
+  {
+    "id": 10,
+    "src": "pages/c8-labs-word-cloud.jpg",
+    "title": "What You'll Learn",
+    "subtitle": "Camunda, Kubernetes, Helm, GCP and more.",
+    "alt": "Word Cloud: c8-labs",
+    "duration": 6000,
+    "link": "/labs/overview",
+    "category": "Overview"
+  },
+  {
+    "id": 11,
+    "src": "pages/c8-k8s-view.jpeg",
+    "title": "Lab Environment",
+    "subtitle": "Your dedicated Kubernetes playground.",
+    "alt": "Lab Environment: c8-labs",
+    "duration": 6000,
+    "link": "/labs/environment",
+    "category": "Overview"
+  },
+  {
+    "id": 20,
+    "src": "pages/img-2-1-cloud-shell-init.jpg",
+    "title": "Cloud Shell",
+    "subtitle": "Initialize your Kubernetes environment.",
+    "alt": "Cloud Shell Init",
+    "duration": 6000,
+    "link": "/labs/cloud-shell",
+    "category": "Getting Started"
+  },
+  {
+    "id": 30,
+    "src": "pages/img-2-2-headlamp-ns-is-active.jpg",
+    "title": "Namespace Ready",
+    "subtitle": "Your personal lab namespace is active.",
+    "alt": "Namespace Active",
+    "duration": 6000,
+    "link": "/labs/headlamp",
+    "category": "Kubernetes"
+  },
+  {
+    "id": 40,
+    "src": "pages/img-2-2-project-lens-app-view.jpg",
+    "title": "Headlamp Dashboard",
+    "subtitle": "Visualize Kubernetes resources with ease.",
+    "alt": "Headlamp Kubernetes Dashboard View",
+    "duration": 6000,
+    "link": "/labs/headlamp",
+    "category": "Kubernetes"
+  },
+  {
+    "id": 50,
+    "src": "pages/img-2-2-project-lens-app-with-ns.jpg",
+    "title": "Your Kubernetes View",
+    "subtitle": "Explore only your assigned namespace.",
+    "alt": "Headlamp Kubernetes Dashboard with User Assigned Namespace",
+    "duration": 6000,
+    "link": "/labs/headlamp",
+    "category": "Kubernetes"
+  },
+  {
+    "id": 60,
+    "src": "pages/img-4-3-elastic-pod.jpg",
+    "title": "Elasticsearch",
+    "subtitle": "Inspect stateful workloads running in Kubernetes.",
+    "alt": "Elasticsearch Pod",
+    "duration": 6000,
+    "link": "/labs/elasticsearch",
+    "category": "Camunda"
+  },
+  {
+    "id": 70,
+    "src": "pages/img-5-3-camnuda-pod-status.jpg",
+    "title": "Camunda Deployment",
+    "subtitle": "Verify all platform pods are healthy.",
+    "alt": "Camunda Pod(s) Status - 1 of 2",
+    "duration": 6000,
+    "link": "/labs/deployment",
+    "category": "Deployment"
+  },
+  {
+    "id": 80,
+    "src": "pages/img-5-3-camnuda-pod-status-v2.jpg",
+    "title": "Deployment Complete",
+    "subtitle": "Confirm every Camunda component is running.",
+    "alt": "Camunda Pod(s) Status - 2 of 2",
+    "duration": 6000,
+    "link": "/labs/deployment",
+    "category": "Deployment"
+  },
+  {
+    "id": 81,
+    "src": "pages/c8-labs-openid-config.jpeg",
+    "title": "OpenID Integration",
+    "subtitle": "Configure secure authentication with Keycloak.",
+    "alt": "Keycloak IAM OpenID config",
+    "duration": 6000,
+    "link": "/labs/security",
+    "category": "Security"
+  },
+  {
+    "id": 90,
+    "src": "pages/img-6-5-curl-return-status.jpg",
+    "title": "Invoke Workflows",
+    "subtitle": "Start BPMN processes using REST APIs.",
+    "alt": "Invoke Deployed BPMN with Curl - Return Status",
+    "duration": 6000,
+    "link": "/labs/workflows",
+    "category": "Workflow"
+  },
+  {
+    "id": 100,
+    "src": "https://docs.camunda.io/assets/images/architecture-8.8plus-data-flow-command-d374dc0f6e6f646562efe1d4dfb1b52c.jpg",
+    "title": "Zeebe Architecture",
+    "subtitle": "Understand command processing and data flow.",
+    "alt": "Demonstration of Data Flow - Command Pattern. Image Courtesy: Camunda Docs site",
+    "duration": 8000,
+    "link": "/labs/architecture",
+    "category": "Architecture"
+  },
+  {
+    "id": 110,
+    "src": "pages/img-8-3-grafana-view.jpg",
+    "title": "Grafana Dashboards",
+    "subtitle": "Monitor cluster health and performance.",
+    "alt": "Grafana View (I)",
+    "duration": 6000,
+    "link": "/labs/monitoring",
+    "category": "Monitoring"
+  },
+  {
+    "id": 111,
+    "src": "pages/img-8-3-grafana-view-2.jpg",
+    "title": "Operational Metrics",
+    "subtitle": "Visualize resource usage and trends.",
+    "alt": "Grafana View (II)",
+    "duration": 6000,
+    "link": "/labs/monitoring",
+    "category": "Monitoring"
+  },
+  {
+    "id": 120,
+    "src": "pages/img-8a-1-post-install-view.jpg",
+    "title": "Ready to Explore",
+    "subtitle": "Your platform is fully deployed.",
+    "alt": "Post Deployment View",
+    "duration": 6000,
+    "link": "/labs/post-install",
+    "category": "Deployment"
+  },
+  {
+    "id": 121,
+    "src": "pages/img-9b-3-c8-processing.jpg",
+    "title": "Camunda Operate",
+    "subtitle": "Inspect running process instances.",
+    "alt": "Camunda Operate - Process Instances",
+    "duration": 6000,
+    "link": "/labs/operate",
+    "category": "Operate"
+  },
+  {
+    "id": 122,
+    "src": "pages/img-9a-3-instance-created.jpg",
+    "title": "Process Started",
+    "subtitle": "Track workflow execution in real time.",
+    "alt": "Process Instance Created",
+    "duration": 6000,
+    "link": "/labs/processes",
+    "category": "Workflow"
+  },
+  {
+    "id": 123,
+    "src": "pages/img-9a-4-raft-append-rate.jpg",
+    "title": "Zeebe Internals",
+    "subtitle": "Observe Raft replication and append latency.",
+    "alt": "Zeebe Broker Append Operations and Latency",
+    "duration": 6000,
+    "link": "/labs/raft",
+    "category": "Zeebe"
+  },
+  {
+    "id": 130,
+    "src": "pages/img-9c-1-partition-count-inc.jpg",
+    "title": "Scale Zeebe",
+    "subtitle": "Increase partitions for greater throughput.",
+    "alt": "Scale: Partition Count Increase",
+    "duration": 6000,
+    "link": "/labs/scaling",
+    "category": "Scaling"
+  },
+  {
+    "id": 140,
+    "src": "pages/makelabs.png",
+    "title": "Powered by MakeLabs",
+    "subtitle": "Built for the Camunda community.",
+    "alt": "Managed by MakeLabs.in and Community Chapter Bengaluru",
+    "duration": 6000,
+    "link": "/about",
+    "category": "About"
+  }
+]

@@ -68,7 +68,10 @@
                 </a>
             </div>
             <div class="app-page-header-item-right">
-                <div class="app-page-header-item-right-animate"></div>
+                <div class="app-page-header-item-right-animate">
+                    <div class="animate-image-caption">
+                    </div>
+                </div>
                 <div id="magnifier"></div>
                 <div class="header-right-logo">
                     <img height="40" width="40" src="pages/makelabs.png" alt="c8-labs.makelabs.in" class="app-logo" />
@@ -288,53 +291,39 @@
             }
 
             // logic to show images on hero page - right side of the header
-            const images = [
-                "pages/c8-k8s-header.jpeg",
-                "pages/c8-labs-sign-in.jpeg",
-                "pages/img-1a-1-gcp-access.jpg",
-                "pages/c8-labs-word-cloud.jpg",
-                "pages/c8-k8s-view.jpeg",
-                "pages/img-2-1-cloud-shell-init.jpg",
-                "pages/img-2-2-headlamp-ns-is-active.jpg",
-                "pages/img-2-2-project-lens-app-view.jpg",
-                "pages/img-2-2-project-lens-app-with-ns.jpg",
-                "pages/img-4-3-elastic-pod.jpg",
-                "pages/img-5-3-camnuda-pod-status.jpg",
-                "pages/img-5-3-camnuda-pod-status-v2.jpg",
-                "pages/c8-labs-openid-config.jpeg",
-                "pages/img-6-5-curl-return-status.jpg",
-                "pages/img-8-3-grafana-view.jpg",
-                "pages/img-8-3-grafana-view-2.jpg",
-                "pages/img-8a-1-post-install-view.jpg",
-                "pages/img-9b-3-c8-processing.jpg",
-                "pages/img-9a-3-instance-created.jpg",
-                "pages/img-9a-4-raft-append-rate.jpg",
-                "pages/img-9c-1-partition-count-inc.jpg",
-            ];
+            const response = await fetch("pages/gallery.json");
+            const imagesGallery = await response.json();
 
             const slide = document.querySelector(".app-page-header-item-right-animate");
+            const slideCaption = document.querySelector(".animate-image-caption");
 
             let current = 0;
 
-            slide.style.backgroundImage = `linear-gradient(rgba(255,255,255,0.11), rgba(255,255,255,1.0)),url(${images[0]})`;
+            slide.style.backgroundImage = `linear-gradient(rgba(255,255,255,0.11), rgba(255,255,255,1.0)),url(${imagesGallery[current].src})`;
             slide.classList.add("active");
+            slideCaption.classList.add("active");
+            slideCaption.textContent = imagesGallery[current].title + ' - ' + imagesGallery[current].subtitle;
 
             setInterval(() => {
                 slide.classList.remove("active");
+                slideCaption.classList.remove("active");
 
                 setTimeout(() => {
                     
-                    current = (current + 1) % images.length;
+                    current = (current + 1) % imagesGallery.length;
 
                     if ( current === 0) // gradient only for 1st image
                         slide.style.backgroundImage =
                                         `linear-gradient(rgba(255,255,255,0.11),
                                                         rgba(255,255,255,1)),
-                                        url(${images[current]})`;
+                                         url(${imagesGallery[current].src})`;
                     else
-                        slide.style.backgroundImage = `url(${images[current]})`;
+                        slide.style.backgroundImage = `url(${imagesGallery[current].src})`;
 
+                    slideCaption.textContent = imagesGallery[current].title + ' - ' + imagesGallery[current].subtitle;
                     slide.classList.add("active");
+                    slideCaption.classList.add("active");
+                    
                 }, 2*1000);
 
             }, 8*1000);

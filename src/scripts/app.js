@@ -56,6 +56,8 @@ const loadCoursePart = (part, specificView) => {
                 renderStudentTable();
                 attachGalleryModal();
 
+                loadGallery();
+
                 // there are links to visit specific section of this page
                 // lets look for it in the href
                 const currentPageLink = window.location.href;
@@ -535,6 +537,25 @@ const participants =
   }
 ]
 ;
+
+async function loadGallery(){
+    const labGallery = document.querySelector(".lab-gallery");
+
+    const response = await fetch("pages/gallery.json");
+    const gallery = await response.json();
+
+    if (labGallery){
+
+        gallery.forEach( item => {
+        labGallery.innerHTML = labGallery.innerHTML + `
+            <div class="lab-gallery-item">
+                <img data-gallery-index="${item.id}" src="${item.src}" alt="${item.title} ${item.subtitle}" loading="lazy">
+            </div>
+        `;
+
+        });
+    }
+}
 
 function renderStudentTable() {
     const tbody = document.getElementById('studentTable');

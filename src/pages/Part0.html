@@ -76,27 +76,7 @@
                 </div>
             </div>
             <div class="lab-gallery">
-                <div class="lab-gallery-item"><img data-gallery-index="0" src="pages/img-1a-1-gcp-access.jpg" alt="Access To GCP Project c8-labs" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="10" src="pages/c8-labs-word-cloud.jpg" alt="Word Cloud: c8-labs" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="11" src="pages/c8-k8s-view.jpeg" alt="Lab Environment: c8-labs" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="20" src="pages/img-2-1-cloud-shell-init.jpg" alt="Cloud Shell Init" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="30" src="pages/img-2-2-headlamp-ns-is-active.jpg" alt="Namespace Active" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="40" src="pages/img-2-2-project-lens-app-view.jpg" alt="Headlamp Kubernetes Dashboard View" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="50" src="pages/img-2-2-project-lens-app-with-ns.jpg" alt="Headlamp Kubernetes Dashboard with User Assigned Namespace" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="60" src="pages/img-4-3-elastic-pod.jpg" alt="Elasticsearch Pod" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="70" src="pages/img-5-3-camnuda-pod-status.jpg" alt="Camunda Pod(s) Status - 1 of 2" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="80" src="pages/img-5-3-camnuda-pod-status-v2.jpg" alt="Camunda Pod(s) Status - 2 of 2" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="81" src="pages/c8-labs-openid-config.jpeg" alt="Keycloak IAM OpenID config" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="90" src="pages/img-6-5-curl-return-status.jpg" alt="Invoke Deployed BPMN with Curl - Return Status" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="100" src="https://docs.camunda.io/assets/images/architecture-8.8plus-data-flow-command-d374dc0f6e6f646562efe1d4dfb1b52c.jpg" alt="Demonstration of Data Flow - Command Pattern. Image Courtesy: Camunda Docs site" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="110" src="pages/img-8-3-grafana-view.jpg" alt="Grafana View (I)" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="111" src="pages/img-8-3-grafana-view-2.jpg" alt="Grafana View (II)" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="120" src="pages/img-8a-1-post-install-view.jpg" alt="Post Deployment View" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="121" src="pages/img-9b-3-c8-processing.jpg" alt="Camunda Operate - Process Instances" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="122" src="pages/img-9a-3-instance-created.jpg" alt="Process Instance Created" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="123" src="pages/img-9a-4-raft-append-rate.jpg" alt="Zeebe Broker Append Operations and Latency" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="130" src="pages/img-9c-1-partition-count-inc.jpg" alt="Scale: Partition Count Increase" loading="lazy"></div>
-                <div class="lab-gallery-item"><img data-gallery-index="140" src="pages/makelabs.png" alt="Managed by MakeLabs.in and Community Chapter Bengaluru" loading="lazy"></div>
+
             </div>
 
 
@@ -568,5 +548,12 @@
         </section>
     </main>    
     <script src="../scripts/app.js"></script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', async () => { 
+            console.log('init load gallery...');
+            loadGallery();
+        } );
+    </script>
 </body>
 </html>
