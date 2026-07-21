@@ -15,7 +15,18 @@ header.innerHTML = `
 
 const footer = document.createElement('footer');
 footer.innerHTML = `
-    <p><small>&copy; 2025 MakeLabs.in All rights reserved. For any query or feedback, write to <code>contact@makelabs.in</code></small></p>
+    <p>
+    <small>
+        &copy; 2025 MakeLabs.in All rights reserved.
+        &nbsp;&nbsp;•&nbsp;&nbsp;
+        For any query or feedback, write to <code>contact@makelabs.in</code>
+    </small>
+    <small>
+        &nbsp;&nbsp;•&nbsp;&nbsp;<a onclick="loadCoursePart(0, '#about');">Usage Policy, Educational Use & Acknowledgements</a>
+        &nbsp;&nbsp;•&nbsp;&nbsp;
+        <a target="_blank" href="https://www.makelabs.in/privacy">Privacy Policy</a>
+    </small>
+    </p>
 `;
 
 document.body.appendChild(header);

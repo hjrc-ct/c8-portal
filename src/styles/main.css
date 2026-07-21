@@ -668,7 +668,15 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+    text-align: center;
 }
+
+footer a {
+    cursor: pointer;
+    color: black;
+    text-decoration-line: none;
+}
+
 ul li {
     margin-bottom: 1.05em;
 }
