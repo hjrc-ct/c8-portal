@@ -54,9 +54,8 @@ const loadCoursePart = (part, specificView) => {
             if (part == 0) {
                 participants.sort((a, b) => a.name.localeCompare(b.name));
                 renderStudentTable();
+                await loadGallery();
                 attachGalleryModal();
-
-                loadGallery();
 
                 // there are links to visit specific section of this page
                 // lets look for it in the href
@@ -547,11 +546,12 @@ async function loadGallery(){
     if (labGallery){
 
         gallery.forEach( item => {
-        labGallery.innerHTML = labGallery.innerHTML + `
-            <div class="lab-gallery-item">
-                <img data-gallery-index="${item.id}" src="${item.src}" alt="${item.title} ${item.subtitle}" loading="lazy">
-            </div>
-        `;
+            if (item.id > 0 && item.id < 1000) // some items are marketing images. so lets ignore them. they are however meant for home page rendering.
+                labGallery.innerHTML = labGallery.innerHTML + `
+                    <div class="lab-gallery-item">
+                        <img data-gallery-index="${item.id}" src="${item.src}" alt="${item.title} ${item.subtitle}" loading="lazy">
+                    </div>
+                `;
 
         });
     }
@@ -643,6 +643,31 @@ function attachClearCacheButton() {
     button.addEventListener('click', clearCache);
     console.log('Attached click event to clearCache button');
 }
+
+// get content for image gallery. beautify with icon etc.
+function getContent(item){
+    let value = item.title + ( item.subtitle == '' ? '' : ' → ' + item.subtitle );
+    if (item.category){
+        switch(item.category){
+            case 'About'        : return '<i class="fa-solid fa-circle-info"></i>&nbsp;&nbsp;' + value;
+            case 'Architecture' : return '<i class="fa-solid fa-sitemap"></i>&nbsp;&nbsp;' + value;
+            case 'Database'     : return '<i class="fa-solid fa-database"></i>&nbsp;&nbsp;' + value;
+            case 'Deployment'   : return '<i class="fa-solid fa-terminal"></i>&nbsp;&nbsp;' + value;
+            case 'Getting Started' : return '<i class="fa-solid fa-rocket"></i>&nbsp;&nbsp;' + value;
+            case 'Kubernetes'   : return '<i class="fa-solid fa-cubes"></i>&nbsp;&nbsp;' + value;
+            case 'Monitoring'   : return '<i class="fa-solid fa-chart-line"></i>&nbsp;&nbsp;' + value;
+            case 'Onboarding'   : return '<i class="fa-solid fa-laptop-code"></i>&nbsp;&nbsp;' + value;
+            case 'Overview'     :  return '<i class="fa-solid fa-compass"></i>&nbsp;&nbsp;' + value;
+            case 'Security'     : return '<i class="fa-solid fa-shield-halved"></i>&nbsp;&nbsp;' + value;
+            case 'Shell'        : return '<i class="fa-solid fa-terminal"></i>&nbsp;&nbsp;' + value;
+            case 'Workflow'     : return '<i class="fa-solid fa-diagram-project"></i>&nbsp;&nbsp;' + value;
+            case 'Zeebe'        : return '<i class="fa-solid fa-bolt"></i>&nbsp;&nbsp;' + value;
+            default             : return item.category + ' ' + value;
+        }
+    }
+    return value;
+}
+
 
 function attachGalleryModal() {
     const gallery = document.querySelector('.lab-gallery');

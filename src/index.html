@@ -299,10 +299,10 @@
 
             let current = 0;
 
-            slide.style.backgroundImage = `linear-gradient(rgba(255,255,255,0.11), rgba(255,255,255,1.0)),url(${imagesGallery[current].src})`;
+            slide.style.backgroundImage = `linear-gradient(rgba(255,255,255,0.14), rgba(255,255,255,1.0)),url(${imagesGallery[current].src})`;
             slide.classList.add("active");
             slideCaption.classList.add("active");
-            slideCaption.textContent = imagesGallery[current].title + ' - ' + imagesGallery[current].subtitle;
+            slideCaption.innerHTML = getContent( imagesGallery[current] );
 
             setInterval(() => {
                 slide.classList.remove("active");
@@ -312,21 +312,21 @@
                     
                     current = (current + 1) % imagesGallery.length;
 
-                    if ( current === 0) // gradient only for 1st image
+                    if ( current === 0 || true ) // gradient only for 1st image or all
                         slide.style.backgroundImage =
-                                        `linear-gradient(rgba(255,255,255,0.11),
-                                                        rgba(255,255,255,1)),
+                                        `linear-gradient(rgba(255,255,255,0.14),
+                                                        rgba(255,255,255,1.0)),
                                          url(${imagesGallery[current].src})`;
                     else
                         slide.style.backgroundImage = `url(${imagesGallery[current].src})`;
 
-                    slideCaption.textContent = imagesGallery[current].title + ' - ' + imagesGallery[current].subtitle;
+                    slideCaption.innerHTML = getContent( imagesGallery[current] ); 
                     slide.classList.add("active");
                     slideCaption.classList.add("active");
                     
                 }, 2*1000);
 
-            }, 8*1000);
+            }, imagesGallery[current].duration < 6000 ? 6000 : imagesGallery[current].duration );
         });
     </script>
 </body>

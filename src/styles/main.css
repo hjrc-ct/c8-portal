@@ -1085,7 +1085,7 @@ nav a.nav-active {
     inset: 0;
 
     z-index: 0;
-    border-radius: 16px;
+    border-radius: 6px;
     padding: 0px;
     width: 100%;
     
@@ -1099,7 +1099,6 @@ nav a.nav-active {
     animation: panBackground 8s ease-in-out infinite; 
     /* animation: kenBurns 10s  ease-in-out infinite alternate; */
     background-repeat: no-repeat;
-    border-radius: 16px;
     max-width: 100%;
 }
 
@@ -1141,10 +1140,13 @@ nav a.nav-active {
 
 .animate-image-caption {
     position: absolute;
-    right: 24px;
+    align-items: center;
     bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
 
-    max-width: 240px;
+    max-width: 640px;
     padding: 10px 16px;
 
     background: rgba(18,22,28,0.72); /* rgba(255,255,255,.18); */
@@ -1158,7 +1160,12 @@ nav a.nav-active {
     font-size: 14px;
     line-height: 1.4;
 
-    transition: opacity .5s ease, transform .5s ease;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.animate-image-caption i {
+    color: orange;
+    font-size: large;
 }
 
 .header-right-arrow{
@@ -1241,6 +1248,7 @@ nav a.nav-active {
 
     position: relative;
     z-index: 1;
+    padding-top: 5px;
 }
 
 .app-logo {
