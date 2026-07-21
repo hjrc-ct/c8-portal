@@ -60,6 +60,8 @@ const loadCoursePart = (part, specificView) => {
               codeBlock.textContent = codeBlock.textContent.replace(/{{CLUSTER_NAME}}/g, k8sConfig.CLUSTER_NAME);
               codeBlock.textContent = codeBlock.textContent.replace(/{{PROJECT_ID}}/g, k8sConfig.PROJECT_ID);
               codeBlock.textContent = codeBlock.textContent.replace(/{{REGION}}/g, k8sConfig.REGION);
+
+              codeBlock.textContent = codeBlock.textContent.replace(/{{TODAY_TIMESTAMP}}/g, new Date().toISOString() );
             });
 
             if (part == 0) {
