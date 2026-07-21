@@ -71,8 +71,12 @@
                 <div class="app-page-header-item-right-animate">
                     <div class="animate-image-caption">
                     </div>
+                    <input id="play_or_pause" value="true" type="text" hidden />
                 </div>
                 <div id="magnifier"></div>
+                <button id="pauseButton" class="slideshow-control" title="Pause / Play slideshow" >
+                        <i class="fa-solid fa-pause"></i>
+                </button>
                 <div class="header-right-logo">
                     <img height="40" width="40" src="pages/makelabs.png" alt="c8-labs.makelabs.in" class="app-logo" />
                 </div>
@@ -307,6 +311,23 @@
             setInterval(() => {
                 slide.classList.remove("active");
                 slideCaption.classList.remove("active");
+
+                const buttonInput = document.getElementById('play_or_pause');
+                const buttonPlay  = document.getElementById('pauseButton');
+                
+                if (!buttonPlay || !buttonInput) return;
+
+                console.log('button play value ', buttonPlay.value);
+
+                if (buttonInput.value.indexOf("true") >= 0 ) {
+                    console.log('continue to play the animate image ' + current);
+                    buttonPlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                    // show the pause button continue as usual
+                } else {
+                    console.log('no action - stop play the animate image ' + current);
+                    buttonPlay.innerHTML = '<i class="fa-solid fa-play"></i>';
+                    return;
+                }
 
                 setTimeout(() => {
                     

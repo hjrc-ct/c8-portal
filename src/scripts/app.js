@@ -57,6 +57,8 @@ const loadCoursePart = (part, specificView) => {
                 await loadGallery();
                 attachGalleryModal();
 
+                attachTogglePlayPause();
+
                 // there are links to visit specific section of this page
                 // lets look for it in the href
                 const currentPageLink = window.location.href;
@@ -668,6 +670,34 @@ function getContent(item){
     return value;
 }
 
+function togglePlayPause(e){ // event e as input
+    console.log('in function togglePlayPause...');
+    e.preventDefault();
+    const buttonPlay = document.getElementById('pauseButton');
+    const buttonInput = document.getElementById('play_or_pause');
+    
+    if (!buttonInput || !buttonPlay) {console.log('Error! no button found for play pause'); return;}
+
+    if (buttonInput.value == "true") {
+        buttonPlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        buttonInput.value = "false"; 
+        console.log('set play pause value to false (pause)');
+    }
+    else {
+        buttonPlay.innerHTML = '<i class="fa-solid fa-play"></i>';
+        buttonInput.value = "true";
+        console.log('set play pause value to true (play)');
+    }
+}
+
+function attachTogglePlayPause(){
+    const btn = document.getElementById('pauseButton');
+    if (!btn) return;
+
+    console.log('registered click event for toggle play pause btn');
+
+    btn.addEventListener('click', (e) => togglePlayPause(e) );
+}
 
 function attachGalleryModal() {
     const gallery = document.querySelector('.lab-gallery');
