@@ -333,7 +333,7 @@
                     
                     current = (current + 1) % imagesGallery.length;
 
-                    if ( current === 0 || true ) // gradient only for 1st image or all
+                    if ( current === 0 || current + 1 === imagesGallery.length ) // gradient only for 1st image or last
                         slide.style.backgroundImage =
                                         `linear-gradient(rgba(255,255,255,0.14),
                                                         rgba(255,255,255,1.0)),

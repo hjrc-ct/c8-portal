@@ -1195,8 +1195,12 @@ nav a.nav-active {
     width: 30px;
     height: 30px;
 
-    transition: background .2s;
+    transition: transform .12s ease, background .2s ease;
     opacity: 0.75;
+}
+
+.slideshow-control.pressed {
+    transform: scale(0.85);
 }
 
 .header-right-arrow{

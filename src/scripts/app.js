@@ -678,6 +678,12 @@ function togglePlayPause(e){ // event e as input
     
     if (!buttonInput || !buttonPlay) {console.log('Error! no button found for play pause'); return;}
 
+    buttonPlay.classList.add("pressed");
+
+    setTimeout(() => {
+        buttonPlay.classList.remove("pressed");
+    }, 120);    
+    
     if (buttonInput.value == "true") {
         buttonPlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
         buttonInput.value = "false"; 
