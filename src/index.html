@@ -77,6 +77,7 @@
                 <button id="pauseButton" class="slideshow-control" title="Pause / Play slideshow" >
                         <i class="fa-solid fa-pause"></i>
                 </button>
+                <span hidden id="currentSlideNumber" style="color: gray;font-size:x-small; z-index: 99;">#1</span>
                 <div class="header-right-logo">
                     <img height="40" width="40" src="pages/makelabs.png" alt="c8-labs.makelabs.in" class="app-logo" />
                 </div>
@@ -322,16 +323,19 @@
                 if (buttonInput.value.indexOf("true") >= 0 ) {
                     console.log('continue to play the animate image ' + current);
                     buttonPlay.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                    buttonPlay.title = `${(1+current)} of ${imagesGallery.length} Click to Pause`;
                     // show the pause button continue as usual
                 } else {
                     console.log('no action - stop play the animate image ' + current);
                     buttonPlay.innerHTML = '<i class="fa-solid fa-play"></i>';
+                    buttonPlay.title = `${(current)+1} of ${imagesGallery.length} Click to Play`;
                     return;
                 }
 
                 setTimeout(() => {
                     
                     current = (current + 1) % imagesGallery.length;
+                    buttonPlay.title = `${(current)+1} of ${imagesGallery.length}`;
 
                     if ( current === 0 || current + 1 === imagesGallery.length ) // gradient only for 1st image or last
                         slide.style.backgroundImage =
@@ -340,6 +344,9 @@
                                          url(${imagesGallery[current].src})`;
                     else
                         slide.style.backgroundImage = `url(${imagesGallery[current].src})`;
+
+                    const textSlideNumber = document.getElementById('currentSlideNumber');
+                    if (textSlideNumber) textSlideNumber.innerHTML = `#${1+current}`;
 
                     slideCaption.innerHTML = getContent( imagesGallery[current] ); 
                     slide.classList.add("active");
