@@ -210,6 +210,16 @@
     "category": "Architecture"
   },
   {
+    "id": 0,
+    "src": "pages/camunda-logo.jpeg",
+    "title": "Start with your <u>c8-labs</u> now !",
+    "subtitle": "",
+    "alt": "Start with your <u>c8-labs</u> now !",
+    "duration": 3000,
+    "link": "/labs/gcp-access",
+    "category": "Getting Started"
+  },
+  {
     "id": 1000,
     "src": "pages/makelabs.png",
     "title": "Powered by MakeLabs",

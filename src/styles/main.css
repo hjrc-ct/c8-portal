@@ -1099,11 +1099,31 @@ nav a.nav-active {
     
     height: calc(100% - 72px); /* subtract navbar height */
 
-    background: 
-        linear-gradient(rgba(255,255,255,0.11), rgba(255,255,255,1.0)),
-        url("../pages/c8-k8s-header.jpeg");
-    background-size: cover;       /* Fill the div */
-    background-position: center;  /* Center the image */
+    background:
+        url("../pages/c8-k8s-header.jpeg"),
+        url("../pages/camunda-logo.jpeg"),
+        linear-gradient(
+            to right,
+            rgba(255,255,255,.11),
+            rgba(255,255,255,1.0)
+        )
+        ;
+
+    background-repeat:
+        no-repeat,
+        no-repeat,
+        no-repeat;
+
+    background-size:
+        cover,
+        contain,
+        contain;
+
+    background-position:
+        top center,
+        right 18px top 12px,
+        left center;
+
     animation: panBackground 8s ease-in-out infinite; 
     /* animation: kenBurns 10s  ease-in-out infinite alternate; */
     background-repeat: no-repeat;
