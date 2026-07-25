@@ -48,7 +48,9 @@
                     &nbsp;&nbsp;
                     <a class="quick-link-pill-top-cta-secondary" onclick="loadCoursePart(0,'access-plans')">Access Plans</a>
                     &nbsp;&nbsp;
-                    <a class="quick-link-pill-top-cta-primary"   onclick="loadCoursePart(0,'get-started')">Get Started</a>
+                    <a class="quick-link-pill-top-cta-secondary"   onclick="loadCoursePart(0,'get-started')">Get Started</a>
+                    &nbsp;&nbsp;
+                    <a class="quick-link-pill-top-cta-primary"    target="_blank" href="https://www.udemy.com/course/c8-k8s-labs/?couponCode=3158320C7E6FBF33F1A3">Udemy Practice Test: c8-k8s</a>
                 </h4>
                 <br/>
                 <!-- put panel here -->
@@ -335,6 +337,8 @@
                 setTimeout(() => {
                     
                     current = (current + 1) % imagesGallery.length;
+                    if (current === 0) current = 1;
+
                     buttonPlay.title = `${(current)+1} of ${imagesGallery.length}`;
 
                     if ( current === 0 || current + 1 === imagesGallery.length ) // gradient only for 1st image or last
