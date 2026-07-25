@@ -389,6 +389,30 @@ section small {
     cursor:grabbing;
 }
 
+.quick-link-pill-top-cta-teritary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    color: #ffffff; 
+    background-color: oklch(48.41% 0.2342 293.93deg);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 10px 16px;
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.16);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.quick-link-pill-top-cta-teritary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(111, 66, 193, 0.24);
+    background: #35424a;
+    color: white;
+    cursor:grabbing;
+}
+
+
 .top-cta-tooltip {
     display: inline-grid;
     gap: 6px;
@@ -887,7 +911,7 @@ hr {
    position:inherit;
     bottom: 10px;
     left: 10px;
-    background: purple;
+    background: #e8491d;
     color: #fff;
     border: none;
     border-radius: 4px;
