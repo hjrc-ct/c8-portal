@@ -19,10 +19,12 @@ footer.innerHTML = `
     <small>
         &copy; 2025 MakeLabs.in All rights reserved.
         &nbsp;&nbsp;•&nbsp;&nbsp;
+        <a href="${initDomainName}">Home</a>
+        &nbsp;&nbsp;•&nbsp;&nbsp;
         For any query or feedback, write to <code>contact@makelabs.in</code>
     </small>
     <small>
-        &nbsp;&nbsp;•&nbsp;&nbsp;<a onclick="loadCoursePart(0, '#about');">Usage Policy, Educational Use & Acknowledgements</a>
+        &nbsp;&nbsp;•&nbsp;&nbsp;<a href="/#about">Usage Policy, Educational Use & Acknowledgements</a>
         &nbsp;&nbsp;•&nbsp;&nbsp;
         <a target="_blank" href="https://www.makelabs.in/privacy">Privacy Policy</a>
     </small>
@@ -84,7 +86,8 @@ const loadCoursePart = (part, specificView) => {
                         specificView = 'access-plans';
                     else if ( currentPageLink.indexOf("lab-gallery") >= 0 )
                         specificView = 'lab-gallery';
-
+                    else if ( currentPageLink.indexOf("about") >= 0 )
+                        specificView = 'about';
                 }
 
                 if (specificView){
