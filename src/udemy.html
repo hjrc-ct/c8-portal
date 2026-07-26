@@ -28,7 +28,7 @@ body{
     max-width:65%;
     margin:auto;
     text-align: left;
-    padding:60px 145px;
+    padding:10px 95px;
     background:white;
 }
 
@@ -91,6 +91,21 @@ body{
     margin-bottom:10px;
 }
 
+.udemy-course-title{
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 25px; 
+    padding: 12px 12px;
+}
+
+.udemy-course-link{
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 25px; 
+    padding: 12px 12px;
+    background-color: antiquewhite;
+}
+
 .button{
     display:inline-block;
     margin-top:30px;
@@ -140,16 +155,30 @@ body{
 
         <h1>Welcome, Udemy Students!</h1>
         <br/>
-        <a href="https://www.udemy.com/course/c8-k8s-labs/?referralCode=5A003828D762985E2DDD">
-            <span style="margin-top: 25px; padding: 12px 12px;background-color: antiquewhite;">https://udemy.com/course/c8-k8s-labs</span>
-        </a>
-
+        <span class="udemy-course-link">
+        Enroll / Sign In
+        </span>
+        → 
+        <span class="udemy-course-link">
+        Use c8-labs
+        </span>
+        → 
+        <span class="udemy-course-link">
+        Take practice exam
+        </span>
         <p>
         <code>c8-labs</code> is a complimentary lab environment that lets you deploy and explore
         Camunda 8 Self-Managed on Google Kubernetes Engine without setting up your own cloud infrastructure.
         <br/><br/>
         <hr/>
-        Go through the Hands-on labs before taking the Practice Exam on Udemy !
+        Go through the Hands-on labs in this portal before attempting the Practice Exam on Udemy!
+        <br/><span class="udemy-course-title">Camunda 8 Self-Managed on Kubernetes / GCP – Practice Exam</span>
+        <br/><br/>
+        <a href="https://www.udemy.com/course/c8-k8s-labs/?referralCode=5A003828D762985E2DDD">
+            <span class="udemy-course-link">
+                Open the Udemy course page
+            </span>
+        </a>        
         </p>
     </div>
 
