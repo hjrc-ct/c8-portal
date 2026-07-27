@@ -83,6 +83,15 @@ export EXTERNAL_API_URL=cep-api-gw-7k5bxais.an.gateway.dev
 # we are creating this public cert file: google-api-gw-cert.pem
 openssl s_client -connect $EXTERNAL_API_URL:443 -showcerts <  /dev/null 2> /dev/null | sed -n '/-----BEGIN CERTIFICATE-----/,/-----END CERTIFICATE-----/p' > google-api-gw-cert.pem
 <br/>
+# Divide the cert into individual parts: google-api-gw-cert.pem
+csplit -z -f google-api-gw-cert-  -b "%02d.pem"  google-api-gw-cert.pem '/-----BEGIN CERTIFICATE-----/' '{*}'
+<br/>
+keytool -importcert  -alias google-api-gw-cert0  -file google-api-gw-cert-00.pem  -keystore  ${UNAMESPACE}-zeebe-toolkit.jks   -storepass changeit  -noprompt
+<br/>
+keytool -importcert  -alias google-api-gw-cert1  -file google-api-gw-cert-01.pem  -keystore  ${UNAMESPACE}-zeebe-toolkit.jks   -storepass changeit  -noprompt
+<br/>
+keytool -importcert  -alias google-api-gw-cert2  -file google-api-gw-cert-02.pem  -keystore  ${UNAMESPACE}-zeebe-toolkit.jks   -storepass changeit  -noprompt
+<br/>
 kubectl get secret {{UNAMESPACE}}-zeebe-toolkit-jks -n {{UNAMESPACE}} \
 -o jsonpath="{.data.{{UNAMESPACE}}-zeebe-toolkit\.jks}" \
 | base64 --decode > {{UNAMESPACE}}-zeebe-toolkit.jks
@@ -92,6 +101,8 @@ keytool -importcert -alias ml-google-api-gw -file google-api-gw-cert.pem  -keyst
 # Upload the new JKS via patch secret
 kubectl patch secret {{UNAMESPACE}}-zeebe-toolkit-jks -n {{UNAMESPACE}} \
 -p "{\"data\":{\"{{UNAMESPACE}}-zeebe-toolkit.jks\":\"$(base64 -w 0 {{UNAMESPACE}}-zeebe-toolkit.jks)\"}}"
+<br/>
+rm -f google-api-gw-cert-00.pem google-api-gw-cert-01.pem google-api-gw-cert-02.pem
 <br/>
 </code></pre>
                                     <p/>
