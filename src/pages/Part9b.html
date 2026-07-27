@@ -104,6 +104,10 @@ kubectl patch secret {{UNAMESPACE}}-zeebe-toolkit-jks -n {{UNAMESPACE}} \
 <br/>
 rm -f google-api-gw-cert-00.pem google-api-gw-cert-01.pem google-api-gw-cert-02.pem
 <br/>
+echo "Below are the list of certs available in ${UNAMESPACE}-zeebe-toolkit.jks  "
+<br/>
+keytool -list -storepass changeit  -keystore ${UNAMESPACE}-zeebe-toolkit.jks 
+<br/>
 </code></pre>
                                     <p/>
                                     <button class="copy-btn" onclick="copyToClipboard('copy-text-9b-2a', '9b-2a Copied to Clipboard!')">Copy</button>
