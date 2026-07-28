@@ -11,18 +11,27 @@
 
         <section id="page-video">
             <h4>🎬 Watch Before You Begin</h2>
-                <div class="video-wrapper">
-                    <iframe
-                        src="https://www.youtube.com/embed/oaTfls49gTM"
-                        title="c8-labs Introduction"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen>
-                    </iframe>
-                </div>
 
+            <div class="video-card">
                 <p>
-                    This walkthrough video introduces the process of onboarding to <code>c8-labs</code>.
+                    This video introduces the process of onboarding to <code>c8-labs</code>.
+                    <ul>
+                        <li>Create a <b>new namespace</b> on Kubernetes cluster</li>
+                        <li>Validate access to GCP Project: <code>c8-labs</code></li>
+                    </ul>
                 </p>
+
+                <div class="video-placeholder"
+                     data-video="https://videos-c8-labs.makelabs.in/v1/c8-k8s-labs-a-onboarding.mov">
+                    <img
+                        src="pages/c8-k8s-view.jpeg"
+                        alt="c8-labs Onboarding" />
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section>
@@ -102,5 +111,6 @@ If you encounter this message while following the lab guide or are unable to com
 
     </main>
     <script src="../scripts/app.js"></script>
+    <script src="../scripts/app-videos.js"></script>
 </body>
 </html>

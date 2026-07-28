@@ -1577,3 +1577,57 @@ nav a.nav-active {
 .camunda-install-log-view:hover {
     cursor:grabbing;   
 }
+
+.video-card {
+    max-width: 700px;
+}
+
+.video-placeholder {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.18);
+}
+
+.video-placeholder img {
+    display: block;
+    width: 100%;
+}
+
+.video-placeholder iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+}
+
+.play-button {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    background: rgba(230,40,40,.95);
+
+    color: white;
+
+    font-size: 42px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: .25s;
+}
+
+.video-placeholder:hover .play-button {
+    transform: translate(-50%, -50%) scale(1.12);
+}

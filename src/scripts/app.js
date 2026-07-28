@@ -66,6 +66,8 @@ const loadCoursePart = (part, specificView) => {
               codeBlock.textContent = codeBlock.textContent.replace(/{{TODAY_TIMESTAMP}}/g, new Date().toISOString() );
             });
 
+            registerVideos();
+
             if (part == 0) {
                 participants.sort((a, b) => a.name.localeCompare(b.name));
                 renderStudentTable();

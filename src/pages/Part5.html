@@ -8,37 +8,44 @@
 <body>
     <main id="page-start">
         <h2>Camunda Self-Managed</h2>
-        <p>
-            Lets install Camunda components in your assigned namespace.
-            <br/>
-        </p>
-
         <section id="page-video">
             <h4>🎬 Watch Before You Begin</h2>
-                <div class="video-wrapper">
-                    <iframe
-                        src='https://www.youtube.com/embed/OjmEfvqYqmU'
-                        title="c8-labs setup lab environment"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-
-                <div class="video-wrapper">
-                    <iframe
-                        src='https://www.youtube.com/embed/X8NUVdjB_h8'
-                        title="c8-labs setup lab environment"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-
+            <div class="video-card">
                 <p>
-                    This walkthrough video(s) introduce Camunda 8.9.7 installation, validation and sample app deployment.
+                    Below two video(s) introduce Camunda 8.9.7 installation, validation and sample app deployment.
                 </p>
+
+                <div class="video-placeholder"
+                     data-video="https://videos-c8-labs.makelabs.in/v1/c8-k8s-labs-d-camunda-helm-install.mov">
+                    <img
+                        src="pages/c8-k8s-view.jpeg"
+                        alt="c8-labs Landing Page" />
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+                </div>
+
+                <p/>
+
+                <div class="video-placeholder"
+                     data-video="https://videos-c8-labs.makelabs.in/v1/c8-k8s-labs-d-camunda-helm-install-validation-with-sample-app.mov">
+                    <img
+                        src="pages/c8-k8s-view.jpeg"
+                        alt="c8-labs Landing Page" />
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section>
+            <p>
+                Lets install Camunda components in your assigned namespace.
+            </p>
+
             <div class="copy-block" data-label="bash 5-1">
                 <p/>
                 Add secret that holds password for various accounts.<br/>
