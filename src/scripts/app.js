@@ -24,7 +24,7 @@ footer.innerHTML = `
         For any query or feedback, write to <code>contact@makelabs.in</code>
     </small>
     <small>
-        &nbsp;&nbsp;•&nbsp;&nbsp;<a href="/#about">Usage Policy, Educational Use & Acknowledgements</a>
+        &nbsp;&nbsp;•&nbsp;&nbsp;<a href="${initDomainName}#about">Usage Policy, Educational Use & Acknowledgements</a>
         &nbsp;&nbsp;•&nbsp;&nbsp;
         <a target="_blank" href="https://www.makelabs.in/privacy">Privacy Policy</a>
     </small>
