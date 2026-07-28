@@ -4,8 +4,12 @@ async function registerVideos() {
 
         placeholder.addEventListener("click", function () {
 
+            // Already initialized?
+            if (this.querySelector("video")) {
+                return;
+            }
+
             const src = this.dataset.video;
-            console.log("video url", src);
 
             this.innerHTML = `
                 <video controls autoplay playsinline>
@@ -14,12 +18,11 @@ async function registerVideos() {
             `;
 
             const video = this.querySelector("video");
-
-            video.addEventListener("loadedmetadata", () => {
-                video.playbackRate = 1.5;
-            });
+            video.playbackRate = 1.5;
+            video.play();
 
         });
 
     });
+
 }
