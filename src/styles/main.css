@@ -1657,7 +1657,7 @@ nav a.nav-active {
     width: 100%;
 }
 
-.video-placeholder iframe {
+.video-placeholder video {
     display: block;
     width: 100%;
     aspect-ratio: 16 / 9;
