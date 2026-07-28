@@ -212,10 +212,40 @@
 
             headerContent.innerHTML = 
                         namespaceMenuMarkup +
-                        '<div class="header-scroll">' +
-                        '<div class="header-button-list">' +
+                        // '<div class="header-scroll">' +
+                        // '<div class="header-button-list">' +
                             '<a id="header_home" onclick="window.location.href = window.location.pathname;">Home</a>' +
                             '<a id="header_lab_environment" onclick="loadCoursePart(2, true);">Lab Environment</a>' +
+                            /* add videos menu here - starts */
+                            `
+                                <div class="video-menu">
+                                    <button id="video-menu-toggle" class="video-menu-toggle" type="button" aria-expanded="false" aria-controls="video-menu-panel">
+                                        <span><b>Videos</b></span>
+                                        <span class="video-caret">▾</span>
+                                    </button>
+                                    <div id="video-menu-panel" class="video-menu-panel" hidden>
+                                        <a href="#" onclick="loadCoursePart('1a', 'page-start'); return false;">
+                                            (a) Onboarding
+                                        </a>
+                                        <a href="#" onclick="loadCoursePart(2, 'page-start'); return false;">
+                                            (b) My Lab Environment - Init
+                                        </a>
+                                        <a href="#" onclick="loadCoursePart(3, 'page-start'); return false;">
+                                            (c) Landing Page and Elasticsearch
+                                        </a>
+                                        <a href="#" onclick="loadCoursePart(5, 'page-start'); return false;">
+                                            (d) Camunda install
+                                        </a>
+                                        <a href="#" onclick="loadCoursePart(5, 'page-start'); return false;">
+                                            (e) Camunda validate and Deploy sample solution
+                                        </a>
+                                        <a href="#" onclick="loadCoursePart(8, 'page-start'); return false;">
+                                            (f) Prometheus and Grafana
+                                        </a>
+                                    </div>
+                                </div>
+                            ` +
+                            /* add videos menu here - ends.  */
                             '<a id="header_support" onclick="loadCoursePart(11, true);">Support</a>' +
                             '<a id="header_faq" onclick="loadCoursePart(12, true);">FAQ</a>' +
                             '<a id="header_contact" onclick="loadCoursePart(0, true);">Contact</a>' +                            
@@ -224,8 +254,9 @@
                                 : '<button id="request-access-btn" class="request-access-btn" type="button"><i class="fa-solid fa-right-to-bracket">&nbsp;</i>Sign In</button>'
                                 
                             )
-                        + '</div>'
-                        + '</div>';
+                        //+ '</div>'
+                        //+ '</div>'
+                        ;
 
             const namespaceToggle = document.getElementById('namespace-menu-toggle');
             const namespacePanel = document.getElementById('namespace-menu-panel');
@@ -244,6 +275,31 @@
                 document.addEventListener('click', () => {
                     namespaceToggle.setAttribute('aria-expanded', 'false');
                     namespacePanel.hidden = true;
+                });
+            }
+
+            // video menu toggle and panel
+            const videoToggle = document.getElementById('video-menu-toggle');
+            const videoPanel = document.getElementById('video-menu-panel');
+            if (videoToggle && videoPanel) {
+                videoToggle.addEventListener('click', (event) => {
+                    console.log("video toggle clicked");
+                    event.stopPropagation();
+                    const isExpanded = videoToggle.getAttribute('aria-expanded') === 'true';
+                    videoToggle.setAttribute('aria-expanded', String(!isExpanded));
+                    videoPanel.hidden = isExpanded;
+
+                    console.log("videoPanel.hidden = ", isExpanded);
+                });
+
+                videoPanel.addEventListener('click', (event) => {
+                    console.log("video panel clicked");
+                    event.stopPropagation();
+                });
+
+                document.addEventListener('click', () => {
+                    videoToggle.setAttribute('aria-expanded', 'false');
+                    videoPanel.hidden = true;
                 });
             }
 
