@@ -17,5 +17,9 @@ async function registerVideos() {
 
         });
 
+        video.addEventListener('loadedmetadata', () => {
+            video.playbackRate = 1.5;
+        }); 
+
     });
 }
