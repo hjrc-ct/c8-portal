@@ -2,7 +2,7 @@
     {
     "id": 0,
     "src": "pages/c8-k8s-header.jpeg",
-    "title": "Start with your <u>c8-labs</u> now !",
+    "title": "Sign-In to start your <u>c8-labs</u> now !",
     "subtitle": "",
     "alt": "Access granted to GCP Project c8-labs",
     "duration": 3000,
@@ -212,9 +212,9 @@
   {
     "id": 0,
     "src": "pages/camunda-logo.jpeg",
-    "title": "Start with your <u>c8-labs</u> now !",
+    "title": "Sign-In to start your <u>c8-labs</u> now !",
     "subtitle": "",
-    "alt": "Start with your <u>c8-labs</u> now !",
+    "alt": "Sign-In to start your <u>c8-labs</u> now !",
     "duration": 3000,
     "link": "/labs/gcp-access",
     "category": "Getting Started"

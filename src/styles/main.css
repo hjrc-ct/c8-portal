@@ -36,11 +36,12 @@ header {
     padding: 0.7rem 1.1rem;
     cursor: pointer;
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 #header-content a:hover {
     color: white;
+    background: rgba(255, 255, 255, 0.24);    
 }
 
 .header-button-list {
@@ -83,7 +84,7 @@ header {
     padding: 0.6rem 0.9rem;
     cursor: pointer;
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .namespace-menu-toggle:hover {
@@ -119,7 +120,7 @@ header {
     padding: 0.8rem 1rem;
     text-decoration: none;
     white-space: nowrap;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .namespace-menu-panel a:hover {
@@ -157,7 +158,7 @@ header {
     padding: 0.8rem 1rem;
     text-decoration: none;
     white-space: nowrap;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .video-menu-panel a:hover {
@@ -176,7 +177,7 @@ header {
     padding: 0.6rem 0.9rem;
     cursor: pointer;
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .video-menu-toggle:hover {
