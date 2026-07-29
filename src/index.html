@@ -18,7 +18,7 @@
 </head>
 <body>
     <header id="header">
-        <a href="#welcome" class="skip-to-content">Skip to main content</a>
+        <a href="#welcome" class="skip-to-content" id="skip-to-content">Skip to main content</a>
         <div id="header-content"></div>
     </header>
     <main>
@@ -389,6 +389,14 @@
                     console.log('no action - stop play the animate image ' + current);
                     buttonPlay.innerHTML = '<i class="fa-solid fa-play"></i>';
                     buttonPlay.title = `${(current)+1} of ${imagesGallery.length} Click to Play`;
+
+                    // at this time, show skip to main content
+                    
+                    const skipToContent  = document.getElementById('skip-to-content');
+                    if(skipToContent){ 
+                        skipToContent.focus(); 
+                    }
+
                     return;
                 }
 

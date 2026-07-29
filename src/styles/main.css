@@ -1718,8 +1718,8 @@ nav a.nav-active {
   text-decoration: none;
   border-radius: 4px;
   z-index: 1000;
-  width: 40px;
-
+  width: 60px;
+  vertical-align: middle;
 
   /* Hide visually but keep for screen readers */
   transform: translateY(-200%);
