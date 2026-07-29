@@ -1694,3 +1694,24 @@ nav a.nav-active {
 .video-placeholder:hover .play-button {
     transform: translate(-50%, -50%) scale(1.12);
 }
+
+.skip-to-content {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  font-size: 0.75rem;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  width: 40px;
+
+
+  /* Hide visually but keep for screen readers */
+  transform: translateY(-200%);
+}
+
+.skip-to-content:focus, .skip-to-content:hover {
+  transform: translateY(0);
+}
