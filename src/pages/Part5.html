@@ -10,11 +10,8 @@
         <h2>Camunda Self-Managed</h2>
         <section id="page-video">
             <h4>🎬 Watch Before You Begin</h2>
-            <div class="video-card">
-                <p>
-                    Below two video(s) introduce Camunda 8.9.7 installation, validation and sample app deployment.
-                </p>
 
+            <div class="video-card">
                 <div class="video-placeholder"
                      data-video="https://videos-c8-labs.makelabs.in/v1/c8-k8s-labs-d-camunda-helm-install.mp4">
                     <img
@@ -25,9 +22,68 @@
                         ▶
                     </div>
                 </div>
-
-                <p/>
-
+                <div class="video-table-of-content">
+                    <p>
+                        This video starts the Camunda 8.9.7 installation, along with some prerequisites.
+                        <ul style="list-style: none;">                        
+                            <li>
+                                <span class="video-time">[00:05]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    Create a set of secrets associated with user accounts for Keycloak, and Camunda webapps. (Operate, Tasklist, PostgreSQL database)
+                                </span>
+                            </li>
+                            <li>
+                                <span class="video-time">[00:40]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    Create JKS and other configurations required for camunda install. Plus kubernetes namespace network policy.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="video-time">[01:13]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    Install camunda app via helm script.
+                                    This step takes about 5 minutes or so.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="video-time">[01:58]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    Camunda app (representational) logs showing component list and version etc.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="video-time">[02:30]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    See the progress via Headlamp dashboard. Pods, Deployments, Storage, Network Ingress etc.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="video-time">[05:26]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    Create network ingress rules - Keycloak and Camunda components
+                                </span>
+                            </li>
+                            <li>
+                                <span class="video-time">[10:05]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    Video ends
+                                </span>
+                            </li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <br/>
+            <hr/>
+            <br/>
+            <div class="video-card">
                 <div class="video-placeholder"
                      data-video="https://videos-c8-labs.makelabs.in/v1/c8-k8s-labs-d-camunda-helm-install-validation-with-sample-app.mp4">
                     <img
@@ -37,6 +93,70 @@
                     <div class="play-button">
                         ▶
                     </div>
+                </div>
+                <div class="video-table-of-content">
+                    <p>
+                        This video validates the installed camunda components. Plus install Lead To Opportunity custom solution.
+                        <ul style="list-style: none;">                        
+                            <li>
+                                <span class="video-time">[00:05]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    Go through Headlamp and look at the kubernetes objects.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="video-time">[00:45]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    Visit the Landing Page. It should be alive now.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="video-time">[01:00]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    Visit Camunda webapps - Orchestration Admin, Operate, Tasklist etc.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="video-time">[03:00]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    Via curl command, see the Camunda Orchestration cluster Topology.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="video-time">[04:05]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    Deploy sample solution: Lead To Opportunity solution artifacts.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="video-time">[04:40]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    View bpmn deployed via Operate webapp.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="video-time">[04:52]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    Via curl command, create a new process instance.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="video-time">[06:13]</span>
+                                <br/>
+                                <span class="video-summary">
+                                    Video ends
+                                </span>
+                            </li>
+
+                        </ul>
+                    </p>
                 </div>
             </div>
         </section>
