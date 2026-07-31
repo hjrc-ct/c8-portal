@@ -24,8 +24,9 @@
     img-src 'self' data: https:;
     font-src 'self' https: data:;
     media-src 'self' https://videos-c8-labs.makelabs.in;
-    connect-src 'self' https://static.cloudflareinsights.com  https://challenges.cloudflare.com;
+    connect-src 'self' https://static.cloudflareinsights.com  https://challenges.cloudflare.com https://cep-api-gw-7k5bxais.an.gateway.dev;
     child-src https://challenges.cloudflare.com;
+    worker-src 'self' blob:;
     ">
 
     <title>C8 Kubernetes Labs | Camunda 8 Self-Managed on Kubernetes / GCP</title>
@@ -163,6 +164,7 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/app-part5.js"></script>
     <script src="scripts/app-videos.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <script>
         function clearClientCache() {
             try {
