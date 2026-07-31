@@ -341,6 +341,7 @@ function metadataCheck() {
                     initButton.disabled = true;
                     initButton.textContent = 'Onboarding Complete!';
                     initButton.classList.add('disabled');
+                    initButton.style.background = 'green';
                     showNote('Onboarding success. You may check data in box 1a-1');
                 }
                 const urlParams = new URLSearchParams(window.location.search);
