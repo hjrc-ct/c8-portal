@@ -916,6 +916,11 @@ async function sendOnboardingEmail() {
                               + '<p><b>Camunda Management apps - Identity / Console / Optimize</b><br/><span>demo and makelabs</span></p>'
                               + '<p><b>Keycloak IAM</b><br/><span>admin and makelabs</span></p>'
                               + '<p><b>Grafana</b><br/><span>admin and makelabs</span></p>'
+                              + '<p><span style="font-family: monospace; white-space: pre-wrap; font-size: 1.8rem; background: lightsteelblue; padding:10px; border-radius:4px;">'
+                              + 'After completing the hands-on labs, you may wish to take the <b>Udemy Practice Exam</b>.'
+                              + '<br/><br/>https://www.udemy.com/course/c8-k8s-labs/?referralCode=5A003828D762985E2DDD'
+                              + '<br/>'
+                              + '</span></p>'
                               + '<p><pre style="font-family: monospace; white-space: pre-wrap; background:#f5f5f5; padding:10px; border-radius:4px;">'
                               + escapeHtml(JSON.stringify(result.data, null, 2))
                               + '</pre></p>',
