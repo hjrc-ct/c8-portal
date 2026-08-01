@@ -1,14 +1,14 @@
 function parseTimestampToSeconds(timestampText) {
+    // use 2 value pattern mm:ss with optional - for future use
     const match = timestampText.match(/(\d+):(\d{1,2})(?::(\d{1,2}))?/);
     if (!match) {
         return 0;
     }
 
-    const hours = parseInt(match[1], 10) || 0;
-    const minutes = parseInt(match[2], 10) || 0;
-    const seconds = parseInt(match[3] || "0", 10) || 0;
+    const minutes = parseInt(match[1], 10) || 0;
+    const seconds = parseInt(match[2], 10) || 0;
 
-    return (hours * 3600) + (minutes * 60) + seconds;
+    return (minutes * 60) + seconds;
 }
 
 function openVideoAtTime(placeholder, seekTime = null) {
