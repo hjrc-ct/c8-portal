@@ -1734,8 +1734,44 @@ nav a.nav-active {
     font-size: medium;
 }
 
-.video-table-of-content, .video-summary {
-    color: darkgrey;
-    font-weight: 400;
-    font-size: medium;
+.video-toc-header {
+    font-size: 1rem;
+    font-weight: 700;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.video-introduction {
+    margin-bottom: 15px;
+    color: #555;
+    font-weight: 200;
+    font-size: 0.95rem;
+}
+
+.video-time {
+    cursor: pointer;
+    color: #e8491d;
+    display: inline-block;
+}
+
+.video-time:hover,
+.video-time:focus-visible {
+    color: #e8491d;
+    text-decoration: underline;
+}
+
+.video-table-of-content {
+    margin-bottom: 15px;
+    color: #555;
+    font-weight: 200;
+    font-size: 0.95rem;
+}
+
+.video-summary {
+    margin-bottom: 15px;
+    color: #555;
+    font-weight: 200;
+    font-size: 0.95rem;
+    border-bottom: 2px solid #e5e7eb;
 }

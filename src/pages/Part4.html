@@ -11,7 +11,7 @@
 
         <section id="page-video">
             <h4>🎬 Watch Before You Begin</h2>
-            <div class="video-card">
+            <div id="video-card-a" class="video-card">
                 <div class="video-placeholder"
                      data-video="https://videos-c8-labs.makelabs.in/v1/c8-k8s-labs-c-landing-page-and-elasticsearch.mp4#t=155">
                     <img
@@ -24,8 +24,12 @@
                 </div>
 
                 <div class="video-table-of-content">
-                    <p>
+                    <div class="video-toc-header">
+                        🧭 Video Timeline
+                    </div>
+                    <p class="video-introduction">
                         This video introduces Elasticsearch installation.
+                    </p>
                         <ul style="list-style: none;">                        
                             <li>
                                 <span class="video-time">[02:30]</span>
@@ -74,11 +78,10 @@
                             </li>
 
                         </ul>
-                    </p>
                 </div>
             </div>
         </section>
-
+        <hr/>
         <section>
         <p>
             Runs as a persistent data store for the Camunda platform.
