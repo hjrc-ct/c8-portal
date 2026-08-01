@@ -239,16 +239,15 @@ body{
     
     document.addEventListener('DOMContentLoaded', async function () {
             const freeLabAccessBlock = document.getElementById('free-lab-access');
-            if (!freeLabAccessBlock) return;    
+            if (!freeLabAccessBlock) return;
 
             const tValue = await getMyAccessToken();
-            const hasAccess = !!(tValue);
-            const hasAccessV2 = hasAccess ? !!(getEmailFromAccessJwt(tValue)) : hasAccess;
+            const hasAccess = !!tValue;
+            const hasAccessV2 = hasAccess ? !!getEmailFromAccessJwt(tValue) : false;
             const nsValue = getSelectedNS();
+            const hasValidSession = !!(nsValue || hasAccessV2);
 
-            if (nsValue || hasAccessV2){
-                freeLabAccessBlock.hidden = true;
-            }
+            freeLabAccessBlock.hidden = hasValidSession;
     });
 </script>
 
