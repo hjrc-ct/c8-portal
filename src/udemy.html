@@ -193,7 +193,7 @@ body{
         </ul>
     </div>
 
-    <div class="card notice">
+    <div id="free-lab-access" class="card notice">
         <h2>Free Lab Access</h2>
         <p>
         Every Udemy student is given access to <strong>a dedicated namespace</strong> in a Kubernetes cluster (GKE).
@@ -234,6 +234,23 @@ body{
 </div>
 
 <script src="scripts/app.js"></script>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', async function () {
+            const freeLabAccessBlock = document.getElementById('free-lab-access');
+            if (!freeLabAccessBlock) return;    
+
+            const tValue = await getMyAccessToken();
+            const hasAccess = !!(tValue);
+            const hasAccessV2 = hasAccess ? !!(getEmailFromAccessJwt(tValue)) : hasAccess;
+            const nsValue = getSelectedNS();
+
+            if (nsValue || hasAccessV2){
+                freeLabAccessBlock.hidden = true;
+            }
+    });
+</script>
 
 </body>
 </html>
