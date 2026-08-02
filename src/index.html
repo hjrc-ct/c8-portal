@@ -60,8 +60,6 @@
                 <div class="welcome-cta-block">
                 <span class="welcome-cta-msg">
                     Have you ever wanted to see how Camunda 8’s resilient orchestration engine runs on Kubernetes under the hood?
-                    <br/>
-                    Bring your Gmail account to get started!
                 </span>
                 </div>
                 <br/>
@@ -76,7 +74,7 @@
                 </h4>
                 <br/>
                 <!-- put panel here -->
-                <a class="header-right-arrow"  onclick="loadCoursePart(0,'lab-gallery')">
+                
                 <div class="header-right-top">
                     <span class="top-cta-tooltip-text">
                         Camunda 8.9.7&nbsp;Helm Version 14.4.1<br/>Released on 11 Jun, 2026&nbsp;
@@ -85,11 +83,29 @@
                         Screenshots speak louder than descriptions !
                     </span>
                     <br/>
+                    <a class="header-right-arrow"  onclick="loadCoursePart(0,'lab-gallery')">
                         <svg data-icon-name="arrowForwardIcon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
                             <path fill-rule="evenodd" d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
                         </svg>
+                    </a>
                 </div>
-                </a>
+
+                <!-- Invite to take Practice Exam -->
+                <div class="header-right-top">
+                    <span class="top-cta-tooltip-text">
+                        Validate your Camunda 8.9 Self-Managed knowledge after completing the hands-on labs.
+                        <br/><br/>
+                        ✓ <span class="top-cta-tooltip-text-highlight"><b>70 Questions</b></span> on Architecture & Operations<br/>
+                        ✓ Real-world troubleshooting scenarios<br/>
+                        ✓ Detailed explanations for every answer<br/>
+                        <br/>
+                    </span>
+                    <a class="header-right-arrow"  href="/udemy.html" >
+                        <svg data-icon-name="arrowForwardIcon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+                        </svg>
+                    </a>
+                </div>
             </div>
             <div class="app-page-header-item-right">
                 <div class="app-page-header-item-right-animate">
@@ -417,6 +433,10 @@
                     const skipToContent  = document.getElementById('skip-to-content');
                     if(skipToContent){ 
                         skipToContent.style.transform = "translateY(0)";
+
+                        skipToContent.addEventListener('click', () => {
+                            skipToContent.hidden = true;
+                        });
                     }
 
                     return;

@@ -1381,7 +1381,7 @@ nav a.nav-active {
 .top-cta-tooltip-text {
     display: block;
     max-width: 100%;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     line-height: 1.55;
     color: darkslategray;
     font-weight: 500;
