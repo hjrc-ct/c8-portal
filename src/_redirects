@@ -1,5 +1,0 @@
-# Cloudflare Pages: allow only the homepage and the udemy page variants.
-/ /index.html 200
-/index.html /index.html 200
-/udemy /udemy.html 200
-/udemy.html /udemy.html 200
