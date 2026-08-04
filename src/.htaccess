@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Allow only the root/home page and the Udemy page variants.
+  # Query string is ignored here, so /?ns=foo and /index.html?ns=foo are allowed.
+  RewriteRule ^$ /index.html [L]
+  RewriteRule ^index\.html$ - [L]
+  RewriteRule ^udemy(?:\.html)?$ - [L]
+
+  # Everything else should return 404.
+  RewriteRule ^ - [R=404,L]
+</IfModule>
