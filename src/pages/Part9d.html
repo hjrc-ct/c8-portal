@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <main id="page-start">
+        <h2>Lab Exercise #d - Orchestration Engine</h2>
+        <p>
+            Let's solve some more things to better understand the Camunda 8 orchestration engine.
+            <br/>
+        </p>
+        <ul style="list-style: none;">
+            <li>
+                <small>Note: Use Project Lens UI app for this lab. It provides you ability to launch terminal session with the Pods.</small>
+            </li>
+            <li>
+                <small>Note: For security reasons, Headlamp dashboard has <code>view-only</code> access and hence cannot open terminal session with the Pods.</small>
+            </li>
+        </ul>
+        <section>
+            <div class="copy-block" data-label="lab 9d-1">
+                <p/>
+                Question:
+                Inside look at the Orchestration Engine - broker nodes and how processing is handled.
+                <br/><br/>
+                Let's see the configuration of the Zeebe Pods and how they are running. We will check the disk space usage and see how the data directory is mounted to a persistent volume claim (PVC).
+                <br/><br/>
+                <span class="answer-toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" onchange="toggleAnswer(this)">
+                        <span class="switch-slider"></span>
+                        <span class="switch-label">Show Answer</span>
+                    </label>
+                </span>
+                <div class="answer-text" hidden>
+                    <strong>Answer:</strong>
+<pre id="copy-text-9d-1"><code>
+# Start a terminal session with one of the Zeebe Pod(s)
+# ---
+# run this command to see free disk space. Also notice the data directory is mounted to a persistent volume claim (PVC)
+df -k
+<br/>
+# List the directory structure upto 3 levels
+tree -L 3 /usr/local/camunda/data
+<br/>
+# See which directories consume space
+du -h --max-depth=2 /usr/local/camunda/data | sort -h
+<br/>
+                </code></pre>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9d-1', '9d-1 Copied to Clipboard!')">Copy</button>
+<p>
+    <small>Post Command-Set Execution: The data directory should look something like this.</small>
+<pre class="data-block-lines">
+<code class="data-block-lines">
+Filesystem     1K-blocks    Used Available Use% Mounted on
+overlay         98831908 9506612  89308912  10% /
+tmpfs              65536       0     65536   0% /dev
+/dev/sda1       98831908 9506612  89308912  10% /tmp
+/dev/sdb         5074592  407268   4650940   9% /usr/local/camunda/data
+</code>
+</pre>
+</p>
+                <p>
+                    <small>Post Command-Set Execution: Click to view screen shot - Directory structure</small>
+                    <p/>
+                    <em>Click on image to enlarge</em><br/>
+                    <img width="90px" height="64px" src="pages/img-9d-1-file-system-tree.jpg" 
+                            alt="Cloud Shell" 
+                            style="cursor:pointer;" 
+                            onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+                </p>
+                </div>
+            </div>
+            
+            <p></p>
+
+        </section>
+        <hr/>
+        <section>
+            <div class="copy-block" data-label="lab 9d-2">
+                <p/>
+                Question:
+                Let's pause exporters, run a set of process instances and see the statistics via Grafana dashboard.
+                <br/>
+                We will then resume the exporters, see how the data is exported to Elasticsearch and catching up with things.
+                <br/><br/>
+                <span class="answer-toggle-switch">
+                    <label class="switch">
+                        <input type="checkbox" onchange="toggleAnswer(this)">
+                        <span class="switch-slider"></span>
+                        <span class="switch-label">Show Answer</span>
+                    </label>
+                </span>
+                <div class="answer-text" hidden>
+                    <strong>Answer:</strong>
+                    There are three parts to this exercise.<br/>
+                    <ul>
+                        <li>2a. Pause exporting</li>
+                        <li>2b. Use Postman to invoke a bunch of instances - say 100</li>
+                        <li>2c. Resume exporting</li>
+                    <!-- 2a - pause exporting -->
+<pre id="copy-text-9d-2a"><code>
+# 2a - pause exporting
+#
+# Start a terminal session with Pod nginx-static-web-app
+# ---
+# Run this command to pause exporting
+curl -X POST http://${UNAMESPACE}-zeebe.${UNAMESPACE}:9600/orchestration/actuator/exporting/pause
+<br/>
+                </code></pre>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9d-2a', '9d-2a Copied to Clipboard!')">Copy</button>
+<p>
+    <small>Post Command-Set Execution: Successful pause command !</small>
+<pre class="data-block-lines">
+<code class="data-block-lines">
+{"body":null, "status":204, "contentType":null}
+</code>
+</pre>
+</p>
+                <p>
+                    <small>Post Command-Set Execution (a): Exporters paused successfully! Watch the panel: <b>Number of records not exported</b></small>
+                    <p/>
+                    <em>Click on image to enlarge</em><br/>
+                    <img width="90px" height="64px" src="pages/img-9d-2a-exporting-paused.jpg" 
+                            alt="Cloud Shell" 
+                            style="cursor:pointer;" 
+                            onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+                </p>
+                <hr/>
+                <!-- 2b Use Postman to invoke bunch of instances - say 100.  -->
+                 <p>
+                    Use Postman to invoke a bunch of process instances.<br/>
+                    We'll be using the curl command at section <code>Deploy sample app - step 6-5</code> to generate equivalent postman script.
+                    <br/><br/>
+                    Open Postman app.<br/>
+                    Create a new Postman collection.<br/>
+                    Use the curl command at <code>step 6-5</code> to generate equivalent PUT operation.<br/>
+                    Use Postman runner to <code>run the collection</code> with 100 iterations.<br/>
+                    <br/>
+                    Note you cannot see the instances in Operate dashboard since exporters are paused. You can see the instances reflected in Grafana dashboard (Messaging / Latency).
+                 </p>
+                 <hr/>
+<pre id="copy-text-9d-2c"><code>
+# 2c - resume exporting
+#
+# Start a terminal session with Pod nginx-static-web-app
+# ---
+# Run this command to resume exporting
+curl -X POST http://${UNAMESPACE}-zeebe.${UNAMESPACE}:9600/orchestration/actuator/exporting/resume
+<br/>
+                </code></pre>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9d-2c', '9d-2c Copied to Clipboard!')">Copy</button>
+<p>
+    <small>Post Command-Set Execution: Successful resume command !</small>
+<pre class="data-block-lines">
+<code class="data-block-lines">
+{"body":null, "status":204, "contentType":null}
+</code>
+</pre>
+</p>
+
+                <p>
+                    <small>Post Command-Set Execution: Exporters resumed successfully! Watch the panel: <b>Number of records not exported</b> returns to near zero levels</small>
+                    <p/>
+                    <em>Click on image to enlarge</em><br/>
+                    <img width="90px" height="64px" src="pages/img-9d-2c-exporting-normal.jpg" 
+                            alt="Cloud Shell" 
+                            style="cursor:pointer;" 
+                            onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+
+                    <p/>
+                    <small>Post Command-Set Execution: See the Grafana panels - Processing, Messaging, and Latency respectively</small>
+                    <p/>
+                    <em>Click on image to enlarge</em><br/>
+                    <img width="90px" height="64px" src="pages/img-9d-2c-processing-panels.jpg" 
+                            alt="Cloud Shell" 
+                            style="cursor:pointer;" 
+                            onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+
+                    <p/>
+                    <em>Click on image to enlarge</em><br/>
+                    <img width="90px" height="64px" src="pages/img-9d-2c-messaging-panels.jpg" 
+                            alt="Cloud Shell" 
+                            style="cursor:pointer;" 
+                            onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+
+                    <p/>
+                    <em>Click on image to enlarge</em><br/>
+                    <img width="90px" height="64px" src="pages/img-9d-2c-latency-panels.jpg" 
+                            alt="Cloud Shell" 
+                            style="cursor:pointer;" 
+                            onclick="if (this.requestFullscreen) { this.requestFullscreen(); } else if (this.webkitRequestFullscreen) { this.webkitRequestFullscreen(); } else if (this.msRequestFullscreen) { this.msRequestFullscreen(); }" />
+                </p>
+                </div>
+            </div>
+            
+            <p></p>
+
+        </section>
+        <hr/>
+        <p><a class="next-page-marker" onclick="loadCoursePart(10, 'page-start');">Next: Before you leave...</a></p>
+        <hr/>
+    </main>
+    <script>
+        // Helper function to get query parameters
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        // Load the appropriate course part on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            // Check if the page is being accessed directly (without ns parameter)
+            const nsParam = getQueryParam('ns') || '';
+            
+            if (!nsParam) {
+                // Direct access without ns parameter - show blocking message
+                document.body.innerHTML = `
+                    <div style="padding: 60px 20px; text-align: center; background: #f8f9fa; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+                        <div style="max-width: 500px;">
+                            <h2 style="color: #e8491d; margin-top: 0;">⚠️ Direct Access Not Allowed</h2>
+                            <p style="color: #666; font-size: 16px;">This page must be accessed through the main portal.</p>
+                            <p style="color: #999; font-size: 14px;">Please go back to the index page and navigate using the course menu.</p>
+                            <button onclick="window.location.href='../index.html'" style="margin-top: 20px; padding: 10px 20px; background: #e8491d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">
+                                Return to Home
+                            </button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            // Check if namespace ends with 'pro-c8-labs' for premium access
+            if (!nsParam.endsWith('pro-c8-labs')) {
+                // Replace section with premium access message
+                const section = document.querySelector('section');
+                if (section) {
+                    section.innerHTML = `
+                        <div style="padding: 40px 20px; text-align: center; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #e8491d;">
+                            <h3 style="color: #e8491d; margin-top: 0;">🔒 Premium Access Required</h3>
+                            <p style="color: #666; font-size: 16px;">This section is available for Premium Access</p>
+                            <p style="color: #999; font-size: 14px;">Please upgrade to Premium Tier to access Lab Exercise #b content.</p>
+                        </div>
+                    `;
+                }
+                return;
+            }
+        });
+    </script>
+</body>
+</html>

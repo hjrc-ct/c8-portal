@@ -253,7 +253,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             window.history.replaceState({}, '', url.toString());
             
             console.log('On refersh - with storage json - load 1a or H0me based on hasAccess: ' + hasAccess);
-            hasAccess ? loadCoursePart('1a', 'page-start') : loadCoursePart(0, 'welcome');
+            hasAccess ? loadCoursePart('1a', 'usage-policy') : loadCoursePart(0, 'welcome');
         } else {
             console.log('On refersh - no storage json - load 1a or H0me based on hasAccess: ' + hasAccess);
             
@@ -1019,13 +1019,13 @@ async function checkForAccess(mainContent){
     const accessToken = await getMyAccessToken(false);
     const hasAccess = !!accessToken && !!getEmailFromAccessJwt(accessToken);
 
-    if (!hasAccess) {
+    if (false && !hasAccess) {
         const section = mainContent.querySelector('main');
         if (section) {
             section.innerHTML = `
                 <p/>
                 <div style="padding: 40px 20px; text-align: center; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #e8491d;">
-                    <h3 style="color: #e8491d; margin-top: 0;">🔒 Complete Sign to Continue</h3>
+                    <h3 style="color: #e8491d; margin-top: 0;">🔒 Complete Sign In to Continue</h3>
                     <hr/>
                     <p style="color: #666; font-size: 16px;">This section contains information about course resources, guided labs and instructions that are availble only to authenticated participants.</p>
                     <br/>

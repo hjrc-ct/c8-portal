@@ -1775,3 +1775,12 @@ nav a.nav-active {
     font-size: 0.95rem;
     border-bottom: 2px solid #e5e7eb;
 }
+
+pre.data-block-lines code.data-block-lines {
+    font: 1rem "Courier New", Courier, monospace;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;    
+    border: 0px solid #e0e0e0;
+    margin-bottom: 2em;
+}
