@@ -134,6 +134,11 @@ const loadCoursePart = (part, specificView) => {
                             const indexOfToken = html.indexOf(domainName);
                             let token = indexOfToken !== -1 ?  html.substring(indexOfToken + domainName.length) : 'undefined';
                             token = ( token.length < 100 ) ? 'undefined' : token; // basic validation
+                            // a valid token has three parts. check for that. if not, then set to undefined
+                            const tokenParts = token.split('.');
+                            if (tokenParts.length !== 3 || tokenParts.some(part => part.trim().length === 0)) {
+                                token = 'undefined';
+                            }
                             codeBlock.innerHTML = token.trim();
                         }
                     });
