@@ -67,6 +67,7 @@ const loadCoursePart = (part, specificView) => {
             });
 
             registerVideos();
+            activateLink(part);
 
             if (part == 0) {
                 participants.sort((a, b) => a.name.localeCompare(b.name));
@@ -1049,4 +1050,18 @@ async function checkForAccess(mainContent){
     }    
 
     return true;
+}
+
+// invoke to mark selected link as active. This is useful when user refreshes the page and we need to mark the current link as active.
+async function activateLink(index){
+        console.log('activateLink called with index:', index);
+        // Remove active class from all links
+        document.querySelectorAll('nav a').forEach(l => { 
+            l.classList.remove('nav-active')
+
+            if (index && l.getAttribute('href').includes(`Part${index}.html`)) {
+                console.log('Mark as active ', index);
+                l.classList.add('nav-active');
+            }
+        });
 }
