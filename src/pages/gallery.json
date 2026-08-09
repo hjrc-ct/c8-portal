@@ -209,6 +209,66 @@
     "link": "/labs/scaling",
     "category": "Architecture"
   },
+ {
+    "id": 150,
+    "src": "pages/img-9d-1-file-system-tree.jpg",
+    "title": "Zeebe Data Directory",
+    "subtitle": "Understand the file system structure",
+    "alt": "Zeebe Data Directory Structure",
+    "duration": 9000,
+    "link": "/labs/scaling",
+    "category": "Architecture"
+  },
+   {
+    "id": 150,
+    "src": "pages/img-9d-2a-exporting-paused.jpg",
+    "title": "Exporting Paused",
+    "subtitle": "Check last exported position and status (in orange)",
+    "alt": "Zeebe Data Directory Structure",
+    "duration": 9000,
+    "link": "/labs/scaling",
+    "category": "Architecture"
+  },
+   {
+    "id": 150,
+    "src": "pages/img-9d-2c-exporting-normal.jpg",
+    "title": "Exporting Resumed to Normal",
+    "subtitle": "Check last exported position and status (back in green)",
+    "alt": "Zeebe Data Directory Structure",
+    "duration": 9000,
+    "link": "/labs/scaling",
+    "category": "Architecture"
+  },
+   {
+    "id": 150,
+    "src": "pages/img-9d-2c-latency-panels.jpg",
+    "title": "Latency Panel",
+    "subtitle": "Understand the engine latency and throughput",
+    "alt": "Zeebe Data Directory Structure",
+    "duration": 9000,
+    "link": "/labs/scaling",
+    "category": "Architecture"
+  },
+   {
+    "id": 150,
+    "src": "pages/img-9d-2c-messaging-panels.jpg",
+    "title": "Messaging Panel",
+    "subtitle": "Understand the engine latency and throughput",
+    "alt": "Zeebe Data Directory Structure",
+    "duration": 9000,
+    "link": "/labs/scaling",
+    "category": "Architecture"
+  },
+   {
+    "id": 150,
+    "src": "pages/img-9d-2c-processing-panels.jpg",
+    "title": "Processing Panel",
+    "subtitle": "Understand the engine latency and throughput",
+    "alt": "Zeebe Data Directory Structure",
+    "duration": 9000,
+    "link": "/labs/scaling",
+    "category": "Architecture"
+  },
   {
     "id": 0,
     "src": "pages/camunda-logo.jpeg",

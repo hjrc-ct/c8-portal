@@ -576,7 +576,7 @@ async function loadGallery(){
             if (item.id > 0 && item.id < 1000) // some items are marketing images. so lets ignore them. they are however meant for home page rendering.
                 labGallery.innerHTML = labGallery.innerHTML + `
                     <div class="lab-gallery-item">
-                        <img data-gallery-index="${item.id}" src="${item.src}" alt="${item.title} ${item.subtitle}" loading="lazy">
+                        <img data-gallery-index="${item.id}" src="${item.src}" alt="${item.title} - ${item.subtitle}" loading="lazy">
                     </div>
                 `;
 
