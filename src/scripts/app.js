@@ -1056,18 +1056,37 @@ async function sendOnboardingEmail() {
         console.log('Check api call failed with status:', paymentCheckResponse.status);
         return;
     } else {
-        const data = await paymentCheckResponse.json();
-        if (data.status === 'success' && data.data.paymentFlag === false) {
-            console.log('Payment flow not required OR payment record found for user: ' + email);
-        } else if (data.status === 'success' && data.data.paymentFlag === true) {
-            console.log('Initiate payment flow for user: ' + email);
-            // Redirect to Part99 page for payment.
-            window.location.href = `pages/Part99.html${window.location.search}`;
-            return;
-        } else {
-            console.log('Unexpected response from payment check API:', data);
-            return;
-        }
+
+            let data;
+            const rawText = await paymentCheckResponse.text();
+            try {
+                data = JSON.parse(rawText);
+            } catch (jsonError) {
+                console.warn('Failed to parse payment check response as JSON, trying tolerant parse. Raw response:', rawText);
+                try {
+                    const tolerantText = rawText
+                        .replace(/(['"])?([a-zA-Z0-9_]+)(['"])?\s*:/g, '"$2":')
+                        .replace(/'/g, '"');
+                    data = JSON.parse(tolerantText);
+                } catch (secondError) {
+                    console.error('Failed tolerant parse for payment check response:', secondError);
+                    showNote('Payment validation failed. Please try again later.', 10000);
+                    loadCoursePart(0, 'page-start');
+                    return;
+                }
+            }
+            if (data.status === 'success' && data.data.paymentFlag === false) {
+                console.log('Payment flow not required OR payment record found for user: ' + email);
+            } else if (data.status === 'success' && data.data.paymentFlag === true) {
+                console.log('Initiate payment flow for user: ' + email);
+                // Redirect to Part99 page for payment.
+                // window.location.href = `pages/Part99.html${window.location.search}`;
+                loadCoursePart('99', 'payment-start');
+                return;
+            } else {
+                console.log('Unexpected response from payment check API:', data);
+                return;
+            }
     }
 
     const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/labsOnboarding';
