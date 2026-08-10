@@ -376,6 +376,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
 
             const currentToken = await getMyAccessToken(false);
+            const email = currentToken ? getEmailFromAccessJwt(currentToken) : 'unknown user';
             // if user has access then lets check payment flag
             const paymentCheckResponse = await fetch('/pay/check', {
                 method: 'POST',
@@ -389,18 +390,30 @@ window.addEventListener('DOMContentLoaded', async () => {
             if (!paymentCheckResponse.ok) {
                 console.log('Check api call failed with status:', paymentCheckResponse.status);
                 showNote('Application error occurred. Please try again later.', 10000);
-                loadCoursePart('0', 'page-start');
+                loadCoursePart(0, 'page-start');
+                return;
+            }
+
+            let data;
+            try {
+                data = await paymentCheckResponse.json();
+            } catch (jsonError) {
+                console.error('Failed to parse payment check response as JSON:', jsonError);
+                showNote('Payment validation failed. Please try again later.', 10000);
+                loadCoursePart(0, 'page-start');
+                return;
+            }
+
+            if (data.status === 'success' && data.data.paymentFlag === false) {
+                console.log('Payment flow not required OR payment record found for user: ' + email);
+                loadCoursePart('1a', 'usage-policy');
+                return;
+            } else if (data.status === 'success' && data.data.paymentFlag === true) {
+                console.log('Payment flow is required for user: ' + email);
+                loadCoursePart('99', 'payment-start');
                 return;
             } else {
-                const data = await paymentCheckResponse.json();
-                if (data.status === 'success' && data.data.paymentFlag === false) {
-                    console.log('Payment flow not required OR payment record found for user: ' + email);
-                    loadCoursePart('1a', 'usage-policy');
-                    return;
-                } else if (data.status === 'success' && data.data.paymentFlag === true) {
-                    console.log('Payment flow is required for user: ' + email);
-                    loadCoursePart(99, 'payment-start');
-                }
+                console.log('Unexpected response from payment check API:', data);
             }
 
         }
