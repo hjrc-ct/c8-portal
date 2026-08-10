@@ -369,9 +369,39 @@ window.addEventListener('DOMContentLoaded', async () => {
             console.log('On refersh - with storage json - load 1a or H0me based on hasAccess: ' + hasAccess);
             hasAccess ? loadCoursePart('1a', 'usage-policy') : loadCoursePart(0, 'welcome');
         } else {
-            console.log('On refersh - no storage json - load 1a or H0me based on hasAccess: ' + hasAccess);
-            
-            hasAccess ? loadCoursePart('1a', 'page-start') : loadCoursePart(0);
+            // there is no json found. so lets see if payment is required for current session
+            if (!hasAccess) { 
+                loadCoursePart(0); 
+                return; 
+            }
+
+            // if user has access then lets check payment flag
+            const paymentCheckResponse = await fetch('/pay/check', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key' : currentToken,
+                    'Authorization': 'Bearer ' + currentToken
+                }
+            });
+
+            if (!paymentCheckResponse.ok) {
+                console.log('Check api call failed with status:', paymentCheckResponse.status);
+                showNote('Application error occurred. Please try again later.', 10000);
+                loadCoursePart('0', 'page-start');
+                return;
+            } else {
+                const data = await paymentCheckResponse.json();
+                if (data.status === 'success' && data.data.paymentFlag === false) {
+                    console.log('Payment flow not required OR payment record found for user: ' + email);
+                    loadCoursePart('1a', 'usage-policy');
+                    return;
+                } else if (data.status === 'success' && data.data.paymentFlag === true) {
+                    console.log('Payment flow is required for user: ' + email);
+                    loadCoursePart(99, 'payment-start');
+                }
+            }
+
         }
         return;
     }
@@ -1001,6 +1031,7 @@ async function sendOnboardingEmail() {
 
     if (!paymentCheckResponse.ok) {
         console.log('Check api call failed with status:', paymentCheckResponse.status);
+        return;
     } else {
         const data = await paymentCheckResponse.json();
         if (data.status === 'success' && data.data.paymentFlag === false) {
@@ -1012,6 +1043,7 @@ async function sendOnboardingEmail() {
             return;
         } else {
             console.log('Unexpected response from payment check API:', data);
+            return;
         }
     }
 
