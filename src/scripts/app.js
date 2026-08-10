@@ -615,7 +615,7 @@ function initializeOnboardingTurnstile() {
                 status.textContent = 'Verification complete. You can now start onboarding.';
                 status.classList.add('success');
             },
-            'error-callback': function() {
+            'error-callback': function() {     
                 button.disabled = true;
                 button.classList.add('disabled');
                 status.textContent = 'Verification failed. Please refresh and try again.';
@@ -877,6 +877,31 @@ async function sendOnboardingEmail() {
         .catch( e => {
             console.error("Post It error - ", e);
         });
+
+
+    // before invoking onboarding, lets see if payment is required
+    // invoke API endpoint "/pay/check" to check if payment is required for the user. If payment is required, show a message to the user and return.
+
+    await fetch('/pay/check', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key' : currentToken,
+            'Authorization': 'Bearer ' + currentToken
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            console.log('Check api call failed with status:', response.status);
+            return;
+        }
+
+        response.json().then(data => {
+            if (data.status === 'success' && data.data.paymentFlag === true){
+                console.log('Initiate payment flow for user: ' + email);
+            }
+        });
+    });
 
     const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/labsOnboarding';
     const urlSendMail = 'https://cep-api-gw-7k5bxais.an.gateway.dev/sendEmail';
