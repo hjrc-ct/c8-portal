@@ -49,16 +49,16 @@
                 return;
             }
 
-            // Check if namespace ends with 'c8-labs'
-            if (true && !nsParam.endsWith('c8-labs')) {
+            // Check if namespace ends with 'pro-c8-labs'
+            if (true && !nsParam.endsWith('pro-c8-labs')) {
                 // Replace section with premium access message
                 const section = document.querySelector('section');
                 if (section) {
                     section.innerHTML = `
                         <div style="padding: 40px 20px; text-align: center; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #e8491d;">
-                            <h3 style="color: #e8491d; margin-top: 0;">🔒 Complete Onboarding to visit this page</h3>
+                            <h3 style="color: #e8491d; margin-top: 0;">🔒 Complete sign-in to visit this page</h3>
                             <p style="color: #666; font-size: 16px;">This section is restricted.</p>
-                            <p style="color: #999; font-size: 14px;">Please sign-in and complete onboarding to access Lab Exercise #7 content.</p>
+                            <p style="color: #999; font-size: 14px;">Please sign-in to access this content.</p>
                         </div>
                     `;
                 }
