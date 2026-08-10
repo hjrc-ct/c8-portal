@@ -200,6 +200,8 @@ const loadCoursePart = (part, specificView) => {
                 const element = document.getElementById('payment-section');
                 if (!element) return;
 
+                console.log('Payment section found. Fetching payment start content...');
+                const currentToken = await getMyAccessToken(false);
                 element.innerHTML = 
                         await fetch('/pay/start', {
                             method: 'POST',
@@ -208,7 +210,11 @@ const loadCoursePart = (part, specificView) => {
                                 'x-api-key' : currentToken,
                                 'Authorization': 'Bearer ' + currentToken
                             }
-                        }). then( resp => resp.text() );
+                        })
+                        .then( resp => resp.text() )
+                        .catch( err => {
+                            console.error('Error fetching payment content:', err);
+                        });
             }
 
             // Count number of copy-block occurrences within the loaded content
