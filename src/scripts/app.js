@@ -375,6 +375,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 return; 
             }
 
+            const currentToken = await getMyAccessToken(false);
             // if user has access then lets check payment flag
             const paymentCheckResponse = await fetch('/pay/check', {
                 method: 'POST',
