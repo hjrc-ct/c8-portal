@@ -395,13 +395,22 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
 
             let data;
+            const rawText = await paymentCheckResponse.text();
             try {
-                data = await paymentCheckResponse.json();
+                data = JSON.parse(rawText);
             } catch (jsonError) {
-                console.error('Failed to parse payment check response as JSON:', jsonError);
-                showNote('Payment validation failed. Please try again later.', 10000);
-                loadCoursePart(0, 'page-start');
-                return;
+                console.warn('Failed to parse payment check response as JSON, trying tolerant parse. Raw response:', rawText);
+                try {
+                    const tolerantText = rawText
+                        .replace(/(['"])?([a-zA-Z0-9_]+)(['"])?\s*:/g, '"$2":')
+                        .replace(/'/g, '"');
+                    data = JSON.parse(tolerantText);
+                } catch (secondError) {
+                    console.error('Failed tolerant parse for payment check response:', secondError);
+                    showNote('Payment validation failed. Please try again later.', 10000);
+                    loadCoursePart(0, 'page-start');
+                    return;
+                }
             }
 
             if (data.status === 'success' && data.data.paymentFlag === false) {
