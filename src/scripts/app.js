@@ -280,16 +280,16 @@ Copy UPI ID
 
 <div id="qrContainer">
 
-<div id="qr"></div>
-
-<div id="qrContainer-txn-id"></div>
-
 <p>
 <small>
 Scan using PhonePe, Google Pay,
 Paytm or any UPI app.
 </small>
 </p>
+
+<div id="qr"></div>
+
+<div id="qrContainer-txn-id"></div>
 
 </div>
 
