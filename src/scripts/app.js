@@ -897,6 +897,10 @@ async function sendOnboardingEmail() {
         }
 
         response.json().then(data => {
+            if (data.status === 'success' && data.data.paymentFlag === false){
+                console.log('Payment flow not required for user: ' + email);
+            }
+            else
             if (data.status === 'success' && data.data.paymentFlag === true){
                 console.log('Initiate payment flow for user: ' + email);
             }
