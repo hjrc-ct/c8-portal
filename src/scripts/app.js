@@ -200,9 +200,109 @@ const loadCoursePart = (part, specificView) => {
                 const element = document.getElementById('payment-section');
                 if (!element) return;
 
+                showNote('Please complete the payment to continue onboarding.', 10000);
+
                 console.log('Payment section found. Fetching payment start content...');
                 const currentToken = await getMyAccessToken(false);
                 element.innerHTML = 
+                `
+<style>
+.card{
+
+max-width:420px;
+margin:auto;
+background:white;
+padding:24px;
+border-radius:12px;
+box-shadow:0 4px 16px rgba(0,0,0,.08);
+
+text-align:center;
+}
+
+.paybutton{
+width:45%;
+padding:16px;
+margin-top:12px;
+font-size:16px;
+cursor:pointer;
+}
+
+#qrContainer{
+
+display:none;
+margin-top:25px;
+
+}
+
+#qr{
+
+display:flex;
+justify-content:center;
+
+}
+
+.note{
+
+font-size:13px;
+color:#777;
+margin-top:20px;
+
+}
+
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<div class="card">
+<h2>Transaction Summary</h2>
+<h1>₹ 99</h1>
+<p>
+<b>RAGHAVENDRA CHARI HOTHUR JOSHI</b>
+<br/>
+makelabs@sbi
+</p>
+
+<p>
+Payment for C8 Kubernetes Labs on GCP 
+</p>
+
+<button onclick="payNow()" hidden>
+Pay Now
+</button>
+
+<button class="paybutton" onclick="showQR()">
+Show QR Code
+</button>
+
+<button class="paybutton" onclick="copyUPI()">
+Copy UPI ID
+</button>
+
+<div id="qrContainer">
+
+<div id="qr"></div>
+
+<div id="qrContainer-txn-id"></div>
+
+<p>
+<small>
+Scan using PhonePe, Google Pay,
+Paytm or any UPI app.
+</small>
+</p>
+
+</div>
+
+<div class="note">
+
+Powered by c8-labs.makelabs.in
+
+</div>
+
+</div>
+
+</section>
+                `;
                         await fetch('/pay/start', {
                             method: 'POST',
                             headers: {
