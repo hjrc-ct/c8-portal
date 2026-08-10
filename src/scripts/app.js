@@ -990,36 +990,30 @@ async function sendOnboardingEmail() {
     // before invoking onboarding, lets see if payment is required
     // invoke API endpoint "/pay/check" to check if payment is required for the user. If payment is required, show a message to the user and return.
 
-    await fetch('/pay/check', {
+    const paymentCheckResponse = await fetch('/pay/check', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'x-api-key' : currentToken,
             'Authorization': 'Bearer ' + currentToken
         }
-    })
-    .then(response => {
-        if (!response.ok) {
-            console.log('Check api call failed with status:', response.status);
-            return;
-        }
-
-        response.json().then(data => {
-            if (data.status === 'success' && data.data.paymentFlag === false){
-                console.log('Payment flow not required OR payment record found for user: ' + email);
-            }
-            else
-            if (data.status === 'success' && data.data.paymentFlag === true){
-                console.log('Initiate payment flow for user: ' + email);
-                // Build a simple payment prompt. Redirect to Nav panel Payment link
-                loadCoursePart('99', 'payment-start');
-                return; // Exit the function to prevent further onboarding until payment is completed.
-            } else {
-                console.log('Unexpected response from payment check API:', data);
-                return;
-            }
-        });
     });
+
+    if (!paymentCheckResponse.ok) {
+        console.log('Check api call failed with status:', paymentCheckResponse.status);
+    } else {
+        const data = await paymentCheckResponse.json();
+        if (data.status === 'success' && data.data.paymentFlag === false) {
+            console.log('Payment flow not required OR payment record found for user: ' + email);
+        } else if (data.status === 'success' && data.data.paymentFlag === true) {
+            console.log('Initiate payment flow for user: ' + email);
+            // Redirect to Part99 page for payment.
+            window.location.href = `pages/Part99.html${window.location.search}`;
+            return;
+        } else {
+            console.log('Unexpected response from payment check API:', data);
+        }
+    }
 
     const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/labsOnboarding';
     const urlSendMail = 'https://cep-api-gw-7k5bxais.an.gateway.dev/sendEmail';
