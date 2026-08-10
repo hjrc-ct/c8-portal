@@ -196,6 +196,20 @@ const loadCoursePart = (part, specificView) => {
                             }
                 }
             }
+            else if (part == 99) {
+                const element = document.getElementById('payment-section');
+                if (!element) return;
+
+                element.innerHTML = 
+                        await fetch('/pay/start', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'x-api-key' : currentToken,
+                                'Authorization': 'Bearer ' + currentToken
+                            }
+                        }). then( resp => resp.text() );
+            }
 
             // Count number of copy-block occurrences within the loaded content
             const copyBlockCount = mainContent.querySelectorAll('.copy-block').length;
@@ -809,52 +823,6 @@ function attachGalleryModal() {
     console.log('Attached gallery modal events');
 }
 
-// Generic payment modal helper — creates or reuses an overlay element and shows provided HTML.
-function showPaymentModal(htmlContent, redirectUrl) {
-    let overlay = document.getElementById('payment-modal-overlay');
-    if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.id = 'payment-modal-overlay';
-        overlay.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);z-index:9999;';
-
-        overlay.innerHTML = `
-            <div id="payment-modal" style="background:#fff;padding:20px;border-radius:8px;max-width:720px;width:92%;box-shadow:0 10px 40px rgba(0,0,0,.3);">
-                <div id="payment-modal-body"></div>
-                <div style="text-align:right;margin-top:16px;">
-                    <button id="payment-modal-close" style="margin-right:8px;padding:8px 12px;border:1px solid #ccc;background:#f5f5f5;border-radius:4px;">Close</button>
-                    <button id="payment-modal-proceed" style="padding:8px 12px;background:#0073e6;color:#fff;border:none;border-radius:4px;">Proceed to Payment</button>
-                </div>
-            </div>
-        `;
-
-        document.body.appendChild(overlay);
-
-        overlay.addEventListener('click', function(e) {
-            if (e.target === overlay) hidePaymentModal();
-        });
-
-        overlay.querySelector('#payment-modal-close').addEventListener('click', hidePaymentModal);
-        overlay.querySelector('#payment-modal-proceed').addEventListener('click', function() {
-            if (redirectUrl) window.open(redirectUrl, '_blank');
-            hidePaymentModal();
-        });
-    }
-
-    const body = overlay.querySelector('#payment-modal-body');
-    if (body) body.innerHTML = htmlContent || '';
-
-    overlay.hidden = false;
-    overlay.style.display = 'flex';
-}
-
-function hidePaymentModal() {
-    const overlay = document.getElementById('payment-modal-overlay');
-    if (overlay) {
-        overlay.style.display = 'none';
-        overlay.hidden = true;
-    }
-}
-
 function attachSupportMetadataButton() { // copy-text-11-1
     const button = document.getElementById('copy-text-11-1');
     if (!button) return;
@@ -944,26 +912,13 @@ async function sendOnboardingEmail() {
 
         response.json().then(data => {
             if (data.status === 'success' && data.data.paymentFlag === false){
-                console.log('Payment flow not required for user: ' + email);
+                console.log('Payment flow not required OR payment record found for user: ' + email);
             }
             else
             if (data.status === 'success' && data.data.paymentFlag === true){
                 console.log('Initiate payment flow for user: ' + email);
-                // Build a simple payment prompt. The API may return a paymentUrl or reference in the payload.
-                const paymentUrl = (data.data && (data.data.paymentUrl || data.data.checkoutUrl)) || (`https://${domainName}/pay/start`);
-                const amountText = (data.data && data.data.amount) ? `<p><strong>Amount:</strong> ${data.data.amount}</p>` : '';
-                const payHTMLContent = `
-                    <div style="font-family:inherit;">
-                        <h3 style="margin-top:0;">Complete payment to proceed</h3>
-                        <p>To finish onboarding we need a one-time payment. You will be redirected to the secure payment page.</p>
-                        ${amountText}
-                        <p style="margin-top:8px">Reference: ${data.data && data.data.paymentReference ? escapeHtml(data.data.paymentReference) : 'N/A'}</p>
-                        <p style="margin-top:12px;color:#666;font-size:0.95rem">If the payment page does not open, use the <strong>Proceed to Payment</strong> button below.</p>
-                    </div>
-                `;
-
-                // Show the payment modal and pass the URL returned by the API.
-                showPaymentModal(payHTMLContent, paymentUrl);
+                // Build a simple payment prompt. Redirect to Nav panel Payment link
+                loadCoursePart('99', 'payment-start');
                 return; // Exit the function to prevent further onboarding until payment is completed.
             } else {
                 console.log('Unexpected response from payment check API:', data);
