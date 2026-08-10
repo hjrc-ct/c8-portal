@@ -303,19 +303,7 @@ Powered by c8-labs.makelabs.in
 
 </section>
                 `;
-                        await fetch('/pay/start', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'x-api-key' : currentToken,
-                                'Authorization': 'Bearer ' + currentToken
-                            }
-                        })
-                        .then( resp => resp.text() )
-                        .catch( err => {
-                            console.error('Error fetching payment content:', err);
-                        });
-            }
+            } // end of part 99
 
             // Count number of copy-block occurrences within the loaded content
             const copyBlockCount = mainContent.querySelectorAll('.copy-block').length;
