@@ -1,6 +1,6 @@
 const accessPlan = "Premium"; // selected access plan
 const amount = 99;
-const appTxnId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+const appTxnId = encodeURIComponent(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
 const upiId=encodeURIComponent("makelabs@sbi");
 const remarks = 'Payment+for+C8+Kubernetes+Labs+on+GCP';
 const upi = "upi://pay?" 
@@ -10,7 +10,7 @@ const upi = "upi://pay?"
                 + `&tr=${appTxnId}`;
 
 function getPaymentAmount()  { return amount;   }
-function getPaymentTxnId()   { return appTxnId; }
+function getPaymentTxnId()   { return decodeURIComponent(appTxnId); }
 function getPaymentId()      { return decodeURIComponent(upiId);    }
 function getPaymentRemarks() { return decodeURIComponent(remarks.replace(/\+/g, " "));  }
 
