@@ -204,6 +204,10 @@ const loadCoursePart = (part, specificView) => {
 
                 console.log('Payment section found. Fetching payment start content...');
                 const currentToken = await getMyAccessToken(false);
+                const upiId = getPaymentId();
+                const upiRemarks = getPaymentRemarks();
+                const upiAmount = getPaymentAmount();
+                const appTxnId = getPaymentTxnId(); // this is internal app txn id (not UPI Txn Id)
                 element.innerHTML = 
                 `
 <style>
@@ -249,19 +253,47 @@ margin-top:20px;
 
 }
 
+.payment-sub-heading{
+color: gray;
+font-size: 0.8rem;
+}
+
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
+<div id="payment-header">
+        <h2>Payment</h2>
+        <p>
+            Payment is required to access this course under <code>Premium</code> access plan.
+            <br/><br/>
+            <small>
+                UPI is the only mode of payment supported as of this release.<br/>
+                Other payment methods will be added soon.<br/>
+                For any questions, please use <code>Contact</code> section on the main portal.<br/>
+            </small>
+        </p>
+        <hr/>
+</div>
 <div class="card">
 <h2>UPI Transaction Summary</h2>
-<h1>₹ 99</h1>
+<h1>₹ ${upiAmount}</h1>
 <p>
-Transfer to VPA <b>makelabs@sbi</b>
+<span class="payment-sub-heading">Transfer amount to VPA</span>
+<br/>
+<b>${upiId}</b>
 </p>
 
 <p>
-Payment for C8 Kubernetes Labs on GCP 
+<span class="payment-sub-heading">App Transaction Id</span>
+<br/>
+${appTxnId}
+</p>
+
+<p>
+<span class="payment-sub-heading">Remarks</span>
+<br/>
+${upiRemarks}
 </p>
 
 <button class="paybutton" onclick="showQR()">

@@ -1,12 +1,18 @@
+const accessPlan = "Premium"; // selected access plan
 const amount = 99;
 const appTxnId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-const upiId="makelabs%40sbi";
+const upiId=encodeURIComponent("makelabs@sbi");
+const remarks = 'Payment+for+C8+Kubernetes+Labs+on+GCP';
 const upi = "upi://pay?" 
                 + `pa=${upiId}&cu=INR`
                 + `&am=${amount}`
-                + "&tn=Payment+for+C8+Kubernetes+Labs+on+GCP"
+                + `&tn=${remarks}`
                 + `&tr=${appTxnId}`;
 
+function getPaymentAmount()  { return amount;   }
+function getPaymentTxnId()   { return appTxnId; }
+function getPaymentId()      { return decodeURIComponent(upiId);    }
+function getPaymentRemarks() { return decodeURIComponent(remarks.replace(/\+/g, " "));  }
 
 function showQR() {
     document.getElementById("qrContainer").style.display="block";
@@ -31,7 +37,7 @@ function showQR() {
 }
 
 async function copyUPI(){
-    await navigator.clipboard.writeText(upiId);
+    await navigator.clipboard.writeText(getPaymentId());
     showNote("UPI ID copied", 3000);
 }
 
