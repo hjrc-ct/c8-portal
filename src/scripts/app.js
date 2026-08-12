@@ -254,21 +254,15 @@ margin-top:20px;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <div class="card">
-<h2>Transaction Summary</h2>
+<h2>UPI Transaction Summary</h2>
 <h1>₹ 99</h1>
 <p>
-<b>RAGHAVENDRA CHARI HOTHUR JOSHI</b>
-<br/>
-makelabs@sbi
+Transfer to VPA <b>makelabs@sbi</b>
 </p>
 
 <p>
 Payment for C8 Kubernetes Labs on GCP 
 </p>
-
-<button onclick="payNow()" hidden>
-Pay Now
-</button>
 
 <button class="paybutton" onclick="showQR()">
 Show QR Code

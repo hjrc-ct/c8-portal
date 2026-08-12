@@ -1,5 +1,12 @@
-const upi="upi://pay?pa=makelabs%40sbi&cu=INR&pn=RAGHAVENDRA+CHARI+HOTHUR+JOSHI&am=99&tn=Payment+for+C8+Kubernetes+Labs+on+GCP+&tr=32019614719090712678ec05fdd20e416dc4a3f7f7d6d407f88151eb0948f603";
-const upiId="makelabs@sbi";
+const amount = 99;
+const appTxnId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+const upiId="makelabs%40sbi";
+const upi = "upi://pay?" 
+                + `pa=${upiId}&cu=INR`
+                + `&am=${amount}`
+                + "&tn=Payment+for+C8+Kubernetes+Labs+on+GCP"
+                + `&tr=${appTxnId}`;
+
 
 function showQR() {
     document.getElementById("qrContainer").style.display="block";
@@ -15,10 +22,10 @@ function showQR() {
 
     document.getElementById("qrContainer-txn-id").innerHTML=`
     <p>
-        After completing the payment, please <code>copy-paste the Transaction ID from UPI app here</code> and click on "Verify Payment" button.
+        After completing the payment, please <code>enter last 6 alpha-numeric characters of Transaction ID from UPI app here</code> and click on "Complete Payment" to proceed to Onboarding.
         <br/><br/>
-        <input id="txnId"  placeholder="Enter UPI Transaction ID" type="text" value="" style="width:95%;padding:8px;font-size:16px;"/>
-        <button id="verifyBtn" style="width:100%;padding:16px;margin-top:12px;font-size:16px;" onclick="verifyPayment()">Verify Payment</button>
+        <input id="txnId"  placeholder="Enter last 6 alpha-numeric characters of UPI Transaction ID" type="text" value="" style="width:95%;padding:8px;font-size:16px;"/>
+        <button id="verifyBtn" style="width:100%;padding:16px;margin-top:12px;font-size:16px;" onclick="verifyPayment()">Complete Payment</button>
     </p>
     `;
 }
@@ -35,7 +42,12 @@ async function verifyPayment(){
 
 
     if (txnInput.value.trim().length === 0) {
-        showNote("Please enter a valid transaction ID.", 3000);
+        showNote("Please enter a valid transaction ID.", 5000);
+        return;
+    }
+
+    if (txnInput.value.trim().length !== 6) {
+        showNote("Please enter last 6 alpha-numeric characters of the transaction ID.", 5000);
         return;
     }
 
