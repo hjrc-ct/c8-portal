@@ -1134,6 +1134,8 @@ async function sendOnboardingEmail() {
 
     if (!paymentCheckResponse.ok) {
         console.log('Check api call failed with status:', paymentCheckResponse.status);
+        showNote('Unable to verify payment status. Please try after sometime.', 6000);
+        codeBlock.innerHTML = 'Error #3: Unable to verify payment status due to cf-api failure. If issue persists, contact administrator.' ;
         return;
     } else {
 
@@ -1161,7 +1163,10 @@ async function sendOnboardingEmail() {
                 console.log('Initiate payment flow for user: ' + email);
                 // Redirect to Part99 page for payment.
                 // window.location.href = `pages/Part99.html${window.location.search}`;
-                loadCoursePart('99', 'payment-start');
+                // loadCoursePart('99', 'payment-start');
+                // show error instead of redirecting to payment page. let user contact admin if payment is done already.
+                showNote('Payment record not found or reconciliation error.', 9000);
+                codeBlock.innerHTML = 'Error #4: Payment record not found or reconciliation error. Visit payment nav item to complete your payment. If already paid, contact administrator for assistance.' ;
                 return;
             } else {
                 console.log('Unexpected response from payment check API:', data);
