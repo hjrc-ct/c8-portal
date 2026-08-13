@@ -9,31 +9,83 @@ const upi = "upi://pay?"
                 + `&tn=${remarks}`
                 + `&tr=${appTxnId}`;
 
+const whatsappNumber = "918217538171"; // arica whatsapp handler
+const waInput = `c8k8s ${appTxnId}`;
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(waInput)}`;
+
+
 function getPaymentAmount()  { return amount;   }
 function getPaymentTxnId()   { return decodeURIComponent(appTxnId); }
 function getPaymentId()      { return decodeURIComponent(upiId);    }
 function getPaymentRemarks() { return decodeURIComponent(remarks.replace(/\+/g, " "));  }
 
 function showQR() {
-    document.getElementById("qrContainer").style.display="block";
-    document.getElementById("qr").innerHTML="";
+    document.getElementById("qrContainer").style.display="inline-flex";
+
+    // remove hidden flag
+    document.getElementById("qrUPIContainer").style.display="block";
+    document.getElementById("qrWhatsAppContainer").style.display="block";
+    document.getElementById("qrUPIContainer").hidden=false;
+    document.getElementById("qrWhatsAppContainer").hidden=false;
+
+    document.getElementById("qrUPI").innerHTML="";
+    document.getElementById("qrWhatsApp").innerHTML="";
 
     new QRCode(
-        document.getElementById("qr"),
+        document.getElementById("qrUPI"),
         {
         text:upi,
         width:240,
         height:240
         } );
 
+    new QRCode(
+        document.getElementById("qrWhatsApp"),
+        {
+        text:whatsappUrl,
+        width:240,
+        height:240
+        } );    
+
     document.getElementById("qrContainer-txn-id").innerHTML=`
-    <p>
-        After completing the payment, please <code>enter last 6 alpha-numeric characters of Transaction ID from UPI app here</code> and click on "Complete Payment" to proceed to Onboarding.
+        <hr/>
+        <b>Instructions:</b><br/>
+        (a) Scan UPI QR to make the payment<br/>
+        (b) Next, scan WhatsApp QR code to send pre-configured text to Arica number<br/>
+        (c) Send UPI payment receipt as image to Arica number<br/>
+        (d) Click on "Complete Payment" to proceed to Onboarding
         <br/><br/>
         <input id="txnId"  placeholder="Enter last 6 alpha-numeric characters of UPI Transaction ID" type="text" value="" style="width:95%;padding:8px;font-size:16px;"/>
         <button id="verifyBtn" style="width:100%;padding:16px;margin-top:12px;font-size:16px;" onclick="verifyPayment()">Complete Payment</button>
-    </p>
+    
     `;
+
+    // insert START record to the database. this is user's intent to start payment
+    const paymentStartResponse = await fetch('/pay/start', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key' : currentToken,
+            'Authorization': 'Bearer ' + currentToken
+        },
+        body: {
+            'amount' : amount,
+            'currency' : 'INR',
+            'payment_method' : 'UPI',
+            'app_transaction_id' : appTxnId,
+            'app_transaction_status' : 'START'
+        }
+    });
+
+    if (paymentStartResponse.ok){
+        console.log('payment started ok !');
+        const data = await paymentStartResponse.json();
+        console.log('Payment start response', data);
+    } else {
+        console.error('Failed to add start payment record !');
+    }
+
+    return;
 }
 
 async function copyUPI(){
@@ -46,14 +98,9 @@ async function verifyPayment(){
     const txnInput = document.getElementById("txnId");
     const verifyBtn = document.getElementById("verifyBtn");
 
-
-    if (txnInput.value.trim().length === 0) {
-        showNote("Please enter a valid transaction ID.", 5000);
-        return;
-    }
-
     if (txnInput.value.trim().length !== 6) {
-        showNote("Please enter last 6 alpha-numeric characters of the transaction ID.", 5000);
+        showNote("Please enter last 6 alpha-numeric characters of the UPI Transaction ID.", 5000);
+        document.getElementById("txnId").focus();
         return;
     }
 

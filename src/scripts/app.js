@@ -213,14 +213,14 @@ const loadCoursePart = (part, specificView) => {
 <style>
 .card{
 
-max-width:420px;
+max-width:680px;
 margin:auto;
 background:white;
-padding:24px;
+padding:48px;
 border-radius:12px;
 box-shadow:0 4px 16px rgba(0,0,0,.08);
-
 text-align:center;
+justify-content: center;
 }
 
 .paybutton{
@@ -232,20 +232,57 @@ cursor:pointer;
 }
 
 #qrContainer{
-
-display:none;
-margin-top:25px;
-
+    display:none;
+    margin:25px 25px;
+    align-items: center;
+    justify-content: center;
+    gap: 42px;
 }
 
-#qr{
-
-display:flex;
-justify-content:center;
-
+.qr-step {
+    text-align: center;
+    justify-content: center;
+    max-width:280px;
 }
 
-.note{
+.qr-title {
+    min-height: 48px;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    align-items: center;
+    font-size: small;
+}
+
+.payment-instructions {
+    min-height: 48px;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    text-align: left;
+    font-size: small;
+}
+
+.qr-next {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 45px;
+    font-weight: 600;
+    white-space: nowrap;
+    font-size: 0.90rem;
+    color: #e8491d;
+}
+
+.qr-next span:last-child {
+    font-size: 22px;
+}
+
+#qrUPI #qrUPIContainer #qrWhatsApp #qrWhatsAppContainer {
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.footnote{
 
 font-size:13px;
 color:#777;
@@ -296,33 +333,50 @@ ${appTxnId}
 ${upiRemarks}
 </p>
 
+<button class="paybutton" onclick="copyUPI()">
+Copy UPI ID
+</button>
+<br/>
 <button class="paybutton" onclick="showQR()">
 Show QR Code
 </button>
 
-<button class="paybutton" onclick="copyUPI()">
-Copy UPI ID
-</button>
-
 <div id="qrContainer">
 
-<p>
-<small>
-Scan using PhonePe, Google Pay,
-Paytm or any UPI app.
-</small>
-</p>
+<div id="qrUPIContainer" class="qr-step" hidden=true>
+    <div class="qr-title">
+    Scan to pay
+    <br/>
+    <span style="color: grey">Use PhonePe, G Pay, Paytm or any UPI app</span>
+    </div>
 
-<div id="qr"></div>
+    <div id="qrUPI"></div>
+    
+</div>
 
-<div id="qrContainer-txn-id"></div>
+<div class="qr-next">
+    <span>Next</span>
+    <span>→</span>
+</div>
+
+<div id="qrWhatsAppContainer" class="qr-step" hidden=true>
+    <div class="qr-title">
+    Scan to send
+    <br/>
+    <span style="color: grey">Send payment receipt to Arica WhatsApp</span>
+    </div>
+
+    <div id="qrWhatsApp"></div>
+    
+</div>
 
 </div>
 
-<div class="note">
+<div id="qrContainer-txn-id" class="payment-instructions"></div>
 
-Powered by c8-labs.makelabs.in
 
+<div class="footnote">
+Powered by Arica
 </div>
 
 </div>
@@ -1067,7 +1121,7 @@ async function sendOnboardingEmail() {
 
 
     // before invoking onboarding, lets see if payment is required
-    // invoke API endpoint "/pay/check" to check if payment is required for the user. If payment is required, show a message to the user and return.
+    // invoke API endpoint to check if payment is required for the user. If payment is required, show a message to the user and return.
 
     const paymentCheckResponse = await fetch('/pay/check', {
         method: 'POST',
