@@ -333,11 +333,11 @@ ${appTxnId}
 ${upiRemarks}
 </p>
 
-<button class="paybutton" onclick="copyUPI()">
+<button id="copyUPI" class="paybutton" onclick="copyUPI()">
 Copy UPI ID
 </button>
 <br/>
-<button class="paybutton" onclick="showQR()">
+<button id="showQR" class="paybutton" onclick="showQR()">
 Show QR Code
 </button>
 
