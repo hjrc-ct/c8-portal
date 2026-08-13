@@ -19,7 +19,7 @@ function getPaymentTxnId()   { return decodeURIComponent(appTxnId); }
 function getPaymentId()      { return decodeURIComponent(upiId);    }
 function getPaymentRemarks() { return decodeURIComponent(remarks.replace(/\+/g, " "));  }
 
-function showQR() {
+async function showQR() {
     document.getElementById("qrContainer").style.display="inline-flex";
 
     // remove hidden flag
@@ -68,13 +68,13 @@ function showQR() {
             'x-api-key' : currentToken,
             'Authorization': 'Bearer ' + currentToken
         },
-        body: {
-            'amount' : amount,
-            'currency' : 'INR',
-            'payment_method' : 'UPI',
-            'app_transaction_id' : appTxnId,
-            'app_transaction_status' : 'START'
-        }
+        body: JSON.stringify({
+            amount: amount,
+            currency: 'INR',
+            payment_method: 'UPI',
+            app_transaction_id: appTxnId,
+            app_transaction_status: 'START'
+        })
     });
 
     if (paymentStartResponse.ok){
