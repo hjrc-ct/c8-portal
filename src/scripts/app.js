@@ -1140,9 +1140,8 @@ async function sendOnboardingEmail() {
     } else {
 
             let data;
-            const rawText = await paymentCheckResponse.text();
             try {
-                data = JSON.parse(rawText);
+                data = await paymentCheckResponse.json();
             } catch (jsonError) {
                 console.warn('Failed to parse payment check response as JSON, trying tolerant parse. Raw response:', rawText);
                 try {
@@ -1157,6 +1156,7 @@ async function sendOnboardingEmail() {
                     return;
                 }
             }
+            
             if (data.status === 'success' && data.data.paymentFlag === false) {
                 console.log('Payment flow not required OR payment record found for user: ' + email);
             } else if (data.status === 'success' && data.data.paymentFlag === true) {
@@ -1170,6 +1170,7 @@ async function sendOnboardingEmail() {
                 return;
             } else {
                 console.log('Unexpected response from payment check API:', data);
+                codeBlock.innerHTML = `Error #5: Unexpected response from cf-api call. If issue persists, contact administrator for assistance.` ;
                 return;
             }
     }
