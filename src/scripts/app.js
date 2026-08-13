@@ -474,24 +474,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
 
-            let data;
-            const rawText = await paymentCheckResponse.text();
-            try {
-                data = JSON.parse(rawText);
-            } catch (jsonError) {
-                console.warn('Failed to parse payment check response as JSON, trying tolerant parse. Raw response:', rawText);
-                try {
-                    const tolerantText = rawText
-                        .replace(/(['"])?([a-zA-Z0-9_]+)(['"])?\s*:/g, '"$2":')
-                        .replace(/'/g, '"');
-                    data = JSON.parse(tolerantText);
-                } catch (secondError) {
-                    console.error('Failed tolerant parse for payment check response:', secondError);
-                    showNote('Payment validation failed. Please try again later.', 10000);
-                    loadCoursePart(0, 'page-start');
-                    return;
-                }
-            }
+            let data = await paymentCheckResponse.json();
 
             if (data.status === 'success' && data.data.paymentFlag === false) {
                 console.log('Payment flow not required OR payment record found for user: ' + email);
@@ -1139,24 +1122,8 @@ async function sendOnboardingEmail() {
         return;
     } else {
 
-            let data;
-            try {
-                data = await paymentCheckResponse.json();
-            } catch (jsonError) {
-                console.warn('Failed to parse payment check response as JSON, trying tolerant parse. Raw response:', rawText);
-                try {
-                    const tolerantText = rawText
-                        .replace(/(['"])?([a-zA-Z0-9_]+)(['"])?\s*:/g, '"$2":')
-                        .replace(/'/g, '"');
-                    data = JSON.parse(tolerantText);
-                } catch (secondError) {
-                    console.error('Failed tolerant parse for payment check response:', secondError);
-                    showNote('Payment validation failed. Please try again later.', 10000);
-                    loadCoursePart(0, 'page-start');
-                    return;
-                }
-            }
-            
+            let data = await paymentCheckResponse.json();
+
             if (data.status === 'success' && data.data.paymentFlag === false) {
                 console.log('Payment flow not required OR payment record found for user: ' + email);
             } else if (data.status === 'success' && data.data.paymentFlag === true) {
