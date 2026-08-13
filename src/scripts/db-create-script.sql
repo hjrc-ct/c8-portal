@@ -18,6 +18,10 @@ CREATE TABLE IF NOT EXISTS payments (
 CREATE INDEX IF NOT EXISTS idx_payments_email
 ON payments(email);
 
+CREATE INDEX IF NOT EXISTS idx_payments_app_transaction_id
+ON payments(app_transaction_id);
+
+
 /*
     currency                     -> INR
     payment_method               -> UPI
