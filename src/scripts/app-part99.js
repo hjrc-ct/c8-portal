@@ -61,6 +61,7 @@ async function showQR() {
     `;
 
     // insert START record to the database. this is user's intent to start payment
+    const currentToken = await getMyAccessToken(false);
     const paymentStartResponse = await fetch('/pay/start', {
         method: 'POST',
         headers: {
