@@ -203,7 +203,7 @@ const loadCoursePart = (part, specificView) => {
                     return;
                 }
 
-                const element = document.getElementById('payment-section');
+                const element = document.getElementById('payment-start');
                 if (!element) return;
 
                 showNote('Please complete the payment to continue onboarding.', 10000);
