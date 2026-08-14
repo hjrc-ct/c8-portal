@@ -314,7 +314,8 @@ font-size: 0.8rem;
 </div>
 <div class="card">
 <h2>UPI Transaction Summary</h2>
-<h1>₹ ${upiAmount}</h1>
+<h1>₹ <del>24,999</del> ${upiAmount}</h1>
+
 <p>
 <span class="payment-sub-heading">Transfer amount to VPA</span>
 <br/>

@@ -14,7 +14,7 @@ const waInput = `c8k8s ${appTxnId}`;
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(waInput)}`;
 
 
-function getPaymentAmount()  { return amount;   }
+function getPaymentAmount()  { return amount.toLocaleString('en-IN');   }
 function getPaymentTxnId()   { return decodeURIComponent(appTxnId); }
 function getPaymentId()      { return decodeURIComponent(upiId);    }
 function getPaymentRemarks() { return decodeURIComponent(remarks.replace(/\+/g, " "));  }
