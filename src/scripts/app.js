@@ -120,7 +120,7 @@ const loadCoursePart = (part, specificView) => {
             // If Part7, fetch and inject the keys
             else if (part == 7) {
                 const hasAccess = await checkForAccess(mainContent, part);
-                if (false && ! hasAccess ){
+                if ( ! hasAccess ){
                     console.error('Access restricted!');
                     return;
                 }
@@ -196,7 +196,7 @@ const loadCoursePart = (part, specificView) => {
                             }
                 }
             }
-            else if (part === 99) {
+            else if (part == 99) {
                 const hasAccess = await checkForAccess(mainContent, part);
                 if ( ! hasAccess ){
                     console.error('Access restricted!');
@@ -1291,6 +1291,8 @@ function copyNamespace() {
 // Check if access is available. 
 // Applicable for few sections: 7 (My keys), 9a, 9b, 9c, 9d (Lab Exercises) and 99 (Payment)
 async function checkForAccess(mainContent, part){
+    if (!(part == 7 || part == 99)) return true;
+
     // Check if namespace ends with 'c8-labs'
     const nsParam = getQueryParam('ns') || '';
     const accessToken = await getMyAccessToken(false);
