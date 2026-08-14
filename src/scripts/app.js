@@ -1133,7 +1133,7 @@ async function sendOnboardingEmail() {
                 // loadCoursePart('99', 'payment-start');
                 // show error instead of redirecting to payment page. let user contact admin if payment is done already.
                 showNote('Payment record not found or reconciliation error.', 9000);
-                codeBlock.innerHTML = `Error #4: Payment record not found or reconciliation error. Visit payment nav item to complete your payment. Server returned: ${data.message}. For any query, contact administrator for assistance.` ;
+                codeBlock.innerHTML = `Error #4: Payment record not found or reconciliation error. Server returned: ${data.message}. To start a new session, visit Payment in Navigation (left). For any query, contact administrator for assistance.` ;
                 return;
             } else {
                 console.log('Unexpected response from payment check API:', data);
