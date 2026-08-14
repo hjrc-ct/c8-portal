@@ -305,9 +305,9 @@ font-size: 0.8rem;
             Payment is required to access this course under <code>Premium</code> access plan.
             <br/><br/>
             <small>
-                UPI is the only mode of payment supported as of this release.<br/>
-                Other payment methods will be added soon.<br/>
-                For any questions, please use <code>Contact</code> section on the main portal.<br/>
+                UPI ₹ is the preferred mode of payment supported in this release.<br/>
+                For other currencies / payment methods / questions, use <code>Contact</code> section on the main portal.<br/>
+                Please read the instructions carefully.
             </small>
         </p>
         <hr/>
@@ -345,9 +345,9 @@ Show QR Code
 
 <div id="qrUPIContainer" class="qr-step" hidden=true>
     <div class="qr-title">
-    Scan to pay
+    Pay using UPI
     <br/>
-    <span style="color: grey">Use PhonePe, G Pay, Paytm or any UPI app</span>
+    <span style="color: grey">Scan with PhonePe, Google Pay, Paytm or any UPI app</span>
     </div>
 
     <div id="qrUPI"></div>
@@ -361,9 +361,9 @@ Show QR Code
 
 <div id="qrWhatsAppContainer" class="qr-step" hidden=true>
     <div class="qr-title">
-    Scan to send
+    Send payment receipt
     <br/>
-    <span style="color: grey">Send payment receipt to Arica WhatsApp</span>
+    <span style="color: grey">Scan to send the payment receipt to Arica WhatsApp</span>
     </div>
 
     <div id="qrWhatsApp"></div>

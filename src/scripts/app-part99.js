@@ -54,13 +54,17 @@ async function showQR() {
 
     document.getElementById("qrContainer-txn-id").innerHTML=`
         <hr/>
-        <b>Instructions:</b><br/>
-        (a) Scan <code>UPI QR</code> to make the payment<br/>
-        (b) Next, scan WhatsApp QR code and <code>send pre-configured text as-is</code> to Arica number<br/>
-        (c) Send <code>UPI payment receipt as image</code> to Arica number<br/>
-        (d) Click on <code>Generate PDF</code> button in WhatsApp<br/>
-        (e) The backend may take few seconds or so, but you may proceed<br/>
-        (f) Click on "Complete Payment" to proceed to Onboarding
+        <b>Instructions - UPI App:</b><br/>
+        (a) Scan <code>UPI QR</code> to make the payment.<br/>
+        <br/>
+        <b>Instructions - WhatsApp:</b><br/>
+        (b) Next, scan WhatsApp QR code and <code>send the pre-configured message as-is</code> to the Arica number. Wait for acknowledgement - upto 10 seconds.<br/>
+        (c) Send the <code>UPI payment receipt image</code> to the Arica number.<br/>
+        (d) Click on <code>Generate PDF</code> button in WhatsApp to generate the payment receipt.<br/>
+        (e) The backend may take upto a minute or so, but you may proceed.<br/>
+        <br/>
+        <b>Instructions - <code>Complete Payment</code></b><br/>
+        (f) Enter the last 6 characters of your UPI Transaction Id and click <code>Complete Payment</code> to proceed to onboarding.
         <br/><br/>
         <input id="txnId"  placeholder="Enter last 6 alpha-numeric characters of UPI Transaction ID" type="text" value="" style="width:95%;padding:8px;font-size:16px;"/>
         <button id="verifyBtn" style="width:100%;padding:16px;margin-top:12px;font-size:16px;" onclick="verifyPayment()">Complete Payment</button>
