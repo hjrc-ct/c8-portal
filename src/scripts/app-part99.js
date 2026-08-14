@@ -66,6 +66,12 @@ async function showQR() {
         <b>Instructions - <code>Complete Payment</code></b><br/>
         (f) Enter the last 6 characters of your UPI Transaction Id and click <code>Complete Payment</code> to proceed to onboarding.
         <br/><br/>
+        <label>
+            <input type="checkbox" id="paymentDisclaimer">
+            I understand that access is subject to successful realisation and
+            verification of the payment. In case of a failed, reversed, disputed,
+            or otherwise invalid payment, access may be suspended or revoked.
+        </label>
         <input id="txnId"  placeholder="Enter last 6 alpha-numeric characters of UPI Transaction ID" type="text" value="" style="width:95%;padding:8px;font-size:16px;"/>
         <button id="verifyBtn" style="width:100%;padding:16px;margin-top:12px;font-size:16px;" onclick="verifyPayment()">Complete Payment</button>
     
@@ -113,6 +119,13 @@ async function verifyPayment(){
     if (txnInput.value.trim().length !== 6) {
         showNote("Please enter last 6 alpha-numeric characters of the UPI Transaction ID.", 5000);
         document.getElementById("txnId").focus();
+        return;
+    }
+
+    const chkFlag = document.getElementById("paymentDisclaimer");
+    if (!chkFlag || chkFlag.checked !== true){
+        showNote("Please read and select the clause.", 5000);
+        if (chkFlag) chkFlag.focus();
         return;
     }
 
