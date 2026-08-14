@@ -1,5 +1,5 @@
 const accessPlan = "Premium"; // selected access plan
-const amount = 99;
+const amount = 1999;
 const appTxnId = encodeURIComponent(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
 const upiId=encodeURIComponent("makelabs@sbi");
 const remarks = 'Payment+for+C8+Kubernetes+Labs+on+GCP';
