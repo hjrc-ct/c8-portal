@@ -327,7 +327,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 return;
             } else if (data.status === 'success' && data.data.paymentFlag === true) {
                 console.log('Payment flow is required for user: ' + email);
-                loadCoursePart('99', 'payment-container');
+                loadCoursePart('99', 'page-start');
                 return;
             } else {
                 console.log('Unexpected response from payment check API:', data);
@@ -975,7 +975,7 @@ async function sendOnboardingEmail() {
                 console.log('Initiate payment flow for user: ' + email);
                 // Redirect to Part99 page for payment.
                 // window.location.href = `pages/Part99.html${window.location.search}`;
-                // loadCoursePart('99', 'payment-container');
+                // loadCoursePart('99', 'page-start');
                 // show error instead of redirecting to payment page. let user contact admin if payment is done already.
                 showNote('Payment verification failed.', 9000);
                 codeBlock.innerHTML = `
