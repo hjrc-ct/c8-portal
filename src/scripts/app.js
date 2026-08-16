@@ -3,6 +3,9 @@ const prefix = 'https://';
 const domainName = initDomainName && initDomainName.indexOf(prefix) != -1  ? initDomainName.substring(prefix.length) : 'c8-labs.makelabs.in';
 // default portal is 'c8-labs.makelabs.in';
 
+const urlOnboarding = 'https://cep-api-gw-7k5bxais.an.gateway.dev/labsOnboarding';
+const urlSendMail = 'https://cep-api-gw-7k5bxais.an.gateway.dev/sendEmail';
+
 const k8sConfig = {
     CLUSTER_NAME: "c8-labs-sravana-ap-21",
     REGION: "asia-south2",
@@ -1139,22 +1142,24 @@ async function sendOnboardingEmail() {
                 // window.location.href = `pages/Part99.html${window.location.search}`;
                 // loadCoursePart('99', 'payment-start');
                 // show error instead of redirecting to payment page. let user contact admin if payment is done already.
-                showNote('Payment record not found or reconciliation error.', 9000);
-                codeBlock.innerHTML = `Error #4: Payment record not found or reconciliation error. Server returned: ${data.message}. To start a new session, visit Payment in Navigation (left). For any query, contact administrator for assistance.` ;
+                showNote('Payment verification failed.', 9000);
+                codeBlock.innerHTML = `
+                                Error #4: Payment verification failed. Server returned: ${data.message}.
+                                Please contact administrator for assistance.
+                                ` ;
+                // alert staff members about the failure
+                sendFailureAlert(codeBlock.innerHTML, email, data, currentToken);
                 return;
             } else {
                 console.log('Unexpected response from payment check API:', data);
-                codeBlock.innerHTML = `Error #5: Unexpected response from cf-api call. If issue persists, contact administrator for assistance.` ;
+                codeBlock.innerHTML = `Error #5: Unexpected response from cf-api call. If issue persists, please contact administrator for assistance.` ;
                 return;
             }
     }
 
-    const url = 'https://cep-api-gw-7k5bxais.an.gateway.dev/labsOnboarding';
-    const urlSendMail = 'https://cep-api-gw-7k5bxais.an.gateway.dev/sendEmail';
-
     showNote('Invoke onboarding ... check the logs in 1a-1', 18000);
 
-    fetch(url, {
+    fetch(urlOnboarding, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -1204,7 +1209,7 @@ async function sendOnboardingEmail() {
                               + escapeHtml(JSON.stringify(result.data, null, 2))
                               + '</pre></p>',
                     subject: 'Onboarding - C8 Learning and Enablement'
-                };                
+                };
                 fetch(urlSendMail, {
                           method: 'POST',
                           headers: {

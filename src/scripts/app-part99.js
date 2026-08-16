@@ -158,3 +158,30 @@ async function verifyPayment(){
     loadCoursePart('1a', 'usage-policy');
     return;
 }
+
+async function sendFailureAlert(innerHTML, participantEmail, data, currentToken){
+    const payload = {
+        to: 'contact@makelabs.in',
+        content: 'C8 Labs environment - GKE Cluster.<br/><br/>'
+                    + '<p>' + innerHTML + '</p>'
+                    + '<p>'
+                    + `<br/><br/>CF API status and message<br/>${data?.status} ${data?.message}`
+                    + `<br/><br/>Application Transaction ID<br/>${appTxnId}`
+                    + `<br/><br/>Participant Email<br/>${participantEmail}` 
+                    + '</p>',
+        subject: `Onboarding Failure - C8 Learning and Enablement - ${appTxnId}`
+    };
+    fetch(urlSendMail, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key' : currentToken,
+                'Authorization': 'Bearer ' + currentToken
+            },
+            body : JSON.stringify(payload)
+        }).then( (opResponse) => 
+        {
+            if (opResponse.ok) showNote('Sending payment failure alert email...Done!');
+        });
+    return;
+}
