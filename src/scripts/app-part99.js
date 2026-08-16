@@ -240,16 +240,16 @@ async function sendFailureAlert(innerHTML, participantEmail, data, currentToken)
 async function sendBankInfo(appTxnId, participantEmail, currentToken){
     const payload = {
         to: participantEmail,
-        content: 'C8 Labs environment - GKE Cluster.<br/><br/>'
+        content: 'C8 Labs environment - GKE Cluster<br/><br/>'
                     + `
 Thank you for enrolling. Below is your reference number.<br/><br/>
-App Transaction ID
+App Transaction ID<br/>
 ${appTxnId}
 <br/><br/>
 `
                     + '<p><b>' + 'Bank Transfer Details' + '</b></p>'
                     + '<p>'
-                    + `<br/><br/>
+                    + `<br/>
 Country: USA <br/>
 Currency: USD ($)<br/>
 Account Type: Business Checking<br/>
