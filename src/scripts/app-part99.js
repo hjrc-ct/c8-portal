@@ -289,7 +289,7 @@ Please make a payment to this bank account and proceed with next steps on the we
             body : JSON.stringify(payload)
         }).then( (opResponse) => 
         {
-            if (opResponse.ok) showNote('Sending payment verification failure alert email...Done!');
+            if (opResponse.ok) showNote('Sending Bank details via email...Done!');
         });
     return;
 }
