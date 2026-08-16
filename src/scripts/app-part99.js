@@ -1,10 +1,11 @@
 const accessPlan = "Premium"; // selected access plan
 const amount = 1999;
+const currency = 'INR';
 const appTxnId = encodeURIComponent(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
 const upiId=encodeURIComponent("makelabs@sbi");
 const remarks = 'Payment+for+C8+Kubernetes+Labs+on+GCP';
 const upi = "upi://pay?" 
-                + `pa=${upiId}&cu=INR`
+                + `pa=${upiId}&cu=${currency}`
                 + `&am=${amount}`
                 + `&tn=${remarks}`
                 + `&tr=${appTxnId}`;
@@ -14,10 +15,11 @@ const waInput = `c8k8s ${appTxnId}`;
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(waInput)}`;
 
 
-function getPaymentAmount()  { return amount.toLocaleString('en-IN');   }
-function getPaymentTxnId()   { return decodeURIComponent(appTxnId); }
-function getPaymentId()      { return decodeURIComponent(upiId);    }
-function getPaymentRemarks() { return decodeURIComponent(remarks.replace(/\+/g, " "));  }
+function getPaymentAmount()   { return amount.toLocaleString('en-IN');   }
+function getPaymentTxnId()    { return decodeURIComponent(appTxnId); }
+function getPaymentId()       { return decodeURIComponent(upiId);    }
+function getPaymentCurrency() { return currency == 'INR' ? '₹' : '$'; }
+function getPaymentRemarks()  { return decodeURIComponent(remarks.replace(/\+/g, " "));  }
 
 async function showQR() {
     // disable the button

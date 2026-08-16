@@ -216,6 +216,7 @@ const loadCoursePart = (part, specificView) => {
                 const upiId = getPaymentId();
                 const upiRemarks = getPaymentRemarks();
                 const upiAmount = getPaymentAmount();
+                const currency = getPaymentCurrency();
                 const appTxnId = getPaymentTxnId(); // this is internal app txn id (not UPI Txn Id)
                 element.innerHTML = 
                 `
@@ -323,7 +324,7 @@ font-size: 0.8rem;
 </div>
 <div class="card">
 <h2>UPI Transaction Summary</h2>
-<h1>₹ <del>24,999</del> ${upiAmount}</h1>
+<h1>${currency} <del>12,999</del> ${upiAmount}</h1>
 
 <p>
 <span class="payment-sub-heading">Transfer amount to VPA</span>
