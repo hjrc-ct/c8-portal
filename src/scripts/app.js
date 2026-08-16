@@ -201,199 +201,33 @@ const loadCoursePart = (part, specificView) => {
             }
             else if (part == 99) {
                 const hasAccess = await checkForAccess(mainContent, part);
-                if ( ! hasAccess ){
+                if (true && ! hasAccess ){
                     console.error('Access restricted!');
                     return;
                 }
 
-                const element = document.getElementById('payment-start');
-                if (!element) return;
-
-                showNote('Please complete the payment to continue onboarding.', 10000);
-
-                console.log('Payment section found. Fetching payment start content...');
                 const currentToken = await getMyAccessToken(false);
-                const upiId = getPaymentId();
-                const upiRemarks = getPaymentRemarks();
-                const upiAmount = getPaymentAmount();
-                const currency = getPaymentCurrency();
-                const appTxnId = getPaymentTxnId(); // this is internal app txn id (not UPI Txn Id)
-                element.innerHTML = 
-                `
-<style>
-.card{
+                const country = getCountryFromAccessJwt(currentToken || 'IN');
+                const defaultCurrency = country === 'IN' ? 'INR' : 'USD';
 
-max-width:680px;
-margin:auto;
-background:white;
-padding:48px;
-border-radius:12px;
-box-shadow:0 4px 16px rgba(0,0,0,.08);
-text-align:center;
-justify-content: center;
-}
+                if (typeof window.showPaymentSummary !== 'function') {
+                    const script = document.createElement('script');
+                    script.src = 'app-part99.js';
+                    script.async = true;
+                    script.onload = () => {
+                        if (typeof window.showPaymentSummary === 'function') {
+                            window.showPaymentSummary(defaultCurrency);
+                        }
+                    };
+                    script.onerror = () => {
+                        console.error('Failed to load payment flow script: app-part99.js');
+                    };
+                    document.body.appendChild(script);
+                    return;
+                }
 
-.paybutton{
-width:45%;
-padding:16px;
-margin-top:12px;
-font-size:16px;
-cursor:pointer;
-}
-
-#qrContainer{
-    display:none;
-    margin:25px 25px;
-    align-items: center;
-    justify-content: center;
-    gap: 42px;
-}
-
-.qr-step {
-    text-align: center;
-    justify-content: center;
-    max-width:280px;
-}
-
-.qr-title {
-    min-height: 48px;
-    margin-bottom: 12px;
-    line-height: 1.4;
-    align-items: center;
-    font-size: small;
-}
-
-.payment-instructions {
-    min-height: 48px;
-    margin-bottom: 12px;
-    line-height: 1.4;
-    text-align: left;
-    font-size: small;
-}
-
-.qr-next {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-top: 45px;
-    font-weight: 600;
-    white-space: nowrap;
-    font-size: 0.90rem;
-    color: #e8491d;
-}
-
-.qr-next span:last-child {
-    font-size: 22px;
-}
-
-#qrUPI #qrUPIContainer #qrWhatsApp #qrWhatsAppContainer {
-    display:flex;
-    justify-content:center;
-    align-items: center;
-}
-
-.footnote{
-
-font-size:13px;
-color:#777;
-margin-top:20px;
-
-}
-
-.payment-sub-heading{
-color: gray;
-font-size: 0.8rem;
-}
-
-</style>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-<div id="payment-header">
-        <h2>Payment</h2>
-        <p>
-            Payment is required to access this course under <code>Premium</code> access plan.
-            <br/><br/>
-            <small>
-                UPI ₹ is the preferred mode of payment supported in this release.<br/>
-                For other currencies / payment methods / questions, use <code>Contact</code> section on the main portal.<br/>
-                Please read the instructions carefully.
-            </small>
-        </p>
-        <hr/>
-</div>
-<div class="card">
-<h2>UPI Transaction Summary</h2>
-<h1>${currency} <del>12,999</del> ${upiAmount}</h1>
-
-<p>
-<span class="payment-sub-heading">Transfer amount to VPA</span>
-<br/>
-<b>${upiId}</b>
-</p>
-
-<p>
-<span class="payment-sub-heading">App Transaction Id</span>
-<br/>
-${appTxnId}
-</p>
-
-<p>
-<span class="payment-sub-heading">Remarks</span>
-<br/>
-${upiRemarks}
-</p>
-
-<button id="copyUPI" class="paybutton" onclick="copyUPI()">
-Copy UPI ID
-</button>
-<br/>
-<button id="showQR" class="paybutton" onclick="showQR()">
-Show QR Code
-</button>
-
-<div id="qrContainer">
-
-<div id="qrUPIContainer" class="qr-step" hidden=true>
-    <div class="qr-title">
-    Pay using UPI
-    <br/>
-    <span style="color: grey">Scan with PhonePe, Google Pay, Paytm or any UPI app</span>
-    </div>
-
-    <div id="qrUPI"></div>
-    
-</div>
-
-<div class="qr-next">
-    <span>Next</span>
-    <span>→</span>
-</div>
-
-<div id="qrWhatsAppContainer" class="qr-step" hidden=true>
-    <div class="qr-title">
-    Send payment receipt
-    <br/>
-    <span style="color: grey">Scan to send the payment receipt to Arica WhatsApp</span>
-    </div>
-
-    <div id="qrWhatsApp"></div>
-    
-</div>
-
-</div>
-
-<div id="qrContainer-txn-id" class="payment-instructions"></div>
-
-
-<div class="footnote">
-Powered by Arica
-</div>
-
-</div>
-
-</section>
-                `;
+                window.showPaymentSummary(defaultCurrency);
+                return;
             } // end of part 99
 
             // Count number of copy-block occurrences within the loaded content
@@ -493,7 +327,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 return;
             } else if (data.status === 'success' && data.data.paymentFlag === true) {
                 console.log('Payment flow is required for user: ' + email);
-                loadCoursePart('99', 'payment-start');
+                loadCoursePart('99', 'payment-container');
                 return;
             } else {
                 console.log('Unexpected response from payment check API:', data);
@@ -1141,7 +975,7 @@ async function sendOnboardingEmail() {
                 console.log('Initiate payment flow for user: ' + email);
                 // Redirect to Part99 page for payment.
                 // window.location.href = `pages/Part99.html${window.location.search}`;
-                // loadCoursePart('99', 'payment-start');
+                // loadCoursePart('99', 'payment-container');
                 // show error instead of redirecting to payment page. let user contact admin if payment is done already.
                 showNote('Payment verification failed.', 9000);
                 codeBlock.innerHTML = `
@@ -1272,6 +1106,17 @@ async function getMyAccessToken(postIt) {
           console.error('Failed to fetch access token:', error);
           return null;
       });
+}
+
+function getCountryFromAccessJwt(jwt) {
+  try {
+    const payload = jwt.split('.')[1];
+    const decoded = atob(payload);
+    const country = JSON.parse(decoded).country;
+    return country ? String(country).toUpperCase() : 'US';
+  } catch (e) {
+    return 'US';
+  }
 }
 
 function getEmailFromAccessJwt(jwt) {

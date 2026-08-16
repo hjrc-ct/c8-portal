@@ -1784,3 +1784,7 @@ pre.data-block-lines code.data-block-lines {
     border: 0px solid #e0e0e0;
     margin-bottom: 2em;
 }
+
+.payment-template-root{
+    text-align: center;
+}
