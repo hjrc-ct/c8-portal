@@ -69,7 +69,7 @@ async function showQR() {
     const upiUrl = getUPIUrl();
 
     // Show this QR code for INR only
-    if(currency === 'INR')
+    if(currency === 'INR'){
         new QRCode(
             document.getElementById("qrUPI"),
             {
@@ -77,6 +77,12 @@ async function showQR() {
             width:240,
             height:240
             } );
+    } else {
+        // lets send an email with Bank Transfer details - TODO
+        const accessToken = await getMyAccessToken(false);
+        const participantEmail = accessToken ? getEmailFromAccessJwt(accessToken) : 'unknown user';
+        sendBankInfo(appTxnId, participantEmail, accessToken);
+    }
 
     new QRCode(
         document.getElementById("qrWhatsApp"),
@@ -215,6 +221,63 @@ async function sendFailureAlert(innerHTML, participantEmail, data, currentToken)
                     + `<br/><br/>Participant Email<br/>${participantEmail}` 
                     + '</p>',
         subject: `Onboarding Failure - C8 Learning and Enablement - ${appTxnId}`
+    };
+    fetch(urlSendMail, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key' : currentToken,
+                'Authorization': 'Bearer ' + currentToken
+            },
+            body : JSON.stringify(payload)
+        }).then( (opResponse) => 
+        {
+            if (opResponse.ok) showNote('Sending payment verification failure alert email...Done!');
+        });
+    return;
+}
+
+async function sendBankInfo(appTxnId, participantEmail, currentToken){
+    const payload = {
+        to: participantEmail,
+        content: 'C8 Labs environment - GKE Cluster.<br/><br/>'
+                    + `
+Thank you for enrolling. Below is your reference number.<br/><br/>
+App Transaction ID
+${appTxnId}
+<br/><br/>
+`
+                    + '<p><b>' + 'Bank Transfer Details' + '</b></p>'
+                    + '<p>'
+                    + `<br/><br/>
+Country: USA 
+Currency: USD ($)
+Account Type: Business Checking
+
+Bank Name: JPMORGAN CHASE BANK, N.A
+Bank Address: JPMORGAN CHASE BANK, N.A., 383 MADISON AVENUE, NEW YORK - 10179, United States
+
+Fedwire:
+Account Number: 20000045068188
+ABA Code: 021000021
+
+ACH Credit:
+Account Number: 20000045068188
+ABA Code / Routing Number: 028000024
+
+RTP:
+Account Number: 20000045068188
+Routing Number: 028000024
+
+SWIFT:
+Account Number: 20000045068188
+BIC: CHASUS33XXX
+`
+                    + `<br/><br/>
+Please make a payment to this bank account and proceed with next steps on the web portal.
+` 
+                    + '</p>',
+        subject: `Onboarding - USD Bank Transfer - C8 Learning and Enablement - ${appTxnId}`
     };
     fetch(urlSendMail, {
             method: 'POST',
