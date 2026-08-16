@@ -223,11 +223,11 @@ const loadCoursePart = (part, specificView) => {
                         console.error('Failed to load payment flow script: app-part99.js');
                     };
                     document.body.appendChild(script);
-                    return;
+
                 }
 
                 window.showPaymentSummary(defaultCurrency);
-                return;
+
             } // end of part 99
 
             // Count number of copy-block occurrences within the loaded content
