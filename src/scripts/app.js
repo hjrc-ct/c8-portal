@@ -1144,9 +1144,9 @@ async function sendOnboardingEmail() {
                 // show error instead of redirecting to payment page. let user contact admin if payment is done already.
                 showNote('Payment verification failed.', 9000);
                 codeBlock.innerHTML = `
-                                Error #4: Payment verification failed. Server returned: ${data.message}.
-                                Please contact administrator for assistance.
-                                ` ;
+Error #4: Payment verification failed. Server returned: ${data.message}.
+Please contact administrator for assistance.
+` ;
                 // alert staff members about the failure
                 sendFailureAlert(codeBlock.innerHTML, email, data, currentToken);
                 return;
