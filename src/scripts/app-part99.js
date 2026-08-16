@@ -250,28 +250,28 @@ ${appTxnId}
                     + '<p><b>' + 'Bank Transfer Details' + '</b></p>'
                     + '<p>'
                     + `<br/><br/>
-Country: USA 
-Currency: USD ($)
-Account Type: Business Checking
-
-Bank Name: JPMORGAN CHASE BANK, N.A
-Bank Address: JPMORGAN CHASE BANK, N.A., 383 MADISON AVENUE, NEW YORK - 10179, United States
-
-Fedwire:
-Account Number: 20000045068188
-ABA Code: 021000021
-
-ACH Credit:
-Account Number: 20000045068188
-ABA Code / Routing Number: 028000024
-
-RTP:
-Account Number: 20000045068188
-Routing Number: 028000024
-
-SWIFT:
-Account Number: 20000045068188
-BIC: CHASUS33XXX
+Country: USA <br/>
+Currency: USD ($)<br/>
+Account Type: Business Checking<br/>
+<br/><br/>
+Bank Name: JPMORGAN CHASE BANK, N.A<br/>
+Bank Address: JPMORGAN CHASE BANK, N.A., 383 MADISON AVENUE, NEW YORK - 10179, United States<br/>
+<br/><br/>
+Fedwire:<br/>
+Account Number: 20000045068188<br/>
+ABA Code: 021000021<br/>
+<br/><br/>
+ACH Credit:<br/>
+Account Number: 20000045068188<br/>
+ABA Code / Routing Number: 028000024<br/>
+<br/><br/>
+RTP:<br/>
+Account Number: 20000045068188<br/>
+Routing Number: 028000024<br/>
+<br/><br/>
+SWIFT:<br/>
+Account Number: 20000045068188<br/>
+BIC: CHASUS33XXX<br/>
 `
                     + `<br/><br/>
 Please make a payment to this bank account and proceed with next steps on the web portal.
