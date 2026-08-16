@@ -181,7 +181,7 @@ async function sendFailureAlert(innerHTML, participantEmail, data, currentToken)
             body : JSON.stringify(payload)
         }).then( (opResponse) => 
         {
-            if (opResponse.ok) showNote('Sending payment failure alert email...Done!');
+            if (opResponse.ok) showNote('Sending payment verification failure alert email...Done!');
         });
     return;
 }
