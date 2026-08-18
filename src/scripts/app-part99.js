@@ -41,8 +41,8 @@ async function setPaymentCurrency(c) {
         amount = 1999;
         amountOriginal = 12999;
     } else {
-        amount = 20;
-        amountOriginal = 120;
+        amount = 19;
+        amountOriginal = 129;
     }
     return currency;
 }
