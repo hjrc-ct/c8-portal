@@ -83,7 +83,7 @@ tmpfs              65536       0     65536   0% /dev
             <div class="copy-block" data-label="lab 9d-2">
                 <p/>
                 Question:
-                Let's pause exporters, run a set of process instances and see the statistics via Grafana dashboard.
+                Let's soft pause exporters, run a set of process instances and see the statistics via Grafana dashboard.
                 <br/>
                 We will then resume the exporters, see how the data is exported to Elasticsearch and catching up with things.
                 <br/><br/>
@@ -98,17 +98,19 @@ tmpfs              65536       0     65536   0% /dev
                     <strong>Answer:</strong>
                     There are three parts to this exercise.<br/>
                     <ul>
-                        <li>2a. Pause exporting</li>
+                        <li>2a. Soft Pause exporting</li>
                         <li>2b. Use Postman to invoke a bunch of instances - say 100</li>
                         <li>2c. Resume exporting</li>
                     <!-- 2a - pause exporting -->
 <pre id="copy-text-9d-2a"><code>
-# 2a - pause exporting
+# 2a - soft pause exporting
 #
-# Start a terminal session with Pod nginx-static-web-app
+# Start a terminal session with Pod grafana
 # ---
-# Run this command to pause exporting
-curl -X POST http://${UNAMESPACE}-zeebe.${UNAMESPACE}:9600/orchestration/actuator/exporting/pause
+# Run this command to soft pause exporting
+export UNAMESPACE={{UNAMESPACE}}
+<br/>
+curl -X POST http://${UNAMESPACE}-zeebe.${UNAMESPACE}:9600/orchestration/actuator/exporting/pause?soft=true
 <br/>
                 </code></pre>
                 <button class="copy-btn" onclick="copyToClipboard('copy-text-9d-2a', '9d-2a Copied to Clipboard!')">Copy</button>
@@ -121,7 +123,7 @@ curl -X POST http://${UNAMESPACE}-zeebe.${UNAMESPACE}:9600/orchestration/actuato
 </pre>
 </p>
                 <p>
-                    <small>Post Command-Set Execution (a): Exporters paused successfully! Watch the panel: <b>Number of records not exported</b></small>
+                    <small>Post Command-Set Execution (a): Exporters soft paused successfully! Watch the panel: <b>Number of records not exported</b></small>
                     <p/>
                     <em>Click on image to enlarge</em><br/>
                     <img width="90px" height="64px" src="pages/img-9d-2a-exporting-paused.jpg" 
