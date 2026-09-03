@@ -105,7 +105,7 @@ tmpfs              65536       0     65536   0% /dev
 <pre id="copy-text-9d-2a"><code>
 # 2a - soft pause exporting
 #
-# Start a terminal session with Pod grafana
+# Start a terminal session with Pod grafana (compatible to run curl command)
 # ---
 # Run this command to soft pause exporting
 export UNAMESPACE={{UNAMESPACE}}
@@ -148,9 +148,11 @@ curl -X POST http://${UNAMESPACE}-zeebe.${UNAMESPACE}:9600/orchestration/actuato
 <pre id="copy-text-9d-2c"><code>
 # 2c - resume exporting
 #
-# Start a terminal session with Pod nginx-static-web-app
+# Start a terminal session with Pod grafana (compatible to run curl command)
 # ---
 # Run this command to resume exporting
+export UNAMESPACE={{UNAMESPACE}}
+<br/>
 curl -X POST http://${UNAMESPACE}-zeebe.${UNAMESPACE}:9600/orchestration/actuator/exporting/resume
 <br/>
                 </code></pre>
