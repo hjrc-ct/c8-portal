@@ -50,9 +50,11 @@ function getPaymentRemarks()  { return decodeURIComponent(remarks.replace(/\+/g,
 
 
 async function showQR() {
-    // disable the button
+    // disable the button and currency selection to avoid multiple clicks
     document.getElementById("showQR").disabled = true;
     document.getElementById("showQR").style.background = 'gray';
+    const radios = document.querySelectorAll('input[name="paymentCurrency"]');
+    radios.forEach(radio => radio.disabled = true);
 
     // render the container with qr images
     document.getElementById("qrContainer").style.display="inline-flex";
