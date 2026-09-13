@@ -38,11 +38,11 @@ function getPaymentCurrency() { return currency == 'INR' ? '₹' : '$'; }
 async function setPaymentCurrency(c) {
     currency = (c === 'USD' ? 'USD' : 'INR');
     if (currency === 'INR') {
-        amount = 1999;
-        amountOriginal = 12999;
+        amount = 2999;
+        amountOriginal = 8999;
     } else {
-        amount = 19;
-        amountOriginal = 129;
+        amount = 29;
+        amountOriginal = 89;
     }
     return currency;
 }
