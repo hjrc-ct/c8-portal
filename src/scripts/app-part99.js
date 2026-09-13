@@ -138,7 +138,7 @@ async function showQR() {
         body: JSON.stringify({
             amount: amount,
             currency: currency,
-            payment_method: 'UPI',
+            payment_method: (currency === 'INR') ? 'UPI' : 'BANK_TRANSFER',
             app_transaction_id: appTxnId,
             app_transaction_status: 'START'
         })
