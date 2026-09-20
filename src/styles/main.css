@@ -808,14 +808,19 @@ ul.prereq-list li {
 }
 
 .copy-block::after {
-    content: "";
+    content: "Runs on";
     position: absolute;
     top: 4px;
     right: 8px;
-    width: 24px;
+    width: auto;
     height: 24px;
     display: block;
-    background: url("https://www.gstatic.com/images/branding/product/2x/google_cloud_64dp.png") center / contain no-repeat;
+    padding-right: 32px;
+    line-height: 24px;
+    white-space: nowrap;
+    font-size: small;
+    color: gray;
+    background: url("https://www.gstatic.com/images/branding/product/2x/google_cloud_64dp.png") right center / 24px 24px no-repeat;
 }
 
 .copy-block pre {
