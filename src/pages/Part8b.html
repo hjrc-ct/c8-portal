@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <main id="page-start">
+        <h2>Web Modeler</h2>
+        <p>
+            Let's install web modeler UI.
+            <br/>
+        </p>
+        <section>
+            <div class="copy-block" data-label="bash 8b-1">
+                <p/>
+                Create a new database "web-modeler" on the current PostgreSQL instance<br/>
+                <p>
+                    <code>
+                        <pre>
+# Open a shell to the PostgreSQL pod 
+#
+kubectl exec -it raghu-hj-gmail-com-ccb-c8-labs-postgresql-0 -n raghu-hj-gmail-com-ccb-c8-labs -- psql -U postgres
+
+# You may have to enter the password for the postgres user.
+
+# After you are logged in, run the following commands.
+CREATE DATABASE "web-modeler";
+
+CREATE USER "web-modeler" WITH PASSWORD 'makelabs';
+
+GRANT ALL PRIVILEGES ON DATABASE "web-modeler" TO "web-modeler";
+
+GRANT USAGE ON SCHEMA public TO "web-modeler";
+GRANT CREATE ON SCHEMA public TO "web-modeler";
+GRANT ALL PRIVILEGES ON DATABASE "web-modeler" TO "web-modeler";
+
+ALTER DATABASE "web-modeler" OWNER TO "web-modeler";
+
+exit;
+
+                        </pre>
+                    </code>
+                </p>
+            </div>
+            <p/>
+        </section>
+        <hr/>
+        <section>
+            <div class="copy-block" data-label="bash 8b-2">
+                <p/>
+            Run helm upgrade to add Web Modeler UI<br/>
+                <p>
+                    <pre id="copy-text-8b-2"><code>
+UNAMESPACE=${UNAMESPACE} envsubst < values-combined-ingress.yaml > values-combined-ingress.my-ns.yaml
+
+UNAMESPACE=${UNAMESPACE} envsubst < values-connectors-env.yaml   > values-connectors-env.my-ns.yaml
+
+UNAMESPACE=${UNAMESPACE} envsubst < values-webmodeler.yaml   > values-webmodeler.my-ns.yaml
+
+helm upgrade ${UNAMESPACE} camunda/camunda-platform \
+  -f values-combined-ingress.my-ns.yaml \
+  -f values-connectors-env.my-ns.yaml \
+  -f values-webmodeler.my-ns.yaml \
+  --set zeebe.prometheusServiceMonitor.enabled=true \
+  --version 14.4.1 --namespace ${UNAMESPACE} --server-side=false
+
+envsubst '${UNAMESPACE}' < c8-ingress-webmodeler.yaml | kubectl apply  -f -
+
+                    </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-8b-2', '8b-2 Copied to Clipboard!')">Copy</button>
+                <p/>
+                </p>
+
+            </div>
+            <p/>
+        </section>
+        <hr/>
+        <p><a class="next-page-marker" onclick="loadCoursePart('9a', 'page-start');">Next: Lab Exercise #a</a></p>
+        <hr/>
+    </main>
+    <script src="../scripts/app.js"></script>
+</body>
+</html>
