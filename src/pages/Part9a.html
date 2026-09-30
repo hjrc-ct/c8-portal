@@ -145,6 +145,38 @@ Hint: Have you noticed any pattern when the pods are starting? Read a bit on Cam
             
             <p><hr/></p>
 
+            <div class="copy-block" data-label="lab 9a-6">
+                <p/>
+                Q. If you sign-in to Management Identity from Landing Page (/identity), you may have trouble getting in. Can you debug this error? <br/>
+                <pre id="copy-text-9a-6"><code>
+kubectl annotate ingress \
+  ${UNAMESPACE}-ingress \
+  -n ${UNAMESPACE} \
+  nginx.ingress.kubernetes.io/proxy-buffer-size="128k" \
+  --overwrite
+
+kubectl annotate ingress \
+  ${UNAMESPACE}-ingress-keycloak \
+  -n ${UNAMESPACE} \
+  nginx.ingress.kubernetes.io/proxy-buffer-size="128k" \
+  --overwrite
+
+kubectl describe ingress ${UNAMESPACE}-camunda-platform-grpc -n ${UNAMESPACE}
+
+kubectl describe ingress ${UNAMESPACE}-ingress -n ${UNAMESPACE}
+
+kubectl describe ingress ${UNAMESPACE}-ingress-keycloak -n ${UNAMESPACE}
+
+                </code></pre>
+                <p/>
+                <button class="copy-btn" onclick="copyToClipboard('copy-text-9a-6', '9a-6 Copied to Clipboard!')">Copy</button>
+                <p/>
+<br/>
+<br/>
+            </div>
+
+            <p><hr/></p>
+
         </section>
         <hr/>
         <p><a class="next-page-marker" onclick="loadCoursePart('9b', 'page-start');">Next: Lab Exercise #b Connector & Grafana</a></p>
