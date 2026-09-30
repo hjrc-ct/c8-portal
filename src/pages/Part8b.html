@@ -19,9 +19,11 @@
                 <p>
                     <code>
                         <pre>
-# Open a shell to the PostgreSQL pod 
+# Open a shell to the PostgreSQL pod - via GCP Cloud Shell or via Headlamp.
 #
-kubectl exec -it raghu-hj-gmail-com-ccb-c8-labs-postgresql-0 -n raghu-hj-gmail-com-ccb-c8-labs -- psql -U postgres
+kubectl exec -it {{UNAMESPACE}}-postgresql-0 -n {{UNAMESPACE}} -- psql -U postgres
+#
+# If you are using Headlamp to open a shell, use the command: psql -U postgres
 
 # You may have to enter the password for the postgres user.
 
@@ -53,20 +55,20 @@ exit;
             Run helm upgrade to add Web Modeler UI<br/>
                 <p>
                     <pre id="copy-text-8b-2"><code>
-UNAMESPACE=${UNAMESPACE} envsubst < values-combined-ingress.yaml > values-combined-ingress.my-ns.yaml
+UNAMESPACE={{UNAMESPACE}} envsubst < values-combined-ingress.yaml > values-combined-ingress.my-ns.yaml
 
-UNAMESPACE=${UNAMESPACE} envsubst < values-connectors-env.yaml   > values-connectors-env.my-ns.yaml
+UNAMESPACE={{UNAMESPACE}} envsubst < values-connectors-env.yaml   > values-connectors-env.my-ns.yaml
 
-UNAMESPACE=${UNAMESPACE} envsubst < values-webmodeler.yaml   > values-webmodeler.my-ns.yaml
+UNAMESPACE={{UNAMESPACE}} envsubst < values-webmodeler.yaml   > values-webmodeler.my-ns.yaml
 
-helm upgrade ${UNAMESPACE} camunda/camunda-platform \
+helm upgrade {{UNAMESPACE}} camunda/camunda-platform \
   -f values-combined-ingress.my-ns.yaml \
   -f values-connectors-env.my-ns.yaml \
   -f values-webmodeler.my-ns.yaml \
   --set zeebe.prometheusServiceMonitor.enabled=true \
-  --version 14.4.1 --namespace ${UNAMESPACE} --server-side=false
+  --version 14.4.1 --namespace {{UNAMESPACE}} --server-side=false
 
-envsubst '${UNAMESPACE}' < c8-ingress-webmodeler.yaml | kubectl apply  -f -
+envsubst {{UNAMESPACE}} < c8-ingress-webmodeler.yaml | kubectl apply  -f -
 
                     </code></pre>
                 <p/>
