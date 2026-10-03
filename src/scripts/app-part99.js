@@ -101,7 +101,7 @@ async function showQR() {
         <hr/>
         <b>Instructions - Make the payment</b><br/>
         ${currency === 'INR'
-        ? '(a) Scan <code>UPI QR</code> to make the payment.<br/>'
+        ? '(a) Scan <code>UPI QR</code> to make the payment. Or, make a manual UPI payment using the UPI ID provided.<br/>'
         : '(a) Use <code>bank transfer</code> details sent to your email and make the payment.<br/>'}
         <br/>
         <b>Instructions - WhatsApp</b><br/>
@@ -498,7 +498,7 @@ font-size: 0.8rem;
     <p>
     <span class="payment-sub-heading">
         ${defaultCurrency === 'INR' 
-            ? 'Transfer amount to VPA'
+            ? 'Transfer amount to UPI ID'
             : 'Transfer method' }
     </span>
     <br/>
