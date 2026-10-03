@@ -16,7 +16,8 @@ function getUPIUrl(){
                 + `&am=${getPaymentAmount()}
 `               + `&tn=${remarks}`
                 + `&pn=${pName}`
-                + `&tr=${appTxnId}`;
+                //+ `&tr=${appTxnId}` commented due to an error while doing the scan
+                ;
     return upi;    
 }
 
