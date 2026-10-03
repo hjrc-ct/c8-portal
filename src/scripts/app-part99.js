@@ -5,7 +5,7 @@ var currency = 'INR';
 var appTxnId = encodeURIComponent(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
 const upiId=encodeURIComponent("makelabs@sbi");
 const remarks = encodeURIComponent('Payment for C8 Kubernetes Labs on GCP');
-const pName = encodeURIComponent("MakeLabs.in");
+const pName = encodeURIComponent("RAGHAVENDRA CHARI HOTHUR JOSHI");
 const whatsappNumber = "918217538171"; // arica whatsapp handler
 const waInput = `c8k8s ${appTxnId}`;
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(waInput)}`;
