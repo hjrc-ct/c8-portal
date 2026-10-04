@@ -1174,7 +1174,7 @@ async function checkForAccess(mainContent, part){
     }
 
     // show payment info only for Premium users
-    if (true && !nsParam.endsWith('pro-c8-labs')) {
+    if (true && part == 99 && !nsParam.endsWith('pro-c8-labs')) {
         // Replace section with premium access message
         const section = document.querySelector('main');
         if (section) {
