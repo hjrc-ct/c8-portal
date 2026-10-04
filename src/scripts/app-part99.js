@@ -1,24 +1,26 @@
 const accessPlan = "Premium"; // selected access plan
-var amount = 0;
-var amountOriginal = 0;
-var currency = 'INR';
-var appTxnId = encodeURIComponent(Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
-const upiId=encodeURIComponent("makelabs@sbi");
-const remarks = encodeURIComponent('Payment for C8 Kubernetes Labs on GCP');
-const pName = encodeURIComponent("RAGHAVENDRA CHARI HOTHUR JOSHI");
+var   amount = 0;
+var   amountOriginal = 0;
+var   currency = 'INR';
+var   appTxnId = Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 10);
+const upiId="makelabs@sbi";
+const remarks = 'Payment for C8 Kubernetes Labs on GCP';
+const pName = "RAGHAVENDRA CHARI HOTHUR JOSHI";
 const whatsappNumber = "918217538171"; // arica whatsapp handler
 const waInput = `c8k8s ${appTxnId}`;
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(waInput)}`;
 
 function getUPIUrl(){
-    var  upi = "upi://pay?" 
-                + `pa=${upiId}&cu=${currency}`
-                + `&am=${getPaymentAmount()}
-`               + `&tn=${remarks}`
-                + `&pn=${pName}`
-                //+ `&tr=${appTxnId}` commented due to an error while doing the scan
-                ;
-    return upi;    
+    var  upi = new URL("upi://pay");
+
+    upi.searchParams.set("pa", upiId);
+    upi.searchParams.set("cu", currency);
+    upi.searchParams.set("pn", pName);
+    upi.searchParams.set("am", getPaymentAmountPlain());
+    upi.searchParams.set("tn", remarks);
+    upi.searchParams.set("tr", appTxnId);
+
+    return upi.toString();
 }
 
 function getPaymentAmount(selectedCurrency = currency) {
@@ -28,6 +30,11 @@ function getPaymentAmount(selectedCurrency = currency) {
         : Number(amount).toLocaleString('en-US');
 }
 
+// Return number without any formatting, for UPI URL
+function getPaymentAmountPlain(selectedCurrency = currency) {
+    return amount;
+}
+
 function getPaymentAmountOriginal(selectedCurrency = currency) {
     const normalizedCurrency = selectedCurrency || currency || 'INR';
     return normalizedCurrency === 'INR'
@@ -35,7 +42,7 @@ function getPaymentAmountOriginal(selectedCurrency = currency) {
         : Number(amountOriginal).toLocaleString('en-US');
 }
 
-function getPaymentTxnId()    { return decodeURIComponent(appTxnId); }
+function getPaymentTxnId()    { return appTxnId; }
 function getPaymentId()       { return decodeURIComponent(upiId);    }
 function getPaymentCurrency() { return currency == 'INR' ? '₹' : '$'; }
 async function setPaymentCurrency(c) {
