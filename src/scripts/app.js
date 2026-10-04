@@ -1187,7 +1187,7 @@ async function checkForAccess(mainContent, part){
             `;
         }
         // scroll to element if present
-        const element = document.getElementById('page-start');
+        const element = document.getElementById('main');
         if (element) {
             element.scrollIntoView({
                 behavior: 'smooth'
