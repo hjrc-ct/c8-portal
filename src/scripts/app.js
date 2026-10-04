@@ -1171,29 +1171,6 @@ async function checkForAccess(mainContent, part){
             });
         }
         return false;
-    }
-
-    // show payment info only for Premium users
-    if (true && part == 99 && !nsParam.endsWith('pro-c8-labs')) {
-        // Replace section with premium access message
-        const section = document.querySelector('main');
-        if (section) {
-            section.innerHTML = `
-                <div style="padding: 40px 20px; text-align: center; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #e8491d;">
-                    <h3 style="color: #e8491d; margin-top: 0;">🔒 Complete sign-in to visit this page</h3>
-                    <p style="color: #666; font-size: 16px;">This section is restricted.</p>
-                    <p style="color: #999; font-size: 14px;">Payment info for Premium users only.</p>
-                </div>
-            `;
-        }
-        // scroll to element if present
-        const element = document.getElementById('main');
-        if (element) {
-            element.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-        return false;
     }    
 
     return true;
