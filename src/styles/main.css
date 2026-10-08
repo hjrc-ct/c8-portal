@@ -604,9 +604,12 @@ section small {
 }
 
 .ask-ai-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    position: relative;
+    justify-content: center;
+}
+
+.ask-ai-title {
+    text-align: center;
 }
 
 .ask-ai-header h2 {
@@ -620,10 +623,12 @@ section small {
     height: 36px;
     border: 0;
     background: transparent;
-    color: whitesmoke;
+    color: #e8491d;
     cursor: pointer;
     font-size: 1.6rem;
     line-height: 1;
+    position: absolute;
+    right: 0;
 }
 
 .ask-ai-form {
