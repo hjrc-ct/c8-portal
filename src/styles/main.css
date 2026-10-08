@@ -576,6 +576,140 @@ section small {
     display: grid;
 }
 
+.ask-ai-overlay[hidden] {
+    display: none;
+}
+
+.ask-ai-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2200;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(15, 23, 42, 0.72);
+}
+
+.ask-ai-dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: min(100%, 640px);
+    max-height: min(90vh, 760px);
+    padding: 20px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 24px 80px rgba(15, 23, 42, 0.28);
+}
+
+.ask-ai-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ask-ai-header h2 {
+    margin: 0;
+    color: whitesmoke;
+    font-size: 1.25rem;
+}
+
+.ask-ai-close {
+    width: 36px;
+    height: 36px;
+    border: 0;
+    background: transparent;
+    color: whitesmoke;
+    cursor: pointer;
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.ask-ai-form {
+    display: grid;
+    gap: 8px;
+}
+
+.ask-ai-examples {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 12px;
+    row-gap: 3px;
+    margin: 6px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ask-ai-example {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #087db7;
+    font: inherit;
+    text-align: left;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.ask-ai-example:hover {
+    color: #e8491d;
+    background: #f0f8ff;
+}
+
+.ask-ai-example:focus-visible {
+    outline: 1px solid ;
+    outline-offset: 1px;
+}
+
+.ask-ai-form label,
+.ask-ai-results-label {
+    color: #263746;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.ask-ai-form textarea,
+.ask-ai-results {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #b9c6cf;
+    border-radius: 4px;
+    color: #172b3a;
+    font: inherit;
+    resize: vertical;
+}
+
+.ask-ai-form textarea:focus,
+.ask-ai-results:focus {
+    outline: 2px solid #0693e3;
+    outline-offset: 1px;
+}
+
+.ask-ai-form .request-access-btn {
+    justify-self: end;
+}
+
+.ask-ai-results {
+    min-height: 180px;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    resize: none;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 600px) {
+    .ask-ai-overlay {
+        padding: 12px;
+    }
+
+    .ask-ai-dialog {
+        max-height: 94vh;
+        padding: 16px;
+    }
+}
+
 .gallery-modal {
     width: min(95vw, 1600px);
     height: min(95vh, 1200px);

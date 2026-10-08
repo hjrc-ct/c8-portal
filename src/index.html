@@ -24,7 +24,7 @@
     img-src 'self' data: https:;
     font-src 'self' https: data:;
     media-src 'self' https://videos-c8-labs.makelabs.in;
-    connect-src 'self' https://static.cloudflareinsights.com  https://challenges.cloudflare.com https://cep-api-gw-7k5bxais.an.gateway.dev https://c8-labs.makelabs.in https://cdnjs.cloudflare.com;
+    connect-src 'self' https://static.cloudflareinsights.com  https://challenges.cloudflare.com https://cep-api-gw-7k5bxais.an.gateway.dev https://c8-labs.makelabs.in https://tiny-agent.makelabs.in https://cdnjs.cloudflare.com;
     child-src https://challenges.cloudflare.com;
     worker-src 'self' blob:;
     ">
@@ -181,6 +181,36 @@
         </div>
     </main>
     <footer id="footer"></footer>
+    <div id="ask-ai-modal" class="ask-ai-overlay" hidden>
+        <section class="ask-ai-dialog" role="dialog" aria-modal="true" aria-labelledby="ask-ai-title">
+            <header class="ask-ai-header">
+                <h2 id="ask-ai-title">Ask AI</h2>
+                <button id="ask-ai-close" class="ask-ai-close" type="button" aria-label="Close Ask AI">&times;</button>
+            </header>
+            <form id="ask-ai-form" class="ask-ai-form">
+                <em style="margin-top: 1.05em;">
+                    For best results, keep your question short and specific. See examples listed below.
+                </em>
+                <em style="margin-top: 0.5em;">
+                    <ul id="ask-ai-examples" class="ask-ai-examples">
+                        <li><button class="ask-ai-example" type="button">what is included in the course</button></li>
+                        <li><button class="ask-ai-example" type="button">tell me about cloud resources</button></li>
+                        <li><button class="ask-ai-example" type="button">give me contact info</button></li>
+                        <li><button class="ask-ai-example" type="button">is free trial available</button></li>
+                        <li><button class="ask-ai-example" type="button">how do i enroll</button></li>
+                        <li><button class="ask-ai-example" type="button">is paid subscription available</button></li>
+                    </ul>
+                </em>
+                <label for="ask-ai-query">
+                    Your question
+                </label>
+                <textarea id="ask-ai-query" name="q" rows="3" required></textarea>
+                <button id="ask-ai-submit" class="request-access-btn" type="submit">Submit</button>
+            </form>
+            <label class="ask-ai-results-label" for="ask-ai-results">Response</label>
+            <textarea id="ask-ai-results" class="ask-ai-results" rows="12" readonly aria-live="polite" placeholder="The answer will appear here."></textarea>
+        </section>
+    </div>
     <script src="scripts/app-part5.js"></script>
     <script src="scripts/app-part99.js"></script>
     <script src="scripts/app-videos.js"></script>
@@ -294,6 +324,7 @@
                             '<a id="header_support" onclick="loadCoursePart(11, true);">Support</a>' +
                             '<a id="header_faq" onclick="loadCoursePart(12, true);">FAQ</a>' +
                             '<a id="header_contact" onclick="loadCoursePart(0, true);">Contact</a>' +                            
+                            '<button id="ask-ai-open" class="quick-link-pill-top-cta-teritary" type="button">Ask AI</button>' +
                             (hasAccessV2 
                                 ? '<button id="logout" class="request-access-btn" type="button" onclick="signOutAndRedirect()"><i class="fa-solid fa-right-from-bracket">&nbsp;</i>Sign Out</button>' 
                                 : '<button id="request-access-btn" class="request-access-btn" type="button"><i class="fa-solid fa-right-to-bracket">&nbsp;</i>Sign In</button>'
@@ -354,6 +385,63 @@
                     window.location.href = '/signin';
                 });
             }
+
+            const askAiModal = document.getElementById('ask-ai-modal');
+            const askAiOpen = document.getElementById('ask-ai-open');
+            const askAiClose = document.getElementById('ask-ai-close');
+            const askAiForm = document.getElementById('ask-ai-form');
+            const askAiQuery = document.getElementById('ask-ai-query');
+            const askAiExamples = document.getElementById('ask-ai-examples');
+            const askAiResults = document.getElementById('ask-ai-results');
+            const askAiSubmit = document.getElementById('ask-ai-submit');
+
+            const closeAskAi = () => {
+                askAiModal.hidden = true;
+                askAiOpen.focus();
+            };
+
+            askAiOpen.addEventListener('click', () => {
+                askAiModal.hidden = false;
+                askAiQuery.focus();
+            });
+            askAiClose.addEventListener('click', closeAskAi);
+            askAiModal.addEventListener('click', (event) => {
+                if (event.target === askAiModal) closeAskAi();
+            });
+            askAiExamples.addEventListener('click', (event) => {
+                const example = event.target.closest('.ask-ai-example');
+                if (!example) return;
+
+                askAiQuery.value = example.textContent.trim();
+                askAiForm.requestSubmit();
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && !askAiModal.hidden) closeAskAi();
+            });
+            askAiForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const query = askAiQuery.value.trim();
+                if (!query) return;
+
+                askAiSubmit.disabled = true;
+                askAiResults.value = 'ETA: 10-15 seconds...\nThinking...';
+                try {
+                    const response = await fetch(`https://tiny-agent.makelabs.in/ask?q=${encodeURIComponent(query)}`);
+                    const responseText = await response.text();
+                    if (!response.ok) throw new Error(responseText || `Request failed (${response.status})`);
+
+                    try {
+                        const result = JSON.parse(responseText);
+                        askAiResults.value = typeof result === 'string' ? result : JSON.stringify(result.answer, null, 2);
+                    } catch {
+                        askAiResults.value = responseText;
+                    }
+                } catch (error) {
+                    askAiResults.value = `Unable to get a response: ${error.message}`;
+                } finally {
+                    askAiSubmit.disabled = false;
+                }
+            });
 
             // attach magnifier to one key element
             if (false){
