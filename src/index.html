@@ -188,9 +188,7 @@
                 <button id="ask-ai-close" class="ask-ai-close" type="button" aria-label="Close Ask AI">&times;</button>
             </header>
             <form id="ask-ai-form" class="ask-ai-form">
-                <em style="margin-top: 1.05em;">
-                    For best results, keep your question short and specific. See examples listed below.
-                </em>
+                Ask any question about the scope of C8 Labs, camunda version involved, lab duration and exercises, and more. See examples listed below.
                 <em style="margin-top: 0.5em;line-height: 0.85em;">
                     <ul id="ask-ai-examples" class="ask-ai-examples">
                         <li><button class="ask-ai-example" type="button">what is included in the course c8labs</button></li>
@@ -200,18 +198,18 @@
                         <li><button class="ask-ai-example" type="button">what is covered in paid subscription and its duration</button></li>
                         <li><button class="ask-ai-example" type="button">is grafana included</button></li>
                         <li><button class="ask-ai-example" type="button">what is the registration process</button></li>
-                        <li><button class="ask-ai-example" type="button">summary of hands on lab exercises</button></li>
+                        <li><button class="ask-ai-example" type="button">elaborate on lab exercises</button></li>
                         <li><button class="ask-ai-example" type="button">info about access plans</button></li>
                     </ul>
                 </em>
                 <label for="ask-ai-query">
                     Your question
                 </label>
-                <textarea id="ask-ai-query" name="q" rows="3" required></textarea>
+                <textarea id="ask-ai-query" name="q" rows="1" required></textarea>
                 <button id="ask-ai-submit" class="request-access-btn" type="submit">Submit</button>
             </form>
             <label class="ask-ai-results-label" for="ask-ai-results">Response</label>
-            <textarea id="ask-ai-results" class="ask-ai-results" rows="12" readonly aria-live="polite" placeholder="The answer will appear here."></textarea>
+            <textarea id="ask-ai-results" class="ask-ai-results" rows="10" readonly aria-live="polite" placeholder="The answer will appear here."></textarea>
         </section>
     </div>
     <script src="scripts/app-part5.js"></script>
