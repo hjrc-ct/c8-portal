@@ -674,6 +674,34 @@ section small {
     font-weight: 600;
 }
 
+.ask-ai-loading {
+    display: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-left: 0.4rem;
+    border: 2px solid #b9c6cf;
+    border-top-color: #087db7;
+    border-radius: 50%;
+    vertical-align: middle;
+    animation: ask-ai-spin 0.8s linear infinite;
+}
+
+.ask-ai-loading[hidden] {
+    display: none;
+}
+
+@keyframes ask-ai-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ask-ai-loading {
+        animation-duration: 1.6s;
+    }
+}
+
 .ask-ai-form textarea,
 .ask-ai-results {
     box-sizing: border-box;

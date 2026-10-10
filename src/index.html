@@ -210,6 +210,7 @@
                 <button id="ask-ai-submit" class="request-access-btn" type="submit">Submit</button>
             </form>
             <label class="ask-ai-results-label" for="ask-ai-results">Response</label>
+            <span id="ask-ai-loading" class="ask-ai-loading" role="status" aria-label="Request in progress" hidden></span>
             <textarea id="ask-ai-results" class="ask-ai-results" rows="10" readonly aria-live="polite" placeholder="The answer will appear here."></textarea>
         </section>
     </div>
@@ -395,6 +396,7 @@
             const askAiQuery = document.getElementById('ask-ai-query');
             const askAiExamples = document.getElementById('ask-ai-examples');
             const askAiResults = document.getElementById('ask-ai-results');
+            const askAiLoading = document.getElementById('ask-ai-loading');
             const askAiSubmit = document.getElementById('ask-ai-submit');
 
             const closeAskAi = () => {
@@ -427,6 +429,7 @@
 
                 askAiSubmit.disabled = true;
                 askAiResults.value = 'ETA: 10-15 seconds...\nThinking...';
+                askAiLoading.hidden = false;
                 try {
                     const response = await fetch(`https://tiny-agent.makelabs.in/ask?q=${encodeURIComponent(query)}`);
                     const responseText = await response.text();
@@ -441,6 +444,7 @@
                 } catch (error) {
                     askAiResults.value = `Unable to get a response: ${error.message}`;
                 } finally {
+                    askAiLoading.hidden = true;
                     askAiSubmit.disabled = false;
                 }
             });
