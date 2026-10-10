@@ -437,9 +437,9 @@
 
                     try {
                         const result = JSON.parse(responseText);
-                        askAiResults.value = typeof result === 'string' ? result : JSON.stringify(result.answer, null, 2);
+                        askAiResults.value = (typeof result === 'string' ? result : JSON.stringify(result.answer, null, 2)).replace(/\\n/g, '\n');
                     } catch {
-                        askAiResults.value = responseText;
+                        askAiResults.value = responseText.replace(/\\n/g, '\n');
                     }
                 } catch (error) {
                     askAiResults.value = `Unable to get a response: ${error.message}`;
